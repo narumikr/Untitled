@@ -1,8 +1,8 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:33aaee,100:ffc800&text=Hello%20SEKAI&section=header&fontAlign=39&fontAlignY=45&fontSize=50&textBg=false&reversal=false&animation=fadeIn&desc=React%20prsk%20theme%20UI%20Library&descAlign=50&descSize=-1&descAlignY=55&fontColor=f5f5f7" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:33aaee,100:ffc800&text=Hello%20SEKAI&section=header&fontAlign=45&fontAlignY=40&fontSize=50&textBg=false&reversal=false&animation=fadeIn&desc=React%20prsk%20theme%20UI%20Library&descAlign=65&descSize=-1&descAlignY=55&fontColor=f5f5f7" />
 
 # **_Untitled_**
 
-![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&lines=いつしか想いは形になる;君と今を紡ぐ未来照らして...;)
+![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&width=500&lines=Hello+there!!+Thanks+for+stopping+by+🎵;Welcome+to+my+SEKAI+💫;Just+showing+big+love+for+prsk+💚;)
 
 <img src="https://img.shields.io/badge/License-Fan_made-lightgreen" alt="License: Fan-made" />
 
