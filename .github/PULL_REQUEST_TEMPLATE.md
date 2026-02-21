@@ -1,51 +1,65 @@
 <!-- prettier-ignore-start -->
 ![PR-Header](https://capsule-render.vercel.app/api?type=slice&height=39&color=0:ffc096,100:99ccff&section=header&reversal=false)
 
-### 🌸 作業概要 🌸
+## 💫 課題へのリンク 🍀
+
+- close #
+
+## 🎸 PRタイプ 🎹
+
+<!-- 必要なものだけ残す -->
+
+- 🤖新機能
+- ❄️バグ対応
+- 🥧リファクタリング
+- 🍑ドキュメント整備
+- 🦄開発ツール・プロセス
+- ☕テスト
+
+## 🐧 作業概要 ⭐
 
 <!-- 作業内容を簡単に -->
 
-### 💫 追加/変更/修正内容 🍀
+## 🎼 追加/変更/修正内容 🎨
 
 <!-- 箇条書きでいいので、あとで見返してわかる内容を -->
 
 - 
 
-### 🎤 確認事項 🎪
+## 🎤 確認事項 🎪
 
-- [ ] branch名はどんな作業を行ったかわかる命名にしたか(ex.feature/impl_new-component)
-- [ ] マージ先は間違っていないか
-- [ ] レビュワー/レビュイーを設定したか
-- [ ] 必要に応じて PRに適切なラベルを付与したか
-- [ ] Pushする前にビルド行い、distを最新にしたか
-- [ ] アクセシビリティチェックの実施(axe DevToolsの実施)したか
-- [ ] AIによるレビューの実施を行い、以下の確認をしたか
+- [ ] branch名はどんな作業を行ったかわかる命名にしたか(e.g., feat/hello-sekai-api)
+- [ ] レビュワーを設定したか
+- [ ] AIによるレビューを実施した際に、以下の確認をしたか
   - [ ] 指摘事項の妥当性の確認
   - [ ] 根拠の確認・調査
   - [ ] 指摘事項の修正
-  - [ ] 再レビューの実施
-- [ ] 新規コンポーネント作成時にユニットテストを追加したか
-- [ ] Pushする前にユニットテストを実行したか
+- [ ] 機密情報(APIKey,パスワード等)をコミットしていないか
+- [ ] 不要なコメント・デバッグコードは削除したか
+- [ ] Breaking changeがないか
+- [ ] 仕様の変更があった際には以下を実施したか
+  - [ ] ドキュメントのメンテナンスを行ったか
+  - [ ] 単体テスト、結合テストのメンテナスを行ったか
 
-#### 🎸 AI指摘事項 🎹
+## 🍜 やっていないこと 💧
 
-<Details><Summary>Review by ClaudeAI and ChatGPT</Summary>
+<!-- 残課題があれば。なければ「なし」 -->
 
-```ts
-本PRでは指摘事項なし
-```
+- 
 
-</Details>
-
-### 💻 評価項目 🆚
+## 💻 動作確認 🆚
 
 <!-- 行った動作確認を箇条書きでも -->
 
 - 
 
-### 🎵 備考 💚 Y(_ﾟ□ﾟ_) < (あれば)
+## 🎀 レビュワーへの注意点・相談内容・懸念点 🌸
 
-<!-- ちょっとXXに課題が残っている...など何かあれば備忘のためにも -->
+- 
 
-![PR-Foorter](https://capsule-render.vercel.app/api?type=slice&height=39&color=0:ffc096,100:99ccff&section=footer&reversal=false)
+## 🎵 備考 💚 Y(_ﾟ□ﾟ_) < (あれば)
+
+<!-- 何かあれば備忘のためにも -->
+
+![PR-Footer](https://capsule-render.vercel.app/api?type=slice&height=39&color=0:ffc096,100:99ccff&section=footer&reversal=false)
 <!-- prettier-ignore-end -->
