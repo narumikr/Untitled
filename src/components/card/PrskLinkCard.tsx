@@ -22,7 +22,6 @@ export interface PrskLinkCardProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
   height?: number
   width?: number
   onClick?: () => void
@@ -54,7 +53,7 @@ export const PrskLinkCard = ({
   }
 
   return (
-    <Card {...rest} ref={rest.ref} sekai={sekai} themeMode={themeMode}>
+    <Card {...rest} sekai={sekai} themeMode={themeMode}>
       <button
         className={clsx(
           styles['sekai-prsk-link-card-button'],
