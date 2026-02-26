@@ -18,7 +18,6 @@ export interface DoReMeetEffectProps {
   style?: React.CSSProperties
   sekaiKeys: ColorsSekaiKey[]
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLSpanElement>
   text: string
   duration?: number
 }
@@ -62,7 +61,6 @@ export const DoReMeetEffect = ({
   return (
     <span
       role="button"
-      ref={rest.ref}
       tabIndex={-1}
       onClick={handleDeReMeetEffect}
       onKeyDown={fireOnEnterKey<HTMLSpanElement>(handleDeReMeetEffect)}

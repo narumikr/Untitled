@@ -37,13 +37,6 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
-    ref: {
-      description: 'Ref to the root element',
-      table: {
-        type: { summary: 'React.Ref<HTMLParagraphElement>' },
-      },
-      control: false,
-    },
     children: {
       description: 'Text to display',
       table: {

@@ -44,8 +44,8 @@ export const Card = ({
   return (
     <div
       {...divProps}
-      id={id}
       ref={ref}
+      id={id}
       className={clsx(
         styles['sekai-card'],
         globalStyles[`sekai-color-${modeTheme}`],

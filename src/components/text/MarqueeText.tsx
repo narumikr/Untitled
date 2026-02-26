@@ -34,19 +34,15 @@ export interface MarqueeTextProps {
 export const MarqueeText = ({
   sekai,
   themeMode,
-  ref,
   children,
   duration,
   parentBackgroundColor,
+  ref,
   ...rest
 }: MarqueeTextProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const textWrapRef = useRef<HTMLElement | null>(null)
-  const [excessiveLength, setExcessiveLength] = useState(false)
-  const [durationState, setDurationState] = useState(duration ?? 0)
 
-  // Merge internal ref and forwarded ref
   const setRefs = useCallback(
     (element: HTMLDivElement | null) => {
       containerRef.current = element
@@ -59,6 +55,10 @@ export const MarqueeText = ({
     },
     [ref],
   )
+
+  const textWrapRef = useRef<HTMLElement | null>(null)
+  const [excessiveLength, setExcessiveLength] = useState(false)
+  const [durationState, setDurationState] = useState(duration ?? 0)
 
   const containerBackground = useMemo(() => {
     if (parentBackgroundColor) return parentBackgroundColor

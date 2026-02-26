@@ -13,8 +13,7 @@ var Loading = function Loading(_ref) {
   var id = _ref.id,
     className = _ref.className,
     style = _ref.style,
-    sekai = _ref.sekai,
-    ref = _ref.ref;
+    sekai = _ref.sekai;
   var _useOptionalSekai = useOptionalSekai.useOptionalSekai({
       sekai: sekai
     }),
@@ -27,7 +26,6 @@ var Loading = function Loading(_ref) {
     id: id,
     role: "status",
     "aria-live": "polite",
-    ref: ref,
     className: clsx(Loading_module['sekai-loading'], className),
     style: _objectSpread(_objectSpread({}, optionStyle), style)
   }, Array.from({

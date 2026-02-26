@@ -25,9 +25,7 @@ interface BaseProps {
   onClick?: () => void
 }
 
-export type StickyNoteProps =
-  | ({ as?: 'button' } & BaseProps & { ref?: React.Ref<HTMLButtonElement> })
-  | ({ as?: 'text' } & BaseProps & { ref?: React.Ref<HTMLLIElement> })
+export type StickyNoteProps = { as?: 'button' | 'text' } & BaseProps
 
 export const StickyNote = ({ sekai, children, as = 'button', ...rest }: StickyNoteProps) => {
   const isListWrap = useContext(ListContext)
@@ -38,7 +36,6 @@ export const StickyNote = ({ sekai, children, as = 'button', ...rest }: StickyNo
   return 'button' === as ? (
     <ListItemButton
       {...rest}
-      ref={rest.ref as React.Ref<HTMLButtonElement>}
       className={clsx(styles['sekai-sticky-note'], rest.className)}
       sekai={sekai}
       themeMode={LIGHT_MODE}>
@@ -47,7 +44,6 @@ export const StickyNote = ({ sekai, children, as = 'button', ...rest }: StickyNo
   ) : (
     <ListItemText
       {...rest}
-      ref={rest.ref as React.Ref<HTMLLIElement>}
       className={clsx(styles['sekai-sticky-note'], rest.className)}
       sekai={sekai}
       themeMode={LIGHT_MODE}>

@@ -55,7 +55,6 @@ var DoReMeetEffect = function DoReMeetEffect(_ref) {
   };
   return /*#__PURE__*/React.createElement("span", _extends({
     role: "button",
-    ref: rest.ref,
     tabIndex: -1,
     onClick: handleDeReMeetEffect,
     onKeyDown: fireOnEnterKey(handleDeReMeetEffect)

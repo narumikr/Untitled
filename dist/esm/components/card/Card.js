@@ -34,8 +34,8 @@ var Card = function Card(_ref) {
     '--sekai-color-shadow': sekaiColoShadow
   };
   return /*#__PURE__*/React.createElement("div", _extends({}, divProps, {
-    id: id,
     ref: ref,
+    id: id,
     className: clsx(styles['sekai-card'], globalStyles["sekai-color-".concat(modeTheme)], className),
     style: _objectSpread(_objectSpread({}, optionStyle), style)
   }), children);

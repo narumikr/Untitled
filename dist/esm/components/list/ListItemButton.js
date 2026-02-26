@@ -17,12 +17,12 @@ var ListItemButton = function ListItemButton(_ref) {
     style = _ref.style,
     sekai = _ref.sekai,
     themeMode = _ref.themeMode,
-    ref = _ref.ref,
     children = _ref.children,
     icon = _ref.icon,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    onClick = _ref.onClick;
+    onClick = _ref.onClick,
+    ref = _ref.ref;
   var isListWrap = useContext(ListContext);
   if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemButton> should be used inside <List>');
   var _useOptionalSekai = useOptionalSekai({
@@ -38,7 +38,6 @@ var ListItemButton = function ListItemButton(_ref) {
     '--sekai-color-hover': sekaiColorHover
   };
   var listItemButtonRef = useRef(null);
-  // Merge internal ref and forwarded ref
   var setRefs = useCallback(function (element) {
     listItemButtonRef.current = element;
     if (typeof ref === 'function') {
