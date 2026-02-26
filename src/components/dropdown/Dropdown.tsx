@@ -1,7 +1,5 @@
 import React, {
   createContext,
-  forwardRef,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -37,7 +35,6 @@ export interface DropdownProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
   options: DropdownOption[]
   defaultValue?: string
   onSelect: (value: string) => void
@@ -85,27 +82,12 @@ export const DropdownContent = ({
   options,
   onSelect,
   placeholder,
-  ref,
   ...rest
 }: DropdownProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
   const wrapDropdownRef = useRef<HTMLDivElement>(null)
   const triggerButtonRef = useRef<HTMLButtonElement>(null)
   const { openOptions, setOpenOptions } = useContext(DropdownContext) || {}
-
-  // Merge internal ref and forwarded ref
-  const setRefs = useCallback(
-    (element: HTMLDivElement | null) => {
-      wrapDropdownRef.current = element
-
-      if (typeof ref === 'function') {
-        ref(element)
-      } else if (ref) {
-        ;(ref as React.RefObject<HTMLDivElement | null>).current = element
-      }
-    },
-    [ref],
-  )
 
   const [dropdownPosStyle, setDropdownPosStyle] = useState<React.CSSProperties>()
   useEffect(() => {
@@ -173,11 +155,11 @@ export const DropdownContent = ({
   return (
     <div
       {...rest}
-      ref={setRefs}
+      ref={wrapDropdownRef}
       className={clsx(styles[`sekai-dropdown-${modeTheme}`], rest.className)}
       style={{ '--sekai-color': sekaiColor, ...(rest.style || {}) } as React.CSSProperties}>
       <DropdownTriggerButton
-        ref={triggerButtonRef}
+        triggerRef={triggerButtonRef}
         sekai={sekai}
         themeMode={themeMode}
         options={options}
@@ -198,56 +180,59 @@ type DropdownTriggerButtonProps = Pick<
   DropdownProps,
   'sekai' | 'themeMode' | 'options' | 'placeholder'
 > & {
-  ref?: React.Ref<HTMLButtonElement>
+  triggerRef: React.RefObject<HTMLButtonElement | null>
 }
 
-const DropdownTriggerButton = forwardRef<HTMLButtonElement, DropdownTriggerButtonProps>(
-  ({ sekai, themeMode, options, placeholder }, ref) => {
-    const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
-    const { selectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {}
+const DropdownTriggerButton = ({
+  sekai,
+  themeMode,
+  options,
+  placeholder,
+  triggerRef,
+}: DropdownTriggerButtonProps) => {
+  const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const { selectedValue, openOptions, setOpenOptions } = useContext(DropdownContext) || {}
 
-    const optionStyle = {
-      '--sekai-color': sekaiColor,
-    }
+  const optionStyle = {
+    '--sekai-color': sekaiColor,
+  }
 
-    const displayText = useMemo(() => {
-      const selectedOption = options.find((option) => option.value === selectedValue)
-      return selectedOption ? selectedOption.label : placeholder
-    }, [options, selectedValue, placeholder])
+  const displayText = useMemo(() => {
+    const selectedOption = options.find((option) => option.value === selectedValue)
+    return selectedOption ? selectedOption.label : placeholder
+  }, [options, selectedValue, placeholder])
 
-    const isDispPlaceholder = useMemo(
-      () => placeholder === displayText,
-      [placeholder, displayText],
-    )
+  const isDispPlaceholder = useMemo(
+    () => placeholder === displayText,
+    [placeholder, displayText],
+  )
 
-    const handleClick = () => {
-      setOpenOptions?.(!openOptions)
-    }
+  const handleClick = () => {
+    setOpenOptions?.(!openOptions)
+  }
 
-    return (
-      <button
-        ref={ref}
-        type="button"
-        className={styles[`sekai-dropdown-trigger-${modeTheme}`]}
-        onClick={handleClick}
-        style={optionStyle as React.CSSProperties}>
-        <span className={clsx({ [styles['sekai-placeholder']]: isDispPlaceholder })}>
-          {displayText}
-        </span>
-        <ChevronSvg
-          className={clsx(styles['sekai-dropdown-icon'], {
-            [styles['sekai-dropdown-icon-open']]: openOptions,
-            [styles[`sekai-dropdown-icon-close`]]: !openOptions,
-          })}
-          sekai={sekai}
-          themeMode={themeMode}
-          vector="down"
-        />
-      </button>
-    )
-  },
-)
-DropdownTriggerButton.displayName = 'DropdownTriggerButton'
+  return (
+    <button
+      ref={triggerRef}
+      type="button"
+      className={styles[`sekai-dropdown-trigger-${modeTheme}`]}
+      onClick={handleClick}
+      style={optionStyle as React.CSSProperties}>
+      <span className={clsx({ [styles['sekai-placeholder']]: isDispPlaceholder })}>
+        {displayText}
+      </span>
+      <ChevronSvg
+        className={clsx(styles['sekai-dropdown-icon'], {
+          [styles['sekai-dropdown-icon-open']]: openOptions,
+          [styles[`sekai-dropdown-icon-close`]]: !openOptions,
+        })}
+        sekai={sekai}
+        themeMode={themeMode}
+        vector="down"
+      />
+    </button>
+  )
+}
 
 type DropdownOptionsProps = Pick<
   DropdownProps,

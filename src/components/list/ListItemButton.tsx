@@ -34,11 +34,11 @@ export const ListItemButton = ({
   style,
   sekai,
   themeMode,
-  ref,
   children,
   icon,
   disabled = false,
   onClick,
+  ref,
 }: ListItemButtonProps) => {
   const isListWrap = useContext(ListContext)
   if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemButton> should be used inside <List>')
@@ -53,7 +53,6 @@ export const ListItemButton = ({
 
   const listItemButtonRef = useRef<HTMLButtonElement | null>(null)
 
-  // Merge internal ref and forwarded ref
   const setRefs = useCallback(
     (element: HTMLButtonElement | null) => {
       listItemButtonRef.current = element

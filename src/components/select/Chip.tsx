@@ -17,7 +17,6 @@ export interface ChipProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
   label: string
   onClick?: () => void
   onDelete?: () => void
@@ -49,7 +48,6 @@ export const Chip = ({
       role="button"
       tabIndex={0}
       {...rest}
-      ref={rest.ref}
       className={clsx(
         styles[`sekai-chip-${size}`],
         styles[`sekai-chip-${variant}`],
