@@ -163,7 +163,6 @@ interface AccordionProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     summary: string;
     summaryStyles?: string;
     defaultOpen?: boolean;
@@ -177,13 +176,12 @@ interface BackdropProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     open: boolean;
     children: React__default.ReactNode;
     containerComponent?: HTMLElement;
     centered?: boolean;
 }
-declare const Backdrop: ({ sekai, themeMode, ref, open, children, containerComponent, centered, ...rest }: BackdropProps) => React__default.ReactPortal | null;
+declare const Backdrop: ({ sekai, themeMode, open, children, containerComponent, centered, ...rest }: BackdropProps) => React__default.ReactPortal | null;
 
 type SeparatorVariant = 'slash' | 'arrow' | 'chevron' | 'dot' | 'pipe';
 interface BreadcrumbProps {
@@ -192,7 +190,6 @@ interface BreadcrumbProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLElement>;
     children: React__default.ReactNode;
     separator?: SeparatorVariant;
 }
@@ -203,9 +200,9 @@ type BasicButtonProps = {
     className?: string;
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
-    ref?: React__default.Ref<HTMLButtonElement>;
     withText?: boolean;
     themeMode?: PaletteMode;
+    ref?: React__default.Ref<HTMLButtonElement>;
     children?: React__default.ReactNode;
     disabled?: boolean;
     onClick?: () => void;
@@ -231,7 +228,6 @@ interface ScrollTopButtonProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLButtonElement>;
     pos?: ScrollTopPos;
 }
 declare const ScrollTopButton: ({ sekai, themeMode, pos, ...rest }: ScrollTopButtonProps) => React__default.ReactPortal | null;
@@ -299,7 +295,6 @@ interface MusicBannerCardProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     musicTitle: string;
     artist: string;
     selected?: boolean;
@@ -317,7 +312,6 @@ interface PrskLinkCardProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     height?: number;
     width?: number;
     onClick?: () => void;
@@ -390,14 +384,13 @@ interface WindowDialogProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     open: boolean;
     children: React__default.ReactNode;
     containerComponent?: HTMLElement;
     size?: DialogSize;
     onClose: () => void;
 }
-declare const WindowDialog: ({ sekai, themeMode, ref, open, children, containerComponent, size, onClose, ...rest }: WindowDialogProps) => React__default.ReactPortal | null;
+declare const WindowDialog: ({ sekai, themeMode, open, children, containerComponent, size, onClose, ...rest }: WindowDialogProps) => React__default.ReactPortal | null;
 
 interface XoMikuDialogProps {
     open: boolean;
@@ -437,7 +430,6 @@ interface DividerProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     children?: React__default.ReactNode;
     pairColor?: ColorsSekaiKey;
     lineHeight?: number | string;
@@ -461,7 +453,7 @@ interface DrawerProps {
     containerComponent?: HTMLElement;
     pos?: DrawerPosition;
 }
-declare const Drawer: ({ sekai, themeMode, open, onClose, children, containerComponent, pos, ...rest }: DrawerProps) => React__default.ReactPortal | null;
+declare const Drawer: ({ sekai, themeMode, open, onClose, children, containerComponent, pos, ref, ...rest }: DrawerProps) => React__default.ReactPortal | null;
 
 interface DropdownOption {
     label: string;
@@ -473,14 +465,13 @@ interface DropdownProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     options: DropdownOption[];
     defaultValue?: string;
     onSelect: (value: string) => void;
     placeholder?: string;
 }
 declare const Dropdown: (props: DropdownProps) => React__default.JSX.Element;
-declare const DropdownContent: ({ sekai, themeMode, options, onSelect, placeholder, ref, ...rest }: DropdownProps) => React__default.JSX.Element;
+declare const DropdownContent: ({ sekai, themeMode, options, onSelect, placeholder, ...rest }: DropdownProps) => React__default.JSX.Element;
 
 interface DoReMeetEffectProps {
     id?: string;
@@ -488,7 +479,6 @@ interface DoReMeetEffectProps {
     style?: React__default.CSSProperties;
     sekaiKeys: ColorsSekaiKey[];
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLSpanElement>;
     text: string;
     duration?: number;
 }
@@ -553,7 +543,7 @@ interface ListItemButtonProps {
     disabled?: boolean;
     onClick?: () => void;
 }
-declare const ListItemButton: ({ id, className, style, sekai, themeMode, ref, children, icon, disabled, onClick, }: ListItemButtonProps) => React__default.JSX.Element;
+declare const ListItemButton: ({ id, className, style, sekai, themeMode, children, icon, disabled, onClick, ref, }: ListItemButtonProps) => React__default.JSX.Element;
 
 interface ListItemTextProps {
     id?: string;
@@ -577,15 +567,9 @@ interface BaseProps {
     disabled?: boolean;
     onClick?: () => void;
 }
-type StickyNoteProps = ({
-    as?: 'button';
-} & BaseProps & {
-    ref?: React__default.Ref<HTMLButtonElement>;
-}) | ({
-    as?: 'text';
-} & BaseProps & {
-    ref?: React__default.Ref<HTMLLIElement>;
-});
+type StickyNoteProps = {
+    as?: 'button' | 'text';
+} & BaseProps;
 declare const StickyNote: ({ sekai, children, as, ...rest }: StickyNoteProps) => React__default.JSX.Element;
 
 interface LoadingProps {
@@ -593,9 +577,8 @@ interface LoadingProps {
     className?: string;
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
-    ref?: React__default.Ref<HTMLDivElement>;
 }
-declare const Loading: ({ id, className, style, sekai, ref }: LoadingProps) => React__default.JSX.Element;
+declare const Loading: ({ id, className, style, sekai }: LoadingProps) => React__default.JSX.Element;
 
 type PaginationSize = 'small' | 'medium' | 'large';
 interface PaginationProps {
@@ -604,7 +587,6 @@ interface PaginationProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     count: number;
     page?: number;
     onChangePage?: (page: number) => void;
@@ -687,7 +669,6 @@ interface ChipProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     label: string;
     onClick?: () => void;
     onDelete?: () => void;
@@ -702,7 +683,6 @@ interface SideMenuProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     open?: boolean;
     onClick?: () => void;
     children?: React__default.ReactNode;
@@ -722,7 +702,7 @@ interface MarqueeTextProps {
     duration?: number;
     parentBackgroundColor?: string;
 }
-declare const MarqueeText: ({ sekai, themeMode, ref, children, duration, parentBackgroundColor, ...rest }: MarqueeTextProps) => JSX.Element;
+declare const MarqueeText: ({ sekai, themeMode, children, duration, parentBackgroundColor, ref, ...rest }: MarqueeTextProps) => JSX.Element;
 
 interface NamePlateProps {
     id?: string;
@@ -730,7 +710,6 @@ interface NamePlateProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     text: string;
     colorCount?: number;
 }
@@ -742,7 +721,6 @@ interface OutlineTextProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLSpanElement>;
     text: string;
 }
 declare const OutlineText: ({ sekai, themeMode, text, ...rest }: OutlineTextProps) => React__default.JSX.Element;
@@ -758,7 +736,6 @@ interface TypewriterTextProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     text: string;
     options?: TypewriterTextOptions;
 }
@@ -769,7 +746,6 @@ interface BodyTextProps {
     className?: string;
     style?: React__default.CSSProperties;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLParagraphElement>;
     children?: React__default.ReactNode;
 }
 declare const BodyText: ({ themeMode, children, ...rest }: BodyTextProps) => React__default.JSX.Element;
@@ -782,7 +758,6 @@ interface DetailTextProps {
     className?: string;
     style?: React__default.CSSProperties;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLParagraphElement>;
     children?: React__default.ReactNode;
 }
 declare const DetailText: ({ themeMode, children, ...rest }: DetailTextProps) => React__default.JSX.Element;
@@ -795,7 +770,6 @@ interface AnnotationTextProps {
     className?: string;
     style?: React__default.CSSProperties;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLParagraphElement>;
     children?: React__default.ReactNode;
 }
 declare const AnnotationText: ({ themeMode, children, ...rest }: AnnotationTextProps) => React__default.JSX.Element;
@@ -811,7 +785,6 @@ interface TextAreaProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     value?: string;
     onChange?: (value: string) => void;
     placeholder?: string;
@@ -827,7 +800,6 @@ interface TextFieldProps extends React__default.InputHTMLAttributes<HTMLInputEle
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     placeholder?: string;
     clearButton?: boolean;
     onChangeInput?: (value: string) => void;
@@ -835,7 +807,7 @@ interface TextFieldProps extends React__default.InputHTMLAttributes<HTMLInputEle
     errorMessage?: string;
     maxLength?: number;
 }
-declare const TextField: ({ id, className, style, sekai, themeMode, ref, clearButton, onChangeInput, isError, errorMessage, ...inputProps }: TextFieldProps) => React__default.JSX.Element;
+declare const TextField: ({ id, className, style, sekai, themeMode, clearButton, onChangeInput, isError, errorMessage, ...inputProps }: TextFieldProps) => React__default.JSX.Element;
 
 type ToastPosition = 'top' | 'bottom';
 interface ToastProps {
@@ -844,7 +816,6 @@ interface ToastProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     open: boolean;
     onClose: () => void;
     pos?: ToastPosition;
@@ -862,7 +833,6 @@ interface TooltipProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     children: React__default.ReactNode;
     text: string;
     pos?: TooltipPosition;
@@ -875,7 +845,6 @@ interface PictureViewerProps {
     style?: React__default.CSSProperties;
     sekai?: ColorsSekaiKey;
     themeMode?: PaletteMode;
-    ref?: React__default.Ref<HTMLDivElement>;
     imgSrc: string;
     alt?: string;
     width?: number;
