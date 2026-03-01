@@ -44,7 +44,7 @@ const meta = {
       control: false,
     },
     ref: {
-      description: 'Ref to the root element',
+      description: 'Ref to the content panel element (inner div with role="presentation")',
       table: {
         type: { summary: 'React.Ref<HTMLDivElement>' },
       },

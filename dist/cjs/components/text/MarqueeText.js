@@ -12,16 +12,16 @@ var color_constant = require('../../internal/color.constant.js');
 var useOptionalSekai = require('../../internal/useOptionalSekai.js');
 var MarqueeText_module = require('./MarqueeText.module.scss.js');
 
-var _excluded = ["sekai", "themeMode", "ref", "children", "duration", "parentBackgroundColor"];
+var _excluded = ["sekai", "themeMode", "children", "duration", "parentBackgroundColor", "ref"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var MarqueeText = function MarqueeText(_ref) {
   var sekai = _ref.sekai,
     themeMode = _ref.themeMode,
-    ref = _ref.ref,
     children = _ref.children,
     duration = _ref.duration,
     parentBackgroundColor = _ref.parentBackgroundColor,
+    ref = _ref.ref,
     rest = _objectWithoutProperties(_ref, _excluded);
   var _useOptionalSekai = useOptionalSekai.useOptionalSekai({
       sekai: sekai,
@@ -30,6 +30,14 @@ var MarqueeText = function MarqueeText(_ref) {
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme;
   var containerRef = React.useRef(null);
+  var setRefs = React.useCallback(function (element) {
+    containerRef.current = element;
+    if (typeof ref === 'function') {
+      ref(element);
+    } else if (ref) {
+      ref.current = element;
+    }
+  }, [ref]);
   var textWrapRef = React.useRef(null);
   var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
@@ -39,15 +47,6 @@ var MarqueeText = function MarqueeText(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     durationState = _useState4[0],
     setDurationState = _useState4[1];
-  // Merge internal ref and forwarded ref
-  var setRefs = React.useCallback(function (element) {
-    containerRef.current = element;
-    if (typeof ref === 'function') {
-      ref(element);
-    } else if (ref) {
-      ref.current = element;
-    }
-  }, [ref]);
   var containerBackground = React.useMemo(function () {
     if (parentBackgroundColor) return parentBackgroundColor;
     return getBackgroundColor(containerRef, modeTheme);

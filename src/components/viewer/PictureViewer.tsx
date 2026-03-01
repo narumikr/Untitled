@@ -21,7 +21,6 @@ export interface PictureViewerProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
   imgSrc: string
   alt?: string
   width?: number
@@ -58,7 +57,6 @@ export const PictureViewer = ({
       {/* Thumbnail */}
       <motion.div
         {...rest}
-        ref={rest.ref}
         className={clsx(
           styles['sekai-picture-viewer-thumbnail'],
           styles[`sekai-picture-viewer-thumbnail-${modeTheme}`],

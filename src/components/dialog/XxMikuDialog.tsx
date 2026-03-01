@@ -86,8 +86,8 @@ export const XxMikuDialog = ({
     <Backdrop {...overlayProps}>
       <div
         {...rest}
-        role="dialog"
         ref={rest.ref}
+        role="dialog"
         className={clsx(
           styles[`sekai-container-${size}`],
           styles[`sekai-${modeTheme}`],

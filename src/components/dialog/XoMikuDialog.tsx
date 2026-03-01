@@ -81,8 +81,8 @@ export const XoMikuDialog = ({
     <Backdrop {...overlayProps}>
       <div
         {...rest}
-        role="dialog"
         ref={rest.ref}
+        role="dialog"
         className={clsx(styles[`sekai-container-${size}`], rest.className)}
         aria-label={title || 'Dialog'}>
         <XoMikuSvg className={styles[`sekai-xomiku-svg-1-${size}`]} />

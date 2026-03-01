@@ -20,7 +20,6 @@ export interface BackdropProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
   open: boolean
   children: React.ReactNode
   containerComponent?: HTMLElement
@@ -30,7 +29,6 @@ export interface BackdropProps {
 export const Backdrop = ({
   sekai,
   themeMode,
-  ref,
   open,
   children,
   containerComponent,
@@ -50,7 +48,7 @@ export const Backdrop = ({
   if (!portalContainer) return null
 
   return createPortal(
-    <div className={clsx(styles[displayBackdrop])} ref={ref}>
+    <div className={clsx(styles[displayBackdrop])}>
       <div
         {...rest}
         className={clsx(

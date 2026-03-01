@@ -47,7 +47,6 @@ var PictureViewer = function PictureViewer(_ref) {
   });
   if (!portalContainer) return null;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(motion.div, _extends({}, rest, {
-    ref: rest.ref,
     className: clsx(styles['sekai-picture-viewer-thumbnail'], styles["sekai-picture-viewer-thumbnail-".concat(modeTheme)], rest.className),
     style: _objectSpread(_objectSpread({}, optionStyle), rest.style),
     onClick: function onClick() {

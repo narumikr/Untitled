@@ -17,9 +17,9 @@ export type BasicButtonProps = {
   className?: string
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
-  ref?: React.Ref<HTMLButtonElement>
   withText?: boolean
   themeMode?: PaletteMode
+  ref?: React.Ref<HTMLButtonElement>
   children?: React.ReactNode
   disabled?: boolean
   onClick?: () => void

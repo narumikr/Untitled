@@ -53,7 +53,7 @@ const meta = {
     ref: {
       description: 'Ref to the root element',
       table: {
-        type: { summary: 'React.Ref<HTMLUListElement> | React.Ref<HTMLOListElement>' },
+        type: { summary: 'React.Ref<HTMLUListElement | HTMLOListElement>' },
       },
       control: false,
     },

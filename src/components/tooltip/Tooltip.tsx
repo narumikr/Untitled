@@ -18,7 +18,6 @@ export interface TooltipProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
   children: React.ReactNode
   text: string
   pos?: TooltipPosition
@@ -45,7 +44,6 @@ export const Tooltip = ({
   return (
     <div
       {...rest}
-      ref={rest.ref}
       className={clsx(
         styles[`sekai-tooltip-${modeTheme}`],
         styles[`sekai-tooltip-${pos}`],

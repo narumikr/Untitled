@@ -19,7 +19,6 @@ export interface PaginationProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
   count: number
   page?: number
   onChangePage?: (page: number) => void
@@ -66,7 +65,6 @@ export const Pagination = ({
   return (
     <div
       {...rest}
-      ref={rest.ref}
       className={clsx(styles[`sekai-pagination-${size}`], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       <CtrlButton {...ctrlButtonProps} isPrev={true} onClick={handlePrevPage} />

@@ -38,6 +38,7 @@ export const Drawer = ({
   children,
   containerComponent,
   pos = 'right',
+  ref,
   ...rest
 }: DrawerProps) => {
   const displayDrawer = open ? 'sekai-drawer-visible' : 'sekai-drawer-hidden'
@@ -57,7 +58,6 @@ export const Drawer = ({
 
   return createPortal(
     <div
-      ref={rest.ref}
       className={clsx(
         globalStyles[`sekai-overlay-${modeTheme}`],
         styles['sekai-drawer'],
@@ -68,6 +68,7 @@ export const Drawer = ({
       onClick={onClose}>
       <div
         {...rest}
+        ref={ref}
         className={clsx(
           styles[`sekai-drawer-contents-${pos}`],
           styles[displayDrawer],

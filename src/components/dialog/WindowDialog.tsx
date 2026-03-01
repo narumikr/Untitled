@@ -22,7 +22,6 @@ export interface WindowDialogProps {
   style?: React.CSSProperties
   sekai?: ColorsSekaiKey
   themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
   open: boolean
   children: React.ReactNode
   containerComponent?: HTMLElement
@@ -33,7 +32,6 @@ export interface WindowDialogProps {
 export const WindowDialog = ({
   sekai,
   themeMode,
-  ref,
   open,
   children,
   containerComponent,
@@ -58,20 +56,6 @@ export const WindowDialog = ({
   const modalRef = useRef<HTMLDivElement>(null)
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
   const [dragging, setDragging] = useState(false)
-
-  // Merge internal ref and forwarded ref
-  const setRefs = useCallback(
-    (element: HTMLDivElement | null) => {
-      modalRef.current = element
-
-      if (typeof ref === 'function') {
-        ref(element)
-      } else if (ref) {
-        ;(ref as React.RefObject<HTMLDivElement | null>).current = element
-      }
-    },
-    [ref],
-  )
 
   const [isFullscreen, setIsFullscreen] = useState(false)
 
@@ -140,7 +124,7 @@ export const WindowDialog = ({
   return createPortal(
     <div
       {...rest}
-      ref={setRefs}
+      ref={modalRef}
       role="dialog"
       className={clsx(
         styles[`sekai-window-dialog-${modeTheme}`],
