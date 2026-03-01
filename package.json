@@ -54,7 +54,7 @@
     "@rollup/plugin-babel": "^6.1.0",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-image": "^3.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-node-resolve": "^16.0.3",
     "@storybook/addon-docs": "^10.1.10",
     "@storybook/addon-onboarding": "10.2.8",
     "@storybook/react-vite": "^10.2.8",
