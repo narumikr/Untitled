@@ -4,7 +4,7 @@ import { Card, CardContent, CardTitle } from '@/components/card/Card'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { CardProps } from '@/components/card/Card'
+import type { CardProps } from '@/types/components/card/Card.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
