@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react'
 
 import { Card, CardContent, CardTitle } from '@/components/card/Card'
 
-import type { CardProps, CardContentProps, CardTitleProps } from '@/components/card/Card'
+import type { CardProps, CardContentProps, CardTitleProps } from '@/types/components/card/Card.types'
 
 // === MOCKS ===
 

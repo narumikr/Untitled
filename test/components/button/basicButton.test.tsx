@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 import { BasicButton } from '@/components/button/BasicButton'
 
-import type { BasicButtonProps } from '@/components/button/BasicButton'
+import type { BasicButtonProps } from '@/types/components/button/BasicButton.types'
 
 // Mock useOptionalSekai hook
 jest.mock('@/internal/useOptionalSekai', () => ({
@@ -81,7 +81,7 @@ describe('BasicButton Component', () => {
 
   describe('WithText Prop', () => {
     it('should apply text color when withText is true', () => {
-      const { container } = render(<BasicButton {...defaultProps} withText={true} />)
+      const { container } = render(<BasicButton {...defaultProps} withTextSekaiColor={true} />)
       const button = container.querySelector('button')
       expect(button).toHaveStyle({
         color: '#33ccba',
@@ -89,7 +89,7 @@ describe('BasicButton Component', () => {
     })
 
     it('should not apply text color when withText is false', () => {
-      const { container } = render(<BasicButton {...defaultProps} withText={false} />)
+      const { container } = render(<BasicButton {...defaultProps} withTextSekaiColor={false} />)
       const button = container.querySelector('button')
       const style = button?.getAttribute('style')
       // Color should not be explicitly set in inline styles (or should not be sekaiColor)
@@ -383,12 +383,12 @@ describe('BasicButton Component', () => {
     })
 
     it('should update withText prop on re-render', () => {
-      const { rerender, container } = render(<BasicButton {...defaultProps} withText={false} />)
+      const { rerender, container } = render(<BasicButton {...defaultProps} withTextSekaiColor={false} />)
       let button = container.querySelector('button')
       const style = button?.getAttribute('style')
       expect(style).not.toContain('color: rgb(51, 204, 186)')
 
-      rerender(<BasicButton {...defaultProps} withText={true} />)
+      rerender(<BasicButton {...defaultProps} withTextSekaiColor={true} />)
       button = container.querySelector('button')
       expect(button).toHaveStyle({ color: '#33ccba' })
     })

@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 import { StylishButton } from '@/components/button/StylishButton'
 
-import type { StylishButtonProps } from '@/components/button/StylishButton'
+import type { StylishButtonProps } from '@/types/components/button/StylishButton.types'
 
 // Mock ArrowSvg
 jest.mock('@/img/arrow', () => ({

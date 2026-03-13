@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react'
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb'
 
-import type { BreadcrumbProps } from '@/components/breadcrumb/Breadcrumb'
+import type { BreadcrumbProps } from '@/types/components/breadcrumb/Breadcrumb.types'
 
 // Mock useOptionalSekai hook
 jest.mock('@/internal/useOptionalSekai', () => ({
