@@ -11,29 +11,16 @@ import {
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type {
+  YourSekaiProviderProps,
+  YourSekaiContextProps,
+} from '@/types/components/provider/YourSekaiProvider.types'
 import type { SekaiTheme } from '@/utils/createSekai'
 
 export const YOUR_SEKAI_COLOR = 'your_sekai_color'
 export const YOUR_COLOR_THEME = 'your_color_theme'
 
-export interface YourSekaiContextProps {
-  sekaiTheme: SekaiTheme
-  switchSekaiColor: (sekai: ColorsSekaiKey) => void
-  switchColorTheme: (color: PaletteMode) => void
-}
-
 export const YourSekaiContext = createContext<YourSekaiContextProps | null>(null)
-
-interface YourSekaiOptions {
-  disableStoreSekai?: boolean
-  disableStoreTheme?: boolean
-}
-
-export interface YourSekaiProviderProps {
-  children: React.ReactNode
-  sekaiTheme: SekaiTheme
-  options?: YourSekaiOptions
-}
 
 export const YourSekaiProvider = ({
   children,

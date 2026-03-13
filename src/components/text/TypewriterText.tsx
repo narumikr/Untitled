@@ -6,28 +6,12 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './TypewriterText.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { TypewriterTextProps } from '@/types/components/text/TypewriterText.types'
 
-export interface TypewriterTextOptions {
-  speed?: number
-  loop?: boolean
-  cursor?: boolean
-}
-const defaultOptions: TypewriterTextOptions = {
+const defaultOptions: TypewriterTextProps['options'] = {
   speed: 100,
   loop: false,
-  cursor: true,
-}
-
-export interface TypewriterTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  text: string
-  options?: TypewriterTextOptions
+  showCursor: true,
 }
 
 export const TypewriterText = ({
@@ -41,8 +25,8 @@ export const TypewriterText = ({
   const [displayText, setDisplayText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
   const viewCursor = useMemo(() => {
-    return options.cursor && displayText.length < text.length
-  }, [displayText, text, options.cursor])
+    return options.showCursor && displayText.length < text.length
+  }, [displayText, text, options.showCursor])
 
   useEffect(() => {
     setDisplayText('')

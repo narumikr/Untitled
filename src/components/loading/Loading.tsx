@@ -6,14 +6,7 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './Loading.module.scss'
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface LoadingProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-}
+import type { LoadingProps } from '@/types/components/loading/Loading.types'
 
 export const Loading = ({ id, className, style, sekai }: LoadingProps) => {
   const { sekaiColor } = useOptionalSekai({ sekai })

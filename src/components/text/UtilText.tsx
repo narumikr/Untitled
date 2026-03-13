@@ -9,16 +9,14 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './UtilText.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface BodyTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  children?: React.ReactNode
-}
+import type {
+  BodyTextProps,
+  SekaiBodyTextProps,
+  DetailTextProps,
+  SekaiDetailTextProps,
+  AnnotationTextProps,
+  SekaiAnnotationTextProps,
+} from '@/types/components/text/UtilText.types'
 
 export const BodyText = ({ themeMode, children, ...rest }: BodyTextProps) => {
   const { modeTheme } = useOptionalSekai({ mode: themeMode })
@@ -36,10 +34,6 @@ export const BodyText = ({ themeMode, children, ...rest }: BodyTextProps) => {
   )
 }
 
-export interface SekaiBodyTextProps extends BodyTextProps {
-  sekai?: ColorsSekaiKey
-}
-
 export const SekaiBodyText = ({ sekai, children, ...rest }: SekaiBodyTextProps) => {
   const { sekaiColor } = useOptionalSekai({ sekai })
 
@@ -52,14 +46,6 @@ export const SekaiBodyText = ({ sekai, children, ...rest }: SekaiBodyTextProps) 
       {children}
     </BodyText>
   )
-}
-
-export interface DetailTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  children?: React.ReactNode
 }
 
 export const DetailText = ({ themeMode, children, ...rest }: DetailTextProps) => {
@@ -78,10 +64,6 @@ export const DetailText = ({ themeMode, children, ...rest }: DetailTextProps) =>
   )
 }
 
-export interface SekaiDetailTextProps extends DetailTextProps {
-  sekai?: ColorsSekaiKey
-}
-
 export const SekaiDetailText = ({ sekai, children, ...rest }: SekaiDetailTextProps) => {
   const { sekaiColor } = useOptionalSekai({ sekai })
 
@@ -96,14 +78,6 @@ export const SekaiDetailText = ({ sekai, children, ...rest }: SekaiDetailTextPro
   )
 }
 
-export interface AnnotationTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  children?: React.ReactNode
-}
-
 export const AnnotationText = ({ themeMode, children, ...rest }: AnnotationTextProps) => {
   const { modeTheme } = useOptionalSekai({ mode: themeMode })
 
@@ -114,10 +88,6 @@ export const AnnotationText = ({ themeMode, children, ...rest }: AnnotationTextP
       {children}
     </DetailText>
   )
-}
-
-export interface SekaiAnnotationTextProps extends AnnotationTextProps {
-  sekai?: ColorsSekaiKey
 }
 
 export const SekaiAnnotationText = ({ sekai, children, ...rest }: SekaiAnnotationTextProps) => {

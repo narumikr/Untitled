@@ -13,24 +13,9 @@ import styles from './MusicBannerCard.module.scss'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { MusicBannerCardProps } from '@/types/components/card/MusicBannerCard.types'
 
 type MusicBannerCardVariants = 'default' | 'view-all'
-export interface MusicBannerCardProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  musicTitle: string
-  artist: string
-  selected?: boolean
-  onSelect?: (select: boolean) => void
-  onClick?: () => void
-  onBlur?: () => void
-  onMouseLeave?: () => void
-  variants?: MusicBannerCardVariants
-}
-
 export const MusicBannerCard = ({
   sekai,
   themeMode,

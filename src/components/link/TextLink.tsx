@@ -7,22 +7,7 @@ import { convertHexToRgba } from '@/utils/converter'
 
 import styles from './TextLink.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface TextLinkProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLAnchorElement>
-  text: string
-  href: string
-  isExternal?: boolean
-  disabled?: boolean
-  ariaLabel?: string
-}
+import type { TextLinkProps } from '@/types/components/link/TextLink.types'
 
 export const TextLink = ({
   sekai,

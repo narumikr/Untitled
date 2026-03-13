@@ -267,7 +267,7 @@ const buttons: DialogButton[] = [
     type: 'normal',
     disabled: false,
     ariaLabel: 'Cancel',
-    buttonStyle: '',
+    buttonClassName: '',
   },
   {
     text: 'OK',
@@ -275,7 +275,7 @@ const buttons: DialogButton[] = [
     type: 'normal',
     disabled: false,
     ariaLabel: 'OK',
-    buttonStyle: '',
+    buttonClassName: '',
   },
   {
     text: 'OK',
@@ -283,7 +283,7 @@ const buttons: DialogButton[] = [
     type: 'strong',
     disabled: false,
     ariaLabel: 'OK',
-    buttonStyle: '',
+    buttonClassName: '',
   },
 ]
 export const OneButtonsLight: Story = {

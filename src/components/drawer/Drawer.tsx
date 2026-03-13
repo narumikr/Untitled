@@ -11,24 +11,7 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Drawer.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type DrawerPosition = 'top' | 'right' | 'bottom' | 'left'
-
-export interface DrawerProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  open: boolean
-  onClose: () => void
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  pos?: DrawerPosition
-}
+import type { DrawerProps } from '@/types/components/drawer/Drawer.types'
 
 export const Drawer = ({
   sekai,

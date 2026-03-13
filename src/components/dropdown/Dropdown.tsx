@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 import clsx from 'clsx'
 
@@ -17,29 +10,11 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Dropdown.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { DropdownProps } from '@/types/components/dropdown/Dropdown.types'
 
 const MAX_OPTION_LENGTH = 5
 const OPTION_ITEM_HEIGHT = 40
 const BUTTON_BORDER_WIDTH = 2
-
-export interface DropdownOption {
-  label: string
-  value: string
-}
-
-export interface DropdownProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  options: DropdownOption[]
-  defaultValue?: string
-  onSelect: (value: string) => void
-  placeholder?: string
-}
 
 export const Dropdown = (props: DropdownProps) => {
   const displayText = props.placeholder || props.defaultValue || ''

@@ -11,20 +11,7 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Backdrop.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface BackdropProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  open: boolean
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  centered?: boolean
-}
+import type { BackdropProps } from '@/types/components/backdrop/Backdrop.types'
 
 export const Backdrop = ({
   sekai,

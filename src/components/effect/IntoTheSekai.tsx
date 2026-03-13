@@ -7,13 +7,7 @@ import { usePortalContainer } from '@/internal/usePortalContainer'
 
 import styles from './IntoTheSekai.module.scss'
 
-export interface IntoTheSekaiProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  execEvent?: () => void
-  containerComponent?: HTMLElement
-}
+import type { IntoTheSekaiProps } from '@/types/components/effect/IntoTheSekai.types'
 
 type PieceOfSekai = {
   points: { x: number; y: number }[]

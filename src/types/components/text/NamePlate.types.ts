@@ -1,0 +1,31 @@
+import type { PaletteMode } from '@/hooks/useThemeMode'
+import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type React from 'react'
+
+export interface NamePlateProps {
+  /** ユニークID - Unique identifier */
+  id?: string
+  /** クラス名 - Class name */
+  className?: string
+  /** スタイル - Inline styles */
+  style?: React.CSSProperties
+  /**
+   * セカイカラー - Sekai Color
+   * @see {@link ColorsSekaiKey}
+   * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.sekaiを参照し、contextもない場合はデフォルトのMikuカラーが適用されます。
+   */
+  sekai?: ColorsSekaiKey
+  /**
+   * テーマモード - Theme Mode
+   * @see {@link PaletteMode}
+   * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.modeを参照し、contextもない場合はデフォルトのlightモードが適用されます。
+   */
+  themeMode?: PaletteMode
+  /** 表示するテキスト - Text to display */
+  text: string
+  /**
+   * カラーリングするテキスト文字数 - Number of characters to color
+   * @default 1
+   */
+  colorLength?: number
+}

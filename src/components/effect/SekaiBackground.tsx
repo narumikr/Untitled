@@ -5,6 +5,8 @@ import { createPortal } from 'react-dom'
 
 import styles from './SekaiBackground.module.scss'
 
+import type { SekaiBackgroundProps } from '@/types/components/effect/SekaiBackground.types'
+
 const PINK = `rgba(255, 186, 241, `
 const YELLOW = `rgba(255, 247, 148, `
 const AQUA = `rgba(149, 253, 255, `
@@ -135,14 +137,6 @@ const getColor = () => {
     default:
       return AQUA
   }
-}
-
-export interface SekaiBackgroundProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  containerComponent?: HTMLElement
-  bgOpacity?: number
 }
 
 export const SekaiBackground = ({

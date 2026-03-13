@@ -65,8 +65,8 @@ const meta = {
         type: { summary: 'string' },
       },
     },
-    summaryStyles: {
-      description: 'Custom summary styles',
+    summaryClassName: {
+      description: 'Custom summary class name',
       table: {
         type: { summary: 'string' },
       },

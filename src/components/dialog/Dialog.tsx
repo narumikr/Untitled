@@ -15,38 +15,7 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Dialog.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type DialogSize = 'narrow' | 'medium' | 'wide'
-
-export type DialogButtonType = 'normal' | 'strong'
-export interface DialogButton {
-  text: string
-  onClick: () => void
-  type?: DialogButtonType
-  disabled?: boolean
-  ariaLabel?: string
-  buttonStyle?: string
-}
-
-export interface DialogProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  open: boolean
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  size?: DialogSize
-  onClose: () => void
-  title?: string
-  showCloseIcon?: boolean
-  buttons?: DialogButton[]
-  dialogButtons?: React.ReactNode
-}
+import type { DialogProps } from '@/types/components/dialog/Dialog.types'
 
 export const Dialog = ({
   sekai,
@@ -175,7 +144,7 @@ export const DialogButtons = ({ sekai, themeMode, buttons, ...rest }: DialogButt
             globalStyles[`sekai-color-${modeTheme}`],
             styles[`sekai-dialog-${el.type || 'normal'}-button-${buttonLength}-${index}`],
             styles[`sekai-${modeTheme}`],
-            el.buttonStyle || '',
+            el.buttonClassName || '',
           )}
           style={optionStyle as React.CSSProperties}>
           {el.text}

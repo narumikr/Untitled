@@ -10,21 +10,7 @@ import { ListContext } from './List'
 
 import styles from './List.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface ListItemButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLButtonElement>
-  children: React.ReactNode
-  icon?: 'string' | React.ReactNode
-  disabled?: boolean
-  onClick?: () => void
-}
+import type { ListItemButtonProps } from '@/types/components/list/ListItemButton.types'
 
 const rippleEffectClassName = 'sekai-ripple'
 
