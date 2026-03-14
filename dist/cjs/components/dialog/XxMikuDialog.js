@@ -90,9 +90,9 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
   }), /*#__PURE__*/React.createElement("div", {
     className: XxMikuDialog_module['sekai-content-wrap']
   }, /*#__PURE__*/React.createElement(Dialog.DialogTitleHeader, _extends({
-    id: "xo-miku-dialog-header"
+    id: "xx-miku-dialog-header"
   }, headerProps)), children, /*#__PURE__*/React.createElement(Dialog.DialogButtons, _extends({
-    id: "xo-miku-dialog-buttons",
+    id: "xx-miku-dialog-buttons",
     className: XxMikuDialog_module['sekai-xxmiku-button']
   }, buttonsProps))))), portalContainer);
 };
