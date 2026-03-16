@@ -48,7 +48,7 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     return buttons === null || buttons === void 0 ? void 0 : buttons.map(function (button) {
       var type = button.type ? button.type : 'normal';
       return _objectSpread(_objectSpread({}, button), {}, {
-        buttonStyle: clsx(XoMikuDialog_module["sekai-xomiku-".concat(type, "-button")])
+        buttonClassName: clsx(XoMikuDialog_module["sekai-xomiku-".concat(type, "-button")])
       });
     });
   }, [buttons]);

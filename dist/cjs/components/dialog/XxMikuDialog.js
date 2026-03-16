@@ -53,7 +53,7 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
     return buttons === null || buttons === void 0 ? void 0 : buttons.map(function (button) {
       var type = button.type ? button.type : 'normal';
       return _objectSpread(_objectSpread({}, button), {}, {
-        buttonStyle: clsx(XxMikuDialog_module["sekai-xxmiku-".concat(type, "-button")], XxMikuDialog_module["sekai-".concat(modeTheme)])
+        buttonClassName: clsx(XxMikuDialog_module["sekai-xxmiku-".concat(type, "-button")], XxMikuDialog_module["sekai-".concat(modeTheme)])
       });
     });
   }, [buttons, modeTheme]);

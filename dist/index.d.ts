@@ -488,7 +488,10 @@ interface CardTitleProps {
     themeMode?: PaletteMode;
     /** カードタイトルのテキスト - Text for the card title */
     title: string;
-    /** タイトルのアンダーライン装飾の有無 - Whether to display an underline for the title */
+    /**
+     * タイトルのアンダーライン装飾の有無 - Whether to display an underline for the title
+     * @default true
+     */
     underline?: boolean;
 }
 
@@ -872,8 +875,7 @@ interface DividerProps {
      * @default 'center'
      */
     textAlign?: 'left' | 'center' | 'right';
-    /** Dividerに影
-     * をつけるか - Whether to apply shadow to the divider */
+    /** Dividerに影をつけるか - Whether to apply shadow to the divider */
     shadow?: boolean;
 }
 
@@ -1125,7 +1127,7 @@ interface ListItemButtonProps {
     /** ボタンの子要素 - Children elements of the button */
     children: React__default.ReactNode;
     /** 表示アイコン - Icon to be displayed */
-    icon?: 'string' | React__default.ReactNode;
+    icon?: string | React__default.ReactNode;
     /**
      * ボタンの無効化するかどうか - Whether to disable the button
      * @default false
@@ -1166,7 +1168,7 @@ interface ListItemTextProps {
      */
     as?: 'span' | 'p';
     /** 表示アイコン - Icon to be displayed */
-    icon?: 'string' | React__default.ReactNode;
+    icon?: string | React__default.ReactNode;
 }
 
 declare const ListItemText: ({ sekai, themeMode, children, as, icon, ...rest }: ListItemTextProps) => React__default.JSX.Element;
@@ -1377,11 +1379,11 @@ interface CheckboxProps extends Omit<React__default.InputHTMLAttributes<HTMLInpu
     /** Checkbox要素への参照 - Reference for the Checkbox element */
     ref?: React__default.Ref<HTMLInputElement>;
     /** チェック状態 - Checked state */
-    checked: boolean;
+    checked?: boolean;
     /** Checkboxを無効化するかどうか - Whether to disable the Checkbox */
     disabled?: boolean;
     /** チェック状態の変更ハンドラー - Handler for changing the checked state */
-    onChange: (checked: boolean) => void;
+    onChange?: (checked: boolean) => void;
     /**
      * Checkboxのスタイル - Style for the Checkbox
      * @remark fillingがtrueの場合、チェックボックスが塗りつぶされます
