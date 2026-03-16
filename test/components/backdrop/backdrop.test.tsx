@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom'
 
 import { Backdrop } from '@/components/backdrop/Backdrop'
 
-import type { BackdropProps } from '@/components/backdrop/Backdrop'
+import type { BackdropProps } from '@/types/components/backdrop/Backdrop.types'
 
 // Mock react-dom createPortal
 jest.mock('react-dom', () => {

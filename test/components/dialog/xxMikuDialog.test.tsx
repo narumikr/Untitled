@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom'
 
 import { XxMikuDialog } from '@/components/dialog/XxMikuDialog'
 
-import type { XxMikuDialogProps } from '@/components/dialog/XxMikuDialog'
+import type { XxMikuDialogProps } from '@/types/components/dialog/XxMikuDialog.types'
 
 // Mock react-dom createPortal
 jest.mock('react-dom', () => {
@@ -313,7 +313,7 @@ describe('XxMikuDialog Component', () => {
 
     it('should render DialogTitleHeader with id', () => {
       const { container } = render(<XxMikuDialog {...defaultProps} title="Test" />)
-      const header = container.querySelector('#xo-miku-dialog-header')
+      const header = container.querySelector('#xx-miku-dialog-header')
       expect(header).toBeInTheDocument()
     })
   })
@@ -338,7 +338,7 @@ describe('XxMikuDialog Component', () => {
     it('should render DialogButtons with id and className', () => {
       const buttons = [{ text: 'Button', onClick: jest.fn() }]
       const { container } = render(<XxMikuDialog {...defaultProps} buttons={buttons} />)
-      const buttonsElement = container.querySelector('#xo-miku-dialog-buttons')
+      const buttonsElement = container.querySelector('#xx-miku-dialog-buttons')
       expect(buttonsElement).toBeInTheDocument()
       expect(buttonsElement).toHaveClass('sekai-xxmiku-button')
     })

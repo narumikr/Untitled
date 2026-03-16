@@ -10,26 +10,13 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Accordion.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface AccordionProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  summary: string
-  summaryStyles?: string
-  defaultOpen?: boolean
-  details: string | string[] | React.ReactNode
-}
+import type { AccordionProps } from '@/types/components/accordion/Accordion.types'
 
 export const Accordion = ({
   sekai,
   themeMode,
   summary,
-  summaryStyles,
+  summaryClassName,
   defaultOpen = false,
   details,
   ...rest
@@ -54,7 +41,7 @@ export const Accordion = ({
         className={clsx(
           styles['sekai-accordion-summary'],
           globalStyles[`sekai-text-${modeTheme}`],
-          summaryStyles,
+          summaryClassName,
         )}
         onClick={handleOpenClose}
         id="accordion-summary"

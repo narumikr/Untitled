@@ -28,11 +28,11 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
-    "generate-index": "python scripts/generator.py",
+    "generate-index": "python -X utf8 scripts/generator.py",
     "build:gen": "npm run generate-index",
     "build:bundle": "rollup -c",
     "build:typecheck": "tsc --noEmit",
-    "build:package-json": "python scripts/build-package-json.py",
+    "build:package-json": "python -X utf8 scripts/build-package-json.py",
     "build:local": "sh scripts/build_local.sh",
     "build": "npm run clean && npm run build:gen && npm run build:bundle && npm run build:typecheck && npm run build:package-json && npm run build:local",
     "lint": "npx eslint .  --no-cache --fix --max-warnings=0",

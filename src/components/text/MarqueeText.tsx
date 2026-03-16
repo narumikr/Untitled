@@ -16,20 +16,8 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './MarqueeText.module.scss'
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { MarqueeTextProps } from '@/types/components/text/MarqueeText.types'
 import type { JSX } from 'react'
-
-export interface MarqueeTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  children: React.ReactNode
-  duration?: number
-  parentBackgroundColor?: string
-}
 
 export const MarqueeText = ({
   sekai,

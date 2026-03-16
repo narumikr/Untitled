@@ -27,7 +27,7 @@ export { ListItemText } from './components/list/ListItemText.js';
 export { StickyNote } from './components/list/StickyNote.js';
 export { Loading } from './components/loading/Loading.js';
 export { Pagination } from './components/pagination/Pagination.js';
-export { createSharedValueProvider } from './components/provider/StoreValueContext.js';
+export { createSharedValueProvider } from './components/provider/SharedValueProvider.js';
 export { YOUR_COLOR_THEME, YOUR_SEKAI_COLOR, YourSekaiContext, YourSekaiProvider } from './components/provider/YourSekaiProvider.js';
 export { Checkbox } from './components/select/Checkbox.js';
 export { Chip } from './components/select/Chip.js';

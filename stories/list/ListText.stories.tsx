@@ -5,7 +5,7 @@ import { ListItemText } from '@/components/list/ListItemText'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { ListItemTextProps } from '@/components/list/ListItemText'
+import type { ListItemTextProps } from '@/types/components/list/ListItemText.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {

@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 import { MusicBannerCard } from '@/components/card/MusicBannerCard'
 
-import type { MusicBannerCardProps } from '@/components/card/MusicBannerCard'
+import type { MusicBannerCardProps } from '@/types/components/card/MusicBannerCard.types'
 
 // === MOCKS ===
 

@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 import { Accordion } from '@/components/accordion/Accordion'
 
-import type { AccordionProps } from '@/components/accordion/Accordion'
+import type { AccordionProps } from '@/types/components/accordion/Accordion.types'
 
 // Mock the ChevronSvg component
 jest.mock('@/img/chevron', () => ({
@@ -340,7 +340,7 @@ describe('Accordion Component', () => {
 
   describe('Custom Styling', () => {
     it('should apply custom summaryStyles className', () => {
-      render(<Accordion {...defaultProps} summaryStyles="custom-summary-style" />)
+      render(<Accordion {...defaultProps} summaryClassName="custom-summary-style" />)
       const button = screen.getByRole('button')
       expect(button).toHaveClass('custom-summary-style')
     })

@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { Backdrop } from '@/components/backdrop/Backdrop'
-import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
+import { DialogButtons, DialogTitleHeader } from '@/components/dialog/Dialog'
 
 import { LIGHT_MODE, type PaletteMode } from '@/hooks/useThemeMode'
 import { XoMikuSvg } from '@/img/xomiku'
@@ -13,22 +13,7 @@ import { fireOnEscapeKey } from '@/utils/operation'
 
 import styles from './XoMikuDialog.module.scss'
 
-import type { DialogButton } from '@/components/dialog/Dialog'
-
-export interface XoMikuDialogProps {
-  open: boolean
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  children: React.ReactNode
-  size?: DialogSize
-  containerComponent?: HTMLElement
-  onClose: () => void
-  title?: string
-  buttons?: DialogButton[]
-}
+import type { XoMikuDialogProps } from '@/types/components/dialog/XoMikuDialog.types'
 
 export const XoMikuDialog = ({
   open,
@@ -60,7 +45,7 @@ export const XoMikuDialog = ({
         const type = button.type ? button.type : 'normal'
         return {
           ...button,
-          buttonStyle: clsx(styles[`sekai-xomiku-${type}-button`]),
+          buttonClassName: clsx(styles[`sekai-xomiku-${type}-button`]),
         }
       }),
     [buttons],

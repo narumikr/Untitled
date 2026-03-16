@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom'
 
 import { Dialog, DialogButtons, DialogTitleHeader } from '@/components/dialog/Dialog'
 
-import type { DialogProps } from '@/components/dialog/Dialog'
+import type { DialogProps } from '@/types/components/dialog/Dialog.types'
 
 // Mock react-dom createPortal
 jest.mock('react-dom', () => {
@@ -737,8 +737,8 @@ describe('DialogButtons Component', () => {
       expect(button).toBeInTheDocument()
     })
 
-    it('should apply custom buttonStyle', () => {
-      const buttons = [{ text: 'Button', onClick: jest.fn(), buttonStyle: 'custom-style' }]
+    it('should apply custom buttonClassName', () => {
+      const buttons = [{ text: 'Button', onClick: jest.fn(), buttonClassName: 'custom-style' }]
       const { container } = render(<DialogButtons {...defaultProps} buttons={buttons} />)
       const button = container.querySelector('.custom-style')
       expect(button).toBeInTheDocument()

@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom'
 
 import { WindowDialog } from '@/components/dialog/WindowDialog'
 
-import type { WindowDialogProps } from '@/components/dialog/WindowDialog'
+import type { WindowDialogProps } from '@/types/components/dialog/WindowDialog.types'
 
 // Mock react-dom createPortal
 jest.mock('react-dom', () => {

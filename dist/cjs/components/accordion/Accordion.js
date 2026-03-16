@@ -13,14 +13,14 @@ var converter = require('../../utils/converter.js');
 var global_module = require('../../styles/global.module.scss.js');
 var Accordion_module = require('./Accordion.module.scss.js');
 
-var _excluded = ["sekai", "themeMode", "summary", "summaryStyles", "defaultOpen", "details"];
+var _excluded = ["sekai", "themeMode", "summary", "summaryClassName", "defaultOpen", "details"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Accordion = function Accordion(_ref) {
   var sekai = _ref.sekai,
     themeMode = _ref.themeMode,
     summary = _ref.summary,
-    summaryStyles = _ref.summaryStyles,
+    summaryClassName = _ref.summaryClassName,
     _ref$defaultOpen = _ref.defaultOpen,
     defaultOpen = _ref$defaultOpen === void 0 ? false : _ref$defaultOpen,
     details = _ref.details,
@@ -50,7 +50,7 @@ var Accordion = function Accordion(_ref) {
     className: clsx(Accordion_module['sekai-accordion-container'], rest.className),
     style: _objectSpread(_objectSpread({}, optionStyle), rest.style)
   }), /*#__PURE__*/React.createElement("button", {
-    className: clsx(Accordion_module['sekai-accordion-summary'], global_module["sekai-text-".concat(modeTheme)], summaryStyles),
+    className: clsx(Accordion_module['sekai-accordion-summary'], global_module["sekai-text-".concat(modeTheme)], summaryClassName),
     onClick: handleOpenClose,
     id: "accordion-summary",
     "aria-expanded": openAccordion,

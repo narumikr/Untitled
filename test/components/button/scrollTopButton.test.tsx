@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom'
 
 import { ScrollTopButton } from '@/components/button/ScrollTopButton'
 
-import type { ScrollTopButtonProps } from '@/components/button/ScrollTopButton'
+import type { ScrollTopButtonProps } from '@/types/components/button/ScrollTopButton.types'
 
 // Mock react-dom createPortal
 jest.mock('react-dom', () => {

@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 import { StrongButton } from '@/components/button/StrongButton'
 
-import type { StrongButtonProps } from '@/components/button/StrongButton'
+import type { StrongButtonProps } from '@/types/components/button/StrongButton.types'
 
 // Mock useOptionalSekai hook
 jest.mock('@/internal/useOptionalSekai', () => ({

@@ -10,19 +10,7 @@ import styles from './Chip.module.scss'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface ChipProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  label: string
-  onClick?: () => void
-  onDelete?: () => void
-  size?: 'small' | 'medium' | 'large'
-  variant?: 'filled' | 'outlined'
-}
+import type { ChipProps } from '@/types/components/select/Chip.types'
 
 export const Chip = ({
   sekai,

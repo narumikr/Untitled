@@ -2,17 +2,10 @@ import React, { createContext, useContext } from 'react'
 
 import { useSessionStorage } from '@/hooks/useSessionStorage'
 
-export interface SharedValueProviderProps<T> {
-  children: React.ReactNode
-  sessionStorageKey: string
-  defaultValue: T
-}
-
-export interface SharedValueContextProps<T> {
-  sharedValue: T
-  setSharedValue: React.Dispatch<React.SetStateAction<T>>
-  deleteSharedValue: () => void
-}
+import type {
+  SharedValueContextProps,
+  SharedValueProviderProps,
+} from '@/types/components/provider/SharedValueProvider.types'
 
 export const createSharedValueProvider = <T,>() => {
   const SharedValueContext = createContext<SharedValueContextProps<T> | null>(null)

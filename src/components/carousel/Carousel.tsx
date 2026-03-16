@@ -12,26 +12,10 @@ import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './Carousel.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-import type { SwiperRef } from 'swiper/react'
+import type { CarouselProps } from '@/types/components/carousel/Carousel.types'
 import type { SwiperModule } from 'swiper/types'
 
 export type CarouselSize = 'wide' | 'normal' | 'single'
-
-export interface CarouselProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<SwiperRef>
-  children: React.ReactNode
-  size?: CarouselSize
-  autoPlay?: boolean
-  loopInfinite?: boolean
-  pagination?: boolean
-}
 
 export const Carousel = ({
   sekai,

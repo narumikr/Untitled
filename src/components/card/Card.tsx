@@ -9,18 +9,11 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Card.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type CardProps = {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  children: React.ReactNode
-} & React.HTMLAttributes<HTMLDivElement>
+import type {
+  CardProps,
+  CardContentProps,
+  CardTitleProps,
+} from '@/types/components/card/Card.types'
 
 export const Card = ({
   id,
@@ -57,14 +50,6 @@ export const Card = ({
   )
 }
 
-export interface CardContentProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  children: React.ReactNode
-}
-
 export const CardContent = ({
   id,
   className,
@@ -88,17 +73,13 @@ export const CardContent = ({
   )
 }
 
-export interface CardTitleProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  title: string
-  underline?: true
-}
-
-export const CardTitle = ({ sekai, themeMode, title, underline, ...rest }: CardTitleProps) => {
+export const CardTitle = ({
+  sekai,
+  themeMode,
+  title,
+  underline = true,
+  ...rest
+}: CardTitleProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
 
   const optionStyle = {

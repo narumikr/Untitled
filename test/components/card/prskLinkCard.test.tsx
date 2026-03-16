@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 import { PrskLinkCard } from '@/components/card/PrskLinkCard'
 
-import type { PrskLinkCardProps } from '@/components/card/PrskLinkCard'
+import type { PrskLinkCardProps } from '@/types/components/card/PrskLinkCard.types'
 
 // === MOCKS ===
 

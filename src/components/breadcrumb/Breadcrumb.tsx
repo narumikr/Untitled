@@ -6,27 +6,15 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './Breadcrumb.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { BreadcrumbProps } from '@/types/components/breadcrumb/Breadcrumb.types'
 
 type SeparatorVariant = 'slash' | 'arrow' | 'chevron' | 'dot' | 'pipe'
-
 const separatorMap: Record<SeparatorVariant, string> = {
   slash: '/',
   arrow: '→',
   chevron: '>',
   dot: '•',
   pipe: '|',
-}
-
-export interface BreadcrumbProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  separator?: SeparatorVariant
 }
 
 export const Breadcrumb = ({

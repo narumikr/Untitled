@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom'
 
 import { XoMikuDialog } from '@/components/dialog/XoMikuDialog'
 
-import type { XoMikuDialogProps } from '@/components/dialog/XoMikuDialog'
+import type { XoMikuDialogProps } from '@/types/components/dialog/XoMikuDialog.types'
 
 // Mock react-dom createPortal
 jest.mock('react-dom', () => {

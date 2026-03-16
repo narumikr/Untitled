@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 
 import { HamburgerButton } from '@/components/button/HamburgerButton'
 
-import type { HamburgerButtonProps } from '@/components/button/HamburgerButton'
+import type { HamburgerButtonProps } from '@/types/components/button/HamburgerButton.types'
 
 // Mock useOptionalSekai hook
 jest.mock('@/internal/useOptionalSekai', () => ({

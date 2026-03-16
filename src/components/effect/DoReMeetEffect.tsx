@@ -9,18 +9,7 @@ import { colorsSekai } from '@/styles/sekai-colors'
 
 import styles from './DoReMeetEffect.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface DoReMeetEffectProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekaiKeys: ColorsSekaiKey[]
-  themeMode?: PaletteMode
-  text: string
-  duration?: number
-}
+import type { DoReMeetEffectProps } from '@/types/components/effect/DoReMeetEffect.types'
 
 export const DoReMeetEffect = ({
   sekaiKeys,

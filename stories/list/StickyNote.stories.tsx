@@ -7,7 +7,7 @@ import { StickyNote } from '@/components/list/StickyNote'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { StickyNoteProps } from '@/components/list/StickyNote'
+import type { StickyNoteProps } from '@/types/components/list/StickyNote.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {

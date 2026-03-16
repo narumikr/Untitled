@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 
 import { Backdrop } from '@/components/backdrop/Backdrop'
-import { DialogButtons, DialogTitleHeader, type DialogSize } from '@/components/dialog/Dialog'
+import { DialogButtons, DialogTitleHeader } from '@/components/dialog/Dialog'
 
 import { XxMikuSvg } from '@/img/xxmiku'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
@@ -13,23 +13,7 @@ import { fireOnEscapeKey } from '@/utils/operation'
 
 import styles from './XxMikuDialog.module.scss'
 
-import type { DialogButton } from '@/components/dialog/Dialog'
-import type { PaletteMode } from '@/hooks/useThemeMode'
-
-export interface XxMikuDialogProps {
-  open: boolean
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  children: React.ReactNode
-  size?: DialogSize
-  containerComponent?: HTMLElement
-  onClose: () => void
-  title?: string
-  buttons?: DialogButton[]
-}
+import type { XxMikuDialogProps } from '@/types/components/dialog/XxMikuDialog.types'
 
 export const XxMikuDialog = ({
   open,
@@ -62,7 +46,7 @@ export const XxMikuDialog = ({
         const type = button.type ? button.type : 'normal'
         return {
           ...button,
-          buttonStyle: clsx(
+          buttonClassName: clsx(
             styles[`sekai-xxmiku-${type}-button`],
             styles[`sekai-${modeTheme}`],
           ),
@@ -100,10 +84,10 @@ export const XxMikuDialog = ({
         <XxMikuSvg className={styles[`sekai-xxmiku-svg-4-${size}`]} type={'type2'} />
         <XxMikuSvg className={styles[`sekai-xxmiku-svg-5-${size}`]} type={'type2'} />
         <div className={styles['sekai-content-wrap']}>
-          <DialogTitleHeader id="xo-miku-dialog-header" {...headerProps} />
+          <DialogTitleHeader id="xx-miku-dialog-header" {...headerProps} />
           {children}
           <DialogButtons
-            id="xo-miku-dialog-buttons"
+            id="xx-miku-dialog-buttons"
             className={styles['sekai-xxmiku-button']}
             {...buttonsProps}
           />
