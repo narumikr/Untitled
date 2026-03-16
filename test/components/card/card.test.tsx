@@ -5,7 +5,11 @@ import { render, screen } from '@testing-library/react'
 
 import { Card, CardContent, CardTitle } from '@/components/card/Card'
 
-import type { CardProps, CardContentProps, CardTitleProps } from '@/types/components/card/Card.types'
+import type {
+  CardProps,
+  CardContentProps,
+  CardTitleProps,
+} from '@/types/components/card/Card.types'
 
 // === MOCKS ===
 
@@ -402,9 +406,9 @@ describe('CardTitle Component', () => {
       expect(container.querySelector('[class*="underline"]')).toBeTruthy()
     })
 
-    it('should not apply underline class when underline is undefined', () => {
+    it('should apply underline class by default when underline is undefined', () => {
       const { container } = render(<CardTitle {...defaultProps} />)
-      expect(container.querySelector('[class*="underline"]')).toBeFalsy()
+      expect(container.querySelector('[class*="underline"]')).toBeTruthy()
     })
   })
 
@@ -507,10 +511,10 @@ describe('CardTitle Component', () => {
 
     it('should update underline state on re-render', () => {
       const { rerender, container } = render(<CardTitle {...defaultProps} />)
-      expect(container.querySelector('[class*="underline"]')).toBeFalsy()
-
-      rerender(<CardTitle {...defaultProps} underline={true} />)
       expect(container.querySelector('[class*="underline"]')).toBeTruthy()
+
+      rerender(<CardTitle {...defaultProps} underline={false} />)
+      expect(container.querySelector('[class*="underline"]')).toBeFalsy()
     })
   })
 })

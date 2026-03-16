@@ -737,8 +737,8 @@ describe('DialogButtons Component', () => {
       expect(button).toBeInTheDocument()
     })
 
-    it('should apply custom buttonStyle', () => {
-      const buttons = [{ text: 'Button', onClick: jest.fn(), buttonStyle: 'custom-style' }]
+    it('should apply custom buttonClassName', () => {
+      const buttons = [{ text: 'Button', onClick: jest.fn(), buttonClassName: 'custom-style' }]
       const { container } = render(<DialogButtons {...defaultProps} buttons={buttons} />)
       const button = container.querySelector('.custom-style')
       expect(button).toBeInTheDocument()

@@ -27,7 +27,7 @@ export interface TypewriterTextProps {
   options?: TypewriterTextOptions
 }
 
-interface TypewriterTextOptions {
+export interface TypewriterTextOptions {
   /**
    * タイプライターエフェクトの速度（ミリ秒） - Speed of the typewriter effect in milliseconds
    * @default 100

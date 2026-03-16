@@ -31,5 +31,5 @@ export interface ListItemTextProps {
    */
   as?: 'span' | 'p'
   /** 表示アイコン - Icon to be displayed */
-  icon?: 'string' | React.ReactNode
+  icon?: string | React.ReactNode
 }

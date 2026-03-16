@@ -16,7 +16,7 @@ export interface YourSekaiProviderProps {
   options?: YourSekaiOptions
 }
 
-interface YourSekaiOptions {
+export interface YourSekaiOptions {
   /**
    * セカイカラーを保存するかどうか - Whether to store the Sekai color
    * @default false

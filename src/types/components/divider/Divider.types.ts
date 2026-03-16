@@ -37,7 +37,6 @@ export interface DividerProps {
    * @default 'center'
    */
   textAlign?: 'left' | 'center' | 'right'
-  /** Dividerに影
-   * をつけるか - Whether to apply shadow to the divider */
+  /** Dividerに影をつけるか - Whether to apply shadow to the divider */
   shadow?: boolean
 }

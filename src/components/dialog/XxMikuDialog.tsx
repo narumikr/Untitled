@@ -46,7 +46,7 @@ export const XxMikuDialog = ({
         const type = button.type ? button.type : 'normal'
         return {
           ...button,
-          buttonStyle: clsx(
+          buttonClassName: clsx(
             styles[`sekai-xxmiku-${type}-button`],
             styles[`sekai-${modeTheme}`],
           ),

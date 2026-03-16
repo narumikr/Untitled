@@ -65,6 +65,9 @@ export interface CardTitleProps {
   themeMode?: PaletteMode
   /** カードタイトルのテキスト - Text for the card title */
   title: string
-  /** タイトルのアンダーライン装飾の有無 - Whether to display an underline for the title */
+  /**
+   * タイトルのアンダーライン装飾の有無 - Whether to display an underline for the title
+   * @default true
+   */
   underline?: boolean
 }

@@ -26,7 +26,7 @@ export interface ListItemButtonProps {
   /** ボタンの子要素 - Children elements of the button */
   children: React.ReactNode
   /** 表示アイコン - Icon to be displayed */
-  icon?: 'string' | React.ReactNode
+  icon?: string | React.ReactNode
   /**
    * ボタンの無効化するかどうか - Whether to disable the button
    * @default false

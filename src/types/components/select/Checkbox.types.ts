@@ -28,11 +28,11 @@ export interface CheckboxProps
   /** Checkbox要素への参照 - Reference for the Checkbox element */
   ref?: React.Ref<HTMLInputElement>
   /** チェック状態 - Checked state */
-  checked: boolean
+  checked?: boolean
   /** Checkboxを無効化するかどうか - Whether to disable the Checkbox */
   disabled?: boolean
   /** チェック状態の変更ハンドラー - Handler for changing the checked state */
-  onChange: (checked: boolean) => void
+  onChange?: (checked: boolean) => void
   /**
    * Checkboxのスタイル - Style for the Checkbox
    * @remark fillingがtrueの場合、チェックボックスが塗りつぶされます

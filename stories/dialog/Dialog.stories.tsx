@@ -4,8 +4,8 @@ import { Dialog } from '@/components/dialog/Dialog'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { DialogButton } from '@/types/components/dialog/Dialog.types'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { DialogButton } from '@/types/components/dialog/Dialog.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {

@@ -45,7 +45,7 @@ export const XoMikuDialog = ({
         const type = button.type ? button.type : 'normal'
         return {
           ...button,
-          buttonStyle: clsx(styles[`sekai-xomiku-${type}-button`]),
+          buttonClassName: clsx(styles[`sekai-xomiku-${type}-button`]),
         }
       }),
     [buttons],

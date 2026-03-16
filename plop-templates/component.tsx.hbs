@@ -6,7 +6,7 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './{{pascalCase component}}.module.scss'
 
-import type { {{pascalCase component}}Props } from '@/types/components/{{kebabCase component}}/{{pascalCase component}}.types'
+import type { {{pascalCase component}}Props } from '@/types/components/{{kebabCase folder}}/{{pascalCase component}}.types'
 
 export const {{pascalCase component}} = ({
   sekai,
@@ -22,7 +22,6 @@ export const {{pascalCase component}} = ({
   return (
     <div
       {...rest}
-      ref={rest.ref}
       className={clsx(styles['{{pascalCase component}}'], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}></div>
   )

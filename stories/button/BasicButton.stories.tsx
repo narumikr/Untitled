@@ -88,7 +88,7 @@ export const DefaultLight: Story = {
   args: {
     id: 'basic-button-default-light',
     sekai: 'Miku',
-    withTextSekaiColor:false,
+    withTextSekaiColor: false,
     themeMode: 'light',
     children: 'Hatsune Miku',
     disabled: false,
@@ -103,7 +103,7 @@ export const DefaultDark: Story = {
   args: {
     id: 'basic-button-default-dark',
     sekai: 'Miku',
-    withTextSekaiColor:false,
+    withTextSekaiColor: false,
     themeMode: 'dark',
     children: 'Hatsune Miku',
     disabled: false,
@@ -118,7 +118,7 @@ export const WithTextLight: Story = {
   args: {
     id: 'basic-button-with-text-light',
     sekai: 'Miku',
-    withTextSekaiColor:true,
+    withTextSekaiColor: true,
     themeMode: 'light',
     children: 'Hatsune Miku',
     disabled: false,
@@ -133,7 +133,7 @@ export const WithTextDark: Story = {
   args: {
     id: 'basic-button-with-text-dark',
     sekai: 'Miku',
-    withTextSekaiColor:true,
+    withTextSekaiColor: true,
     themeMode: 'dark',
     children: 'Hatsune Miku',
     disabled: false,
@@ -148,7 +148,7 @@ export const DisabledLight: Story = {
   args: {
     id: 'basic-button-disabled-light',
     sekai: 'Miku',
-    withTextSekaiColor:false,
+    withTextSekaiColor: false,
     themeMode: 'light',
     children: 'Hatsune Miku',
     disabled: true,
@@ -159,11 +159,11 @@ export const DisabledLight: Story = {
   },
 }
 
-export const DisabledtDark: Story = {
+export const DisabledDark: Story = {
   args: {
     id: 'basic-button-disabled-dark',
     sekai: 'Miku',
-    withTextSekaiColor:false,
+    withTextSekaiColor: false,
     themeMode: 'dark',
     children: 'Hatsune Miku',
     disabled: true,
