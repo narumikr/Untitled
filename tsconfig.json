@@ -19,6 +19,6 @@
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["src/**/*", ".storybook/**/*", "stories/**/*", "test/**/*"],
+  "include": ["src/**/*", ".storybook/**/*", "stories/**/*", "test/**/*", "*.config.ts"],
   "exclude": ["node_modules", "dist", "test/templates/**/*"]
 }
