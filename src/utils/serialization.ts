@@ -108,7 +108,7 @@ const serializeArray = <T>(obj: T, visited: WeakSet<object>): unknown => {
 // Helper function to searialize object
 const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
   if (visited.has(obj as object)) {
-    throw new Error('Circular reference detected during deserialization')
+    throw new Error('Circular reference detected during serialization')
   }
 
   if (obj instanceof Map || obj instanceof Set) {
@@ -118,10 +118,12 @@ const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
   }
 
   if (isObject(obj)) {
+    visited.add(obj as object)
     const serializedObj: Record<string, unknown> = {}
     for (const [key, value] of Object.entries(obj as object)) {
-      serializedObj[key] = serializeData(value)
+      serializedObj[key] = serializeData(value, visited)
     }
+    visited.delete(obj as object)
     return serializedObj
   }
   return obj
