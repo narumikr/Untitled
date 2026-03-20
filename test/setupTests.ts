@@ -1,48 +1,26 @@
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom/vitest'
+import { vi } from 'vitest'
 
-// Mock requestAnimationFrame to run synchronously
-global.requestAnimationFrame = (cb) => {
-  cb(0)
-  return 0
+// requestAnimationFrame / cancelAnimationFrame モック
+global.requestAnimationFrame = (cb: FrameRequestCallback) => {
+  return setTimeout(cb, 0) as unknown as number
 }
+global.cancelAnimationFrame = (id: number) => clearTimeout(id)
 
-global.cancelAnimationFrame = (id: number): void => {
-  // No-op for synchronous RAF
-}
-
-// Mock window.matchMedia
+// matchMedia モック
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: jest.fn().mockImplementation((query) => ({
+  value: vi.fn().mockImplementation((query: string) => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
   })),
 })
 
-// Mock scrollHeight for all HTMLElements
-Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {
-  configurable: true,
-  get: function () {
-    return this._scrollHeight || 100
-  },
-  set: function (val) {
-    this._scrollHeight = val
-  },
-})
-
-// Mock scrollWidth
-Object.defineProperty(HTMLElement.prototype, 'scrollWidth', {
-  configurable: true,
-  get: function () {
-    return this._scrollWidth || 100
-  },
-  set: function (val) {
-    this._scrollWidth = val
-  },
-})
+// scrollTo モック
+window.scrollTo = vi.fn() as unknown as typeof window.scrollTo
