@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
 import fc from 'fast-check'
+import { describe, it, expect } from 'vitest'
 
 import { getFormattedTime, getCustomCurrentTime } from '@/utils/timer'
 
@@ -50,29 +50,34 @@ describe('getFormattedTime', () => {
 })
 
 describe('getCustomCurrentTime', () => {
-  // 固定日時: 2024-01-05T08:03:07.000Z
-  const fixedDate = new Date('2024-01-05T08:03:07.000Z')
+  // 固定日時: タイムゾーン非依存の値で構築
+  const fixedDate = new Date(2024, 0, 5, 8, 3, 7) // 2024-01-05 08:03:07 ローカル時刻
+
+  const year = String(fixedDate.getFullYear())
+  const month = String(fixedDate.getMonth() + 1).padStart(2, '0')
+  const day = String(fixedDate.getDate()).padStart(2, '0')
+  const hours = String(fixedDate.getHours()).padStart(2, '0')
+  const minutes = String(fixedDate.getMinutes()).padStart(2, '0')
+  const seconds = String(fixedDate.getSeconds()).padStart(2, '0')
 
   it('デフォルトパターン YYYY-MM-DD HH:mm:ss で正しくフォーマットする', () => {
     const result = getCustomCurrentTime(fixedDate)
-    const expected = `${fixedDate.getFullYear()}-01-05 ${String(fixedDate.getHours()).padStart(2, '0')}:03:07`
-    expect(result).toBe(expected)
+    expect(result).toBe(`${year}-${month}-${day} ${hours}:${minutes}:${seconds}`)
   })
 
   it('YYYY のみのパターンで年を返す', () => {
     const result = getCustomCurrentTime(fixedDate, 'YYYY')
-    expect(result).toBe('2024')
+    expect(result).toBe(year)
   })
 
   it('MM/DD パターンで月と日を返す', () => {
     const result = getCustomCurrentTime(fixedDate, 'MM/DD')
-    expect(result).toBe('01/05')
+    expect(result).toBe(`${month}/${day}`)
   })
 
   it('HH:mm パターンで時と分を返す', () => {
     const result = getCustomCurrentTime(fixedDate, 'HH:mm')
-    const expectedHours = String(fixedDate.getHours()).padStart(2, '0')
-    expect(result).toBe(`${expectedHours}:03`)
+    expect(result).toBe(`${hours}:${minutes}`)
   })
 
   it('プレースホルダーを含まないパターンはそのまま返す', () => {
@@ -82,15 +87,12 @@ describe('getCustomCurrentTime', () => {
 
   it('全プレースホルダーを含むカスタムパターンで正しく置換する', () => {
     const result = getCustomCurrentTime(fixedDate, 'YYYY年MM月DD日 HH時mm分ss秒')
-    const expectedHours = String(fixedDate.getHours()).padStart(2, '0')
-    expect(result).toBe(`2024年01月05日 ${expectedHours}時03分07秒`)
+    expect(result).toBe(`${year}年${month}月${day}日 ${hours}時${minutes}分${seconds}秒`)
   })
 
   it('月・日・時・分・秒が1桁の場合にゼロパディングされる', () => {
-    // fixedDate は 1月5日 8:03:07 UTC なのでパディングを検証
     const result = getCustomCurrentTime(fixedDate, 'MM-DD HH:mm:ss')
-    const expectedHours = String(fixedDate.getHours()).padStart(2, '0')
-    expect(result).toBe(`01-05 ${expectedHours}:03:07`)
+    expect(result).toBe(`${month}-${day} ${hours}:${minutes}:${seconds}`)
   })
 })
 

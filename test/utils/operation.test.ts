@@ -1,7 +1,9 @@
-import { describe, it, expect, vi } from 'vitest'
 import fc from 'fast-check'
+import { describe, it, expect, vi } from 'vitest'
 
 import { fireOnEnterKey, fireOnEscapeKey, shuffleArray } from '@/utils/operation'
+
+import type React from 'react'
 
 describe('fireOnEnterKey', () => {
   it('Enterキーが押された場合にハンドラーを呼び出す', () => {
