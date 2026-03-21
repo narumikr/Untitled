@@ -40,7 +40,8 @@
     "plop": "npx plop component",
     "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "test:unit": "vitest --run .test.ts"
   },
   "keywords": [],
   "author": "",

@@ -48,12 +48,24 @@ test/
 
 ### 命名ルール
 
+#### テスト種別とファイル拡張子
+
+| 種別 | 拡張子 | 実行コマンド | 用途 |
+|------|--------|------------|------|
+| ユニットテスト | `*.test.ts` / `*.test.tsx` | `npm run test:unit` | 純粋関数・フック・コンポーネントの単体検証 |
+| 結合テスト | `*.spec.ts` / `*.spec.tsx` | （今後追加予定） | 複数モジュールをまたぐ統合的な検証 |
+
+`npm run test:unit` は `.test.ts` を部分文字列フィルターとして使用するため、`*.test.ts` / `*.test.tsx` のみが対象となり、`*.spec.ts` は除外される。
+
+#### 配置パスとファイル名
+
 | 対象 | ファイルパス | 拡張子 |
 |------|-------------|--------|
-| ユーティリティ関数 | `test/utils/{utilName}.test.ts` | `.test.ts` |
-| カスタムフック | `test/hooks/{hookName}.test.ts` | `.test.ts` |
-| コンポーネント | `test/components/{folder}/{Name}.test.tsx` | `.test.tsx` |
+| ユニットテスト（ユーティリティ） | `test/utils/{utilName}.test.ts` | `.test.ts` |
+| ユニットテスト（カスタムフック） | `test/hooks/{hookName}.test.ts` | `.test.ts` |
+| ユニットテスト（コンポーネント） | `test/components/{folder}/{Name}.test.tsx` | `.test.tsx` |
 | プロパティベーステスト | 上記に `.property` を追加 | 同上 |
+| 結合テスト | `test/integration/{name}.spec.ts` | `.spec.ts` |
 
 ---
 
@@ -521,7 +533,10 @@ npx vitest --run --coverage
 ## 9. テスト実行コマンド
 
 ```bash
-# 全テスト実行
+# ユニットテストのみ実行（*.test.ts / *.test.tsx）
+npm run test:unit
+
+# ユニットテストを一括実行（*.test.ts / *.test.tsx、CI 等で使用）
 npm test
 
 # 特定ファイルのみ実行
@@ -533,6 +548,12 @@ npx vitest --run -t "convertHexToRgb"
 # カバレッジ付き
 npx vitest --run --coverage
 ```
+
+### CI との対応
+
+| ワークフロー | スクリプト | 対象 |
+|------------|-----------|------|
+| `.github/workflows/ci-unit-test.yml` | `npm run test:unit` | `*.test.ts` / `*.test.tsx` のみ |
 
 ---
 
