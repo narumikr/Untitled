@@ -536,7 +536,7 @@ npx vitest --run --coverage
 # ユニットテストのみ実行（*.test.ts / *.test.tsx）
 npm run test:unit
 
-# 全テスト実行（ユニット + 結合テスト）
+# ユニットテストを一括実行（*.test.ts / *.test.tsx、CI 等で使用）
 npm test
 
 # 特定ファイルのみ実行
