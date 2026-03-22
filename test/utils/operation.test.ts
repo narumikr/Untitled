@@ -97,7 +97,7 @@ describe('shuffleArray', () => {
   it('シャッフル後の配列が元の配列と同じ要素を含む', () => {
     const arr = [1, 2, 3, 4, 5]
     const shuffled = shuffleArray(arr)
-    expect(shuffled.sort()).toEqual([...arr].sort())
+    expect(shuffled.sort((a, b) => a - b)).toEqual([...arr].sort((a, b) => a - b))
   })
 
   it('元の配列を変更しない', () => {
@@ -119,7 +119,7 @@ describe('shuffleArray', () => {
     const arr = [1, 1, 2, 2, 3]
     const shuffled = shuffleArray(arr)
     expect(shuffled).toHaveLength(arr.length)
-    expect(shuffled.sort()).toEqual([...arr].sort())
+    expect(shuffled.sort((a, b) => a - b)).toEqual([...arr].sort((a, b) => a - b))
   })
 })
 
