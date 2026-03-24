@@ -116,7 +116,7 @@ function compareByType(a: unknown, b: unknown): boolean {
   if (typeof a === 'object' && typeof b === 'object') {
     return deepEqualObjects(a as Record<string, unknown>, b as Record<string, unknown>)
   }
-  return Object.is(a, b)
+  return a === b
 }
 
 function deepEqualWithDates(a: unknown, b: unknown): boolean {
