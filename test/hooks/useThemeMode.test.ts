@@ -111,11 +111,15 @@ describe('useThemeMode', () => {
     it('アンマウント時にイベントリスナーが解除される', () => {
       const { unmount } = renderHook(() => useThemeMode())
 
+      const changeHandler = matchMediaMock.addEventListener.mock.calls.find(
+        (call: [string, unknown]) => call[0] === 'change',
+      )?.[1] as (event: MediaQueryListEvent) => void
+
       unmount()
 
       expect(matchMediaMock.removeEventListener).toHaveBeenCalledWith(
         'change',
-        expect.any(Function),
+        changeHandler,
       )
     })
   })

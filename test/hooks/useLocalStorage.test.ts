@@ -275,24 +275,28 @@ describe('useLocalStorage プロパティベーステスト', () => {
           (key, value) => {
             localStorage.clear()
 
-            const { result } = renderHook(() => useLocalStorage(key, value))
+            const { result, unmount } = renderHook(() => useLocalStorage(key, value))
 
-            const newValue =
-              typeof value === 'string'
-                ? value + '_updated'
-                : typeof value === 'boolean'
-                  ? !value
-                  : value + 1
-            act(() => {
-              result.current.setStoredValue(newValue)
-            })
+            try {
+              const newValue =
+                typeof value === 'string'
+                  ? value + '_updated'
+                  : typeof value === 'boolean'
+                    ? !value
+                    : value + 1
+              act(() => {
+                result.current.setStoredValue(newValue)
+              })
 
-            expect(result.current.storedValue).toEqual(newValue)
+              expect(result.current.storedValue).toEqual(newValue)
 
-            const raw = localStorage.getItem(key)
-            expect(raw).not.toBeNull()
-            const deserialized = JSON.parse(raw!)
-            expect(deserialized).toEqual(newValue)
+              const raw = localStorage.getItem(key)
+              expect(raw).not.toBeNull()
+              const deserialized = JSON.parse(raw!)
+              expect(deserialized).toEqual(newValue)
+            } finally {
+              unmount()
+            }
           },
         ),
         { numRuns: 100 },
@@ -320,7 +324,7 @@ describe('useLocalStorage プロパティベーステスト', () => {
   // Feature: unit-test-strategy, Property 9: useLocalStorage の削除によるリセット
   // **Validates: Requirements 3.3**
   describe('Property 9: useLocalStorage の削除によるリセット', () => {
-    it('任意の保存済み値に対して、deleteLocalStorage 呼び出し後に storedValue が初期値にリセットされ、localStorage からキーが削除される', () => {
+    it('任意の保存済み値に対して、deleteLocalStorage 呼び出し後に storedValue が初期値にリセットされる', () => {
       fc.assert(
         fc.property(
           fc.string({ minLength: 1 }).filter((s) => s.trim().length > 0),
@@ -329,17 +333,21 @@ describe('useLocalStorage プロパティベーステスト', () => {
           (key, initialValue, newValue) => {
             localStorage.clear()
 
-            const { result } = renderHook(() => useLocalStorage(key, initialValue))
+            const { result, unmount } = renderHook(() => useLocalStorage(key, initialValue))
 
-            act(() => {
-              result.current.setStoredValue(newValue)
-            })
+            try {
+              act(() => {
+                result.current.setStoredValue(newValue)
+              })
 
-            act(() => {
-              result.current.deleteLocalStorage()
-            })
+              act(() => {
+                result.current.deleteLocalStorage()
+              })
 
-            expect(result.current.storedValue).toEqual(initialValue)
+              expect(result.current.storedValue).toEqual(initialValue)
+            } finally {
+              unmount()
+            }
           },
         ),
         { numRuns: 100 },
@@ -359,18 +367,22 @@ describe('useLocalStorage プロパティベーステスト', () => {
           (key, initialValue, syncValue) => {
             localStorage.clear()
 
-            const { result } = renderHook(() => useLocalStorage(key, initialValue))
+            const { result, unmount } = renderHook(() => useLocalStorage(key, initialValue))
 
-            act(() => {
-              window.dispatchEvent(
-                new StorageEvent('storage', {
-                  key,
-                  newValue: JSON.stringify(syncValue),
-                }),
-              )
-            })
+            try {
+              act(() => {
+                window.dispatchEvent(
+                  new StorageEvent('storage', {
+                    key,
+                    newValue: JSON.stringify(syncValue),
+                  }),
+                )
+              })
 
-            expect(result.current.storedValue).toEqual(syncValue)
+              expect(result.current.storedValue).toEqual(syncValue)
+            } finally {
+              unmount()
+            }
           },
         ),
         { numRuns: 100 },

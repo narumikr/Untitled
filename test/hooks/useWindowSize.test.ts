@@ -104,10 +104,11 @@ describe('useInnerSize', () => {
     const removeSpy = vi.spyOn(window, 'removeEventListener')
 
     const { unmount } = renderHook(() => useInnerSize())
-    expect(addSpy).toHaveBeenCalledWith('resize', expect.any(Function))
+    const handler = addSpy.mock.calls[0]?.[1] as EventListener
+    expect(typeof handler).toBe('function')
 
     unmount()
-    expect(removeSpy).toHaveBeenCalledWith('resize', expect.any(Function))
+    expect(removeSpy).toHaveBeenCalledWith('resize', handler)
 
     addSpy.mockRestore()
     removeSpy.mockRestore()
@@ -235,13 +236,17 @@ describe('useInnerSize プロパティベーステスト', () => {
             value: clientWidth,
           })
 
-          const { result } = renderHook(() => useInnerSize())
+          const { result, unmount } = renderHook(() => useInnerSize())
 
-          act(() => {
-            window.dispatchEvent(new Event('resize'))
-          })
+          try {
+            act(() => {
+              window.dispatchEvent(new Event('resize'))
+            })
 
-          expect(result.current).toBe(Math.min(clientWidth, innerWidth))
+            expect(result.current).toBe(Math.min(clientWidth, innerWidth))
+          } finally {
+            unmount()
+          }
         },
       ),
       { numRuns: 100 },
@@ -265,14 +270,18 @@ describe('useOrientation プロパティベーステスト', () => {
           value: width,
         })
 
-        const { result } = renderHook(() => useOrientation())
+        const { result, unmount } = renderHook(() => useOrientation())
 
-        act(() => {
-          window.dispatchEvent(new Event('resize'))
-        })
+        try {
+          act(() => {
+            window.dispatchEvent(new Event('resize'))
+          })
 
-        const expected = width <= 768 ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE
-        expect(result.current).toBe(expected)
+          const expected = width <= 768 ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE
+          expect(result.current).toBe(expected)
+        } finally {
+          unmount()
+        }
       }),
       { numRuns: 100 },
     )
