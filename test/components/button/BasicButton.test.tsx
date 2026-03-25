@@ -1,7 +1,9 @@
 import React from 'react'
-import { describe, it, expect, vi } from 'vitest'
+
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { describe, it, expect, vi } from 'vitest'
+
 import { BasicButton } from '@/components/button/BasicButton'
 
 vi.mock('@/internal/useOptionalSekai', () => ({
@@ -54,6 +56,7 @@ describe('BasicButton', () => {
     it('withTextSekaiColor=true でテキストカラーに sekai カラーが適用される', () => {
       render(<BasicButton withTextSekaiColor>テスト</BasicButton>)
       const button = screen.getByRole('button')
+      // jsdom が hex (#00CCBB) を rgb 形式に正規化するため rgb() で検証
       expect(button.style.color).toBe('rgb(0, 204, 187)')
     })
 

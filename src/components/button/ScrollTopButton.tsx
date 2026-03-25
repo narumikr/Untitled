@@ -51,6 +51,7 @@ export const ScrollTopButton = ({
   return createPortal(
     <button
       {...rest}
+      type="button"
       className={clsx(styles[`sekai-scroll-top-button-${pos}`], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
       onClick={handleScroll}>

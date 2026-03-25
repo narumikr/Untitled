@@ -1,7 +1,9 @@
 import React from 'react'
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+
 import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+
 import { ScrollTopButton } from '@/components/button/ScrollTopButton'
 
 vi.mock('@/internal/useOptionalSekai', () => ({
@@ -67,6 +69,14 @@ describe('ScrollTopButton', () => {
 
       simulateScroll(100)
       expect(screen.queryByRole('button')).not.toBeInTheDocument()
+    })
+
+    it('type="button" が設定される', () => {
+      render(<ScrollTopButton />)
+
+      simulateScroll(400)
+
+      expect(screen.getByRole('button')).toHaveAttribute('type', 'button')
     })
 
     it('クリック時に window.scrollTo が呼び出される', async () => {

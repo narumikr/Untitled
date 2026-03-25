@@ -1,6 +1,9 @@
 import React from 'react'
-import { describe, it, expect, vi } from 'vitest'
+
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { describe, it, expect, vi } from 'vitest'
+
 import { HamburgerButton } from '@/components/button/HamburgerButton'
 
 vi.mock('@/internal/useOptionalSekai', () => ({
@@ -46,6 +49,15 @@ describe('HamburgerButton', () => {
     it('open=true で aria-label="Close menu" が設定される', () => {
       render(<HamburgerButton open={true} />)
       expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Close menu')
+    })
+
+    it('クリックイベントが発火する', async () => {
+      const user = userEvent.setup()
+      const handleClick = vi.fn()
+      render(<HamburgerButton open={false} onClick={handleClick} />)
+
+      await user.click(screen.getByRole('button'))
+      expect(handleClick).toHaveBeenCalledTimes(1)
     })
   })
 })
