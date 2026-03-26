@@ -1,14 +1,14 @@
-# .github/workflows/eslint.yml
-name: ESLint Check
+# .github/workflows/ci-build-untitled.yml
+name: Build Check
 on:
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
-  eslint:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v6
@@ -21,5 +21,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run ESLint
-        run: npm run lint
+      - name: Build
+        run: npm run build
