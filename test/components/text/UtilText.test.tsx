@@ -149,7 +149,7 @@ describe('SekaiAnnotationText', () => {
     it('sekai カラーに基づいたテキストカラーが適用される', () => {
       render(<SekaiAnnotationText sekai="Miku">テスト</SekaiAnnotationText>)
       const el = screen.getByText('テスト')
-      expect(el.style.color).toBe('rgb(128, 230, 221)')
+      expect(el).toHaveStyle('color: rgba(128, 230, 221, 1)')
     })
 
     it('className が適用される', () => {

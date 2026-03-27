@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { afterEach, describe, it, expect, vi } from 'vitest'
+import { afterAll, afterEach, beforeAll, describe, it, expect, vi } from 'vitest'
 
 import { MarqueeText } from '@/components/text/MarqueeText'
 
@@ -13,13 +13,21 @@ vi.mock('@/internal/useOptionalSekai', () => ({
 
 const mockObserve = vi.fn()
 
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: mockObserve,
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}))
-
 describe('MarqueeText', () => {
+  const originalResizeObserver = globalThis.ResizeObserver
+
+  beforeAll(() => {
+    globalThis.ResizeObserver = vi.fn().mockImplementation(() => ({
+      observe: mockObserve,
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
+    }))
+  })
+
+  afterAll(() => {
+    globalThis.ResizeObserver = originalResizeObserver
+  })
+
   afterEach(() => {
     mockObserve.mockClear()
   })
