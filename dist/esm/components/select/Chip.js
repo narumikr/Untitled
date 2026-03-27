@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { ClearSvg } from '../../img/clear.js';
 import { useOptionalSekai } from '../../internal/useOptionalSekai.js';
 import { convertHexToRgbaMixWithBlackOrWhite } from '../../utils/converter.js';
+import { fireOnEnterKey, fireOnSpaceKey } from '../../utils/operation.js';
 import styles from './Chip.module.scss.js';
 
 var _excluded = ["sekai", "themeMode", "label", "onClick", "onDelete", "size", "variant"];
@@ -40,7 +41,15 @@ var Chip = function Chip(_ref) {
   }, rest, {
     className: clsx(styles["sekai-chip-".concat(size)], styles["sekai-chip-".concat(variant)], rest.className),
     style: _objectSpread(_objectSpread({}, optionStyle), rest.style),
-    onClick: onClick
+    onClick: onClick,
+    onKeyDown: onClick ? function (e) {
+      fireOnEnterKey(function () {
+        return onClick();
+      })(e);
+      fireOnSpaceKey(function () {
+        return onClick();
+      })(e);
+    } : undefined
   }), /*#__PURE__*/React.createElement("span", {
     className: clsx(styles['sekai-chip-label'])
   }, label), /*#__PURE__*/React.createElement(DeleteIconButton, {

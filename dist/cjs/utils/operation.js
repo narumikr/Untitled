@@ -36,7 +36,7 @@ var fireOnEscapeKey = function fireOnEscapeKey(eventHandler) {
 var fireOnSpaceKey = function fireOnSpaceKey(eventHandler) {
   return function (e) {
     e.preventDefault();
-    if (e.key === 'Space') {
+    if (e.key === ' ') {
       eventHandler(e);
     }
   };
