@@ -40,7 +40,7 @@ export const fireOnSpaceKey = <T extends HTMLElement>(
 ) => {
   return (e: React.KeyboardEvent<T>) => {
     e.preventDefault()
-    if (e.key === 'Space') {
+    if (e.key === ' ') {
       eventHandler(e)
     }
   }

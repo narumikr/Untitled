@@ -26,9 +26,10 @@ describe('Checkbox', () => {
       expect(label).toHaveClass('custom-class')
     })
 
-    it('data-testid が転送される', () => {
+    it('data-testid が input 要素に転送される', () => {
       render(<Checkbox data-testid="my-checkbox" />)
-      expect(screen.getByTestId('my-checkbox')).toBeInTheDocument()
+      const input = screen.getByTestId('my-checkbox')
+      expect(input.tagName).toBe('INPUT')
     })
 
     it('sekai プロパティで CSS 変数が設定される', () => {
@@ -65,6 +66,16 @@ describe('Checkbox', () => {
     it('tabIndex がデフォルトで 0 に設定される', () => {
       render(<Checkbox />)
       expect(screen.getByRole('checkbox')).toHaveAttribute('tabindex', '0')
+    })
+
+    it('filling=true で sekai-checkbox-filling クラスが付与される', () => {
+      render(<Checkbox filling />)
+      expect(screen.getByRole('checkbox')).toHaveClass('sekai-checkbox-filling')
+    })
+
+    it('filling 未指定時に sekai-checkbox-filling クラスが付与されない', () => {
+      render(<Checkbox />)
+      expect(screen.getByRole('checkbox')).not.toHaveClass('sekai-checkbox-filling')
     })
   })
 

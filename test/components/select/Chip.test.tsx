@@ -24,11 +24,6 @@ describe('Chip', () => {
       expect(screen.getByText('タグ名')).toBeInTheDocument()
     })
 
-    it('role="button" が設定される', () => {
-      render(<Chip label="テスト" />)
-      expect(screen.getByRole('button')).toBeInTheDocument()
-    })
-
     it('className がルート要素に適用される', () => {
       render(<Chip label="テスト" className="custom-class" />)
       expect(screen.getByRole('button')).toHaveClass('custom-class')
@@ -53,6 +48,26 @@ describe('Chip', () => {
       await user.click(screen.getByRole('button'))
       expect(handleClick).toHaveBeenCalledTimes(1)
     })
+
+    it('Enter キーで onClick コールバックが呼び出される', async () => {
+      const user = userEvent.setup()
+      const handleClick = vi.fn()
+      render(<Chip label="テスト" onClick={handleClick} />)
+
+      screen.getByRole('button').focus()
+      await user.keyboard('{Enter}')
+      expect(handleClick).toHaveBeenCalledTimes(1)
+    })
+
+    it('Space キーで onClick コールバックが呼び出される', async () => {
+      const user = userEvent.setup()
+      const handleClick = vi.fn()
+      render(<Chip label="テスト" onClick={handleClick} />)
+
+      screen.getByRole('button').focus()
+      await user.keyboard(' ')
+      expect(handleClick).toHaveBeenCalledTimes(1)
+    })
   })
 
   describe('削除ボタン', () => {
@@ -74,6 +89,45 @@ describe('Chip', () => {
 
       await user.click(screen.getByRole('button', { name: 'delete' }))
       expect(handleDelete).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('size プロパティ', () => {
+    it('size="small" で sekai-chip-small クラスが付与される', () => {
+      render(<Chip label="テスト" size="small" />)
+      expect(screen.getByRole('button')).toHaveClass('sekai-chip-small')
+    })
+
+    it('size="medium" で sekai-chip-medium クラスが付与される', () => {
+      render(<Chip label="テスト" size="medium" />)
+      expect(screen.getByRole('button')).toHaveClass('sekai-chip-medium')
+    })
+
+    it('size="large" で sekai-chip-large クラスが付与される', () => {
+      render(<Chip label="テスト" size="large" />)
+      expect(screen.getByRole('button')).toHaveClass('sekai-chip-large')
+    })
+
+    it('size 未指定時にデフォルトで sekai-chip-medium クラスが付与される', () => {
+      render(<Chip label="テスト" />)
+      expect(screen.getByRole('button')).toHaveClass('sekai-chip-medium')
+    })
+  })
+
+  describe('variant プロパティ', () => {
+    it('variant="filled" で sekai-chip-filled クラスが付与される', () => {
+      render(<Chip label="テスト" variant="filled" />)
+      expect(screen.getByRole('button')).toHaveClass('sekai-chip-filled')
+    })
+
+    it('variant="outlined" で sekai-chip-outlined クラスが付与される', () => {
+      render(<Chip label="テスト" variant="outlined" />)
+      expect(screen.getByRole('button')).toHaveClass('sekai-chip-outlined')
+    })
+
+    it('variant 未指定時にデフォルトで sekai-chip-filled クラスが付与される', () => {
+      render(<Chip label="テスト" />)
+      expect(screen.getByRole('button')).toHaveClass('sekai-chip-filled')
     })
   })
 })
