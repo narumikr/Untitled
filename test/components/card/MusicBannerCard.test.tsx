@@ -85,5 +85,14 @@ describe('MusicBannerCard', () => {
       render(<MusicBannerCard {...defaultProps} className="custom" data-testid="music-card" />)
       expect(screen.getByTestId('music-card')).toHaveClass('custom')
     })
+
+    it('variants="view-all" でアーティストの選択スタイルが適用される', () => {
+      render(
+        <MusicBannerCard {...defaultProps} variants="view-all" data-testid="music-card" />,
+      )
+      // view-all バリアントでは selected=false でもアーティスト行に選択スタイルが適用される
+      const artistEl = screen.getByText('テストアーティスト').closest('[class*="sekai-music-card-detail-artist"]')
+      expect(artistEl).toHaveClass('sekai-music-card-detail-artist-selected')
+    })
   })
 })

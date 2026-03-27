@@ -53,12 +53,11 @@ describe('CardContent', () => {
 
     it('className プロパティが適用される', () => {
       render(
-        <CardContent className="custom-content" id="content">
+        <CardContent className="custom-content" id="card-content">
           テスト
         </CardContent>,
       )
-      const el = document.getElementById('content')
-      expect(el).toHaveClass('custom-content')
+      expect(document.getElementById('card-content')).toHaveClass('custom-content')
     })
   })
 })
