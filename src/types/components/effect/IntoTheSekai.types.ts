@@ -15,8 +15,14 @@ export interface IntoTheSekaiProps {
    */
   execEventDelay?: number
   /**
+   * trueの場合、canvas下の要素へのクリック操作が透過する - When true, click events pass through to elements beneath the canvas
+   * @default false
+   */
+  clickThrough?: boolean
+  /**
    * エフェクトのポータルコンテナ - Portal container to display the effect
    * @default document.body
    */
   containerComponent?: HTMLElement
+  
 }

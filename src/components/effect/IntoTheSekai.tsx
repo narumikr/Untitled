@@ -26,6 +26,7 @@ const AQUA = 'rgb(149, 253, 255, {0})'
 export const IntoTheSekai = ({
   execEvent,
   execEventDelay = 390,
+  clickThrough = false,
   containerComponent,
   ...rest
 }: IntoTheSekaiProps) => {
@@ -118,6 +119,16 @@ export const IntoTheSekai = ({
 
     const newPieceOfSekai = createSekaiPiece(effectX, effectY)
     sekaiPieceRef.current = [...sekaiPieceRef.current, ...newPieceOfSekai]
+
+    if (clickThrough && canvasRef.current) {
+      const { clientX, clientY } = getClickPosition(e)
+      canvasRef.current.style.pointerEvents = 'none'
+      const elementBelow = document.elementFromPoint(clientX, clientY)
+      elementBelow?.dispatchEvent(
+        new MouseEvent('click', { bubbles: true, cancelable: true, clientX, clientY }),
+      )
+      canvasRef.current.style.pointerEvents = ''
+    }
   }
 
   if (!portalContainer) return null
