@@ -140,17 +140,27 @@ const getClickPosition = (e: AnimationTrigger) => {
 const createSekaiPiece = (x: number, y: number) => {
   return Array.from({ length: 60 }).map(() => {
     const angle = Math.random() * 2 * Math.PI
-    const speed = Math.random() * 2 + 1
+    const speed = Math.random() * 1.5 + 1
 
     const velocity = {
       x: Math.cos(angle) * speed,
       y: Math.sin(angle) * speed,
     }
 
-    const points = Array.from({ length: 3 }).map(() => ({
-      x: x + Math.random() * 80 - 40,
-      y: y + Math.random() * 80 - 40,
-    }))
+    const cx = x + Math.random() * 80 - 40
+    const cy = y + Math.random() * 80 - 40
+    const size = Math.random() * 25 + 25
+    const baseAngle = Math.random() * 2 * Math.PI
+    const angleVariation = Math.PI / 4
+
+    const points = [0, 1, 2].map((i) => {
+      const vertexAngle =
+        baseAngle + (i * 2 * Math.PI) / 3 + (Math.random() - 0.5) * 2 * angleVariation
+      return {
+        x: cx + Math.cos(vertexAngle) * size,
+        y: cy + Math.sin(vertexAngle) * size,
+      }
+    })
 
     return { points, velocity, opacity: 1 }
   })
