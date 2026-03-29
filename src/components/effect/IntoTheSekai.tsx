@@ -23,7 +23,12 @@ const PINK = 'rgb(255, 186, 241, {0})'
 const YELLOW = 'rgb(255, 247, 148, {0})'
 const AQUA = 'rgb(149, 253, 255, {0})'
 
-export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoTheSekaiProps) => {
+export const IntoTheSekai = ({
+  execEvent,
+  execEventDelay = 390,
+  containerComponent,
+  ...rest
+}: IntoTheSekaiProps) => {
   const portalContainer = usePortalContainer(containerComponent)
   const [startAnimation, setStartAnimation] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -73,7 +78,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
           return {
             ...tri,
             points: newPoints,
-            opacity: tri.opacity - 0.0039,
+            opacity: tri.opacity - 0.0075,
           }
         })
         .filter((t) => t.opacity > 0)
@@ -81,7 +86,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
       if (sekaiPieceRef.current.length === 0) {
         setTimeout(() => {
           execEvent?.()
-        }, 1000 * 0.39)
+        }, execEventDelay)
         setStartAnimation(false)
       }
 
@@ -100,7 +105,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     render()
 
     return () => cancelAnimationFrame(animationFrameId)
-  }, [execEvent, startAnimation])
+  }, [execEvent, execEventDelay, startAnimation])
 
   const handleClick = (e: AnimationTrigger) => {
     if (!portalContainer) return
@@ -140,7 +145,7 @@ const getClickPosition = (e: AnimationTrigger) => {
 const createSekaiPiece = (x: number, y: number) => {
   return Array.from({ length: 60 }).map(() => {
     const angle = Math.random() * 2 * Math.PI
-    const speed = Math.random() * 1.5 + 1
+    const speed = Math.random() * 3 + 2
 
     const velocity = {
       x: Math.cos(angle) * speed,
