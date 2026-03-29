@@ -13,6 +13,11 @@ vi.mock('@/internal/useOptionalSekai', () => ({
   }),
 }))
 
+const mockConsoleWarning = vi.fn()
+vi.mock('@/internal/logging', () => ({
+  ConsoleWarning: (...args: unknown[]) => mockConsoleWarning(...args),
+}))
+
 const renderInList = (ui: React.ReactElement) => render(<List>{ui}</List>)
 
 describe('ListItemButton', () => {
@@ -67,6 +72,29 @@ describe('ListItemButton', () => {
 
       await user.click(screen.getByRole('button'))
       expect(handleClick).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('リップルエフェクト', () => {
+    it('クリック時にリップル要素が追加される', async () => {
+      const user = userEvent.setup()
+      renderInList(<ListItemButton>テスト</ListItemButton>)
+      const button = screen.getByRole('button')
+
+      await user.click(button)
+
+      const ripple = button.querySelector('span')
+      expect(ripple).not.toBeNull()
+    })
+  })
+
+  describe('警告', () => {
+    it('List 外でレンダリングされた場合に ConsoleWarning が呼び出される', () => {
+      mockConsoleWarning.mockClear()
+      render(<ListItemButton>テスト</ListItemButton>)
+      expect(mockConsoleWarning).toHaveBeenCalledWith(
+        '⚠ Warning: <ListItemButton> should be used inside <List>',
+      )
     })
   })
 })

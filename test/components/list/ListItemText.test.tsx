@@ -12,6 +12,11 @@ vi.mock('@/internal/useOptionalSekai', () => ({
   }),
 }))
 
+const mockConsoleWarning = vi.fn()
+vi.mock('@/internal/logging', () => ({
+  ConsoleWarning: (...args: unknown[]) => mockConsoleWarning(...args),
+}))
+
 const renderInList = (ui: React.ReactElement) => render(<List>{ui}</List>)
 
 describe('ListItemText', () => {
@@ -76,6 +81,16 @@ describe('ListItemText', () => {
     it('icon が未指定の場合にアイコンが表示されない', () => {
       const { container } = renderInList(<ListItemText>テスト</ListItemText>)
       expect(container.querySelector('img')).not.toBeInTheDocument()
+    })
+  })
+
+  describe('警告', () => {
+    it('List 外でレンダリングされた場合に ConsoleWarning が呼び出される', () => {
+      mockConsoleWarning.mockClear()
+      render(<ListItemText>テスト</ListItemText>)
+      expect(mockConsoleWarning).toHaveBeenCalledWith(
+        '⚠ Warning: <ListItemText> should be used inside <List>',
+      )
     })
   })
 })
