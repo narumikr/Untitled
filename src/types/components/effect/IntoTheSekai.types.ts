@@ -24,5 +24,4 @@ export interface IntoTheSekaiProps {
    * @default document.body
    */
   containerComponent?: HTMLElement
-  
 }

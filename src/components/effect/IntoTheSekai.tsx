@@ -63,6 +63,7 @@ export const IntoTheSekai = ({
     const ctx = canvas?.getContext('2d')
 
     let animationFrameId: number
+    let timeoutId: ReturnType<typeof setTimeout> | undefined
 
     const render = () => {
       if (!ctx || !canvas || !startAnimation) return
@@ -85,10 +86,11 @@ export const IntoTheSekai = ({
         .filter((t) => t.opacity > 0)
 
       if (sekaiPieceRef.current.length === 0) {
-        setTimeout(() => {
+        timeoutId = setTimeout(() => {
           execEvent?.()
         }, execEventDelay)
         setStartAnimation(false)
+        return
       }
 
       sekaiPieceRef.current.forEach((tri, index) => {
@@ -105,7 +107,10 @@ export const IntoTheSekai = ({
 
     render()
 
-    return () => cancelAnimationFrame(animationFrameId)
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      clearTimeout(timeoutId)
+    }
   }, [execEvent, execEventDelay, startAnimation])
 
   const handleClick = (e: AnimationTrigger) => {
@@ -122,12 +127,17 @@ export const IntoTheSekai = ({
 
     if (clickThrough && canvasRef.current) {
       const { clientX, clientY } = getClickPosition(e)
-      canvasRef.current.style.pointerEvents = 'none'
-      const elementBelow = document.elementFromPoint(clientX, clientY)
-      elementBelow?.dispatchEvent(
-        new MouseEvent('click', { bubbles: true, cancelable: true, clientX, clientY }),
-      )
-      canvasRef.current.style.pointerEvents = ''
+      const canvasElement = canvasRef.current
+      const previousPointerEvents = canvasElement.style.pointerEvents
+      try {
+        canvasElement.style.pointerEvents = 'none'
+        const elementBelow = document.elementFromPoint(clientX, clientY)
+        elementBelow?.dispatchEvent(
+          new MouseEvent('click', { bubbles: true, cancelable: true, clientX, clientY }),
+        )
+      } finally {
+        canvasElement.style.pointerEvents = previousPointerEvents
+      }
     }
   }
 
