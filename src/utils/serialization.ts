@@ -86,24 +86,21 @@ export const deserializeDataWithTemplate = <T>(
  * @returns boolean - whether the string is a valid date string
  */
 export const isValidDateString = (dateStr: string): boolean => {
-  const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/
-  return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr))
+  const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?(Z|[+-]\d{2}:\d{2})$/
+  return isoRegex.test(dateStr.trim())
 }
 
 // For serializeData start
 // Helper function to serialize array
 const serializeArray = <T>(obj: T, visited: WeakSet<object>): unknown => {
-  if (Array.isArray(obj)) {
-    if (visited.has(obj as object)) {
-      throw new Error('Circular reference detected during serialization')
-    }
-    visited.add(obj as object)
-
-    const result = obj.map((el) => serializeData(el, visited))
-    visited.delete(obj as object)
-    return result
+  if (visited.has(obj as object)) {
+    throw new Error('Circular reference detected during serialization')
   }
-  return obj
+  visited.add(obj as object)
+
+  const result = (obj as unknown[]).map((el) => serializeData(el, visited))
+  visited.delete(obj as object)
+  return result
 }
 // Helper function to serialize object
 const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
@@ -115,118 +112,86 @@ const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
     ConsoleWarning(
       'Map and Set are not supported for serialization. They will be converted to empty objects.',
     )
+    return {}
   }
 
   if (isObject(obj)) {
     visited.add(obj as object)
     const serializedObj: Record<string, unknown> = {}
     for (const [key, value] of Object.entries(obj as object)) {
-      serializedObj[key] = serializeData(value, visited)
+      Object.defineProperty(serializedObj, key, {
+        value: serializeData(value, visited),
+        writable: true,
+        enumerable: true,
+        configurable: true,
+      })
     }
     visited.delete(obj as object)
     return serializedObj
   }
   return obj
 }
-// For searializeData end
+// For serializeData end
 
-// For deserualizeData start
-// Helper function to desearialize date
+// For deserializeData start
+// Helper function to deserialize date
 const deserializeDate = (obj: string) => {
-  try {
+  if (isValidDateString(obj)) {
     const dateDeserialized = new Date(obj)
-    // Check if the date is valid
-    if (!isNaN(dateDeserialized.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
+    if (!isNaN(dateDeserialized.getTime())) {
       return dateDeserialized
     }
-    return obj
-  } catch (err) {
-    throw new Error('Failed to parse date:' + (err as Error).message)
   }
+  return obj
 }
 // Helper function to deserialize array
 const deserializeArray = (obj: unknown, visited: WeakSet<object>): unknown => {
-  if (visited.has(obj as object)) {
-    throw new Error('Circular reference detected during deserialization')
-  }
   if (!Array.isArray(obj)) {
     return obj
   }
-
-  visited.add(obj)
-  for (let i = 0; i < obj.length; i++) {
-    const deserializedElement = deserializeData(obj[i], visited)
-
-    if (deserializedElement !== obj[i]) {
-      const result = obj.slice(0, i)
-      result[i] = deserializedElement
-
-      for (let j = i + 1; j < obj.length; j++) {
-        result[j] = deserializeData(obj[j], visited)
-      }
-
-      visited.delete(obj)
-      return result
-    }
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization')
   }
 
+  visited.add(obj)
+  const result = obj.map((el) => deserializeData(el, visited))
   visited.delete(obj)
-  return obj
+  return result
 }
 // Helper function to deserialize object
 const deserializeObject = (obj: unknown, visited: WeakSet<object>): unknown => {
   if (!isObject(obj)) {
     return obj
   }
-
   if (visited.has(obj as object)) {
     throw new Error('Circular reference detected during deserialization')
   }
 
   visited.add(obj as object)
-
-  const entries = Object.entries(obj as object)
-  for (let i = 0; i < entries.length; i++) {
-    const [key, value] = entries[i]
-    const deserializedValue = deserializeData(value, visited)
-
-    if (deserializedValue !== value) {
-      const deserializedObj: Record<string, unknown> = {}
-
-      for (let j = 0; j < i; j++) {
-        const [prevKey, prevValue] = entries[j]
-        deserializedObj[prevKey] = prevValue
-      }
-
-      deserializedObj[key] = deserializedValue
-
-      for (let j = i + 1; j < entries.length; j++) {
-        const [remainingKey, remainingValue] = entries[j]
-        deserializedObj[remainingKey] = deserializeData(remainingValue, visited)
-      }
-
-      visited.delete(obj as object)
-      return deserializedObj
-    }
+  const deserializedObj: Record<string, unknown> = {}
+  for (const [key, value] of Object.entries(obj as object)) {
+    Object.defineProperty(deserializedObj, key, {
+      value: deserializeData(value, visited),
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    })
   }
   visited.delete(obj as object)
-  return obj
+  return deserializedObj
 }
-// For deserualizeData end
+// For deserializeData end
 
 // For deserializeDataWithTemplate start
 // Helper function to deserialize date with template
 const deserializeDateWithTemplate = <T>(obj: string) => {
-  try {
+  if (isValidDateString(obj)) {
     const date = new Date(obj)
-    // Check if the date is valid
-    if (!isNaN(date.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
+    if (!isNaN(date.getTime())) {
       return date as unknown as T
     }
-    return obj as unknown as T
-  } catch (err) {
-    throw new Error('Failed to parse date:' + (err as Error).message)
   }
+  return obj as unknown as T
 }
 // Helper function to deserialize array with template
 const deserializeArrayWithTemplate = <T>(
@@ -274,14 +239,12 @@ const deserializeObjectWithTemplate = <T>(
   visited.add(obj as object)
   const deserializedObj: Record<string, unknown> = {}
 
-  for (const key in template) {
-    if (key in template) {
-      deserializedObj[key] = deserializeDataWithTemplate(
-        (obj as Record<string, unknown>)[key],
-        template[key],
-        visited,
-      )
-    }
+  for (const key of Object.keys(template)) {
+    deserializedObj[key] = deserializeDataWithTemplate(
+      (obj as Record<string, unknown>)[key],
+      template[key],
+      visited,
+    )
   }
 
   visited.delete(obj as object)

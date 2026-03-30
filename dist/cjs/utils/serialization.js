@@ -73,24 +73,21 @@ var deserializeDataWithTemplate = function deserializeDataWithTemplate(obj, temp
  * @returns boolean - whether the string is a valid date string
  */
 var isValidDateString = function isValidDateString(dateStr) {
-  var isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/;
-  return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr));
+  var isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?(Z|[+-]\d{2}:\d{2})$/;
+  return isoRegex.test(dateStr.trim());
 };
 // For serializeData start
 // Helper function to serialize array
 var serializeArray = function serializeArray(obj, visited) {
-  if (Array.isArray(obj)) {
-    if (visited.has(obj)) {
-      throw new Error('Circular reference detected during serialization');
-    }
-    visited.add(obj);
-    var result = obj.map(function (el) {
-      return serializeData(el, visited);
-    });
-    visited["delete"](obj);
-    return result;
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during serialization');
   }
-  return obj;
+  visited.add(obj);
+  var result = obj.map(function (el) {
+    return serializeData(el, visited);
+  });
+  visited["delete"](obj);
+  return result;
 };
 // Helper function to serialize object
 var serializeObject = function serializeObject(obj, visited) {
@@ -99,6 +96,7 @@ var serializeObject = function serializeObject(obj, visited) {
   }
   if (obj instanceof Map || obj instanceof Set) {
     logging.ConsoleWarning('Map and Set are not supported for serialization. They will be converted to empty objects.');
+    return {};
   }
   if (isObject(obj)) {
     visited.add(obj);
@@ -107,51 +105,44 @@ var serializeObject = function serializeObject(obj, visited) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
         key = _Object$entries$_i[0],
         value = _Object$entries$_i[1];
-      serializedObj[key] = serializeData(value, visited);
+      Object.defineProperty(serializedObj, key, {
+        value: serializeData(value, visited),
+        writable: true,
+        enumerable: true,
+        configurable: true
+      });
     }
     visited["delete"](obj);
     return serializedObj;
   }
   return obj;
 };
-// For searializeData end
-// For deserualizeData start
-// Helper function to desearialize date
+// For serializeData end
+// For deserializeData start
+// Helper function to deserialize date
 var deserializeDate = function deserializeDate(obj) {
-  try {
+  if (isValidDateString(obj)) {
     var dateDeserialized = new Date(obj);
-    // Check if the date is valid
-    if (!isNaN(dateDeserialized.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
+    if (!isNaN(dateDeserialized.getTime())) {
       return dateDeserialized;
     }
-    return obj;
-  } catch (err) {
-    throw new Error('Failed to parse date:' + err.message);
   }
+  return obj;
 };
 // Helper function to deserialize array
 var deserializeArray = function deserializeArray(obj, visited) {
-  if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization');
-  }
   if (!Array.isArray(obj)) {
     return obj;
   }
-  visited.add(obj);
-  for (var i = 0; i < obj.length; i++) {
-    var deserializedElement = deserializeData(obj[i], visited);
-    if (deserializedElement !== obj[i]) {
-      var result = obj.slice(0, i);
-      result[i] = deserializedElement;
-      for (var j = i + 1; j < obj.length; j++) {
-        result[j] = deserializeData(obj[j], visited);
-      }
-      visited["delete"](obj);
-      return result;
-    }
+  if (visited.has(obj)) {
+    throw new Error('Circular reference detected during deserialization');
   }
+  visited.add(obj);
+  var result = obj.map(function (el) {
+    return deserializeData(el, visited);
+  });
   visited["delete"](obj);
-  return obj;
+  return result;
 };
 // Helper function to deserialize object
 var deserializeObject = function deserializeObject(obj, visited) {
@@ -162,48 +153,32 @@ var deserializeObject = function deserializeObject(obj, visited) {
     throw new Error('Circular reference detected during deserialization');
   }
   visited.add(obj);
-  var entries = Object.entries(obj);
-  for (var i = 0; i < entries.length; i++) {
-    var _entries$i = _slicedToArray(entries[i], 2),
-      key = _entries$i[0],
-      value = _entries$i[1];
-    var deserializedValue = deserializeData(value, visited);
-    if (deserializedValue !== value) {
-      var deserializedObj = {};
-      for (var j = 0; j < i; j++) {
-        var _entries$j = _slicedToArray(entries[j], 2),
-          prevKey = _entries$j[0],
-          prevValue = _entries$j[1];
-        deserializedObj[prevKey] = prevValue;
-      }
-      deserializedObj[key] = deserializedValue;
-      for (var _j = i + 1; _j < entries.length; _j++) {
-        var _entries$_j = _slicedToArray(entries[_j], 2),
-          remainingKey = _entries$_j[0],
-          remainingValue = _entries$_j[1];
-        deserializedObj[remainingKey] = deserializeData(remainingValue, visited);
-      }
-      visited["delete"](obj);
-      return deserializedObj;
-    }
+  var deserializedObj = {};
+  for (var _i2 = 0, _Object$entries2 = Object.entries(obj); _i2 < _Object$entries2.length; _i2++) {
+    var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+      key = _Object$entries2$_i[0],
+      value = _Object$entries2$_i[1];
+    Object.defineProperty(deserializedObj, key, {
+      value: deserializeData(value, visited),
+      writable: true,
+      enumerable: true,
+      configurable: true
+    });
   }
   visited["delete"](obj);
-  return obj;
+  return deserializedObj;
 };
-// For deserualizeData end
+// For deserializeData end
 // For deserializeDataWithTemplate start
 // Helper function to deserialize date with template
 var deserializeDateWithTemplate = function deserializeDateWithTemplate(obj) {
-  try {
+  if (isValidDateString(obj)) {
     var date = new Date(obj);
-    // Check if the date is valid
-    if (!isNaN(date.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
+    if (!isNaN(date.getTime())) {
       return date;
     }
-    return obj;
-  } catch (err) {
-    throw new Error('Failed to parse date:' + err.message);
   }
+  return obj;
 };
 // Helper function to deserialize array with template
 var deserializeArrayWithTemplate = function deserializeArrayWithTemplate(obj, template, visited) {
@@ -236,10 +211,9 @@ var deserializeObjectWithTemplate = function deserializeObjectWithTemplate(obj, 
   }
   visited.add(obj);
   var deserializedObj = {};
-  for (var key in template) {
-    if (key in template) {
-      deserializedObj[key] = deserializeDataWithTemplate(obj[key], template[key], visited);
-    }
+  for (var _i3 = 0, _Object$keys = Object.keys(template); _i3 < _Object$keys.length; _i3++) {
+    var key = _Object$keys[_i3];
+    deserializedObj[key] = deserializeDataWithTemplate(obj[key], template[key], visited);
   }
   visited["delete"](obj);
   return deserializedObj;
