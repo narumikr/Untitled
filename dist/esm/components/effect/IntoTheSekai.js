@@ -10,7 +10,7 @@ import { createPortal } from 'react-dom';
 import { usePortalContainer } from '../../internal/usePortalContainer.js';
 import styles from './IntoTheSekai.module.scss.js';
 
-var _excluded = ["execEvent", "containerComponent"];
+var _excluded = ["execEvent", "execEventDelay", "clickThrough", "containerComponent"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var PINK = 'rgb(255, 186, 241, {0})';
@@ -18,6 +18,10 @@ var YELLOW = 'rgb(255, 247, 148, {0})';
 var AQUA = 'rgb(149, 253, 255, {0})';
 var IntoTheSekai = function IntoTheSekai(_ref) {
   var execEvent = _ref.execEvent,
+    _ref$execEventDelay = _ref.execEventDelay,
+    execEventDelay = _ref$execEventDelay === void 0 ? 390 : _ref$execEventDelay,
+    _ref$clickThrough = _ref.clickThrough,
+    clickThrough = _ref$clickThrough === void 0 ? false : _ref$clickThrough,
     containerComponent = _ref.containerComponent,
     rest = _objectWithoutProperties(_ref, _excluded);
   var portalContainer = usePortalContainer(containerComponent);
@@ -60,7 +64,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
         });
         return _objectSpread(_objectSpread({}, tri), {}, {
           points: newPoints,
-          opacity: tri.opacity - 0.0039
+          opacity: tri.opacity - 0.0075
         });
       }).filter(function (t) {
         return t.opacity > 0;
@@ -68,7 +72,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
       if (sekaiPieceRef.current.length === 0) {
         setTimeout(function () {
           execEvent === null || execEvent === void 0 || execEvent();
-        }, 1000 * 0.39);
+        }, execEventDelay);
         setStartAnimation(false);
       }
       sekaiPieceRef.current.forEach(function (tri, index) {
@@ -87,7 +91,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     return function () {
       return cancelAnimationFrame(animationFrameId);
     };
-  }, [execEvent, startAnimation]);
+  }, [execEvent, execEventDelay, startAnimation]);
   var handleClick = function handleClick(e) {
     if (!portalContainer) return;
     setStartAnimation(true);
@@ -97,6 +101,20 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     var effectY = getClickPosition(e).clientY - rect.top;
     var newPieceOfSekai = createSekaiPiece(effectX, effectY);
     sekaiPieceRef.current = [].concat(_toConsumableArray(sekaiPieceRef.current), _toConsumableArray(newPieceOfSekai));
+    if (clickThrough && canvasRef.current) {
+      var _getClickPosition = getClickPosition(e),
+        clientX = _getClickPosition.clientX,
+        clientY = _getClickPosition.clientY;
+      canvasRef.current.style.pointerEvents = 'none';
+      var elementBelow = document.elementFromPoint(clientX, clientY);
+      elementBelow === null || elementBelow === void 0 || elementBelow.dispatchEvent(new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        clientX: clientX,
+        clientY: clientY
+      }));
+      canvasRef.current.style.pointerEvents = '';
+    }
   };
   if (!portalContainer) return null;
   return /*#__PURE__*/createPortal(/*#__PURE__*/React.createElement("canvas", _extends({}, rest, {
@@ -124,17 +142,21 @@ var createSekaiPiece = function createSekaiPiece(x, y) {
     length: 60
   }).map(function () {
     var angle = Math.random() * 2 * Math.PI;
-    var speed = Math.random() * 2 + 1;
+    var speed = Math.random() * 3 + 2;
     var velocity = {
       x: Math.cos(angle) * speed,
       y: Math.sin(angle) * speed
     };
-    var points = Array.from({
-      length: 3
-    }).map(function () {
+    var cx = x + Math.random() * 80 - 40;
+    var cy = y + Math.random() * 80 - 40;
+    var size = Math.random() * 25 + 25;
+    var baseAngle = Math.random() * 2 * Math.PI;
+    var angleVariation = Math.PI / 4;
+    var points = [0, 1, 2].map(function (i) {
+      var vertexAngle = baseAngle + i * 2 * Math.PI / 3 + (Math.random() - 0.5) * 2 * angleVariation;
       return {
-        x: x + Math.random() * 80 - 40,
-        y: y + Math.random() * 80 - 40
+        x: cx + Math.cos(vertexAngle) * size,
+        y: cy + Math.sin(vertexAngle) * size
       };
     });
     return {
