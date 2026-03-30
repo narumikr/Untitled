@@ -48,13 +48,6 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
-    ref: {
-      description: 'Ref to the root element',
-      table: {
-        type: { summary: 'React.Ref<HTMLDivElement>' },
-      },
-      control: false,
-    },
     text: {
       description: 'Text to display',
       // @ts-expect-error Storybook's typing issue
@@ -63,7 +56,7 @@ const meta = {
         type: { summary: 'string' },
       },
     },
-    colorCount: {
+    colorLength: {
       description: 'Number of color text',
       table: {
         type: { summary: 'number' },
@@ -83,7 +76,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     themeMode: 'light',
     text: '初音ミク',
-    colorCount: 1,
+    colorLength: 1,
   },
   parameters: {
     sekai: 'Miku',
@@ -97,7 +90,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     themeMode: 'dark',
     text: '初音ミク',
-    colorCount: 1,
+    colorLength: 1,
   },
   parameters: {
     sekai: 'Miku',

@@ -8,21 +8,9 @@ import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 import styles from './Tooltip.module.scss'
 
 import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { TooltipProps } from '@/types/components/tooltip/Tooltip.types'
 
-export type TooltipPosition = 'top' | 'bottom'
-
-export interface TooltipProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  children: React.ReactNode
-  text: string
-  pos?: TooltipPosition
-}
+type TooltipPosition = 'top' | 'bottom'
 
 export const Tooltip = ({
   sekai,
@@ -45,7 +33,6 @@ export const Tooltip = ({
   return (
     <div
       {...rest}
-      ref={rest.ref}
       className={clsx(
         styles[`sekai-tooltip-${modeTheme}`],
         styles[`sekai-tooltip-${pos}`],

@@ -48,14 +48,7 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
-    ref: {
-      description: 'Ref to the root element',
-      table: {
-        type: { summary: 'React.Ref<HTMLDivElement>' },
-      },
-      control: false,
-    },
-    count: {
+    totalPages: {
       description: 'Total number of pages',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
@@ -105,7 +98,7 @@ export const DefaultLight: Story = {
     id: 'pagination-default-light',
     sekai: 'Miku',
     themeMode: 'light',
-    count: 10,
+    totalPages: 10,
     page: 0,
     siblingCount: 1,
     size: 'medium',
@@ -121,7 +114,7 @@ export const DefaultDark: Story = {
     id: 'pagination-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
-    count: 10,
+    totalPages: 10,
     page: 0,
     siblingCount: 1,
     size: 'medium',

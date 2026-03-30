@@ -7,21 +7,7 @@ import { convertHexToRgba } from '@/utils/converter'
 
 import styles from './Checkbox.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type CheckboxProps = {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLInputElement>
-  checked?: boolean
-  disabled?: boolean
-  onChange?: (value: boolean) => void
-  filling?: boolean
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'checked' | 'disabled'>
+import type { CheckboxProps } from '@/types/components/select/Checkbox.types'
 
 export const Checkbox = ({
   sekai,

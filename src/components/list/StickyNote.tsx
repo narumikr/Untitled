@@ -14,20 +14,7 @@ import { ListItemText } from './ListItemText'
 import styles from './StickyNote.module.scss'
 
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-interface BaseProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  children: React.ReactNode
-  disabled?: boolean
-  onClick?: () => void
-}
-
-export type StickyNoteProps =
-  | ({ as?: 'button' } & BaseProps & { ref?: React.Ref<HTMLButtonElement> })
-  | ({ as?: 'text' } & BaseProps & { ref?: React.Ref<HTMLLIElement> })
+import type { StickyNoteProps } from '@/types/components/list/StickyNote.types'
 
 export const StickyNote = ({ sekai, children, as = 'button', ...rest }: StickyNoteProps) => {
   const isListWrap = useContext(ListContext)
@@ -38,7 +25,6 @@ export const StickyNote = ({ sekai, children, as = 'button', ...rest }: StickyNo
   return 'button' === as ? (
     <ListItemButton
       {...rest}
-      ref={rest.ref as React.Ref<HTMLButtonElement>}
       className={clsx(styles['sekai-sticky-note'], rest.className)}
       sekai={sekai}
       themeMode={LIGHT_MODE}>
@@ -47,7 +33,6 @@ export const StickyNote = ({ sekai, children, as = 'button', ...rest }: StickyNo
   ) : (
     <ListItemText
       {...rest}
-      ref={rest.ref as React.Ref<HTMLLIElement>}
       className={clsx(styles['sekai-sticky-note'], rest.className)}
       sekai={sekai}
       themeMode={LIGHT_MODE}>

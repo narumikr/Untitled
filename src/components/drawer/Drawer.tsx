@@ -11,24 +11,7 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Drawer.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type DrawerPosition = 'top' | 'right' | 'bottom' | 'left'
-
-export interface DrawerProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  open: boolean
-  onClose: () => void
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  pos?: DrawerPosition
-}
+import type { DrawerProps } from '@/types/components/drawer/Drawer.types'
 
 export const Drawer = ({
   sekai,
@@ -38,6 +21,7 @@ export const Drawer = ({
   children,
   containerComponent,
   pos = 'right',
+  ref,
   ...rest
 }: DrawerProps) => {
   const displayDrawer = open ? 'sekai-drawer-visible' : 'sekai-drawer-hidden'
@@ -57,7 +41,6 @@ export const Drawer = ({
 
   return createPortal(
     <div
-      ref={rest.ref}
       className={clsx(
         globalStyles[`sekai-overlay-${modeTheme}`],
         styles['sekai-drawer'],
@@ -68,6 +51,7 @@ export const Drawer = ({
       onClick={onClose}>
       <div
         {...rest}
+        ref={ref}
         className={clsx(
           styles[`sekai-drawer-contents-${pos}`],
           styles[displayDrawer],

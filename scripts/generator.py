@@ -16,6 +16,10 @@ hooks_index_file = os.path.join(hooks_dir, "index.ts")
 utils_dir = os.path.join(script_dir, "../src/utils")
 utils_index_file = os.path.join(utils_dir, "index.ts")
 
+# types
+types_dir = os.path.join(script_dir, "../src/types")
+types_index_file = os.path.join(types_dir, "index.ts")
+
 # check components directory exists
 def checkDirectoryExist(directory_path):
     if not os.path.exists(directory_path):
@@ -42,6 +46,21 @@ def getTsFileNameList(directory_path):
             file_name = os.path.splitext(file)[0]
             if 'index' != file_name:
                 file_name_list.append(file_name)
+    return file_name_list
+
+# read all "*.types.ts" files in the types/components nested directory
+def getFolderAndTypesFileNameList(directory_path):
+    file_name_list = []
+    components_path = os.path.join(directory_path, "components")
+    if not os.path.isdir(components_path):
+        return file_name_list
+    for folder in sorted(os.listdir(components_path)):
+        folder_path = os.path.join(components_path, folder)
+        if os.path.isdir(folder_path):
+            for file in sorted(os.listdir(folder_path)):
+                if file.endswith(".types.ts"):
+                    file_name = os.path.splitext(file)[0]  # strip .ts → "Accordion.types"
+                    file_name_list.append((folder, file_name))
     return file_name_list
 
 def outputIndexFile(output_file_path, output_text):
@@ -72,3 +91,9 @@ if __name__ == "__main__":
     utils_list = getTsFileNameList(utils_dir)
     exports_utils = generated_text + "".join([f"export * from './{file_name}'\n" for file_name in utils_list])
     outputIndexFile(utils_index_file, exports_utils)
+
+    # generate types indexfile
+    checkDirectoryExist(types_dir)
+    types_list = getFolderAndTypesFileNameList(types_dir)
+    exports_types = generated_text + "".join([f"export * from './components/{folder}/{file_name}'\n" for folder, file_name in types_list])
+    outputIndexFile(types_index_file, exports_types)

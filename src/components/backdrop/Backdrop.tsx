@@ -11,26 +11,11 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Backdrop.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface BackdropProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  open: boolean
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  centered?: boolean
-}
+import type { BackdropProps } from '@/types/components/backdrop/Backdrop.types'
 
 export const Backdrop = ({
   sekai,
   themeMode,
-  ref,
   open,
   children,
   containerComponent,
@@ -50,7 +35,7 @@ export const Backdrop = ({
   if (!portalContainer) return null
 
   return createPortal(
-    <div className={clsx(styles[displayBackdrop])} ref={ref}>
+    <div className={clsx(styles[displayBackdrop])}>
       <div
         {...rest}
         className={clsx(

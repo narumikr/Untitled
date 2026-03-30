@@ -7,7 +7,7 @@ import { ListItemButton } from '@/components/list/ListItemButton'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { ListItemButtonProps } from '@/components/list/ListItemButton'
+import type { ListItemButtonProps } from '@/types/components/list/ListItemButton.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {

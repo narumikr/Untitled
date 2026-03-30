@@ -74,12 +74,12 @@ var isValidDateString = function isValidDateString(dateStr) {
   var isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/;
   return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr));
 };
-// For searializeData start
-// Helper function to searialize array
+// For serializeData start
+// Helper function to serialize array
 var serializeArray = function serializeArray(obj, visited) {
   if (Array.isArray(obj)) {
     if (visited.has(obj)) {
-      throw new Error('Circular reference detected during serializeData');
+      throw new Error('Circular reference detected during serialization');
     }
     visited.add(obj);
     var result = obj.map(function (el) {
@@ -90,22 +90,24 @@ var serializeArray = function serializeArray(obj, visited) {
   }
   return obj;
 };
-// Helper function to searialize object
+// Helper function to serialize object
 var serializeObject = function serializeObject(obj, visited) {
   if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization');
+    throw new Error('Circular reference detected during serialization');
   }
   if (obj instanceof Map || obj instanceof Set) {
     ConsoleWarning('Map and Set are not supported for serialization. They will be converted to empty objects.');
   }
   if (isObject(obj)) {
+    visited.add(obj);
     var serializedObj = {};
     for (var _i = 0, _Object$entries = Object.entries(obj); _i < _Object$entries.length; _i++) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
         key = _Object$entries$_i[0],
         value = _Object$entries$_i[1];
-      serializedObj[key] = serializeData(value);
+      serializedObj[key] = serializeData(value, visited);
     }
+    visited["delete"](obj);
     return serializedObj;
   }
   return obj;

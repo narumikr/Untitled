@@ -6,17 +6,9 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './Loading.module.scss'
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { LoadingProps } from '@/types/components/loading/Loading.types'
 
-export interface LoadingProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  ref?: React.Ref<HTMLDivElement>
-}
-
-export const Loading = ({ id, className, style, sekai, ref }: LoadingProps) => {
+export const Loading = ({ id, className, style, sekai }: LoadingProps) => {
   const { sekaiColor } = useOptionalSekai({ sekai })
   const CIRCLE_COUNT = 8
 
@@ -29,7 +21,6 @@ export const Loading = ({ id, className, style, sekai, ref }: LoadingProps) => {
       id={id}
       role="status"
       aria-live="polite"
-      ref={ref}
       className={clsx(styles['sekai-loading'], className)}
       style={{ ...(optionStyle as React.CSSProperties), ...style }}>
       {Array.from({ length: CIRCLE_COUNT }, (_, index) => (

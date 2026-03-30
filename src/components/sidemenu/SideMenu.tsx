@@ -13,22 +13,7 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './SideMenu.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface SideMenuProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  open?: boolean
-  onClick?: () => void
-  children?: React.ReactNode
-  pos?: 'left' | 'right'
-  containerComponent?: HTMLElement
-}
+import type { SideMenuProps } from '@/types/components/sidemenu/SideMenu.types'
 
 export const SideMenu = ({
   sekai,
@@ -69,7 +54,6 @@ export const SideMenu = ({
   return createPortal(
     <div
       {...rest}
-      ref={rest.ref}
       className={clsx(
         styles[`sekai-side-menu-${pos}`],
         {

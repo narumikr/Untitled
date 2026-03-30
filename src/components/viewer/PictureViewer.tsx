@@ -12,22 +12,7 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './PictureViewer.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface PictureViewerProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  imgSrc: string
-  alt?: string
-  width?: number
-  objectFit?: 'contain' | 'cover'
-  containerComponent?: HTMLElement
-}
+import type { PictureViewerProps } from '@/types/components/viewer/PictureViewer.types'
 
 export const PictureViewer = ({
   sekai,
@@ -58,7 +43,6 @@ export const PictureViewer = ({
       {/* Thumbnail */}
       <motion.div
         {...rest}
-        ref={rest.ref}
         className={clsx(
           styles['sekai-picture-viewer-thumbnail'],
           styles[`sekai-picture-viewer-thumbnail-${modeTheme}`],

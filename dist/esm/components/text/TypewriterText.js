@@ -14,7 +14,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 var defaultOptions = {
   speed: 100,
   loop: false,
-  cursor: true
+  showCursor: true
 };
 var TypewriterText = function TypewriterText(_ref) {
   var sekai = _ref.sekai,
@@ -37,8 +37,8 @@ var TypewriterText = function TypewriterText(_ref) {
     currentIndex = _useState4[0],
     setCurrentIndex = _useState4[1];
   var viewCursor = useMemo(function () {
-    return options.cursor && displayText.length < text.length;
-  }, [displayText, text, options.cursor]);
+    return options.showCursor && displayText.length < text.length;
+  }, [displayText, text, options.showCursor]);
   useEffect(function () {
     setDisplayText('');
     var typewriteInterval = setInterval(function () {
@@ -70,7 +70,6 @@ var TypewriterText = function TypewriterText(_ref) {
     '--sekai-color': sekaiColor
   };
   return /*#__PURE__*/React.createElement("div", _extends({}, rest, {
-    ref: rest.ref,
     className: clsx(styles['sekai-typewrite-text'], _defineProperty({}, styles['sekai-cursor'], viewCursor), rest.className),
     style: _objectSpread(_objectSpread({}, optionStyle), rest.style)
   }), displayText);

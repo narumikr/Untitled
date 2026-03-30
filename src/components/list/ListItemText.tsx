@@ -11,20 +11,7 @@ import { ListContext } from './List'
 
 import styles from './List.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface ListItemTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLLIElement>
-  children: React.ReactNode
-  as?: 'p' | 'span'
-  icon?: 'string' | React.ReactNode
-}
+import type { ListItemTextProps } from '@/types/components/list/ListItemText.types'
 
 export const ListItemText = ({
   sekai,

@@ -14,26 +14,7 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Toast.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type ToastPosition = 'top' | 'bottom'
-
-export interface ToastProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  open: boolean
-  onClose: () => void
-  pos?: ToastPosition
-  message: string | string[]
-  isError?: boolean
-  duration?: number
-  containerComponent?: HTMLElement
-}
+import type { ToastProps } from '@/types/components/toast/Toast.types'
 
 export const Toast = ({
   sekai,
@@ -77,7 +58,6 @@ export const Toast = ({
   return createPortal(
     <div
       {...rest}
-      ref={rest.ref}
       className={clsx(
         styles[`sekai-toast-${pos}`],
         {

@@ -12,28 +12,11 @@ import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './WindowDialog.module.scss'
 
-import type { DialogSize } from './Dialog'
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface WindowDialogProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  open: boolean
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  size?: DialogSize
-  onClose: () => void
-}
+import type { WindowDialogProps } from '@/types/components/dialog/WindowDialog.types'
 
 export const WindowDialog = ({
   sekai,
   themeMode,
-  ref,
   open,
   children,
   containerComponent,
@@ -58,20 +41,6 @@ export const WindowDialog = ({
   const modalRef = useRef<HTMLDivElement>(null)
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
   const [dragging, setDragging] = useState(false)
-
-  // Merge internal ref and forwarded ref
-  const setRefs = useCallback(
-    (element: HTMLDivElement | null) => {
-      modalRef.current = element
-
-      if (typeof ref === 'function') {
-        ref(element)
-      } else if (ref) {
-        ;(ref as React.RefObject<HTMLDivElement | null>).current = element
-      }
-    },
-    [ref],
-  )
 
   const [isFullscreen, setIsFullscreen] = useState(false)
 
@@ -140,7 +109,7 @@ export const WindowDialog = ({
   return createPortal(
     <div
       {...rest}
-      ref={setRefs}
+      ref={modalRef}
       role="dialog"
       className={clsx(
         styles[`sekai-window-dialog-${modeTheme}`],

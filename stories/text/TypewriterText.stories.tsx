@@ -49,13 +49,6 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
-    ref: {
-      description: 'Ref to the root element',
-      table: {
-        type: { summary: 'React.Ref<HTMLDivElement>' },
-      },
-      control: false,
-    },
     text: {
       description: 'Text to display',
       // @ts-expect-error Storybook's typing issue
@@ -68,7 +61,7 @@ const meta = {
       description: 'Typewriter options (typing speed, loop, cursor)',
       table: {
         type: { summary: 'TypewriterTextOptions' },
-        defaultValue: { summary: '{ speed: 100, loop: false, cursor: true }' },
+        defaultValue: { summary: '{ speed: 100, loop: false, showCursor: true }' },
       },
     },
   },
@@ -84,7 +77,7 @@ export const DefaultLight: Story = {
     sekai: 'Miku',
     themeMode: 'light',
     text: 'This is an example of TypewriterText component.',
-    options: { speed: 100, loop: false, cursor: true },
+    options: { speed: 100, loop: false, showCursor: true },
   },
   parameters: {
     sekai: 'Miku',
@@ -98,7 +91,7 @@ export const DefaultDark: Story = {
     sekai: 'Miku',
     themeMode: 'dark',
     text: 'This is an example of TypewriterText component.',
-    options: { speed: 100, loop: false, cursor: true },
+    options: { speed: 100, loop: false, showCursor: true },
   },
   parameters: {
     sekai: 'Miku',
@@ -112,7 +105,7 @@ export const LoopLight: Story = {
     sekai: 'Miku',
     themeMode: 'light',
     text: 'This is an example of TypewriterText component.',
-    options: { speed: 100, loop: true, cursor: true },
+    options: { speed: 100, loop: true, showCursor: true },
   },
   parameters: {
     sekai: 'Miku',
@@ -126,7 +119,7 @@ export const LoopDark: Story = {
     sekai: 'Miku',
     themeMode: 'dark',
     text: 'This is an example of TypewriterText component.',
-    options: { speed: 100, loop: true, cursor: true },
+    options: { speed: 100, loop: true, showCursor: true },
   },
   parameters: {
     sekai: 'Miku',

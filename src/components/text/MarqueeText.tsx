@@ -16,37 +16,21 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './MarqueeText.module.scss'
 
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { MarqueeTextProps } from '@/types/components/text/MarqueeText.types'
 import type { JSX } from 'react'
-
-export interface MarqueeTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  children: React.ReactNode
-  duration?: number
-  parentBackgroundColor?: string
-}
 
 export const MarqueeText = ({
   sekai,
   themeMode,
-  ref,
   children,
   duration,
   parentBackgroundColor,
+  ref,
   ...rest
 }: MarqueeTextProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const textWrapRef = useRef<HTMLElement | null>(null)
-  const [excessiveLength, setExcessiveLength] = useState(false)
-  const [durationState, setDurationState] = useState(duration ?? 0)
 
-  // Merge internal ref and forwarded ref
   const setRefs = useCallback(
     (element: HTMLDivElement | null) => {
       containerRef.current = element
@@ -59,6 +43,10 @@ export const MarqueeText = ({
     },
     [ref],
   )
+
+  const textWrapRef = useRef<HTMLElement | null>(null)
+  const [excessiveLength, setExcessiveLength] = useState(false)
+  const [durationState, setDurationState] = useState(duration ?? 0)
 
   const containerBackground = useMemo(() => {
     if (parentBackgroundColor) return parentBackgroundColor

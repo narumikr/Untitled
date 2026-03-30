@@ -4,8 +4,8 @@ import { Dialog } from '@/components/dialog/Dialog'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { DialogButton } from '@/components/dialog/Dialog'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { DialogButton } from '@/types/components/dialog/Dialog.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
@@ -267,7 +267,7 @@ const buttons: DialogButton[] = [
     type: 'normal',
     disabled: false,
     ariaLabel: 'Cancel',
-    buttonStyle: '',
+    buttonClassName: '',
   },
   {
     text: 'OK',
@@ -275,7 +275,7 @@ const buttons: DialogButton[] = [
     type: 'normal',
     disabled: false,
     ariaLabel: 'OK',
-    buttonStyle: '',
+    buttonClassName: '',
   },
   {
     text: 'OK',
@@ -283,7 +283,7 @@ const buttons: DialogButton[] = [
     type: 'strong',
     disabled: false,
     ariaLabel: 'OK',
-    buttonStyle: '',
+    buttonClassName: '',
   },
 ]
 export const OneButtonsLight: Story = {

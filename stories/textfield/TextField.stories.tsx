@@ -50,20 +50,13 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
-    ref: {
-      description: 'Ref to the root element',
-      table: {
-        type: { summary: 'React.Ref<HTMLDivElement>' },
-      },
-      control: false,
-    },
     placeholder: {
       description: 'Placeholder text',
       table: {
         type: { summary: 'string' },
       },
     },
-    clearButton: {
+    showClearButton: {
       description: 'Show clear button',
       table: {
         type: { summary: 'boolean' },
@@ -108,7 +101,7 @@ export const DefaultLight: Story = {
     id: 'textfield-default-light',
     sekai: 'Miku',
     themeMode: 'light',
-    clearButton: true,
+    showClearButton: true,
     placeholder: 'Input text here',
     isError: false,
     errorMessage: '',
@@ -125,7 +118,7 @@ export const DefaultDark: Story = {
     id: 'textfield-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
-    clearButton: true,
+    showClearButton: true,
     placeholder: 'Input text here',
     isError: false,
     errorMessage: '',
@@ -142,7 +135,7 @@ export const ErrorLight: Story = {
     id: 'textfield-default-light',
     sekai: 'Miku',
     themeMode: 'light',
-    clearButton: true,
+    showClearButton: true,
     placeholder: 'Input text here',
     isError: true,
     errorMessage: 'The value you entered is not valid',
@@ -159,7 +152,7 @@ export const ErrorDark: Story = {
     id: 'textfield-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
-    clearButton: true,
+    showClearButton: true,
     placeholder: 'Input text here',
     isError: true,
     errorMessage: 'The value you entered is not valid',

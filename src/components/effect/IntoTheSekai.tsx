@@ -7,13 +7,7 @@ import { usePortalContainer } from '@/internal/usePortalContainer'
 
 import styles from './IntoTheSekai.module.scss'
 
-export interface IntoTheSekaiProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  execEvent?: () => void
-  containerComponent?: HTMLElement
-}
+import type { IntoTheSekaiProps } from '@/types/components/effect/IntoTheSekai.types'
 
 type PieceOfSekai = {
   points: { x: number; y: number }[]
@@ -29,7 +23,13 @@ const PINK = 'rgb(255, 186, 241, {0})'
 const YELLOW = 'rgb(255, 247, 148, {0})'
 const AQUA = 'rgb(149, 253, 255, {0})'
 
-export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoTheSekaiProps) => {
+export const IntoTheSekai = ({
+  execEvent,
+  execEventDelay = 390,
+  clickThrough = false,
+  containerComponent,
+  ...rest
+}: IntoTheSekaiProps) => {
   const portalContainer = usePortalContainer(containerComponent)
   const [startAnimation, setStartAnimation] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -63,6 +63,7 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
     const ctx = canvas?.getContext('2d')
 
     let animationFrameId: number
+    let timeoutId: ReturnType<typeof setTimeout> | undefined
 
     const render = () => {
       if (!ctx || !canvas || !startAnimation) return
@@ -79,16 +80,17 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
           return {
             ...tri,
             points: newPoints,
-            opacity: tri.opacity - 0.0039,
+            opacity: tri.opacity - 0.0075,
           }
         })
         .filter((t) => t.opacity > 0)
 
       if (sekaiPieceRef.current.length === 0) {
-        setTimeout(() => {
+        timeoutId = setTimeout(() => {
           execEvent?.()
-        }, 1000 * 0.39)
+        }, execEventDelay)
         setStartAnimation(false)
+        return
       }
 
       sekaiPieceRef.current.forEach((tri, index) => {
@@ -105,8 +107,11 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
 
     render()
 
-    return () => cancelAnimationFrame(animationFrameId)
-  }, [execEvent, startAnimation])
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      clearTimeout(timeoutId)
+    }
+  }, [execEvent, execEventDelay, startAnimation])
 
   const handleClick = (e: AnimationTrigger) => {
     if (!portalContainer) return
@@ -119,6 +124,21 @@ export const IntoTheSekai = ({ execEvent, containerComponent, ...rest }: IntoThe
 
     const newPieceOfSekai = createSekaiPiece(effectX, effectY)
     sekaiPieceRef.current = [...sekaiPieceRef.current, ...newPieceOfSekai]
+
+    if (clickThrough && canvasRef.current) {
+      const { clientX, clientY } = getClickPosition(e)
+      const canvasElement = canvasRef.current
+      const previousPointerEvents = canvasElement.style.pointerEvents
+      try {
+        canvasElement.style.pointerEvents = 'none'
+        const elementBelow = document.elementFromPoint(clientX, clientY)
+        elementBelow?.dispatchEvent(
+          new MouseEvent('click', { bubbles: true, cancelable: true, clientX, clientY }),
+        )
+      } finally {
+        canvasElement.style.pointerEvents = previousPointerEvents
+      }
+    }
   }
 
   if (!portalContainer) return null
@@ -146,17 +166,27 @@ const getClickPosition = (e: AnimationTrigger) => {
 const createSekaiPiece = (x: number, y: number) => {
   return Array.from({ length: 60 }).map(() => {
     const angle = Math.random() * 2 * Math.PI
-    const speed = Math.random() * 2 + 1
+    const speed = Math.random() * 3 + 2
 
     const velocity = {
       x: Math.cos(angle) * speed,
       y: Math.sin(angle) * speed,
     }
 
-    const points = Array.from({ length: 3 }).map(() => ({
-      x: x + Math.random() * 80 - 40,
-      y: y + Math.random() * 80 - 40,
-    }))
+    const cx = x + Math.random() * 80 - 40
+    const cy = y + Math.random() * 80 - 40
+    const size = Math.random() * 25 + 25
+    const baseAngle = Math.random() * 2 * Math.PI
+    const angleVariation = Math.PI / 4
+
+    const points = [0, 1, 2].map((i) => {
+      const vertexAngle =
+        baseAngle + (i * 2 * Math.PI) / 3 + (Math.random() - 0.5) * 2 * angleVariation
+      return {
+        x: cx + Math.cos(vertexAngle) * size,
+        y: cy + Math.sin(vertexAngle) * size,
+      }
+    })
 
     return { points, velocity, opacity: 1 }
   })

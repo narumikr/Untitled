@@ -8,25 +8,7 @@ import { AnnotationText } from '../text/UtilText'
 
 import styles from './TextArea.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-type ResizeVariant = 'none' | 'both' | 'horizontal' | 'vertical'
-
-export interface TextAreaProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  value?: string
-  onChange?: (value: string) => void
-  placeholder?: string
-  disabled?: boolean
-  maxLength?: number
-  resize?: ResizeVariant
-}
+import type { TextAreaProps } from '@/types/components/textfield/TextArea.types'
 
 export const TextArea = ({
   sekai,
@@ -53,7 +35,6 @@ export const TextArea = ({
   return (
     <div
       {...rest}
-      ref={rest.ref}
       className={clsx(styles['sekai-textarea-wrap'], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       <textarea

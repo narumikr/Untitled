@@ -34,8 +34,8 @@ var Card = function Card(_ref) {
     '--sekai-color-shadow': sekaiColoShadow
   };
   return /*#__PURE__*/React.createElement("div", _extends({}, divProps, {
-    id: id,
     ref: ref,
+    id: id,
     className: clsx(styles['sekai-card'], globalStyles["sekai-color-".concat(modeTheme)], className),
     style: _objectSpread(_objectSpread({}, optionStyle), style)
   }), children);
@@ -60,7 +60,8 @@ var CardTitle = function CardTitle(_ref3) {
   var sekai = _ref3.sekai,
     themeMode = _ref3.themeMode,
     title = _ref3.title,
-    underline = _ref3.underline,
+    _ref3$underline = _ref3.underline,
+    underline = _ref3$underline === void 0 ? true : _ref3$underline,
     rest = _objectWithoutProperties(_ref3, _excluded2);
   var _useOptionalSekai3 = useOptionalSekai({
       sekai: sekai,

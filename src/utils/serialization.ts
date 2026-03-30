@@ -90,12 +90,12 @@ export const isValidDateString = (dateStr: string): boolean => {
   return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr))
 }
 
-// For searializeData start
-// Helper function to searialize array
+// For serializeData start
+// Helper function to serialize array
 const serializeArray = <T>(obj: T, visited: WeakSet<object>): unknown => {
   if (Array.isArray(obj)) {
     if (visited.has(obj as object)) {
-      throw new Error('Circular reference detected during serializeData')
+      throw new Error('Circular reference detected during serialization')
     }
     visited.add(obj as object)
 
@@ -105,10 +105,10 @@ const serializeArray = <T>(obj: T, visited: WeakSet<object>): unknown => {
   }
   return obj
 }
-// Helper function to searialize object
+// Helper function to serialize object
 const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
   if (visited.has(obj as object)) {
-    throw new Error('Circular reference detected during deserialization')
+    throw new Error('Circular reference detected during serialization')
   }
 
   if (obj instanceof Map || obj instanceof Set) {
@@ -118,10 +118,12 @@ const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
   }
 
   if (isObject(obj)) {
+    visited.add(obj as object)
     const serializedObj: Record<string, unknown> = {}
     for (const [key, value] of Object.entries(obj as object)) {
-      serializedObj[key] = serializeData(value)
+      serializedObj[key] = serializeData(value, visited)
     }
+    visited.delete(obj as object)
     return serializedObj
   }
   return obj

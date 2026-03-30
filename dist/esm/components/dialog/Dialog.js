@@ -141,7 +141,7 @@ var DialogButtons = function DialogButtons(_ref3) {
       onClick: el.onClick,
       disabled: Boolean(el.disabled),
       "aria-label": el.ariaLabel || el.text,
-      className: clsx(globalStyles["sekai-color-".concat(modeTheme)], styles["sekai-dialog-".concat(el.type || 'normal', "-button-").concat(buttonLength, "-").concat(index)], styles["sekai-".concat(modeTheme)], el.buttonStyle || ''),
+      className: clsx(globalStyles["sekai-color-".concat(modeTheme)], styles["sekai-dialog-".concat(el.type || 'normal', "-button-").concat(buttonLength, "-").concat(index)], styles["sekai-".concat(modeTheme)], el.buttonClassName || ''),
       style: optionStyle
     }, el.text);
   }));

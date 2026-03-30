@@ -7,7 +7,7 @@ import { StickyNote } from '@/components/list/StickyNote'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { StickyNoteProps } from '@/components/list/StickyNote'
+import type { StickyNoteProps } from '@/types/components/list/StickyNote.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
@@ -44,13 +44,6 @@ const meta = {
       },
       control: { type: 'select' },
       options: [...Object.keys(COLORS_SEKAI_KEYS)],
-    },
-    ref: {
-      description: 'Ref to the root element',
-      table: {
-        type: { summary: 'React.Ref<HTMLButtonElement> | React.Ref<HTMLLIElement>' },
-      },
-      control: false,
     },
     children: {
       description: 'StickyNote contents',

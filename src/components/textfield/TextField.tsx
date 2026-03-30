@@ -9,23 +9,7 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './TextField.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLDivElement>
-  placeholder?: string
-  clearButton?: boolean
-  onChangeInput?: (value: string) => void
-  isError?: boolean
-  errorMessage?: string
-  maxLength?: number
-}
+import type { TextFieldProps } from '@/types/components/textfield/TextField.types'
 
 export const TextField = ({
   id,
@@ -33,8 +17,7 @@ export const TextField = ({
   style,
   sekai,
   themeMode,
-  ref,
-  clearButton = true,
+  showClearButton = true,
   onChangeInput,
   isError = false,
   errorMessage,
@@ -62,7 +45,6 @@ export const TextField = ({
   return (
     <div
       id={id}
-      ref={ref}
       className={clsx(styles['sekai-textfield'], className)}
       style={{ ...(optionStyle as React.CSSProperties), ...style }}>
       <div className={clsx(styles['sekai-textfield-wrapper'])}>
@@ -71,13 +53,13 @@ export const TextField = ({
           type="text"
           {...inputProps}
           className={clsx(styles[`sekai-textfield-input-${modeTheme}`], {
-            [styles['sekai-textfield-clear']]: clearButton,
+            [styles['sekai-textfield-clear']]: showClearButton,
           })}
           value={inputValue}
           onChange={handleInputChange}
         />
         {/* clear button */}
-        {clearButton && inputValue.length ? (
+        {showClearButton && inputValue.length ? (
           <button
             className={clsx(styles['sekai-textfield-clear-button'])}
             onClick={handleClearInput}>

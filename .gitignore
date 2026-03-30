@@ -48,4 +48,4 @@ storybook-static/
 /local_publish
 
 # Claude
-.claude/settings.local.json
+**/.claude/settings.local.json

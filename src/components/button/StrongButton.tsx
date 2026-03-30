@@ -7,20 +7,7 @@ import { convertHexToRgba } from '@/utils/converter'
 
 import styles from './StrongButton.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type StrongButtonProps = {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLButtonElement>
-  children?: React.ReactNode
-  disabled?: boolean
-  onClick?: () => void
-} & React.ButtonHTMLAttributes<HTMLButtonElement>
+import type { StrongButtonProps } from '@/types/components/button/StrongButton.types'
 
 export const StrongButton = ({
   sekai,

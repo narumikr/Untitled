@@ -9,20 +9,7 @@ import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './ScrollTopButton.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type ScrollTopPos = 'bottom-right' | 'bottom-left'
-
-export interface ScrollTopButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  ref?: React.Ref<HTMLButtonElement>
-  pos?: ScrollTopPos
-}
+import type { ScrollTopButtonProps } from '@/types/components/button/ScrollTopButton.types'
 
 export const ScrollTopButton = ({
   sekai,
@@ -64,7 +51,7 @@ export const ScrollTopButton = ({
   return createPortal(
     <button
       {...rest}
-      ref={rest.ref}
+      type="button"
       className={clsx(styles[`sekai-scroll-top-button-${pos}`], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
       onClick={handleScroll}>
