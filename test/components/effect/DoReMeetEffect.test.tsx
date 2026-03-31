@@ -5,11 +5,11 @@ import { DoReMeetEffect } from '@/components/effect/DoReMeetEffect'
 
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
+// DoReMeetEffect は useOptionalSekai から modeTheme のみ使用する
+// (sekaiColor は使わず colorsSekai[sekaiKeys[index]] を直接参照する)
 vi.mock('@/internal/useOptionalSekai', () => ({
   useOptionalSekai: () => ({
-    sekaiColor: '#00CCBB',
     modeTheme: 'light',
-    isLight: true,
   }),
 }))
 

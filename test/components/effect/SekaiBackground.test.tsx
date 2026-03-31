@@ -6,10 +6,9 @@ import { SekaiBackground } from '@/components/effect/SekaiBackground'
 describe('SekaiBackground', () => {
   let getContextSpy: ReturnType<typeof vi.fn>
   let container: HTMLDivElement
-  let rafSpy: ReturnType<typeof vi.spyOn>
 
   beforeEach(() => {
-    rafSpy = vi.spyOn(window, 'requestAnimationFrame').mockImplementation(() => 0)
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation(() => 0)
 
     getContextSpy = vi.fn().mockReturnValue({
       clearRect: vi.fn(),
@@ -44,7 +43,6 @@ describe('SekaiBackground', () => {
     container.remove()
     const root = document.getElementById('sekai-background-root')
     if (root) root.remove()
-    rafSpy.mockRestore()
     vi.restoreAllMocks()
   })
 
