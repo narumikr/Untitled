@@ -21,6 +21,7 @@ describe('Drawer', () => {
     open: true,
     onClose: vi.fn(),
     children: <div>Drawer Content</div>,
+    'data-testid': 'drawer-contents',
   }
 
   describe('正常系', () => {
@@ -31,44 +32,39 @@ describe('Drawer', () => {
 
     it('open=true で visible クラスが適用される', () => {
       render(<Drawer {...defaultProps} />)
-      const overlay = screen.getByText('Drawer Content').parentElement!.parentElement!
+      const overlay = screen.getByTestId('drawer-contents').parentElement!
       expect(overlay).toHaveClass('sekai-drawer-visible')
     })
 
     it('open=false で hidden クラスが適用される', () => {
       render(<Drawer {...defaultProps} open={false} />)
-      const overlay = screen.getByText('Drawer Content').parentElement!.parentElement!
+      const overlay = screen.getByTestId('drawer-contents').parentElement!
       expect(overlay).toHaveClass('sekai-drawer-hidden')
     })
 
     it('デフォルトの pos="right" で対応するクラスが適用される', () => {
       render(<Drawer {...defaultProps} />)
-      const contents = screen.getByText('Drawer Content').parentElement!
-      expect(contents).toHaveClass('sekai-drawer-contents-right')
+      expect(screen.getByTestId('drawer-contents')).toHaveClass('sekai-drawer-contents-right')
     })
 
     it('pos="left" で対応するクラスが適用される', () => {
       render(<Drawer {...defaultProps} pos="left" />)
-      const contents = screen.getByText('Drawer Content').parentElement!
-      expect(contents).toHaveClass('sekai-drawer-contents-left')
+      expect(screen.getByTestId('drawer-contents')).toHaveClass('sekai-drawer-contents-left')
     })
 
     it('pos="top" で対応するクラスが適用される', () => {
       render(<Drawer {...defaultProps} pos="top" />)
-      const contents = screen.getByText('Drawer Content').parentElement!
-      expect(contents).toHaveClass('sekai-drawer-contents-top')
+      expect(screen.getByTestId('drawer-contents')).toHaveClass('sekai-drawer-contents-top')
     })
 
     it('pos="bottom" で対応するクラスが適用される', () => {
       render(<Drawer {...defaultProps} pos="bottom" />)
-      const contents = screen.getByText('Drawer Content').parentElement!
-      expect(contents).toHaveClass('sekai-drawer-contents-bottom')
+      expect(screen.getByTestId('drawer-contents')).toHaveClass('sekai-drawer-contents-bottom')
     })
 
     it('className プロパティが contents 要素に適用される', () => {
       render(<Drawer {...defaultProps} className="custom-class" />)
-      const contents = screen.getByText('Drawer Content').parentElement!
-      expect(contents).toHaveClass('custom-class')
+      expect(screen.getByTestId('drawer-contents')).toHaveClass('custom-class')
     })
 
     it('data-testid が contents 要素に転送される', () => {
@@ -88,7 +84,7 @@ describe('Drawer', () => {
       const handleClose = vi.fn()
       render(<Drawer {...defaultProps} onClose={handleClose} />)
 
-      const overlay = screen.getByText('Drawer Content').parentElement!.parentElement!
+      const overlay = screen.getByTestId('drawer-contents').parentElement!
       await user.click(overlay)
       expect(handleClose).toHaveBeenCalledTimes(1)
     })

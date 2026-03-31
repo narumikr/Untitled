@@ -20,6 +20,7 @@ describe('SideMenu', () => {
   const defaultProps = {
     open: true,
     children: <div>Menu Content</div>,
+    'data-testid': 'side-menu',
   }
 
   describe('正常系', () => {
@@ -30,32 +31,27 @@ describe('SideMenu', () => {
 
     it('open=true で open クラスが適用される', () => {
       render(<SideMenu {...defaultProps} />)
-      const container = screen.getByText('Menu Content').parentElement!.parentElement!
-      expect(container).toHaveClass('sekai-side-menu-open')
+      expect(screen.getByTestId('side-menu')).toHaveClass('sekai-side-menu-open')
     })
 
     it('open=false で closed クラスが適用される', () => {
       render(<SideMenu {...defaultProps} open={false} />)
-      const container = screen.getByText('Menu Content').parentElement!.parentElement!
-      expect(container).toHaveClass('sekai-side-menu-closed')
+      expect(screen.getByTestId('side-menu')).toHaveClass('sekai-side-menu-closed')
     })
 
     it('デフォルトの pos="left" で対応するクラスが適用される', () => {
       render(<SideMenu {...defaultProps} />)
-      const container = screen.getByText('Menu Content').parentElement!.parentElement!
-      expect(container).toHaveClass('sekai-side-menu-left')
+      expect(screen.getByTestId('side-menu')).toHaveClass('sekai-side-menu-left')
     })
 
     it('pos="right" で対応するクラスが適用される', () => {
       render(<SideMenu {...defaultProps} pos="right" />)
-      const container = screen.getByText('Menu Content').parentElement!.parentElement!
-      expect(container).toHaveClass('sekai-side-menu-right')
+      expect(screen.getByTestId('side-menu')).toHaveClass('sekai-side-menu-right')
     })
 
     it('className プロパティが適用される', () => {
       render(<SideMenu {...defaultProps} className="custom-class" />)
-      const container = screen.getByText('Menu Content').parentElement!.parentElement!
-      expect(container).toHaveClass('custom-class')
+      expect(screen.getByTestId('side-menu')).toHaveClass('custom-class')
     })
 
     it('data-testid が転送される', () => {
@@ -107,13 +103,12 @@ describe('SideMenu', () => {
 
     it('ハンバーガーボタンクリックで open 状態から closed 状態に切り替わる', async () => {
       const user = userEvent.setup()
-      render(<SideMenu {...defaultProps} open={true} />)
+      render(<SideMenu {...defaultProps} />)
 
-      const container = screen.getByText('Menu Content').parentElement!.parentElement!
-      expect(container).toHaveClass('sekai-side-menu-open')
+      expect(screen.getByTestId('side-menu')).toHaveClass('sekai-side-menu-open')
 
       await user.click(screen.getByRole('button'))
-      expect(container).toHaveClass('sekai-side-menu-closed')
+      expect(screen.getByTestId('side-menu')).toHaveClass('sekai-side-menu-closed')
     })
   })
 })

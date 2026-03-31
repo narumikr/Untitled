@@ -112,7 +112,7 @@ describe('Toast', () => {
 
       const closeButton = screen.getByRole('button')
       await user.click(closeButton)
-      expect(handleClose).toHaveBeenCalled()
+      expect(handleClose).toHaveBeenCalledTimes(1)
     })
   })
 })
