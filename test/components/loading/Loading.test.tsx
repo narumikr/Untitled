@@ -34,7 +34,7 @@ describe('Loading', () => {
   })
 
   it('sekai プロパティで --sekai-color CSS 変数が設定される', () => {
-    render(<Loading sekai="miku" />)
+    render(<Loading sekai="Miku" />)
     const el = screen.getByRole('status')
     expect(el.style.getPropertyValue('--sekai-color')).toBe('#00CCBB')
   })

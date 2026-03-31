@@ -103,9 +103,8 @@ describe('Breadcrumb', () => {
           <span>Contact</span>
         </Breadcrumb>,
       )
-      const nav = screen.getByRole('navigation')
-      const separators = nav.querySelectorAll('li:last-child span.sekai-breadcrumb-separator')
-      expect(separators).toHaveLength(0)
+      // セパレーターは items 間にのみ表示される（3アイテム → 2個）
+      expect(screen.getAllByText('/')).toHaveLength(2)
     })
   })
 
