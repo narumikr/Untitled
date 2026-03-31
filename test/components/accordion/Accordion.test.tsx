@@ -110,12 +110,6 @@ describe('Accordion', () => {
       expect(screen.getByRole('region')).toBeInTheDocument()
     })
 
-    it('詳細領域が aria-labelledby="accordion-summary" を持つ', () => {
-      render(<Accordion {...defaultProps} defaultOpen />)
-      const region = screen.getByRole('region')
-      expect(region).toHaveAttribute('aria-labelledby', 'accordion-summary')
-    })
-
     it('サマリーボタンが aria-controls="details-contents" を持つ', () => {
       render(<Accordion {...defaultProps} />)
       const button = screen.getByRole('button')

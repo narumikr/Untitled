@@ -39,15 +39,20 @@ describe('Dropdown', () => {
     globalThis.ResizeObserver = originalResizeObserver
   })
 
+  const onSelect = vi.fn()
   const defaultProps = {
     options: [
       { label: 'オプション1', value: 'option1' },
       { label: 'オプション2', value: 'option2' },
       { label: 'オプション3', value: 'option3' },
     ],
-    onSelect: vi.fn(),
+    onSelect,
     placeholder: '選択してください',
   }
+
+  beforeEach(() => {
+    onSelect.mockClear()
+  })
 
   describe('正常系', () => {
     it('placeholder テキストが表示される', () => {
