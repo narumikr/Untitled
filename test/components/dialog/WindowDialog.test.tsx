@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { beforeEach, describe, it, expect, vi } from 'vitest'
 
 import { WindowDialog } from '@/components/dialog/WindowDialog'
 
@@ -15,13 +15,17 @@ vi.mock('@/internal/usePortalContainer', () => ({
   usePortalContainer: () => document.body,
 }))
 
+const onClose = vi.fn()
 const defaultProps = {
   open: true,
-  onClose: vi.fn(),
+  onClose,
   children: <p>Window content</p>,
 }
 
 describe('WindowDialog', () => {
+  beforeEach(() => {
+    onClose.mockClear()
+  })
   it('open=true で role="dialog" で Portal 経由でレンダリングされる', () => {
     render(<WindowDialog {...defaultProps} />)
 

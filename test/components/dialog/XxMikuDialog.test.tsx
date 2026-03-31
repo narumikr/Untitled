@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
+import { beforeEach, describe, it, expect, vi } from 'vitest'
 
 import { XxMikuDialog } from '@/components/dialog/XxMikuDialog'
 
@@ -16,13 +16,17 @@ vi.mock('@/internal/usePortalContainer', () => ({
   usePortalContainer: () => document.body,
 }))
 
+const onClose = vi.fn()
 const defaultProps = {
   open: true,
-  onClose: vi.fn(),
+  onClose,
   children: <p>XxMiku content</p>,
 }
 
 describe('XxMikuDialog', () => {
+  beforeEach(() => {
+    onClose.mockClear()
+  })
   it('open=true で role="dialog" で Portal 経由でレンダリングされる', () => {
     render(<XxMikuDialog {...defaultProps} />)
 
