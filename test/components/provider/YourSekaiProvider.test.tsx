@@ -1,17 +1,17 @@
-import { render, screen } from '@testing-library/react'
 import { useContext } from 'react'
+
+import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
 import { YourSekaiProvider, YourSekaiContext } from '@/components/provider/YourSekaiProvider'
-import { createSekai } from '@/utils/createSekai'
 
-import type { YourSekaiContextProps } from '@/types/components/provider/YourSekaiProvider.types'
+import { createSekai } from '@/utils/createSekai'
 
 const sekaiTheme = createSekai({ palette: { sekai: 'Miku', mode: 'light' } })
 
 /** コンテキスト値を表示するテスト用コンシューマー */
 const ContextConsumer = () => {
-  const ctx = useContext(YourSekaiContext) as YourSekaiContextProps
+  const ctx = useContext(YourSekaiContext)!
   return (
     <div>
       <span data-testid="sekai">{ctx.sekaiTheme.palette.sekai}</span>
@@ -24,7 +24,7 @@ const ContextConsumer = () => {
 describe('YourSekaiProvider', () => {
   it('children をレンダリングする', () => {
     render(
-      <YourSekaiProvider sekaiTheme={sekaiTheme}>
+      <YourSekaiProvider sekaiTheme={sekaiTheme} options={{ disableStoreSekai: true, disableStoreTheme: true }}>
         <span>子要素</span>
       </YourSekaiProvider>,
     )
@@ -39,7 +39,7 @@ describe('YourSekaiProvider', () => {
     )
     expect(screen.getByTestId('sekai')).toHaveTextContent('Miku')
     expect(screen.getByTestId('mode')).toHaveTextContent('light')
-    expect(screen.getByTestId('font')).toHaveTextContent('Montserrat, sans-serif')
+    expect(screen.getByTestId('font')).toHaveTextContent(sekaiTheme.typography.fontFamily)
   })
 
   it('異なる sekai キーでコンテキスト値が正しく設定される', () => {
