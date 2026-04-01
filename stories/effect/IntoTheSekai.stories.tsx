@@ -37,6 +37,20 @@ const meta = {
       },
       control: false,
     },
+    execEventDelay: {
+      description: 'Delay in ms before execEvent fires after the animation ends',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '390' },
+      },
+    },
+    clickThrough: {
+      description: 'When true, click events pass through to elements beneath the canvas',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
       table: {
@@ -57,6 +71,8 @@ type Story = StoryObj<typeof meta>
 export const DefaultLight: Story = {
   args: {
     id: 'into-the-sekai-default-light',
+    execEventDelay: 390,
+    clickThrough: false,
   },
   parameters: {
     sekai: 'Miku',
@@ -68,6 +84,8 @@ export const DefaultLight: Story = {
 export const DefaultDark: Story = {
   args: {
     id: 'into-the-sekai-default-dark',
+    execEventDelay: 390,
+    clickThrough: false,
   },
   parameters: {
     sekai: 'Miku',
