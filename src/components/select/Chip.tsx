@@ -47,8 +47,12 @@ export const Chip = ({
       onKeyDown={
         onClick
           ? (e) => {
-              fireOnEnterKey<HTMLDivElement>(() => onClick())(e)
-              fireOnSpaceKey<HTMLDivElement>(() => onClick())(e)
+              if (e.key === 'Enter') {
+                fireOnEnterKey<HTMLDivElement>(() => onClick())(e)
+              }
+              if (e.key === ' ') {
+                fireOnSpaceKey<HTMLDivElement>(() => onClick())(e)
+              }
             }
           : undefined
       }>
