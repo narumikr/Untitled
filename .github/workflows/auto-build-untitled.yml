@@ -6,12 +6,21 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - "src/**"
+      - "rollup.config.js"
+      - "tsconfig.build.json"
+      - "package*.json"
+      - "scripts/**"
 
 permissions:
   contents: write
 
+concurrency:
+  group: auto-build-${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-commit:
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -36,7 +45,7 @@ jobs:
       - name: Check for dist changes
         id: diff
         run: |
-          git add dist/
+          git add dist/ src/
           if git diff --cached --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
