@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
 import { Toast } from '@/components/toast/Toast'
@@ -24,7 +23,7 @@ describe('Toast', () => {
   }
 
   beforeEach(() => {
-    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.useFakeTimers()
   })
 
   afterEach(() => {
@@ -105,13 +104,12 @@ describe('Toast', () => {
   })
 
   describe('インタラクション', () => {
-    it('閉じるボタンクリック時に onClose が呼び出される', async () => {
-      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+    it('閉じるボタンクリック時に onClose が呼び出される', () => {
       const handleClose = vi.fn()
       render(<Toast {...defaultProps} onClose={handleClose} />)
 
       const closeButton = screen.getByRole('button')
-      await user.click(closeButton)
+      fireEvent.click(closeButton)
       expect(handleClose).toHaveBeenCalledTimes(1)
     })
   })
