@@ -4,13 +4,12 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { SekaiBackground } from '@/components/effect/SekaiBackground'
 
 describe('SekaiBackground', () => {
-  let getContextSpy: ReturnType<typeof vi.fn>
   let container: HTMLDivElement
 
   beforeEach(() => {
     vi.spyOn(window, 'requestAnimationFrame').mockImplementation(() => 0)
 
-    getContextSpy = vi.fn().mockReturnValue({
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
       clearRect: vi.fn(),
       beginPath: vi.fn(),
       moveTo: vi.fn(),
@@ -26,9 +25,7 @@ describe('SekaiBackground', () => {
       strokeStyle: '',
       lineWidth: 0,
       globalAlpha: 1,
-    })
-    HTMLCanvasElement.prototype.getContext =
-      getContextSpy as unknown as typeof HTMLCanvasElement.prototype.getContext
+    } as unknown as CanvasRenderingContext2D)
 
     container = document.createElement('div')
     container.style.width = '800px'

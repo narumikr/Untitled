@@ -1,8 +1,11 @@
+
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
 import { PictureViewer } from '@/components/viewer/PictureViewer'
+
+import type React from 'react'
 
 vi.mock('@/internal/useOptionalSekai', () => ({
   useOptionalSekai: () => ({

@@ -1,9 +1,10 @@
-import React from 'react'
 
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 import { Carousel } from '@/components/carousel/Carousel'
+
+import type React from 'react'
 
 vi.mock('@/internal/useOptionalSekai', () => ({
   useOptionalSekai: () => ({

@@ -3,6 +3,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
 import { DoReMeetEffect } from '@/components/effect/DoReMeetEffect'
 
+import { colorsSekai } from '@/styles/sekai-colors'
+
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 
 // DoReMeetEffect は useOptionalSekai から modeTheme のみ使用する
@@ -54,23 +56,23 @@ describe('DoReMeetEffect', () => {
 
       fireEvent.click(button)
 
-      // 1回目のインターバル: sekaiKeys[0] = 'Miku' → '#33ccba'
+      // 1回目のインターバル: sekaiKeys[0] = 'Miku'
       act(() => {
         vi.advanceTimersByTime(100)
       })
-      expect(button.style.getPropertyValue('--sekai-color')).toBe('#33ccba')
+      expect(button.style.getPropertyValue('--sekai-color')).toBe(colorsSekai['Miku'])
 
-      // 2回目のインターバル: sekaiKeys[1] = 'Rin' → '#ffcc10'
+      // 2回目のインターバル: sekaiKeys[1] = 'Rin'
       act(() => {
         vi.advanceTimersByTime(100)
       })
-      expect(button.style.getPropertyValue('--sekai-color')).toBe('#ffcc10')
+      expect(button.style.getPropertyValue('--sekai-color')).toBe(colorsSekai['Rin'])
 
-      // 3回目のインターバル: sekaiKeys[2] = 'Len' → '#feee10'
+      // 3回目のインターバル: sekaiKeys[2] = 'Len'
       act(() => {
         vi.advanceTimersByTime(100)
       })
-      expect(button.style.getPropertyValue('--sekai-color')).toBe('#feee10')
+      expect(button.style.getPropertyValue('--sekai-color')).toBe(colorsSekai['Len'])
 
       // 4回目のインターバル: prev+1 >= sekaiKeys.length でリセット
       act(() => {
@@ -90,7 +92,7 @@ describe('DoReMeetEffect', () => {
       act(() => {
         vi.advanceTimersByTime(100)
       })
-      expect(button.style.getPropertyValue('--sekai-color')).toBe('#33ccba')
+      expect(button.style.getPropertyValue('--sekai-color')).toBe(colorsSekai['Miku'])
 
       // 再生中に再度クリック → 無視されるので色は変わらず進行
       fireEvent.click(button)
@@ -99,7 +101,7 @@ describe('DoReMeetEffect', () => {
         vi.advanceTimersByTime(100)
       })
       // 通常通り次の色に進む（リセットされない）
-      expect(button.style.getPropertyValue('--sekai-color')).toBe('#ffcc10')
+      expect(button.style.getPropertyValue('--sekai-color')).toBe(colorsSekai['Rin'])
     })
   })
 })

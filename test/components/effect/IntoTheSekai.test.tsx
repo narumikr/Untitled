@@ -8,10 +8,8 @@ vi.mock('@/internal/usePortalContainer', () => ({
 }))
 
 describe('IntoTheSekai', () => {
-  let getContextSpy: ReturnType<typeof vi.fn>
-
   beforeEach(() => {
-    getContextSpy = vi.fn().mockReturnValue({
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
       clearRect: vi.fn(),
       beginPath: vi.fn(),
       moveTo: vi.fn(),
@@ -19,9 +17,7 @@ describe('IntoTheSekai', () => {
       closePath: vi.fn(),
       fill: vi.fn(),
       fillStyle: '',
-    })
-    HTMLCanvasElement.prototype.getContext =
-      getContextSpy as unknown as typeof HTMLCanvasElement.prototype.getContext
+    } as unknown as CanvasRenderingContext2D)
   })
 
   afterEach(() => {
