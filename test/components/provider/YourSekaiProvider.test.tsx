@@ -33,7 +33,7 @@ describe('YourSekaiProvider', () => {
 
   it('sekaiTheme のコンテキスト値が子コンポーネントに提供される', () => {
     render(
-      <YourSekaiProvider sekaiTheme={sekaiTheme}>
+      <YourSekaiProvider sekaiTheme={sekaiTheme} options={{ disableStoreSekai: true, disableStoreTheme: true }}>
         <ContextConsumer />
       </YourSekaiProvider>,
     )
