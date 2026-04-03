@@ -9,6 +9,7 @@ var clsx = require('clsx');
 var clear = require('../../img/clear.js');
 var useOptionalSekai = require('../../internal/useOptionalSekai.js');
 var converter = require('../../utils/converter.js');
+var operation = require('../../utils/operation.js');
 var Chip_module = require('./Chip.module.scss.js');
 
 var _excluded = ["sekai", "themeMode", "label", "onClick", "onDelete", "size", "variant"];
@@ -42,7 +43,15 @@ var Chip = function Chip(_ref) {
   }, rest, {
     className: clsx(Chip_module["sekai-chip-".concat(size)], Chip_module["sekai-chip-".concat(variant)], rest.className),
     style: _objectSpread(_objectSpread({}, optionStyle), rest.style),
-    onClick: onClick
+    onClick: onClick,
+    onKeyDown: onClick ? function (e) {
+      operation.fireOnEnterKey(function () {
+        return onClick();
+      })(e);
+      operation.fireOnSpaceKey(function () {
+        return onClick();
+      })(e);
+    } : undefined
   }), /*#__PURE__*/React.createElement("span", {
     className: clsx(Chip_module['sekai-chip-label'])
   }, label), /*#__PURE__*/React.createElement(DeleteIconButton, {
