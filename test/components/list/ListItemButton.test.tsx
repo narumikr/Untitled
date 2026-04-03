@@ -1,10 +1,11 @@
-import type React from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
 import { List } from '@/components/list/List'
 import { ListItemButton } from '@/components/list/ListItemButton'
+
+import type React from 'react'
 
 vi.mock('@/internal/useOptionalSekai', () => ({
   useOptionalSekai: () => ({

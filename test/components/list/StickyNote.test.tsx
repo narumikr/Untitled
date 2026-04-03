@@ -1,9 +1,10 @@
-import type React from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 import { List } from '@/components/list/List'
 import { StickyNote } from '@/components/list/StickyNote'
+
+import type React from 'react'
 
 vi.mock('@/internal/useOptionalSekai', () => ({
   useOptionalSekai: () => ({
