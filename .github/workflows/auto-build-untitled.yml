@@ -1,0 +1,61 @@
+# .github/workflows/auto-build-untitled.yml
+name: Untitled auto build and commit
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "src/**"
+      - "rollup.config.js"
+      - "tsconfig.build.json"
+      - "package*.json"
+      - "scripts/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-build-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-commit:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:ci
+
+      - name: Check for dist changes
+        id: diff
+        run: |
+          git add dist/ src/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push dist
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: auto build untitled [skip ci]"
+          git push origin HEAD:${{ github.head_ref }}

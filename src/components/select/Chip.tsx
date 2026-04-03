@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import { ClearSvg } from '@/img/clear'
 import { useOptionalSekai } from '@/internal/useOptionalSekai'
 import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
+import { fireOnEnterKey, fireOnSpaceKey } from '@/utils/operation'
 
 import styles from './Chip.module.scss'
 
@@ -42,7 +43,15 @@ export const Chip = ({
         rest.className,
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
-      onClick={onClick}>
+      onClick={onClick}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              fireOnEnterKey<HTMLDivElement>(() => onClick())(e)
+              fireOnSpaceKey<HTMLDivElement>(() => onClick())(e)
+            }
+          : undefined
+      }>
       <span className={clsx(styles['sekai-chip-label'])}>{label}</span>
       <DeleteIconButton sekai={sekai} themeMode={themeMode} size={size} onDelete={onDelete} />
     </div>

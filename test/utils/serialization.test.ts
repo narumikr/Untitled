@@ -1,7 +1,7 @@
 import fc from 'fast-check'
 import { describe, it, expect } from 'vitest'
 
-import { serializeData, deserializeData } from '@/utils/serialization'
+import { serializeData, deserializeData, isValidDateString } from '@/utils/serialization'
 
 describe('serializeData', () => {
   it('DateオブジェクトをISO文字列に変換する', () => {
@@ -129,10 +129,7 @@ function deepEqualWithDates(a: unknown, b: unknown): boolean {
 
 // 日付文字列に見える文字列を生成しないための安全な文字列 arbitrary
 // isValidDateString が true を返す文字列を除外する
-const safeString = fc.string().filter((s) => {
-  const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/
-  return !isoRegex.test(s.trim()) && isNaN(Date.parse(s))
-})
+const safeString = fc.string().filter((s) => !isValidDateString(s))
 
 // 有効な Date arbitrary（NaN にならない範囲）
 const validDate = fc.date({
