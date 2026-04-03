@@ -27,7 +27,7 @@ export const List = ({
     '--sekai-color': sekaiColor,
   }
   const listStyleType = noBullet ? 'none' : undefined
-  const paddingLeft = noBullet ? '0' : '36px'
+  const paddingLeft = noBullet ? '0px' : '36px'
 
   return (
     <ListContext.Provider value={true}>
