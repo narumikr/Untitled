@@ -54,6 +54,7 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     var canvas = canvasRef.current;
     var ctx = canvas === null || canvas === void 0 ? void 0 : canvas.getContext('2d');
     var animationFrameId;
+    var timeoutId;
     var _render = function render() {
       if (!ctx || !canvas || !startAnimation) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -72,10 +73,11 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
         return t.opacity > 0;
       });
       if (sekaiPieceRef.current.length === 0) {
-        setTimeout(function () {
+        timeoutId = setTimeout(function () {
           execEvent === null || execEvent === void 0 || execEvent();
         }, execEventDelay);
         setStartAnimation(false);
+        return;
       }
       sekaiPieceRef.current.forEach(function (tri, index) {
         ctx.beginPath();
@@ -91,7 +93,8 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     };
     _render();
     return function () {
-      return cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animationFrameId);
+      clearTimeout(timeoutId);
     };
   }, [execEvent, execEventDelay, startAnimation]);
   var handleClick = function handleClick(e) {
@@ -107,15 +110,20 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
       var _getClickPosition = getClickPosition(e),
         clientX = _getClickPosition.clientX,
         clientY = _getClickPosition.clientY;
-      canvasRef.current.style.pointerEvents = 'none';
-      var elementBelow = document.elementFromPoint(clientX, clientY);
-      elementBelow === null || elementBelow === void 0 || elementBelow.dispatchEvent(new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        clientX: clientX,
-        clientY: clientY
-      }));
-      canvasRef.current.style.pointerEvents = '';
+      var canvasElement = canvasRef.current;
+      var previousPointerEvents = canvasElement.style.pointerEvents;
+      try {
+        canvasElement.style.pointerEvents = 'none';
+        var elementBelow = document.elementFromPoint(clientX, clientY);
+        elementBelow === null || elementBelow === void 0 || elementBelow.dispatchEvent(new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          clientX: clientX,
+          clientY: clientY
+        }));
+      } finally {
+        canvasElement.style.pointerEvents = previousPointerEvents;
+      }
     }
   };
   if (!portalContainer) return null;
