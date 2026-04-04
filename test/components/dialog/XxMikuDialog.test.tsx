@@ -28,11 +28,18 @@ describe('XxMikuDialog', () => {
     onClose.mockClear()
   })
   it('open=true で role="dialog" で Portal 経由でレンダリングされる', () => {
-    render(<XxMikuDialog {...defaultProps} />)
+    const container = document.createElement('div')
+    document.body.appendChild(container)
+
+    render(<XxMikuDialog {...defaultProps} />, { container })
 
     const dialog = screen.getByRole('dialog')
     expect(dialog).toBeInTheDocument()
     expect(screen.getByText('XxMiku content')).toBeInTheDocument()
+    expect(container.contains(dialog)).toBe(false)
+    expect(document.body.contains(dialog)).toBe(true)
+
+    document.body.removeChild(container)
   })
 
   it('Escape キーで onClose コールバックが呼び出される', async () => {

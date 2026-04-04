@@ -29,11 +29,18 @@ describe('Dialog', () => {
   })
   describe('正常系', () => {
     it('open=true で role="dialog" で Portal 経由でレンダリングされる', () => {
-      render(<Dialog {...defaultProps} />)
+      const root = document.createElement('div')
+      document.body.appendChild(root)
+
+      render(<Dialog {...defaultProps} />, { container: root })
 
       const dialog = screen.getByRole('dialog')
       expect(dialog).toBeInTheDocument()
       expect(screen.getByText('Dialog content')).toBeInTheDocument()
+      expect(root).not.toContainElement(dialog)
+      expect(document.body).toContainElement(dialog)
+
+      document.body.removeChild(root)
     })
 
     it('open=false で Backdrop が非表示クラスを持つ', () => {

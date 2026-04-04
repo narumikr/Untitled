@@ -18,13 +18,22 @@ vi.mock('@/internal/usePortalContainer', () => ({
 describe('Backdrop', () => {
   describe('正常系', () => {
     it('open=true で Portal 経由でレンダリングされる', () => {
+      const root = document.createElement('div')
+      document.body.appendChild(root)
+
       render(
         <Backdrop open={true}>
           <p>Backdrop content</p>
         </Backdrop>,
+        { container: root },
       )
 
-      expect(screen.getByText('Backdrop content')).toBeInTheDocument()
+      const contentElement = screen.getByText('Backdrop content')
+      expect(contentElement).toBeInTheDocument()
+      expect(root).not.toContainElement(contentElement)
+      expect(document.body).toContainElement(contentElement)
+
+      document.body.removeChild(root)
     })
 
     it('open=true で sekai-backdrop-visible クラスが適用される', () => {

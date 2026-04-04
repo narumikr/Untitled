@@ -27,11 +27,18 @@ describe('WindowDialog', () => {
     onClose.mockClear()
   })
   it('open=true で role="dialog" で Portal 経由でレンダリングされる', () => {
-    render(<WindowDialog {...defaultProps} />)
+    const root = document.createElement('div')
+    document.body.appendChild(root)
+
+    render(<WindowDialog {...defaultProps} />, { container: root })
 
     const dialog = screen.getByRole('dialog')
     expect(dialog).toBeInTheDocument()
     expect(screen.getByText('Window content')).toBeInTheDocument()
+    expect(root.contains(dialog)).toBe(false)
+    expect(document.body.contains(dialog)).toBe(true)
+
+    document.body.removeChild(root)
   })
 
   it('open=false で非表示クラスを持つ', () => {
