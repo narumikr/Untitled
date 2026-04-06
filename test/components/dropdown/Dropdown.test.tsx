@@ -24,6 +24,9 @@ vi.mock('@/utils/converter', () => ({
 
 const mockObserve = vi.fn()
 
+const OPEN_DELAY_MS = 10
+const CLOSE_DELAY_MS = 200
+
 describe('Dropdown', () => {
   const originalResizeObserver = globalThis.ResizeObserver
 
@@ -87,7 +90,7 @@ describe('Dropdown', () => {
       fireEvent.click(trigger)
 
       act(() => {
-        vi.advanceTimersByTime(10)
+        vi.advanceTimersByTime(OPEN_DELAY_MS)
       })
 
       expect(screen.getByText('オプション1')).toBeInTheDocument()
@@ -103,7 +106,7 @@ describe('Dropdown', () => {
       fireEvent.click(trigger)
 
       act(() => {
-        vi.advanceTimersByTime(10)
+        vi.advanceTimersByTime(OPEN_DELAY_MS)
       })
 
       fireEvent.click(screen.getByText('オプション2'))
@@ -117,13 +120,13 @@ describe('Dropdown', () => {
       fireEvent.click(trigger)
 
       act(() => {
-        vi.advanceTimersByTime(10)
+        vi.advanceTimersByTime(OPEN_DELAY_MS)
       })
 
       fireEvent.click(screen.getByText('オプション1'))
 
       act(() => {
-        vi.advanceTimersByTime(200)
+        vi.advanceTimersByTime(CLOSE_DELAY_MS)
       })
 
       // 選択したオプションのラベルがトリガーに表示される

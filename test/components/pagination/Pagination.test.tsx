@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
 import { Pagination } from '@/components/pagination/Pagination'
@@ -69,46 +70,51 @@ describe('Pagination', () => {
   })
 
   describe('インタラクション', () => {
-    it('ページ番号ボタンクリック時に onChangePage コールバックが呼び出される', () => {
+    it('ページ番号ボタンクリック時に onChangePage コールバックが呼び出される', async () => {
+      const user = userEvent.setup()
       const onChangePage = vi.fn()
       render(<Pagination {...defaultProps} onChangePage={onChangePage} />)
 
-      fireEvent.click(screen.getByText('2'))
+      await user.click(screen.getByText('2'))
       // page index is 0-based: button "2" corresponds to index 1
       expect(onChangePage).toHaveBeenCalledWith(1)
     })
 
-    it('次ページボタンクリック時に onChangePage が次のページで呼び出される', () => {
+    it('次ページボタンクリック時に onChangePage が次のページで呼び出される', async () => {
+      const user = userEvent.setup()
       const onChangePage = vi.fn()
       render(<Pagination {...defaultProps} page={0} onChangePage={onChangePage} />)
 
-      // Click the next (right) arrow button
-      const buttons = screen.getAllByRole('button')
-      const nextButton = buttons[buttons.length - 1]
-      fireEvent.click(nextButton)
+      const nextArrow = screen
+        .getAllByTestId('arrow-svg')
+        .find((a) => a.getAttribute('data-vector') === 'right')!
+      await user.click(nextArrow.closest('button')!)
 
       expect(onChangePage).toHaveBeenCalledWith(1)
     })
 
-    it('前ページボタンクリック時に onChangePage が前のページで呼び出される', () => {
+    it('前ページボタンクリック時に onChangePage が前のページで呼び出される', async () => {
+      const user = userEvent.setup()
       const onChangePage = vi.fn()
       render(<Pagination {...defaultProps} page={2} onChangePage={onChangePage} />)
 
-      // Click the prev (left) arrow button
-      const buttons = screen.getAllByRole('button')
-      const prevButton = buttons[0]
-      fireEvent.click(prevButton)
+      const prevArrow = screen
+        .getAllByTestId('arrow-svg')
+        .find((a) => a.getAttribute('data-vector') === 'left')!
+      await user.click(prevArrow.closest('button')!)
 
       expect(onChangePage).toHaveBeenCalledWith(1)
     })
 
-    it('最初のページで前ページボタンをクリックしても onChangePage が呼び出されない', () => {
+    it('最初のページで前ページボタンをクリックしても onChangePage が呼び出されない', async () => {
+      const user = userEvent.setup()
       const onChangePage = vi.fn()
       render(<Pagination {...defaultProps} page={0} onChangePage={onChangePage} />)
 
-      const buttons = screen.getAllByRole('button')
-      const prevButton = buttons[0]
-      fireEvent.click(prevButton)
+      const prevArrow = screen
+        .getAllByTestId('arrow-svg')
+        .find((a) => a.getAttribute('data-vector') === 'left')!
+      await user.click(prevArrow.closest('button')!)
 
       expect(onChangePage).not.toHaveBeenCalled()
     })
