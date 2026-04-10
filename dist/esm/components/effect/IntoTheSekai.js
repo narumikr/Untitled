@@ -48,11 +48,25 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
       window.removeEventListener('resize', setCanvasSize);
     };
   }, [portalContainer]);
+  var wasAnimatingRef = useRef(false);
+  useEffect(function () {
+    if (!startAnimation && wasAnimatingRef.current) {
+      wasAnimatingRef.current = false;
+      var timeoutId = setTimeout(function () {
+        execEvent === null || execEvent === void 0 || execEvent();
+      }, execEventDelay);
+      return function () {
+        return clearTimeout(timeoutId);
+      };
+    }
+    if (startAnimation) {
+      wasAnimatingRef.current = true;
+    }
+  }, [startAnimation, execEvent, execEventDelay]);
   useEffect(function () {
     var canvas = canvasRef.current;
     var ctx = canvas === null || canvas === void 0 ? void 0 : canvas.getContext('2d');
     var animationFrameId;
-    var timeoutId;
     var _render = function render() {
       if (!ctx || !canvas || !startAnimation) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -71,9 +85,6 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
         return t.opacity > 0;
       });
       if (sekaiPieceRef.current.length === 0) {
-        timeoutId = setTimeout(function () {
-          execEvent === null || execEvent === void 0 || execEvent();
-        }, execEventDelay);
         setStartAnimation(false);
         return;
       }
@@ -92,9 +103,8 @@ var IntoTheSekai = function IntoTheSekai(_ref) {
     _render();
     return function () {
       cancelAnimationFrame(animationFrameId);
-      clearTimeout(timeoutId);
     };
-  }, [execEvent, execEventDelay, startAnimation]);
+  }, [startAnimation]);
   var handleClick = function handleClick(e) {
     if (!portalContainer) return;
     setStartAnimation(true);
