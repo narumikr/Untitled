@@ -58,12 +58,26 @@ export const IntoTheSekai = ({
     }
   }, [portalContainer])
 
+  const wasAnimatingRef = useRef(false)
+
+  useEffect(() => {
+    if (!startAnimation && wasAnimatingRef.current) {
+      wasAnimatingRef.current = false
+      const timeoutId = setTimeout(() => {
+        execEvent?.()
+      }, execEventDelay)
+      return () => clearTimeout(timeoutId)
+    }
+    if (startAnimation) {
+      wasAnimatingRef.current = true
+    }
+  }, [startAnimation, execEvent, execEventDelay])
+
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas?.getContext('2d')
 
     let animationFrameId: number
-    let timeoutId: ReturnType<typeof setTimeout> | undefined
 
     const render = () => {
       if (!ctx || !canvas || !startAnimation) return
@@ -86,9 +100,6 @@ export const IntoTheSekai = ({
         .filter((t) => t.opacity > 0)
 
       if (sekaiPieceRef.current.length === 0) {
-        timeoutId = setTimeout(() => {
-          execEvent?.()
-        }, execEventDelay)
         setStartAnimation(false)
         return
       }
@@ -109,9 +120,8 @@ export const IntoTheSekai = ({
 
     return () => {
       cancelAnimationFrame(animationFrameId)
-      clearTimeout(timeoutId)
     }
-  }, [execEvent, execEventDelay, startAnimation])
+  }, [startAnimation])
 
   const handleClick = (e: AnimationTrigger) => {
     if (!portalContainer) return

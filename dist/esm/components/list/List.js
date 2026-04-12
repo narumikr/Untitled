@@ -32,7 +32,7 @@ var List = function List(_ref) {
     '--sekai-color': sekaiColor
   };
   var listStyleType = noBullet ? 'none' : undefined;
-  var paddingLeft = noBullet ? '0' : '36px';
+  var paddingLeft = noBullet ? '0px' : '36px';
   return /*#__PURE__*/React.createElement(ListContext.Provider, {
     value: true
   }, /*#__PURE__*/React.createElement(Component, _extends({}, rest, {
