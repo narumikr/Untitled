@@ -1,14 +1,8 @@
 # 🩺 依存関係ヘルスレポート
 
-<<<<<<< HEAD
 > 🦄 **神代 類**: 依存関係の状態を分析してみたよ。ふふ、結果を見てみようか？🦄
 
 **実行日時**: 2026/04/18 02:08:56 JST
-=======
-> 🤖 **草薙 寧々**: パッケージの依存関係の状態確認してきたよ。レポートにまとめておいたから後で確認しておいて欲しいな🤖
-
-**実行日時**: 2026/04/25 01:29:43 JST
->>>>>>> 0b14a2a99d3918e0781f26ff0f3f894638da1a3f
 
 ---
 
@@ -28,7 +22,6 @@ Package                            Current   Wanted   Latest  Location          
 @storybook/react-vite               10.2.8   10.3.5   10.3.5  node_modules/@storybook/react-vite             Untitled
 @types/node                         25.3.3   25.6.0   25.6.0  node_modules/@types/node                       Untitled
 @types/react                        19.2.7  19.2.14  19.2.14  node_modules/@types/react                      Untitled
-<<<<<<< HEAD
 @typescript-eslint/eslint-plugin    8.49.0   8.58.2   8.58.2  node_modules/@typescript-eslint/eslint-plugin  Untitled
 @typescript-eslint/parser           8.56.1   8.58.2   8.58.2  node_modules/@typescript-eslint/parser         Untitled
 @vitest/coverage-v8                  3.2.4    3.2.4    4.1.4  node_modules/@vitest/coverage-v8               Untitled
@@ -36,20 +29,10 @@ autoprefixer                       10.4.21   10.5.0   10.5.0  node_modules/autop
 baseline-browser-mapping            2.10.0  2.10.19  2.10.19  node_modules/baseline-browser-mapping          Untitled
 eslint                              9.34.0   9.39.4   10.2.0  node_modules/eslint                            Untitled
 eslint-plugin-react-hooks            7.0.1    7.1.0    7.1.0  node_modules/eslint-plugin-react-hooks         Untitled
-=======
-@typescript-eslint/eslint-plugin    8.49.0   8.59.0   8.59.0  node_modules/@typescript-eslint/eslint-plugin  Untitled
-@typescript-eslint/parser           8.56.1   8.59.0   8.59.0  node_modules/@typescript-eslint/parser         Untitled
-@vitest/coverage-v8                  3.2.4    3.2.4    4.1.5  node_modules/@vitest/coverage-v8               Untitled
-autoprefixer                       10.4.21   10.5.0   10.5.0  node_modules/autoprefixer                      Untitled
-baseline-browser-mapping            2.10.0  2.10.21  2.10.21  node_modules/baseline-browser-mapping          Untitled
-eslint                              9.34.0   9.39.4   10.2.1  node_modules/eslint                            Untitled
-eslint-plugin-react-hooks            7.0.1    7.1.1    7.1.1  node_modules/eslint-plugin-react-hooks         Untitled
->>>>>>> 0b14a2a99d3918e0781f26ff0f3f894638da1a3f
 eslint-plugin-storybook            10.1.10   10.3.5   10.3.5  node_modules/eslint-plugin-storybook           Untitled
 fast-check                          3.23.2   3.23.2    4.7.0  node_modules/fast-check                        Untitled
 framer-motion                     12.23.26  12.38.0  12.38.0  node_modules/framer-motion                     Untitled
 jsdom                               29.0.1   29.0.2   29.0.2  node_modules/jsdom                             Untitled
-<<<<<<< HEAD
 postcss                              8.5.6   8.5.10   8.5.10  node_modules/postcss                           Untitled
 react                               19.2.3   19.2.5   19.2.5  node_modules/react                             Untitled
 react-dom                           19.2.3   19.2.5   19.2.5  node_modules/react-dom                         Untitled
@@ -61,17 +44,6 @@ swiper                              12.0.3   12.1.3   12.1.3  node_modules/swipe
 typescript                           5.9.3    5.9.3    6.0.3  node_modules/typescript                        Untitled
 vite                                 6.3.5    6.4.2    8.0.8  node_modules/vite                              Untitled
 vitest                               3.2.4    3.2.4    4.1.4  node_modules/vitest                            Untitled
-=======
-react                               19.2.3   19.2.5   19.2.5  node_modules/react                             Untitled
-react-dom                           19.2.3   19.2.5   19.2.5  node_modules/react-dom                         Untitled
-rollup                              4.60.1   4.60.2   4.60.2  node_modules/rollup                            Untitled
-rollup-plugin-dts                    6.3.0    6.4.1    6.4.1  node_modules/rollup-plugin-dts                 Untitled
-rollup-plugin-typescript2           0.36.0   0.36.0   0.37.0  node_modules/rollup-plugin-typescript2         Untitled
-sass                                1.96.0   1.99.0   1.99.0  node_modules/sass                              Untitled
-typescript                           5.9.3    5.9.3    6.0.3  node_modules/typescript                        Untitled
-vite                                 6.4.2    6.4.2   8.0.10  node_modules/vite                              Untitled
-vitest                               3.2.4    3.2.4    4.1.5  node_modules/vitest                            Untitled
->>>>>>> 0b14a2a99d3918e0781f26ff0f3f894638da1a3f
 ```
 
 ---
