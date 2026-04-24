@@ -10,6 +10,7 @@ jobs:
   doctor-deps:
     permissions:
       contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -19,3 +20,4 @@ jobs:
       - uses: narumikr/link-sekai-actions/prsk-doctor-deps@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'chore/npm-security-report'
