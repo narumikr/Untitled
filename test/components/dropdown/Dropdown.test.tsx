@@ -54,7 +54,13 @@ describe('Dropdown', () => {
   }
 
   beforeEach(() => {
+    vi.useFakeTimers()
     onSelect.mockClear()
+  })
+
+  afterEach(() => {
+    vi.clearAllTimers()
+    vi.useRealTimers()
   })
 
   describe('正常系', () => {
@@ -75,14 +81,6 @@ describe('Dropdown', () => {
   })
 
   describe('インタラクション', () => {
-    beforeEach(() => {
-      vi.useFakeTimers()
-    })
-
-    afterEach(() => {
-      vi.useRealTimers()
-    })
-
     it('トリガーボタンクリック時にオプションリストが表示される', () => {
       render(<Dropdown {...defaultProps} />)
 
