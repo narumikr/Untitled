@@ -25,7 +25,7 @@ const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: theme
   }
   ...
   return (
-    <div style={{ ...(optionStyle as React.CSSProperties)}} />
+    <div style={{ ...(optionStyle as React.CSSProperties), ...props.style }} />
   )
 ```
 
@@ -37,7 +37,7 @@ const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: theme
 
 内部用のhookです。外部に公開はしていません。`YourSekaiProvider`から`sekai`や`theme`を取得します。コンテキストを取得できなかった場合はデフォルトで`miku`と`light`を返却します。
 
-### types/
+### src/types/
 
-型定義はコンポーネントファイルから分離しています。`types/`フォルダに`components/`フォルダと同じ構成で定義し、コンポーネントファイルはそれをimportする形で実装しています。
+型定義はコンポーネントファイルから分離しています。`src/types/`フォルダに`src/components/`フォルダと同じ構成で定義し、コンポーネントファイルはそれをimportする形で実装しています。
 
