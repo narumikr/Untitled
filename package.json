@@ -114,7 +114,8 @@
   },
   "overrides": {
     "handlebars": "^4.7.9",
-    "picomatch": "^4.0.4"
+    "picomatch": "^4.0.4",
+    "glob": "^13.0.6"
   },
   "sideEffects": [
     "dist/*.css"
