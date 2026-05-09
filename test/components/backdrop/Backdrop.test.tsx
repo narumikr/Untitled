@@ -87,5 +87,47 @@ describe('Backdrop', () => {
 
       expect(screen.getByTestId('my-backdrop')).toBeInTheDocument()
     })
+
+    describe('blur', () => {
+      it('blur=false のとき sekai-overlay-light クラスが適用される', () => {
+        render(
+          <Backdrop open={true} blur={false} data-testid="backdrop">
+            <p>content</p>
+          </Backdrop>,
+        )
+
+        expect(screen.getByTestId('backdrop')).toHaveClass('sekai-overlay-light')
+      })
+
+      it('blur が未指定のとき sekai-overlay-light クラスが適用される', () => {
+        render(
+          <Backdrop open={true} data-testid="backdrop">
+            <p>content</p>
+          </Backdrop>,
+        )
+
+        expect(screen.getByTestId('backdrop')).toHaveClass('sekai-overlay-light')
+      })
+
+      it('blur=true のとき sekai-overlay-blur クラスが適用される', () => {
+        render(
+          <Backdrop open={true} blur={true} data-testid="backdrop">
+            <p>content</p>
+          </Backdrop>,
+        )
+
+        expect(screen.getByTestId('backdrop')).toHaveClass('sekai-overlay-blur')
+      })
+
+      it('blur=true のとき sekai-overlay-light クラスが適用されない', () => {
+        render(
+          <Backdrop open={true} blur={true} data-testid="backdrop">
+            <p>content</p>
+          </Backdrop>,
+        )
+
+        expect(screen.getByTestId('backdrop')).not.toHaveClass('sekai-overlay-light')
+      })
+    })
   })
 })
