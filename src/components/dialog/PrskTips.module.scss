@@ -5,6 +5,8 @@ $border-line-width: 2px;
 
 .sekai-container {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   width: 390px;
   max-width: 90vw;
   min-height: 150px;
@@ -36,6 +38,7 @@ $border-line-width: 2px;
   $line-height-px: 26px;
   $dot-offset: 24px; // $line-height-px - 1px(dot radius) - 1px(gap)
 
+  flex: 1;
   margin: 8px 0 0;
   font-size: 14px;
   line-height: $line-height-px;
