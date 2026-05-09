@@ -9,6 +9,7 @@ $color-bg-light: #ffffff;
 $color-bg-dark: #121212;
 $color-overlay-light: #00000063;
 $color-overlay-dark: #ffffff4d;
+$color-overlay-blur: #00000014;
 $color-error-text: #ea5532;
 
 /* Styles for z-index */
@@ -54,6 +55,13 @@ $modal-z-index: 1300;
 .sekai-overlay-dark {
   @extend .sekai-overlay;
   background-color: $color-overlay-dark;
+}
+
+.sekai-overlay-blur {
+  @extend .sekai-overlay;
+  background-color: $color-overlay-blur;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 /* Styles for positioning */

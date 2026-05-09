@@ -20,10 +20,12 @@ export const Backdrop = ({
   children,
   containerComponent,
   centered = true,
+  blur = false,
   ...rest
 }: BackdropProps) => {
   const displayBackdrop = open ? 'sekai-backdrop-visible' : 'sekai-backdrop-hidden'
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const currentOverlayVariant = blur ? 'blur' : modeTheme
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, false, 0.8)
   const portalContainer = usePortalContainer(containerComponent)
 
@@ -39,7 +41,7 @@ export const Backdrop = ({
       <div
         {...rest}
         className={clsx(
-          globalStyles[`sekai-overlay-${modeTheme}`],
+          globalStyles[`sekai-overlay-${currentOverlayVariant}`],
           {
             [styles['sekai-backdrop-bg']]: sekai,
             [styles['sekai-backdrop-centered']]: centered,
