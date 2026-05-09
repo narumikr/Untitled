@@ -9,7 +9,8 @@ $color-bg-light: #ffffff;
 $color-bg-dark: #121212;
 $color-overlay-light: #00000063;
 $color-overlay-dark: #ffffff4d;
-$color-overlay-blur: #00000014;
+$color-overlay-blur-light: #ffffffa0;
+$color-overlay-blur-dark: #00000014;
 $color-error-text: #ea5532;
 
 /* Styles for z-index */
@@ -57,9 +58,16 @@ $modal-z-index: 1300;
   background-color: $color-overlay-dark;
 }
 
-.sekai-overlay-blur {
+.sekai-overlay-blur-light {
   @extend .sekai-overlay;
-  background-color: $color-overlay-blur;
+  background-color: $color-overlay-blur-light;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.sekai-overlay-blur-dark {
+  @extend .sekai-overlay;
+  background-color: $color-overlay-blur-dark;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }

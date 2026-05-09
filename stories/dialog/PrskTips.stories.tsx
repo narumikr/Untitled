@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { PrskTips } from '@/components/dialog/PrskTips'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
@@ -9,14 +7,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta = {
   title: 'UI/PrskTips',
   component: PrskTips,
-  decorators: [
-    (Story) => (
-      <div style={{ width: 500, maxWidth: '80vw', height: 150 }}>
-        <p>testtestestsetse</p>
-        <Story />
-      </div>
-    ),
-  ],
+  decorators: [],
   parameters: {},
   tags: ['autodocs'],
   argTypes: {

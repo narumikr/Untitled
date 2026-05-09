@@ -25,7 +25,7 @@ export const Backdrop = ({
 }: BackdropProps) => {
   const displayBackdrop = open ? 'sekai-backdrop-visible' : 'sekai-backdrop-hidden'
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
-  const currentOverlayVariant = blur ? 'blur' : modeTheme
+  const currentOverlayVariant = blur ? `blur-${modeTheme}` : modeTheme
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, false, 0.8)
   const portalContainer = usePortalContainer(containerComponent)
 
