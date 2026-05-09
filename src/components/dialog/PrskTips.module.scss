@@ -1,0 +1,49 @@
+@use '../../styles/global.module.scss' as global;
+
+$border-radius-px: 4px;
+$border-line-width: 2px;
+
+.sekai-container {
+  box-sizing: border-box;
+  width: 390px;
+  max-width: 90vw;
+  min-height: 150px;
+  border: $border-line-width solid var(--sekai-color);
+  border-radius: $border-radius-px;
+  z-index: global.$modal-z-index;
+  padding: 16px;
+}
+
+.sekai-tips-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1.5px solid var(--sekai-color);
+
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+
+.sekai-lightbulb {
+  width: 24px;
+  height: 24px;
+}
+
+.sekai-tips-content {
+  $line-height-px: 26px;
+  $dot-offset: 24px; // $line-height-px - 1px(dot radius) - 1px(gap)
+
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: $line-height-px;
+  background-image: radial-gradient(
+    circle at 50% $dot-offset,
+    var(--sekai-color) 1px,
+    transparent 1px
+  );
+  background-size: 5px $line-height-px;
+  background-repeat: repeat;
+}
