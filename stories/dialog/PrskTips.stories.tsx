@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { PrskTips } from '@/components/dialog/PrskTips'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
@@ -7,7 +9,14 @@ import type { Meta, StoryObj } from '@storybook/react'
 const meta = {
   title: 'UI/PrskTips',
   component: PrskTips,
-  decorators: [],
+  decorators: [
+    (Story) => (
+      <div style={{ width: 500, maxWidth: '80vw', height: 150 }}>
+        <p>testtestestsetse</p>
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
@@ -64,6 +73,14 @@ const meta = {
       },
       control: 'text',
     },
+    withOverlay: {
+      description: 'Whether to show the overlay backdrop',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+      control: 'boolean',
+    },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
       table: {
@@ -87,6 +104,7 @@ export const DefaultLight: Story = {
     open: true,
     tipsText:
       'プロセカのTipsダイアログ風のコンポーネントです。小ネタなどを表示させたりするのに使ってください。',
+    withOverlay: true,
   },
   parameters: {
     sekai: 'Miku',
@@ -103,6 +121,7 @@ export const DefaultDark: Story = {
     open: true,
     tipsText:
       'プロセカのTipsダイアログ風のコンポーネントです。小ネタなどを表示させたりするのに使ってください。',
+    withOverlay: true,
   },
   parameters: {
     sekai: 'Miku',

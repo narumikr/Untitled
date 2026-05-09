@@ -23,6 +23,7 @@ export const PrskTips = ({
   open,
   tipsText,
   containerComponent,
+  withOverlay = true,
   ...rest
 }: PrskTipsProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
@@ -32,25 +33,39 @@ export const PrskTips = ({
     '--sekai-color': sekaiColor,
   }
 
-  const overlayProps = { open, themeMode, containerComponent }
-
   if (!portalContainer) return null
 
+  const tipsContent = (
+    <div
+      {...rest}
+      role="dialog"
+      className={clsx(
+        globalStyles[`sekai-color-${modeTheme}`],
+        styles['sekai-container'],
+        rest.className,
+      )}
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
+      <TipsHeader sekai={sekai} themeMode={modeTheme} />
+      <p className={clsx(styles['sekai-tips-content'])}>{tipsText}</p>
+    </div>
+  )
+
+  if (withOverlay) {
+    return createPortal(
+      <Backdrop
+        open={open}
+        themeMode={themeMode}
+        containerComponent={containerComponent}
+        centered
+        blur>
+        {tipsContent}
+      </Backdrop>,
+      portalContainer,
+    )
+  }
+
   return createPortal(
-    <Backdrop {...overlayProps} centered blur>
-      <div
-        {...rest}
-        role="dialog"
-        className={clsx(
-          globalStyles[`sekai-color-${modeTheme}`],
-          styles['sekai-container'],
-          rest.className,
-        )}
-        style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
-        <TipsHeader sekai={sekai} themeMode={modeTheme} />
-        <p className={clsx(styles['sekai-tips-content'])}>{tipsText}</p>
-      </div>
-    </Backdrop>,
+    open ? <div className={styles['sekai-tips-no-overlay']}>{tipsContent}</div> : null,
     portalContainer,
   )
 }

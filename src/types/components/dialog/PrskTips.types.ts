@@ -26,6 +26,11 @@ export interface PrskTipsProps {
   /** Tipsの内容 - Content of the tips */
   tipsText: string
   /**
+   * オーバーレイを表示するか - Whether to show the overlay backdrop
+   * @default true
+   */
+  withOverlay?: boolean
+  /**
    * プロセカTipsダイアログのポータルコンテナ - Portal container for the prsk tips dialog
    * @default document.body
    */
