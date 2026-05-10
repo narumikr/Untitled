@@ -2,7 +2,7 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import type React from 'react'
 
-export interface BackdropProps {
+export interface PrskTipsProps {
   /** ユニークID - Unique identifier */
   id?: string
   /** クラス名 - Class name */
@@ -21,23 +21,18 @@ export interface BackdropProps {
    * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.modeを参照し、contextもない場合はデフォルトのlightモードが適用されます。
    */
   themeMode?: PaletteMode
-  /** Backdropの開閉状態 - Open state of the Backdrop */
+  /** ダイアログの開閉状態 - Open state of the dialog */
   open: boolean
-  /** 子要素 - Children */
-  children: React.ReactNode
+  /** Tipsの内容 - Content of the tips */
+  tipsText: string
   /**
-   * Backdropのポータルコンテナ - Portal container for the Backdrop
+   * オーバーレイを表示するか - Whether to show the overlay backdrop
+   * @default true
+   */
+  withOverlay?: boolean
+  /**
+   * プロセカTipsダイアログのポータルコンテナ - Portal container for the prsk tips dialog
    * @default document.body
    */
   containerComponent?: HTMLElement
-  /**
-   * コンテンツの中央寄せ - Center content
-   * @default true
-   */
-  centered?: boolean
-  /**
-   * 背景ぼかしを有効化するか - Whether to enable blurred overlay
-   * @default false
-   */
-  blur?: boolean
 }
