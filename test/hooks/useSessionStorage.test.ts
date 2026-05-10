@@ -147,6 +147,8 @@ describe('useSessionStorage - deleteSessionStorage による削除とリセッ�
     })
 
     expect(result.current.storedValue).toBe('initial')
+    // The write effect re-adds the key with the initial value after deletion
+    expect(sessionStorage.getItem('testKey')).toBe(JSON.stringify('initial'))
   })
 })
 
