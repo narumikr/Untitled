@@ -52,6 +52,6 @@ export { getSekaiCharacterName } from './utils/connectSekai.js';
 export { convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite } from './utils/converter.js';
 export { createSekai } from './utils/createSekai.js';
 export { fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, shuffleArray } from './utils/operation.js';
-export { deserializeData, deserializeDataWithTemplate, isValidDateString, serializeData } from './utils/serialization.js';
+export { deserializeData, isValidDateString, serializeData } from './utils/serialization.js';
 export { getCurrentTime, getCustomCurrentTime, getFormattedTime } from './utils/timer.js';
 export { COLORS_SEKAI_KEYS, colorSekaiKeyList, colorsSekai } from './styles/sekai-colors.js';

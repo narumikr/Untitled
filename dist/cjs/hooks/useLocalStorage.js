@@ -4,7 +4,6 @@
 var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
 var React = require('react');
 var logging = require('../internal/logging.js');
-var serialization = require('../utils/serialization.js');
 
 var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
   var _useState = React.useState(initialValue),
@@ -18,8 +17,7 @@ var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
     try {
       var items = localStorage.getItem(localStorageKey);
       if (items) {
-        var parsed = serialization.deserializeDataWithTemplate(JSON.parse(items), initialValue);
-        setStoredValue(parsed);
+        setStoredValue(JSON.parse(items));
       }
     } catch (err) {
       logging.ConsoleError('Failed to get local storage value : ', err);
@@ -28,8 +26,7 @@ var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
   React.useEffect(function () {
     if (!isInitialized.current) return;
     try {
-      var serialized = JSON.stringify(serialization.serializeData(storedValue));
-      localStorage.setItem(localStorageKey, serialized);
+      localStorage.setItem(localStorageKey, JSON.stringify(storedValue));
     } catch (err) {
       logging.ConsoleError('Failed to set local storage : ', err);
     }
@@ -41,8 +38,7 @@ var useLocalStorage = function useLocalStorage(localStorageKey, initialValue) {
         if (e.newValue === null) {
           setStoredValue(initialValue);
         } else {
-          var parsed = JSON.parse(e.newValue);
-          setStoredValue(serialization.deserializeDataWithTemplate(parsed, initialValue));
+          setStoredValue(JSON.parse(e.newValue));
         }
       } catch (err) {
         logging.ConsoleError('Failed to set local storage : ', err);

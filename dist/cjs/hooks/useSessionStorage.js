@@ -4,7 +4,6 @@
 var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
 var React = require('react');
 var logging = require('../internal/logging.js');
-var serialization = require('../utils/serialization.js');
 
 var useSessionStorage = function useSessionStorage(sessionStorageKey, initialValue) {
   var _useState = React.useState(initialValue),
@@ -18,8 +17,7 @@ var useSessionStorage = function useSessionStorage(sessionStorageKey, initialVal
     try {
       var items = sessionStorage.getItem(sessionStorageKey);
       if (items) {
-        var parsed = serialization.deserializeDataWithTemplate(JSON.parse(items), initialValue);
-        setStoredValue(parsed);
+        setStoredValue(JSON.parse(items));
       }
     } catch (err) {
       logging.ConsoleError('Failed to get session storage value : ', err);
@@ -28,8 +26,7 @@ var useSessionStorage = function useSessionStorage(sessionStorageKey, initialVal
   React.useEffect(function () {
     if (!isInitialized.current) return;
     try {
-      var serialized = JSON.stringify(serialization.serializeData(storedValue));
-      sessionStorage.setItem(sessionStorageKey, serialized);
+      sessionStorage.setItem(sessionStorageKey, JSON.stringify(storedValue));
     } catch (err) {
       logging.ConsoleError('Failed to set session storage : ', err);
     }
