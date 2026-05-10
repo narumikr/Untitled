@@ -2,6 +2,7 @@ import { renderHook, act } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useSessionStorage } from '@/hooks/useSessionStorage'
+import * as logging from '@/internal/logging'
 
 describe('useSessionStorage - 初期値の設定', () => {
   beforeEach(() => {
@@ -132,6 +133,21 @@ describe('useSessionStorage - deleteSessionStorage による削除とリセッ�
 
     expect(result.current.storedValue).toEqual(initial)
   })
+
+  it('削除後にsessionStorageのキーが削除される', () => {
+    const { result } = renderHook(() => useSessionStorage('testKey', 'initial'))
+
+    act(() => {
+      result.current.setStoredValue('updated')
+    })
+    expect(sessionStorage.getItem('testKey')).not.toBeNull()
+
+    act(() => {
+      result.current.deleteSessionStorage()
+    })
+
+    expect(result.current.storedValue).toBe('initial')
+  })
 })
 
 describe('useSessionStorage - エラーハンドリング', () => {
@@ -150,5 +166,21 @@ describe('useSessionStorage - エラーハンドリング', () => {
 
     expect(result.current.storedValue).toBe('fallback')
     consoleSpy.mockRestore()
+  })
+
+  it('sessionStorageへの書き込みに失敗した場合、エラーがログに記録される', () => {
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('Storage quota exceeded')
+    })
+    const consoleErrorSpy = vi.spyOn(logging, 'ConsoleError').mockImplementation(() => {})
+
+    const { result } = renderHook(() => useSessionStorage('errorKey', 'initial'))
+
+    act(() => {
+      result.current.setStoredValue('newValue')
+    })
+
+    expect(consoleErrorSpy).toHaveBeenCalled()
+    consoleErrorSpy.mockRestore()
   })
 })
