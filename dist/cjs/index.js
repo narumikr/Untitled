@@ -141,7 +141,6 @@ exports.fireOnEscapeKey = operation.fireOnEscapeKey;
 exports.fireOnSpaceKey = operation.fireOnSpaceKey;
 exports.shuffleArray = operation.shuffleArray;
 exports.deserializeData = serialization.deserializeData;
-exports.deserializeDataWithTemplate = serialization.deserializeDataWithTemplate;
 exports.isValidDateString = serialization.isValidDateString;
 exports.serializeData = serialization.serializeData;
 exports.getCurrentTime = timer.getCurrentTime;

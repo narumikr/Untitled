@@ -48,23 +48,6 @@ var deserializeData = function deserializeData(data) {
   // For other primitive types, return as is
   return data;
 };
-var deserializeDataWithTemplate = function deserializeDataWithTemplate(obj, template) {
-  var visited = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new WeakSet();
-  // If template is Date instance, and obj is string, convert to Date
-  if (template instanceof Date && typeof obj === 'string') {
-    return deserializeDateWithTemplate(obj);
-  }
-  // If template is an array, recursively temp each element
-  if (Array.isArray(template)) {
-    return deserializeArrayWithTemplate(obj, template, visited);
-  }
-  // If template is an object, recursively deserialize each property
-  if (_typeof(template) === 'object') {
-    return deserializeObjectWithTemplate(obj, template, visited);
-  }
-  // For other primitive types, return obj if same type, else template
-  return obj;
-};
 /**
  * @description Validates if a string is a valid date string (ISO 8601 or other formats recognized by Date.parse)
  * @param dateStr - date string to validate
@@ -189,62 +172,8 @@ var deserializeObject = function deserializeObject(obj, visited) {
   return obj;
 };
 // For deserualizeData end
-// For deserializeDataWithTemplate start
-// Helper function to deserialize date with template
-var deserializeDateWithTemplate = function deserializeDateWithTemplate(obj) {
-  try {
-    var date = new Date(obj);
-    // Check if the date is valid
-    if (!isNaN(date.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
-      return date;
-    }
-    return obj;
-  } catch (err) {
-    throw new Error('Failed to parse date:' + err.message);
-  }
-};
-// Helper function to deserialize array with template
-var deserializeArrayWithTemplate = function deserializeArrayWithTemplate(obj, template, visited) {
-  var templateArray = template;
-  if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization with template');
-  }
-  if (!Array.isArray(obj)) {
-    return obj;
-  }
-  if (templateArray.length === 0) {
-    return obj;
-  }
-  visited.add(obj);
-  var result = obj.map(function (el, index) {
-    var _templateArray$index;
-    var templateItem = (_templateArray$index = templateArray[index]) !== null && _templateArray$index !== void 0 ? _templateArray$index : templateArray[0];
-    return deserializeDataWithTemplate(el, templateItem, visited);
-  });
-  visited["delete"](obj);
-  return result;
-};
-// Helper function to deserialize object with template
-var deserializeObjectWithTemplate = function deserializeObjectWithTemplate(obj, template, visited) {
-  if (!isObject(obj)) {
-    return obj;
-  }
-  if (visited.has(obj)) {
-    throw new Error('Circular reference detected during deserialization with template');
-  }
-  visited.add(obj);
-  var deserializedObj = {};
-  for (var key in template) {
-    if (key in template) {
-      deserializedObj[key] = deserializeDataWithTemplate(obj[key], template[key], visited);
-    }
-  }
-  visited["delete"](obj);
-  return deserializedObj;
-};
-// For deserializeDataWithTemplate end
 var isObject = function isObject(value) {
   return value !== null && _typeof(value) === 'object' && !Array.isArray(value);
 };
 
-export { deserializeData, deserializeDataWithTemplate, isValidDateString, serializeData };
+export { deserializeData, isValidDateString, serializeData };

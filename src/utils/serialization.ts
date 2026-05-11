@@ -52,34 +52,6 @@ export const deserializeData = (data: unknown, visited = new WeakSet()): unknown
   return data
 }
 
-export const deserializeDataWithTemplate = <T>(
-  obj: unknown,
-  template: T,
-  visited = new WeakSet(),
-): T => {
-  // If template is Date instance, and obj is string, convert to Date
-  if (template instanceof Date && typeof obj === 'string') {
-    return deserializeDateWithTemplate(obj)
-  }
-
-  // If template is an array, recursively temp each element
-  if (Array.isArray(template)) {
-    return deserializeArrayWithTemplate(obj, template, visited)
-  }
-
-  // If template is an object, recursively deserialize each property
-  if (typeof template === 'object') {
-    return deserializeObjectWithTemplate(
-      obj as object,
-      template as Record<string, unknown>,
-      visited,
-    )
-  }
-
-  // For other primitive types, return obj if same type, else template
-  return obj as T
-}
-
 /**
  * @description Validates if a string is a valid date string (ISO 8601 or other formats recognized by Date.parse)
  * @param dateStr - date string to validate
@@ -213,81 +185,6 @@ const deserializeObject = (obj: unknown, visited: WeakSet<object>): unknown => {
   return obj
 }
 // For deserualizeData end
-
-// For deserializeDataWithTemplate start
-// Helper function to deserialize date with template
-const deserializeDateWithTemplate = <T>(obj: string) => {
-  try {
-    const date = new Date(obj)
-    // Check if the date is valid
-    if (!isNaN(date.getTime()) && obj.trim() !== '' && isValidDateString(obj)) {
-      return date as unknown as T
-    }
-    return obj as unknown as T
-  } catch (err) {
-    throw new Error('Failed to parse date:' + (err as Error).message)
-  }
-}
-// Helper function to deserialize array with template
-const deserializeArrayWithTemplate = <T>(
-  obj: unknown,
-  template: T,
-  visited: WeakSet<object>,
-): T => {
-  const templateArray = template as unknown as T[]
-
-  if (visited.has(obj as object)) {
-    throw new Error('Circular reference detected during deserialization with template')
-  }
-
-  if (!Array.isArray(obj)) {
-    return obj as unknown as T
-  }
-
-  if (templateArray.length === 0) {
-    return obj as unknown as T
-  }
-
-  visited.add(obj as object)
-  const result = obj.map((el, index) => {
-    const templateItem = templateArray[index] ?? templateArray[0]
-    return deserializeDataWithTemplate(el, templateItem, visited)
-  })
-  visited.delete(obj as object)
-
-  return result as unknown as T
-}
-// Helper function to deserialize object with template
-const deserializeObjectWithTemplate = <T>(
-  obj: unknown,
-  template: Record<string, unknown>,
-  visited: WeakSet<object>,
-): T => {
-  if (!isObject(obj)) {
-    return obj as unknown as T
-  }
-
-  if (visited.has(obj as object)) {
-    throw new Error('Circular reference detected during deserialization with template')
-  }
-
-  visited.add(obj as object)
-  const deserializedObj: Record<string, unknown> = {}
-
-  for (const key in template) {
-    if (key in template) {
-      deserializedObj[key] = deserializeDataWithTemplate(
-        (obj as Record<string, unknown>)[key],
-        template[key],
-        visited,
-      )
-    }
-  }
-
-  visited.delete(obj as object)
-  return deserializedObj as T
-}
-// For deserializeDataWithTemplate end
 
 const isObject = (value: unknown): boolean => {
   return value !== null && typeof value === 'object' && !Array.isArray(value)
