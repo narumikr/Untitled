@@ -168,7 +168,7 @@ describe('useSessionStorage - deleteSessionStorage による削除とリセッ�
     expect(result.current.storedValue).toEqual(initial)
   })
 
-  it('削除後にsessionStorageのキーが削除される', () => {
+  it('削除後にsessionStorageのキーが初期値で再設定される', () => {
     const { result } = renderHook(() => useSessionStorage('testKey', 'initial'))
 
     act(() => {
