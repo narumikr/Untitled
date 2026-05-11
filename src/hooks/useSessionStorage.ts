@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { ConsoleError } from '@/internal/logging'
+import { deserializeData, serializeData } from '@/utils/serialization'
 
 export const useSessionStorage = <T>(sessionStorageKey: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(initialValue)
@@ -13,7 +14,7 @@ export const useSessionStorage = <T>(sessionStorageKey: string, initialValue: T)
     try {
       const items = sessionStorage.getItem(sessionStorageKey)
       if (items) {
-        setStoredValue(JSON.parse(items) as T)
+        setStoredValue(deserializeData(JSON.parse(items)) as T)
       }
     } catch (err) {
       ConsoleError('Failed to get session storage value : ', err)
@@ -24,7 +25,7 @@ export const useSessionStorage = <T>(sessionStorageKey: string, initialValue: T)
     if (!isInitialized.current) return
 
     try {
-      sessionStorage.setItem(sessionStorageKey, JSON.stringify(storedValue))
+      sessionStorage.setItem(sessionStorageKey, JSON.stringify(serializeData(storedValue)))
     } catch (err) {
       ConsoleError('Failed to set session storage : ', err)
     }

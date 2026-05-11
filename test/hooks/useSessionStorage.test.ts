@@ -40,6 +40,18 @@ describe('useSessionStorage - 初期値の設定', () => {
     )
     expect(result.current.storedValue).toEqual(saved)
   })
+
+  it('sessionStorageに保存済みのDateが復元される', () => {
+    const saved = new Date('2024-01-15T10:30:00.000Z')
+    sessionStorage.setItem('dateKey', JSON.stringify(saved))
+
+    const { result } = renderHook(() =>
+      useSessionStorage('dateKey', new Date('2024-01-01T00:00:00.000Z')),
+    )
+
+    expect(result.current.storedValue).toBeInstanceOf(Date)
+    expect((result.current.storedValue as Date).toISOString()).toBe(saved.toISOString())
+  })
 })
 
 describe('useSessionStorage - setStoredValue による保存', () => {
@@ -95,6 +107,28 @@ describe('useSessionStorage - setStoredValue による保存', () => {
 
     expect(result.current.storedValue).toEqual([1, 2, 3])
     expect(JSON.parse(sessionStorage.getItem('arrKey')!)).toEqual([1, 2, 3])
+  })
+
+  it('Dateを保存して再読込時に復元できる', () => {
+    const saved = new Date('2024-02-20T12:34:56.000Z')
+    const initial = new Date('2024-01-01T00:00:00.000Z')
+    const { result, unmount } = renderHook(() => useSessionStorage('dateKey', initial))
+
+    act(() => {
+      result.current.setStoredValue(saved)
+    })
+
+    expect(result.current.storedValue).toBe(saved)
+    expect(JSON.parse(sessionStorage.getItem('dateKey')!)).toBe(saved.toISOString())
+
+    unmount()
+
+    const { result: restored } = renderHook(() =>
+      useSessionStorage('dateKey', new Date('2023-01-01T00:00:00.000Z')),
+    )
+
+    expect(restored.current.storedValue).toBeInstanceOf(Date)
+    expect((restored.current.storedValue as Date).toISOString()).toBe(saved.toISOString())
   })
 })
 
