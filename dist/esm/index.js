@@ -11,6 +11,7 @@ export { MusicBannerCard } from './components/card/MusicBannerCard.js';
 export { PrskLinkCard } from './components/card/PrskLinkCard.js';
 export { Carousel } from './components/carousel/Carousel.js';
 export { Dialog, DialogButtons, DialogTitleHeader } from './components/dialog/Dialog.js';
+export { PrskTips } from './components/dialog/PrskTips.js';
 export { WindowDialog } from './components/dialog/WindowDialog.js';
 export { XoMikuDialog } from './components/dialog/XoMikuDialog.js';
 export { XxMikuDialog } from './components/dialog/XxMikuDialog.js';

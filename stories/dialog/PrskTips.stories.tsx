@@ -1,12 +1,12 @@
-import { {{pascalCase component}} } from '@/components/{{kebabCase folder}}/{{pascalCase component}}'
+import { PrskTips } from '@/components/dialog/PrskTips'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
-  title: 'UI/{{pascalCase component}}',
-  component: {{pascalCase component}},
+  title: 'UI/PrskTips',
+  component: PrskTips,
   decorators: [],
   parameters: {},
   tags: ['autodocs'],
@@ -49,40 +49,74 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
-    ref: {
-      description: 'Ref to the root element',
+    open: {
+      description: 'Whether the Tips is open or not',
       table: {
-        type: { summary: 'React.Ref<HTMLDivElement>' },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+      control: 'boolean',
+    },
+    tipsText: {
+      description: 'Content of the tips',
+      table: {
+        type: { summary: 'string' },
+      },
+      control: 'text',
+    },
+    withOverlay: {
+      description: 'Whether to show the overlay backdrop',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+      control: 'boolean',
+    },
+    containerComponent: {
+      description: 'Target element where the portal content will be rendered',
+      table: {
+        type: { summary: 'HTMLElement' },
+        defaultValue: { summary: 'document.body' },
       },
       control: false,
-    }
+    },
   },
   args: {},
-} satisfies Meta<typeof {{pascalCase component}}>
+} satisfies Meta<typeof PrskTips>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const DefaultLight: Story = {
   args: {
-    id: '{{ kebabCase component }}-default-light',
+    id: 'prsk-tips-default-light',
     sekai: 'Miku',
     themeMode: 'light',
+    open: true,
+    tipsText:
+      'プロセカのTipsダイアログ風のコンポーネントです。小ネタなどを表示させたりするのに使ってください。',
+    withOverlay: true,
   },
   parameters: {
     sekai: 'Miku',
     background: 'light',
-  }
+    portal: true,
+  },
 }
 
 export const DefaultDark: Story = {
   args: {
-    id: '{{ kebabCase component }}-default-dark',
+    id: 'prsk-tips-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
+    open: true,
+    tipsText:
+      'プロセカのTipsダイアログ風のコンポーネントです。小ネタなどを表示させたりするのに使ってください。',
+    withOverlay: true,
   },
   parameters: {
     sekai: 'Miku',
     background: 'dark',
-  }
+    portal: true,
+  },
 }

@@ -224,9 +224,14 @@ interface BackdropProps {
      * @default true
      */
     centered?: boolean;
+    /**
+     * 背景ぼかしを有効化するか - Whether to enable blurred overlay
+     * @default false
+     */
+    blur?: boolean;
 }
 
-declare const Backdrop: ({ sekai, themeMode, open, children, containerComponent, centered, ...rest }: BackdropProps) => React__default.ReactPortal | null;
+declare const Backdrop: ({ sekai, themeMode, open, children, containerComponent, centered, blur, ...rest }: BackdropProps) => React__default.ReactPortal | null;
 
 interface BreadcrumbProps {
     /** ユニークID - Unique identifier */
@@ -716,6 +721,43 @@ type DialogButtonsProps = Pick<DialogProps, 'sekai' | 'themeMode' | 'buttons'> &
     style?: React__default.CSSProperties;
 };
 declare const DialogButtons: ({ sekai, themeMode, buttons, ...rest }: DialogButtonsProps) => React__default.JSX.Element | null;
+
+interface PrskTipsProps {
+    /** ユニークID - Unique identifier */
+    id?: string;
+    /** クラス名 - Class name */
+    className?: string;
+    /** スタイル - Inline styles */
+    style?: React__default.CSSProperties;
+    /**
+     * セカイカラー - Sekai Color
+     * @see {@link ColorsSekaiKey}
+     * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.sekaiを参照し、contextもない場合はデフォルトのMikuカラーが適用されます。
+     */
+    sekai?: ColorsSekaiKey;
+    /**
+     * テーマモード - Theme Mode
+     * @see {@link PaletteMode}
+     * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.modeを参照し、contextもない場合はデフォルトのlightモードが適用されます。
+     */
+    themeMode?: PaletteMode;
+    /** ダイアログの開閉状態 - Open state of the dialog */
+    open: boolean;
+    /** Tipsの内容 - Content of the tips */
+    tipsText: string;
+    /**
+     * オーバーレイを表示するか - Whether to show the overlay backdrop
+     * @default true
+     */
+    withOverlay?: boolean;
+    /**
+     * プロセカTipsダイアログのポータルコンテナ - Portal container for the prsk tips dialog
+     * @default document.body
+     */
+    containerComponent?: HTMLElement;
+}
+
+declare const PrskTips: ({ sekai, themeMode, open, tipsText, containerComponent, withOverlay, ...rest }: PrskTipsProps) => React__default.ReactPortal | null;
 
 interface WindowDialogProps {
     /** ユニークID - Unique identifier */
@@ -1997,5 +2039,5 @@ declare const getFormattedTime: (now: Date, format?: string, locale?: string) =>
  */
 declare const getCustomCurrentTime: (now: Date, pattern?: string) => string;
 
-export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, Breadcrumb, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, Carousel, Checkbox, Chip, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, Divider, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, MarqueeText, MusicBannerCard, NamePlate, ORIENTATION, OutlineText, Pagination, PictureViewer, PrskLinkCard, ScrollTopButton, SekaiAnnotationText, SekaiBackground, SekaiBodyText, SekaiDetailText, SideMenu, StickyNote, StrongButton, StylishButton, TextArea, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YOUR_COLOR_THEME, YOUR_SEKAI_COLOR, YourSekaiContext, YourSekaiProvider, colorSekaiKeyList, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, createSharedValueProvider, deserializeData, fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useLocalStorage, useOrientation, useSessionStorage, useTabletSize, useThemeMode };
-export type { AccordionProps, AnnotationTextProps, ArrayElement, BackdropProps, BasicButtonProps, BodyTextProps, BreadcrumbProps, CardContentProps, CardProps, CardTitleProps, CarouselProps, CarouselSize, CheckboxProps, ChipProps, ColorsSekai, ColorsSekaiCode, ColorsSekaiKey, DeepPartial, DeepRequired, DetailTextProps, DialogButton, DialogButtonsProps, DialogProps, DialogTitleHeaderProps, DividerProps, DoReMeetEffectProps, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, MarqueeTextProps, MusicBannerCardProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaletteMode, PartialBy, PictureViewerProps, PrskLinkCardProps, RequiredBy, ScrollTopButtonProps, SekaiAnnotationTextProps, SekaiBackgroundProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, SharedValueContextProps, SharedValueProviderProps, SideMenuProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextAreaProps, TextFieldProps, TextLinkProps, ToastProps, TooltipProps, TypewriterTextOptions, TypewriterTextProps, ValueOf, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiOptions, YourSekaiProviderProps };
+export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, Breadcrumb, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, Carousel, Checkbox, Chip, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, Divider, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, MarqueeText, MusicBannerCard, NamePlate, ORIENTATION, OutlineText, Pagination, PictureViewer, PrskLinkCard, PrskTips, ScrollTopButton, SekaiAnnotationText, SekaiBackground, SekaiBodyText, SekaiDetailText, SideMenu, StickyNote, StrongButton, StylishButton, TextArea, TextField, TextLink, Toast, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YOUR_COLOR_THEME, YOUR_SEKAI_COLOR, YourSekaiContext, YourSekaiProvider, colorSekaiKeyList, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, createSharedValueProvider, deserializeData, fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useLocalStorage, useOrientation, useSessionStorage, useTabletSize, useThemeMode };
+export type { AccordionProps, AnnotationTextProps, ArrayElement, BackdropProps, BasicButtonProps, BodyTextProps, BreadcrumbProps, CardContentProps, CardProps, CardTitleProps, CarouselProps, CarouselSize, CheckboxProps, ChipProps, ColorsSekai, ColorsSekaiCode, ColorsSekaiKey, DeepPartial, DeepRequired, DetailTextProps, DialogButton, DialogButtonsProps, DialogProps, DialogTitleHeaderProps, DividerProps, DoReMeetEffectProps, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, MarqueeTextProps, MusicBannerCardProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaletteMode, PartialBy, PictureViewerProps, PrskLinkCardProps, PrskTipsProps, RequiredBy, ScrollTopButtonProps, SekaiAnnotationTextProps, SekaiBackgroundProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, SharedValueContextProps, SharedValueProviderProps, SideMenuProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextAreaProps, TextFieldProps, TextLinkProps, ToastProps, TooltipProps, TypewriterTextOptions, TypewriterTextProps, ValueOf, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiOptions, YourSekaiProviderProps };

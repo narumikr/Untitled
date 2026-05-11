@@ -83,6 +83,14 @@ const meta = {
       },
       control: { type: 'boolean' },
     },
+    blur: {
+      description: 'Whether to enable blurred overlay',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+      control: { type: 'boolean' },
+    },
   },
   args: {},
 } satisfies Meta<typeof Backdrop>
@@ -98,6 +106,7 @@ export const DefaultLight: Story = {
     open: true,
     children: <Loading />,
     centered: true,
+    blur: false,
   },
   parameters: {
     sekai: 'Miku',
@@ -114,6 +123,7 @@ export const DefaultDark: Story = {
     open: true,
     children: <Loading />,
     centered: true,
+    blur: false,
   },
   parameters: {
     sekai: 'Miku',
@@ -130,6 +140,7 @@ export const SekaiColorLight: Story = {
     open: true,
     children: <Loading />,
     centered: true,
+    blur: false,
   },
   parameters: {
     sekai: 'Miku',
@@ -146,6 +157,7 @@ export const SekaiColorDark: Story = {
     open: true,
     children: <Loading />,
     centered: true,
+    blur: false,
   },
   parameters: {
     sekai: 'Miku',

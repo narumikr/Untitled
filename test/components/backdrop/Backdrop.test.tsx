@@ -1,14 +1,16 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
 import { Backdrop } from '@/components/backdrop/Backdrop'
 
+import { useOptionalSekai } from '@/internal/useOptionalSekai'
+
 vi.mock('@/internal/useOptionalSekai', () => ({
-  useOptionalSekai: () => ({
-    sekaiColor: '#00CCBB',
+  useOptionalSekai: vi.fn(() => ({
+    sekaiColor: '#33ccba',
     modeTheme: 'light',
     isLight: true,
-  }),
+  })),
 }))
 
 vi.mock('@/internal/usePortalContainer', () => ({
@@ -86,6 +88,86 @@ describe('Backdrop', () => {
       )
 
       expect(screen.getByTestId('my-backdrop')).toBeInTheDocument()
+    })
+
+    describe('blur', () => {
+      it('blur=false のとき sekai-overlay-light クラスが適用される', () => {
+        render(
+          <Backdrop open={true} blur={false} data-testid="backdrop">
+            <p>content</p>
+          </Backdrop>,
+        )
+
+        expect(screen.getByTestId('backdrop')).toHaveClass('sekai-overlay-light')
+      })
+
+      it('blur が未指定のとき sekai-overlay-light クラスが適用される', () => {
+        render(
+          <Backdrop open={true} data-testid="backdrop">
+            <p>content</p>
+          </Backdrop>,
+        )
+
+        expect(screen.getByTestId('backdrop')).toHaveClass('sekai-overlay-light')
+      })
+
+      it('blur=true のとき sekai-overlay-blur-light クラスが適用される', () => {
+        render(
+          <Backdrop open={true} blur={true} data-testid="backdrop">
+            <p>content</p>
+          </Backdrop>,
+        )
+
+        expect(screen.getByTestId('backdrop')).toHaveClass('sekai-overlay-blur-light')
+      })
+
+      it('blur=true のとき sekai-overlay-light クラスが適用されない', () => {
+        render(
+          <Backdrop open={true} blur={true} data-testid="backdrop">
+            <p>content</p>
+          </Backdrop>,
+        )
+
+        expect(screen.getByTestId('backdrop')).not.toHaveClass('sekai-overlay-light')
+      })
+    })
+  })
+
+  describe('dark モード', () => {
+    beforeEach(() => {
+      vi.mocked(useOptionalSekai).mockReturnValue({
+        sekaiColor: '#33ccba',
+        modeTheme: 'dark',
+        isLight: false,
+      })
+    })
+
+    afterEach(() => {
+      vi.mocked(useOptionalSekai).mockReturnValue({
+        sekaiColor: '#33ccba',
+        modeTheme: 'light',
+        isLight: true,
+      })
+    })
+
+    it('blur=true のとき sekai-overlay-blur-dark クラスが適用される', () => {
+      render(
+        <Backdrop open={true} blur={true} data-testid="backdrop">
+          <p>content</p>
+        </Backdrop>,
+      )
+
+      expect(screen.getByTestId('backdrop')).toHaveClass('sekai-overlay-blur-dark')
+    })
+
+    it('blur=true のとき sekai-overlay-dark クラスが適用されない', () => {
+      render(
+        <Backdrop open={true} blur={true} data-testid="backdrop">
+          <p>content</p>
+        </Backdrop>,
+      )
+
+      expect(screen.getByTestId('backdrop')).not.toHaveClass('sekai-overlay-dark')
     })
   })
 })
