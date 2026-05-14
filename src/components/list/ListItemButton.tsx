@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useCallback, useContext, useRef } from 'react'
 
 import clsx from 'clsx'
 
@@ -10,20 +10,7 @@ import { ListContext } from './List'
 
 import styles from './List.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface ListItemButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  icon?: 'string' | React.ReactNode
-  disabled?: boolean
-  onClick?: () => void
-}
+import type { ListItemButtonProps } from '@/types/components/list/ListItemButton.types'
 
 const rippleEffectClassName = 'sekai-ripple'
 
@@ -37,6 +24,7 @@ export const ListItemButton = ({
   icon,
   disabled = false,
   onClick,
+  ref,
 }: ListItemButtonProps) => {
   const isListWrap = useContext(ListContext)
   if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemButton> should be used inside <List>')
@@ -50,6 +38,19 @@ export const ListItemButton = ({
   }
 
   const listItemButtonRef = useRef<HTMLButtonElement | null>(null)
+
+  const setRefs = useCallback(
+    (element: HTMLButtonElement | null) => {
+      listItemButtonRef.current = element
+
+      if (typeof ref === 'function') {
+        ref(element)
+      } else if (ref) {
+        ;(ref as React.RefObject<HTMLButtonElement | null>).current = element
+      }
+    },
+    [ref],
+  )
 
   const createRipple = (
     event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>,
@@ -88,7 +89,7 @@ export const ListItemButton = ({
       style={{ ...(optionStyle as React.CSSProperties), ...style }}>
       <button
         type="button"
-        ref={listItemButtonRef}
+        ref={setRefs}
         className={styles[`sekai-list-button-${modeTheme}`]}
         disabled={disabled}
         onClick={handleOnClick}>

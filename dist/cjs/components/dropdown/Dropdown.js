@@ -142,7 +142,7 @@ var DropdownContent = function DropdownContent(_ref2) {
       '--sekai-color': sekaiColor
     }, rest.style || {})
   }), /*#__PURE__*/React.createElement(DropdownTriggerButton, {
-    ref: triggerButtonRef,
+    triggerRef: triggerButtonRef,
     sekai: sekai,
     themeMode: themeMode,
     options: options,
@@ -155,11 +155,12 @@ var DropdownContent = function DropdownContent(_ref2) {
     onSelect: onSelect
   }));
 };
-var DropdownTriggerButton = /*#__PURE__*/React.forwardRef(function (_ref4, ref) {
+var DropdownTriggerButton = function DropdownTriggerButton(_ref4) {
   var sekai = _ref4.sekai,
     themeMode = _ref4.themeMode,
     options = _ref4.options,
-    placeholder = _ref4.placeholder;
+    placeholder = _ref4.placeholder,
+    triggerRef = _ref4.triggerRef;
   var _useOptionalSekai2 = useOptionalSekai.useOptionalSekai({
       sekai: sekai,
       mode: themeMode
@@ -186,7 +187,7 @@ var DropdownTriggerButton = /*#__PURE__*/React.forwardRef(function (_ref4, ref) 
     setOpenOptions === null || setOpenOptions === void 0 || setOpenOptions(!openOptions);
   };
   return /*#__PURE__*/React.createElement("button", {
-    ref: ref,
+    ref: triggerRef,
     type: "button",
     className: Dropdown_module["sekai-dropdown-trigger-".concat(modeTheme)],
     onClick: handleClick,
@@ -199,8 +200,7 @@ var DropdownTriggerButton = /*#__PURE__*/React.forwardRef(function (_ref4, ref) 
     themeMode: themeMode,
     vector: "down"
   }));
-});
-DropdownTriggerButton.displayName = 'DropdownTriggerButton';
+};
 var DropdownOptions = function DropdownOptions(_ref6) {
   var style = _ref6.style,
     sekai = _ref6.sekai,

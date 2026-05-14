@@ -8,23 +8,7 @@ import { convertHexToRgba } from '@/utils/converter'
 
 import styles from './Pagination.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type PaginationSize = 'small' | 'medium' | 'large'
-
-export interface PaginationProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  count: number
-  page?: number
-  onChangePage?: (page: number) => void
-  siblingCount?: number
-  size?: PaginationSize
-}
+import type { PaginationProps } from '@/types/components/pagination/Pagination.types'
 
 const PaginationConstants = {
   PageTop: 0,
@@ -36,7 +20,7 @@ const PaginationConstants = {
 export const Pagination = ({
   sekai,
   themeMode,
-  count,
+  totalPages,
   page,
   onChangePage,
   siblingCount = PaginationConstants.DefaultSiblingCount,
@@ -54,7 +38,7 @@ export const Pagination = ({
 
   const { currentPage, handleChangePage, handlePrevPage, handleNextPage, rangePagination } =
     usePaginagion({
-      count,
+      totalPages,
       page,
       onChangePage,
       siblingCount,
@@ -112,15 +96,15 @@ const CtrlButton = ({ size, isPrev, onClick, ...rest }: CtrlButtonProps) => {
 
 type PaginationCustomHookProps = Pick<
   PaginationProps,
-  'count' | 'page' | 'onChangePage' | 'siblingCount'
+  'totalPages' | 'page' | 'onChangePage' | 'siblingCount'
 >
 const usePaginagion = ({
-  count,
+  totalPages,
   page,
   onChangePage,
   siblingCount = PaginationConstants.DefaultSiblingCount,
 }: PaginationCustomHookProps) => {
-  const pageLastIndex = useMemo(() => count - 1, [count])
+  const pageLastIndex = useMemo(() => totalPages - 1, [totalPages])
 
   const [currentPage, setCurrentPage] = useState(page ?? PaginationConstants.PageTop)
   const handleChangePage = useCallback(
@@ -177,7 +161,7 @@ const usePaginagion = ({
   // Function to calculate the middle range of pagination
   const calculateMiddleRange = useCallback((): number[] => {
     if (isEdgeIndex(currentPage)) {
-      const halfDisplayRange = Math.floor(Math.min(dispItemsCount, count - 1) / 2)
+      const halfDisplayRange = Math.floor(Math.min(dispItemsCount, totalPages - 1) / 2)
       const leftEdge =
         halfDisplayRange >= currentPage
           ? Math.max(2, halfDisplayRange - siblingCount)
@@ -198,7 +182,7 @@ const usePaginagion = ({
   }, [
     currentPage,
     siblingCount,
-    count,
+    totalPages,
     dispItemsCount,
     isEdgeIndex,
     leftSiblingIndex,
@@ -208,22 +192,22 @@ const usePaginagion = ({
 
   // Final range builder
   const rangePagination = useMemo(() => {
-    if (count <= PaginationConstants.BorderItemRange * 2 + 1)
-      return Array.from({ length: count }, (_, i) => i)
+    if (totalPages <= PaginationConstants.BorderItemRange * 2 + 1)
+      return Array.from({ length: totalPages }, (_, i) => i)
 
     return [
       PaginationConstants.PageTop,
-      ...(isBorderLeftEllipsis && dispItemsCount < count
+      ...(isBorderLeftEllipsis && dispItemsCount < totalPages
         ? [PaginationConstants.Ellipsis]
         : [PaginationConstants.PageTop + 1]),
       ...calculateMiddleRange(),
-      ...(isBorderRightEllipsis && dispItemsCount < count
+      ...(isBorderRightEllipsis && dispItemsCount < totalPages
         ? [PaginationConstants.Ellipsis]
         : [pageLastIndex - 1]),
       pageLastIndex,
     ]
   }, [
-    count,
+    totalPages,
     pageLastIndex,
     dispItemsCount,
     isBorderLeftEllipsis,

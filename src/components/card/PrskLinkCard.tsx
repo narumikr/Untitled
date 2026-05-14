@@ -13,22 +13,7 @@ import { OutlineText } from '../text/OutlineText'
 
 import styles from './PrskLinkCard.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface PrskLinkCardProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  height?: number
-  width?: number
-  onClick?: () => void
-  title: string
-  subText: string
-  icon: string | React.ReactNode
-}
+import type { PrskLinkCardProps } from '@/types/components/card/PrskLinkCard.types'
 
 export const PrskLinkCard = ({
   sekai,

@@ -8,21 +8,9 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './List.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
 export const ListContext = createContext<boolean>(false)
 
-export interface ListProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  as?: 'ul' | 'ol'
-  noBullet?: boolean
-}
+import type { ListProps } from '@/types/components/list/List.types'
 
 export const List = ({
   sekai,
@@ -39,14 +27,15 @@ export const List = ({
     '--sekai-color': sekaiColor,
   }
   const listStyleType = noBullet ? 'none' : undefined
-  const paddingLeft = noBullet ? '16px' : '36px'
+  const paddingLeft = noBullet ? '0px' : '36px'
 
   return (
     <ListContext.Provider value={true}>
       <Component
         {...rest}
+        ref={rest.ref as React.Ref<HTMLUListElement & HTMLOListElement>}
         className={clsx(
-          globalStyles[`sekai-color-${modeTheme}`],
+          globalStyles[`sekai-text-${modeTheme}`],
           styles['sekai-list'],
           rest.className,
         )}

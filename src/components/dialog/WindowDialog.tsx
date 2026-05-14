@@ -12,22 +12,7 @@ import { convertHexToRgbaMixWithBlackOrWhite } from '@/utils/converter'
 
 import styles from './WindowDialog.module.scss'
 
-import type { DialogSize } from './Dialog'
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface WindowDialogProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  open: boolean
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  size?: DialogSize
-  onClose: () => void
-}
+import type { WindowDialogProps } from '@/types/components/dialog/WindowDialog.types'
 
 export const WindowDialog = ({
   sekai,

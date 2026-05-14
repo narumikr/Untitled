@@ -18,8 +18,7 @@ var useSessionStorage = function useSessionStorage(sessionStorageKey, initialVal
     try {
       var items = sessionStorage.getItem(sessionStorageKey);
       if (items) {
-        var parsed = serialization.deserializeDataWithTemplate(JSON.parse(items), initialValue);
-        setStoredValue(parsed);
+        setStoredValue(serialization.deserializeData(JSON.parse(items)));
       }
     } catch (err) {
       logging.ConsoleError('Failed to get session storage value : ', err);
@@ -28,8 +27,7 @@ var useSessionStorage = function useSessionStorage(sessionStorageKey, initialVal
   React.useEffect(function () {
     if (!isInitialized.current) return;
     try {
-      var serialized = JSON.stringify(serialization.serializeData(storedValue));
-      sessionStorage.setItem(sessionStorageKey, serialized);
+      sessionStorage.setItem(sessionStorageKey, JSON.stringify(serialization.serializeData(storedValue)));
     } catch (err) {
       logging.ConsoleError('Failed to set session storage : ', err);
     }

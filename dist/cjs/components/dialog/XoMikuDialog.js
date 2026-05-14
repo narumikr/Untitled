@@ -48,7 +48,7 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
     return buttons === null || buttons === void 0 ? void 0 : buttons.map(function (button) {
       var type = button.type ? button.type : 'normal';
       return _objectSpread(_objectSpread({}, button), {}, {
-        buttonStyle: clsx(XoMikuDialog_module["sekai-xomiku-".concat(type, "-button")])
+        buttonClassName: clsx(XoMikuDialog_module["sekai-xomiku-".concat(type, "-button")])
       });
     });
   }, [buttons]);
@@ -65,6 +65,7 @@ var XoMikuDialog = function XoMikuDialog(_ref) {
   };
   if (!portalContainer) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement(Backdrop.Backdrop, overlayProps, /*#__PURE__*/React.createElement("div", _extends({}, rest, {
+    ref: rest.ref,
     role: "dialog",
     className: clsx(XoMikuDialog_module["sekai-container-".concat(size)], rest.className),
     "aria-label": title || 'Dialog'

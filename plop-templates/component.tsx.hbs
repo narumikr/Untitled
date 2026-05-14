@@ -6,16 +6,7 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './{{pascalCase component}}.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface {{pascalCase component}}Props {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-}
+import type { {{pascalCase component}}Props } from '@/types/components/{{kebabCase folder}}/{{pascalCase component}}.types'
 
 export const {{pascalCase component}} = ({
   sekai,

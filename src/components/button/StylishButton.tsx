@@ -8,20 +8,7 @@ import { convertHexToRgba } from '@/utils/converter'
 
 import styles from './StylishButton.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface StylishButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children?: React.ReactNode
-  disabled?: boolean
-  onClick?: () => void
-  arrowIcon?: boolean
-}
+import type { StylishButtonProps } from '@/types/components/button/StylishButton.types'
 
 export const StylishButton = ({
   sekai,
@@ -43,6 +30,7 @@ export const StylishButton = ({
   return (
     <button
       {...rest}
+      ref={rest.ref}
       type="button"
       className={clsx(styles[`sekai-stylish-button-${modeTheme}`], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}

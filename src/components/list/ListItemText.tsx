@@ -11,19 +11,7 @@ import { ListContext } from './List'
 
 import styles from './List.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface ListItemTextProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  as?: 'p' | 'span'
-  icon?: 'string' | React.ReactNode
-}
+import type { ListItemTextProps } from '@/types/components/list/ListItemText.types'
 
 export const ListItemText = ({
   sekai,
@@ -48,9 +36,10 @@ export const ListItemText = ({
   return (
     <li
       {...rest}
+      ref={rest.ref}
       className={clsx(
         styles['sekai-list-item-text'],
-        globalStyles[`sekai-color-${modeTheme}`],
+        globalStyles[`sekai-text-${modeTheme}`],
         rest.className,
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>

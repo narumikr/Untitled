@@ -53,7 +53,7 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
     return buttons === null || buttons === void 0 ? void 0 : buttons.map(function (button) {
       var type = button.type ? button.type : 'normal';
       return _objectSpread(_objectSpread({}, button), {}, {
-        buttonStyle: clsx(XxMikuDialog_module["sekai-xxmiku-".concat(type, "-button")], XxMikuDialog_module["sekai-".concat(modeTheme)])
+        buttonClassName: clsx(XxMikuDialog_module["sekai-xxmiku-".concat(type, "-button")], XxMikuDialog_module["sekai-".concat(modeTheme)])
       });
     });
   }, [buttons, modeTheme]);
@@ -70,6 +70,7 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
   };
   if (!portalContainer) return null;
   return /*#__PURE__*/reactDom.createPortal(/*#__PURE__*/React.createElement(Backdrop.Backdrop, overlayProps, /*#__PURE__*/React.createElement("div", _extends({}, rest, {
+    ref: rest.ref,
     role: "dialog",
     className: clsx(XxMikuDialog_module["sekai-container-".concat(size)], XxMikuDialog_module["sekai-".concat(modeTheme)], rest.className),
     "aria-label": title || 'Dialog'
@@ -89,9 +90,9 @@ var XxMikuDialog = function XxMikuDialog(_ref) {
   }), /*#__PURE__*/React.createElement("div", {
     className: XxMikuDialog_module['sekai-content-wrap']
   }, /*#__PURE__*/React.createElement(Dialog.DialogTitleHeader, _extends({
-    id: "xo-miku-dialog-header"
+    id: "xx-miku-dialog-header"
   }, headerProps)), children, /*#__PURE__*/React.createElement(Dialog.DialogButtons, _extends({
-    id: "xo-miku-dialog-buttons",
+    id: "xx-miku-dialog-buttons",
     className: XxMikuDialog_module['sekai-xxmiku-button']
   }, buttonsProps))))), portalContainer);
 };

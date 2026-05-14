@@ -26,6 +26,11 @@ export default function (plop) {
       },
       {
         type: 'add',
+        path: 'src/types/components/{{kebabCase folder}}/{{pascalCase component}}.types.ts',
+        templateFile: 'plop-templates/component.types.ts.hbs',
+      },
+      {
+        type: 'add',
         path: 'stories/{{kebabCase folder}}/{{pascalCase component}}.stories.tsx',
         templateFile: 'plop-templates/component.stories.tsx.hbs',
       },

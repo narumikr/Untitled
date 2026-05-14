@@ -65,6 +65,7 @@ const meta = {
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
       table: { type: { summary: 'React.ReactNode' } },
+      control: false,
     },
     containerComponent: {
       description: 'Target element where the portal content will be rendered',
@@ -79,6 +80,14 @@ const meta = {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
+      },
+      control: { type: 'boolean' },
+    },
+    blur: {
+      description: 'Whether to enable blurred overlay',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
       control: { type: 'boolean' },
     },
@@ -97,6 +106,7 @@ export const DefaultLight: Story = {
     open: true,
     children: <Loading />,
     centered: true,
+    blur: false,
   },
   parameters: {
     sekai: 'Miku',
@@ -113,6 +123,7 @@ export const DefaultDark: Story = {
     open: true,
     children: <Loading />,
     centered: true,
+    blur: false,
   },
   parameters: {
     sekai: 'Miku',
@@ -129,6 +140,7 @@ export const SekaiColorLight: Story = {
     open: true,
     children: <Loading />,
     centered: true,
+    blur: false,
   },
   parameters: {
     sekai: 'Miku',
@@ -145,6 +157,7 @@ export const SekaiColorDark: Story = {
     open: true,
     children: <Loading />,
     centered: true,
+    blur: false,
   },
   parameters: {
     sekai: 'Miku',

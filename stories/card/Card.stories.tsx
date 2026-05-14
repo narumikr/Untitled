@@ -4,7 +4,7 @@ import { Card, CardContent, CardTitle } from '@/components/card/Card'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { CardProps } from '@/components/card/Card'
+import type { CardProps } from '@/types/components/card/Card.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
@@ -58,11 +58,19 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
+    ref: {
+      description: 'Ref to the root element',
+      table: {
+        type: { summary: 'React.Ref<HTMLDivElement>' },
+      },
+      control: false,
+    },
     children: {
       description: 'Card contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
       table: { type: { summary: 'React.ReactNode' } },
+      control: false,
     },
   },
   args: {},

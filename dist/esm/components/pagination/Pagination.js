@@ -11,7 +11,7 @@ import { useOptionalSekai } from '../../internal/useOptionalSekai.js';
 import { convertHexToRgba } from '../../utils/converter.js';
 import styles from './Pagination.module.scss.js';
 
-var _excluded = ["sekai", "themeMode", "count", "page", "onChangePage", "siblingCount", "size"],
+var _excluded = ["sekai", "themeMode", "totalPages", "page", "onChangePage", "siblingCount", "size"],
   _excluded2 = ["size", "isPrev", "onClick"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -24,7 +24,7 @@ var PaginationConstants = {
 var Pagination = function Pagination(_ref) {
   var sekai = _ref.sekai,
     themeMode = _ref.themeMode,
-    count = _ref.count,
+    totalPages = _ref.totalPages,
     page = _ref.page,
     onChangePage = _ref.onChangePage,
     _ref$siblingCount = _ref.siblingCount,
@@ -45,7 +45,7 @@ var Pagination = function Pagination(_ref) {
     '--sekai-color-hover': sekaiColorHover
   };
   var _usePaginagion = usePaginagion({
-      count: count,
+      totalPages: totalPages,
       page: page,
       onChangePage: onChangePage,
       siblingCount: siblingCount
@@ -100,14 +100,14 @@ var CtrlButton = function CtrlButton(_ref2) {
   })));
 };
 var usePaginagion = function usePaginagion(_ref3) {
-  var count = _ref3.count,
+  var totalPages = _ref3.totalPages,
     page = _ref3.page,
     onChangePage = _ref3.onChangePage,
     _ref3$siblingCount = _ref3.siblingCount,
     siblingCount = _ref3$siblingCount === void 0 ? PaginationConstants.DefaultSiblingCount : _ref3$siblingCount;
   var pageLastIndex = useMemo(function () {
-    return count - 1;
-  }, [count]);
+    return totalPages - 1;
+  }, [totalPages]);
   var _useState = useState(page !== null && page !== void 0 ? page : PaginationConstants.PageTop),
     _useState2 = _slicedToArray(_useState, 2),
     currentPage = _useState2[0],
@@ -148,7 +148,7 @@ var usePaginagion = function usePaginagion(_ref3) {
   // Function to calculate the middle range of pagination
   var calculateMiddleRange = useCallback(function () {
     if (isEdgeIndex(currentPage)) {
-      var halfDisplayRange = Math.floor(Math.min(dispItemsCount, count - 1) / 2);
+      var halfDisplayRange = Math.floor(Math.min(dispItemsCount, totalPages - 1) / 2);
       var leftEdge = halfDisplayRange >= currentPage ? Math.max(2, halfDisplayRange - siblingCount) : Math.min(pageLastIndex - 2, Math.max(pageLastIndex - halfDisplayRange - siblingCount, halfDisplayRange));
       return Array.from({
         length: Math.min(pageLastIndex - 1, leftEdge + 1 + siblingCount * 2) - leftEdge
@@ -162,16 +162,16 @@ var usePaginagion = function usePaginagion(_ref3) {
         return leftSiblingIndex + i;
       });
     }
-  }, [currentPage, siblingCount, count, dispItemsCount, isEdgeIndex, leftSiblingIndex, rightSiblingIndex, pageLastIndex]);
+  }, [currentPage, siblingCount, totalPages, dispItemsCount, isEdgeIndex, leftSiblingIndex, rightSiblingIndex, pageLastIndex]);
   // Final range builder
   var rangePagination = useMemo(function () {
-    if (count <= PaginationConstants.BorderItemRange * 2 + 1) return Array.from({
-      length: count
+    if (totalPages <= PaginationConstants.BorderItemRange * 2 + 1) return Array.from({
+      length: totalPages
     }, function (_, i) {
       return i;
     });
-    return [PaginationConstants.PageTop].concat(_toConsumableArray(isBorderLeftEllipsis && dispItemsCount < count ? [PaginationConstants.Ellipsis] : [PaginationConstants.PageTop + 1]), _toConsumableArray(calculateMiddleRange()), _toConsumableArray(isBorderRightEllipsis && dispItemsCount < count ? [PaginationConstants.Ellipsis] : [pageLastIndex - 1]), [pageLastIndex]);
-  }, [count, pageLastIndex, dispItemsCount, isBorderLeftEllipsis, isBorderRightEllipsis, calculateMiddleRange]);
+    return [PaginationConstants.PageTop].concat(_toConsumableArray(isBorderLeftEllipsis && dispItemsCount < totalPages ? [PaginationConstants.Ellipsis] : [PaginationConstants.PageTop + 1]), _toConsumableArray(calculateMiddleRange()), _toConsumableArray(isBorderRightEllipsis && dispItemsCount < totalPages ? [PaginationConstants.Ellipsis] : [pageLastIndex - 1]), [pageLastIndex]);
+  }, [totalPages, pageLastIndex, dispItemsCount, isBorderLeftEllipsis, isBorderRightEllipsis, calculateMiddleRange]);
   return {
     currentPage: currentPage,
     handleChangePage: handleChangePage,

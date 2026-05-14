@@ -10,7 +10,7 @@ var useOptionalSekai = require('../../internal/useOptionalSekai.js');
 var sekaiColors = require('../../styles/sekai-colors.js');
 var Divider_module = require('./Divider.module.scss.js');
 
-var _excluded = ["sekai", "themeMode", "children", "pairColor", "lineHeight", "variant", "textAlign", "shadow"];
+var _excluded = ["sekai", "themeMode", "children", "pairSekaiColor", "lineHeight", "variant", "textAlign", "shadow"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var DEFAULT_LINE_HEIGHT = '2px';
@@ -18,7 +18,7 @@ var Divider = function Divider(_ref) {
   var sekai = _ref.sekai,
     themeMode = _ref.themeMode,
     children = _ref.children,
-    pairColor = _ref.pairColor,
+    pairSekaiColor = _ref.pairSekaiColor,
     lineHeight = _ref.lineHeight,
     _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'fullWidth' : _ref$variant,
@@ -32,7 +32,7 @@ var Divider = function Divider(_ref) {
     }),
     sekaiColor = _useOptionalSekai.sekaiColor,
     modeTheme = _useOptionalSekai.modeTheme;
-  var gradientColor = pairColor ? sekaiColors.colorsSekai[pairColor] : 'transparent';
+  var gradientColor = pairSekaiColor ? sekaiColors.colorsSekai[pairSekaiColor] : 'transparent';
   var shadowStyle = Boolean(shadow) ? Divider_module["sekai-divider-shadow-".concat(modeTheme)] : '';
   var optionStyle = {
     '--sekai-color': sekaiColor,

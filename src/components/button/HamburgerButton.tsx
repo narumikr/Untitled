@@ -7,18 +7,7 @@ import { convertHexToRgba } from '@/utils/converter'
 
 import styles from './HamburgerButton.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface HamburgerButtonProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  open: boolean
-  onClick?: () => void
-}
+import type { HamburgerButtonProps } from '@/types/components/button/HamburgerButton.types'
 
 export const HamburgerButton = ({ sekai, themeMode, open, ...rest }: HamburgerButtonProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
@@ -31,6 +20,7 @@ export const HamburgerButton = ({ sekai, themeMode, open, ...rest }: HamburgerBu
   return (
     <button
       {...rest}
+      ref={rest.ref}
       type="button"
       className={clsx(styles[`sekai-hamburger-button-${modeTheme}`], rest.className)}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}

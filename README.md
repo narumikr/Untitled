@@ -1,10 +1,10 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:33aaee,100:ffc800&text=Hello%20SEKAI&section=header&fontAlign=39&fontAlignY=45&fontSize=50&textBg=false&reversal=false&animation=fadeIn&desc=React%20prsk%20theme%20UI%20Library&descAlign=50&descSize=-1&descAlignY=55&fontColor=f5f5f7" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:33aaee,100:ffc800&text=Hello%20SEKAI&section=header&fontAlign=45&fontAlignY=40&fontSize=50&textBg=false&reversal=false&animation=fadeIn&desc=React%20prsk%20theme%20UI%20Library&descAlign=65&descSize=-1&descAlignY=55&fontColor=f5f5f7" />
 
 # **_Untitled_**
 
-![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&lines=Welcome+to+Untitled+UI+library!;きっと...;)
+![welcome comment](https://readme-typing-svg.herokuapp.com?color=%2333ccba&width=500&lines=Hello+there!!+Thanks+for+stopping+by+🎵;Welcome+to+my+SEKAI+💫;Just+showing+big+love+for+prsk+💚;)
 
-<img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" />
+<img src="https://img.shields.io/badge/License-Fan_made-lightgreen" alt="License: Fan-made" />
 
 #### **_Tech Stack_**
 
@@ -73,15 +73,22 @@ export const TopPage = () => {
 }
 ```
 
+### sekai-style.css
+
+ルートコンポーネントにimportしてください
+
+untitled-ui-libraryはこのsekai-style.cssのimportがない場合、スタイルが適切に反映されません
+
 ### sekai-colors.css
 
-ルートコンポーネントにimportすることでグローバルなカスタムプロパティとして利用することができる
+ルートコンポーネントにimportすることでグローバルなカスタムプロパティとして利用することができます
 
 #### \_app.tsx
 
 ```ts
 import type { AppProps } from 'next/app'
 import '@/styles/globals.scss'
+import '@naru/untitled-ui-library/sekai-style.css'
 import '@naru/untitled-ui-library/color/sekai-colors.css'
 ...
 ```

@@ -7,7 +7,7 @@ import { ListItemButton } from '@/components/list/ListItemButton'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { ListItemButtonProps } from '@/components/list/ListItemButton'
+import type { ListItemButtonProps } from '@/types/components/list/ListItemButton.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
@@ -54,11 +54,21 @@ const meta = {
       control: { type: 'select' },
       options: ['light', 'dark'],
     },
+    ref: {
+      description: 'Ref to the root element',
+      table: {
+        type: { summary: 'React.Ref<HTMLButtonElement>' },
+      },
+      control: false,
+    },
     children: {
       description: 'ListItemButton contents',
       // @ts-expect-error Storybook's typing issue
       type: { required: true },
-      table: { type: { summary: 'React.ReactNode' } },
+      table: {
+        type: { summary: 'React.ReactNode' },
+      },
+      control: false,
     },
     icon: {
       description: 'Icon src or component',

@@ -1,0 +1,23 @@
+name: prsk Doctor Deps
+
+on:
+  schedule:
+    # 毎週金曜日の25時
+    - cron: "0 16 * * 5"
+  workflow_dispatch:
+
+jobs:
+  doctor-deps:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: narumikr/link-sekai-actions/prsk-doctor-deps@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'chore/npm-security-report'

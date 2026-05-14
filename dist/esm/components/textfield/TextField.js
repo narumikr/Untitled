@@ -10,7 +10,7 @@ import { ClearSvg } from '../../img/clear.js';
 import { useOptionalSekai } from '../../internal/useOptionalSekai.js';
 import styles from './TextField.module.scss.js';
 
-var _excluded = ["id", "className", "style", "sekai", "themeMode", "clearButton", "onChangeInput", "isError", "errorMessage"];
+var _excluded = ["id", "className", "style", "sekai", "themeMode", "showClearButton", "onChangeInput", "isError", "errorMessage"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var TextField = function TextField(_ref) {
@@ -19,8 +19,8 @@ var TextField = function TextField(_ref) {
     style = _ref.style,
     sekai = _ref.sekai,
     themeMode = _ref.themeMode,
-    _ref$clearButton = _ref.clearButton,
-    clearButton = _ref$clearButton === void 0 ? true : _ref$clearButton,
+    _ref$showClearButton = _ref.showClearButton,
+    showClearButton = _ref$showClearButton === void 0 ? true : _ref$showClearButton,
     onChangeInput = _ref.onChangeInput,
     _ref$isError = _ref.isError,
     isError = _ref$isError === void 0 ? false : _ref$isError,
@@ -58,10 +58,10 @@ var TextField = function TextField(_ref) {
     id: "".concat(id, "-input"),
     type: "text"
   }, inputProps, {
-    className: clsx(styles["sekai-textfield-input-".concat(modeTheme)], _defineProperty({}, styles['sekai-textfield-clear'], clearButton)),
+    className: clsx(styles["sekai-textfield-input-".concat(modeTheme)], _defineProperty({}, styles['sekai-textfield-clear'], showClearButton)),
     value: inputValue,
     onChange: handleInputChange
-  })), clearButton && inputValue.length ? /*#__PURE__*/React.createElement("button", {
+  })), showClearButton && inputValue.length ? /*#__PURE__*/React.createElement("button", {
     className: clsx(styles['sekai-textfield-clear-button']),
     onClick: handleClearInput
   }, /*#__PURE__*/React.createElement(ClearSvg, {

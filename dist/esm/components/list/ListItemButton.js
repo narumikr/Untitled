@@ -1,6 +1,6 @@
 'use client';
 import _defineProperty from '@babel/runtime/helpers/defineProperty';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useCallback } from 'react';
 import clsx from 'clsx';
 import { ConsoleWarning } from '../../internal/logging.js';
 import { useOptionalSekai } from '../../internal/useOptionalSekai.js';
@@ -21,7 +21,8 @@ var ListItemButton = function ListItemButton(_ref) {
     icon = _ref.icon,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    onClick = _ref.onClick;
+    onClick = _ref.onClick,
+    ref = _ref.ref;
   var isListWrap = useContext(ListContext);
   if (!isListWrap) ConsoleWarning('⚠ Warning: <ListItemButton> should be used inside <List>');
   var _useOptionalSekai = useOptionalSekai({
@@ -37,6 +38,14 @@ var ListItemButton = function ListItemButton(_ref) {
     '--sekai-color-hover': sekaiColorHover
   };
   var listItemButtonRef = useRef(null);
+  var setRefs = useCallback(function (element) {
+    listItemButtonRef.current = element;
+    if (typeof ref === 'function') {
+      ref(element);
+    } else if (ref) {
+      ref.current = element;
+    }
+  }, [ref]);
   var createRipple = function createRipple(event) {
     var listItemButton = listItemButtonRef.current;
     if (!listItemButton) return;
@@ -64,7 +73,7 @@ var ListItemButton = function ListItemButton(_ref) {
     style: _objectSpread(_objectSpread({}, optionStyle), style)
   }, /*#__PURE__*/React.createElement("button", {
     type: "button",
-    ref: listItemButtonRef,
+    ref: setRefs,
     className: styles["sekai-list-button-".concat(modeTheme)],
     disabled: disabled,
     onClick: handleOnClick

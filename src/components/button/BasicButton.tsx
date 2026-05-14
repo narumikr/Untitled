@@ -9,25 +9,12 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './BasicButton.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export type BasicButtonProps = {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  withText?: boolean
-  themeMode?: PaletteMode
-  children?: React.ReactNode
-  disabled?: boolean
-  onClick?: () => void
-} & React.ButtonHTMLAttributes<HTMLButtonElement>
+import type { BasicButtonProps } from '@/types/components/button/BasicButton.types'
 
 export const BasicButton = ({
   sekai,
-  withText = false,
   themeMode,
+  withTextSekaiColor = false,
   children,
   disabled = false,
   ...rest
@@ -39,12 +26,13 @@ export const BasicButton = ({
   const optionStyle = {
     '--sekai-color': sekaiColor,
     '--sekai-color-hover': sekaiColorHover,
-    ...(withText && { color: sekaiColor }),
+    ...(withTextSekaiColor && { color: sekaiColor }),
   }
 
   return (
     <button
       {...rest}
+      ref={rest.ref}
       type="button"
       className={clsx(
         styles[`sekai-basic-button-${modeTheme}`],

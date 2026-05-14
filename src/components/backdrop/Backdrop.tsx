@@ -11,20 +11,7 @@ import globalStyles from '@/styles/global.module.scss'
 
 import styles from './Backdrop.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface BackdropProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  open: boolean
-  children: React.ReactNode
-  containerComponent?: HTMLElement
-  centered?: boolean
-}
+import type { BackdropProps } from '@/types/components/backdrop/Backdrop.types'
 
 export const Backdrop = ({
   sekai,
@@ -33,10 +20,12 @@ export const Backdrop = ({
   children,
   containerComponent,
   centered = true,
+  blur = false,
   ...rest
 }: BackdropProps) => {
   const displayBackdrop = open ? 'sekai-backdrop-visible' : 'sekai-backdrop-hidden'
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
+  const currentOverlayVariant = blur ? `blur-${modeTheme}` : modeTheme
   const sekaiColorBg = convertHexToRgbaMixWithBlackOrWhite(sekaiColor, 0.5, false, 0.8)
   const portalContainer = usePortalContainer(containerComponent)
 
@@ -52,7 +41,7 @@ export const Backdrop = ({
       <div
         {...rest}
         className={clsx(
-          globalStyles[`sekai-overlay-${modeTheme}`],
+          globalStyles[`sekai-overlay-${currentOverlayVariant}`],
           {
             [styles['sekai-backdrop-bg']]: sekai,
             [styles['sekai-backdrop-centered']]: centered,

@@ -6,27 +6,15 @@ import { useOptionalSekai } from '@/internal/useOptionalSekai'
 
 import styles from './Breadcrumb.module.scss'
 
-import type { PaletteMode } from '@/hooks/useThemeMode'
-import type { ColorsSekaiKey } from '@/styles/sekai-colors'
+import type { BreadcrumbProps } from '@/types/components/breadcrumb/Breadcrumb.types'
 
 type SeparatorVariant = 'slash' | 'arrow' | 'chevron' | 'dot' | 'pipe'
-
 const separatorMap: Record<SeparatorVariant, string> = {
   slash: '/',
   arrow: '→',
   chevron: '>',
   dot: '•',
   pipe: '|',
-}
-
-export interface BreadcrumbProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  themeMode?: PaletteMode
-  children: React.ReactNode
-  separator?: SeparatorVariant
 }
 
 export const Breadcrumb = ({
@@ -37,11 +25,13 @@ export const Breadcrumb = ({
   ...rest
 }: BreadcrumbProps) => {
   const { sekaiColor, modeTheme } = useOptionalSekai({ sekai, mode: themeMode })
-  const items = React.Children.toArray(children).flatMap((el) =>
-    React.isValidElement(el) && el.type === React.Fragment
-      ? React.Children.toArray(el.props.children)
-      : [el],
-  )
+  const items = React.Children.toArray(children).flatMap((child) => {
+    if (React.isValidElement(child) && child.type === React.Fragment) {
+      const el = child as React.ReactElement<{ children?: React.ReactNode }>
+      return React.Children.toArray(el.props.children)
+    }
+    return [child]
+  })
 
   const optionStyle = {
     '--sekai-color': sekaiColor,

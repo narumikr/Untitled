@@ -14,17 +14,7 @@ import { ListItemText } from './ListItemText'
 import styles from './StickyNote.module.scss'
 
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
-
-export interface StickyNoteProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  sekai?: ColorsSekaiKey
-  children: React.ReactNode
-  as?: 'button' | 'text'
-  disabled?: boolean
-  onClick?: () => void
-}
+import type { StickyNoteProps } from '@/types/components/list/StickyNote.types'
 
 export const StickyNote = ({ sekai, children, as = 'button', ...rest }: StickyNoteProps) => {
   const isListWrap = useContext(ListContext)
