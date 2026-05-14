@@ -8,6 +8,8 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { ListItemTextProps } from '@/types/components/list/ListItemText.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+const youtubeSvg = new URL('../assets/youtube.svg', import.meta.url).href
+
 const meta = {
   title: 'UI/ListItemText',
   component: ListItemText,
@@ -142,7 +144,7 @@ export const IconLight: Story = {
     themeMode: 'light',
     children: <></>,
     as: 'p',
-    icon: '../../../stories/assets/youtube.svg',
+    icon: youtubeSvg,
   },
   parameters: {
     sekai: 'Miku',
@@ -158,7 +160,7 @@ export const IconDark: Story = {
     themeMode: 'dark',
     children: <></>,
     as: 'p',
-    icon: '../../../stories/assets/youtube.svg',
+    icon: youtubeSvg,
   },
   parameters: {
     sekai: 'Miku',
