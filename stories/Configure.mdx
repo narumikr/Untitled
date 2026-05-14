@@ -157,43 +157,59 @@ export const GitHubIcon = () => (
 
   <div className="category-grid">
     <div className="category-card">
-      <span className="category-icon">🔘</span>
-      <h4 className="category-name">Button</h4>
+      <div className="category-header">
+        <span className="category-icon">🔘</span>
+        <h4 className="category-name">Button</h4>
+      </div>
       <p className="category-items">BasicButton · StrongButton · StylishButton · HamburgerButton · ScrollTopButton</p>
     </div>
     <div className="category-card">
-      <span className="category-icon">🃏</span>
-      <h4 className="category-name">Card</h4>
+      <div className="category-header">
+        <span className="category-icon">🃏</span>
+        <h4 className="category-name">Card</h4>
+      </div>
       <p className="category-items">Card · MusicBannerCard · PrskLinkCard</p>
     </div>
     <div className="category-card">
-      <span className="category-icon">💬</span>
-      <h4 className="category-name">Dialog</h4>
+      <div className="category-header">
+        <span className="category-icon">💬</span>
+        <h4 className="category-name">Dialog</h4>
+      </div>
       <p className="category-items">Dialog · WindowDialog · XoMikuDialog · XxMikuDialog</p>
     </div>
     <div className="category-card">
-      <span className="category-icon">✨</span>
-      <h4 className="category-name">Effect</h4>
+      <div className="category-header">
+        <span className="category-icon">✨</span>
+        <h4 className="category-name">Effect</h4>
+      </div>
       <p className="category-items">IntoTheSekai · SekaiBackground · DoReMeetEffect</p>
     </div>
     <div className="category-card">
-      <span className="category-icon">📝</span>
-      <h4 className="category-name">Text</h4>
+      <div className="category-header">
+        <span className="category-icon">📝</span>
+        <h4 className="category-name">Text</h4>
+      </div>
       <p className="category-items">TypewriterText · MarqueeText · OutlineText · NamePlate</p>
     </div>
     <div className="category-card">
-      <span className="category-icon">📋</span>
-      <h4 className="category-name">Form</h4>
+      <div className="category-header">
+        <span className="category-icon">📋</span>
+        <h4 className="category-name">Form</h4>
+      </div>
       <p className="category-items">TextField · Checkbox · Chip · Dropdown · Select</p>
     </div>
     <div className="category-card">
-      <span className="category-icon">🗂️</span>
-      <h4 className="category-name">Layout</h4>
+      <div className="category-header">
+        <span className="category-icon">🗂️</span>
+        <h4 className="category-name">Layout</h4>
+      </div>
       <p className="category-items">Accordion · Drawer · Divider · Breadcrumb · Pagination</p>
     </div>
     <div className="category-card">
-      <span className="category-icon">💡</span>
-      <h4 className="category-name">Feedback</h4>
+      <div className="category-header">
+        <span className="category-icon">💡</span>
+        <h4 className="category-name">Feedback</h4>
+      </div>
       <p className="category-items">Toast · Tooltip · Loading · Backdrop · List</p>
     </div>
   </div>
@@ -666,14 +682,20 @@ export const App = ({ children }) => (
     box-shadow: 0 6px 18px rgba(51, 103, 204, 0.1);
   }
 
-  .category-icon {
-    display: block;
-    font-size: 1.5rem;
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-bottom: 8px;
   }
 
+  .category-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
   .category-name {
-    margin: 0 0 6px;
+    margin: 0;
     font-size: 0.95rem;
     font-weight: 700;
     color: #33ccba;
