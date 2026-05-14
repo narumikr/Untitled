@@ -6,455 +6,935 @@ export const RightArrow = () => (
     width="8px"
     height="14px"
     style={{
-      'marginLeft': '4px',
-      'display': 'inline-block',
-      'shapeRendering': 'inherit',
-      'verticalAlign': 'middle',
-      'fill': 'currentColor',
-      'path fill': 'currentColor',
+      marginLeft: '4px',
+      display: 'inline-block',
+      shapeRendering: 'inherit',
+      verticalAlign: 'middle',
+      fill: 'currentColor',
     }}>
     <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
   </svg>
 )
 
+export const SunIcon = () => (
+  <svg viewBox="0 0 24 24" width="24px" height="36px" fill="#ffc800" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+    <circle cx="12" cy="12" r="4.5" />
+    <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#ffc800" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+)
+
+export const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" width="24px" height="30px" fill="#ffc800" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+)
+
+export const GitHubIcon = () => (
+  <svg viewBox="0 0 24 24" width="18px" height="18px" style={{ display: 'inline-block', verticalAlign: 'middle', fill: 'currentColor', marginRight: '6px' }}>
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+  </svg>
+)
+
 <Meta title="Untitled/Welcome" />
 
-<div className="sb-container">
-  <div className='sb-section-title'>
-    # Welcome to Untitled UI Library 💫
+{/* ── HERO ───────────────────────────────────────────────────── */}
+<div className="hero">
+  <div className="hero-decoration hero-decoration--left" />
+  <div className="hero-decoration hero-decoration--right" />
 
-    **きっと...**
+  <div className="hero-inner">
+    <div className="hero-eyebrow">Project SEKAI × React</div>
 
-    プロセカ(Project SEKAI)をコンセプトにしたReact UIコンポーネントライブラリです。
-    40+のテーマカラーと、ライト/ダークモード対応のコンポーネントを提供しています。
+    <h1 className="hero-title">Untitled<br />UI Library</h1>
 
+    <p className="hero-tagline">
+      きっと...<br />
+      プロセカをコンセプトにした React コンポーネントライブラリ
+    </p>
+
+    <div className="hero-badges">
+      <span className="badge badge--green">TypeScript</span>
+      <span className="badge badge--blue">React 18</span>
+    </div>
+
+    <div className="hero-install">
+      <code className="hero-install-code">npm install github:Narumikr/Untitled#release/untitled</code>
+    </div>
   </div>
 </div>
 
-<div className="sb-container">
-  <div className='sb-section-title'>
-    ## 🎨 What we provide
-
+{/* ── STATS ──────────────────────────────────────────────────── */}
+<div className="stats-bar">
+  <div className="stat">
+    <span className="stat-num">39+</span>
+    <span className="stat-lbl">Components</span>
   </div>
-  <div className="sb-section">
-    <div className="sb-section-item">
-      <h4 className="sb-section-item-heading">🌈 SEKAI Colors</h4>
-      <p className="sb-section-item-paragraph">
-        40+のプロセカキャラクター・ユニットカラーをTypeScriptとCSSカスタムプロパティで提供。
-        hex形式のカラーコードに加え、RGB/RGBA変換ユーティリティも用意しています。
+  <div className="stat-divider" />
+  <div className="stat">
+    <span className="stat-num">26+6</span>
+    <span className="stat-lbl">SEKAI Colors</span>
+  </div>
+  <div className="stat-divider" />
+  <div className="stat">
+    <span className="stat-num stat-num--modes">
+      <SunIcon />
+      <span className="mode-sep">/</span>
+      <MoonIcon />
+    </span>
+    <span className="stat-lbl">Light &amp; Dark</span>
+  </div>
+  <div className="stat-divider" />
+  <div className="stat">
+    <span className="stat-num">100%</span>
+    <span className="stat-lbl">TypeScript</span>
+  </div>
+</div>
+
+{/* ── FEATURES ───────────────────────────────────────────────── */}
+<section className="section">
+  <h2 className="section-heading">What we provide</h2>
+  <p className="section-sub">セカイカラーでデザインされたコンポーネントを、あなたのアプリへ。</p>
+
+  <div className="feature-grid">
+    <div className="feature-card">
+      <div className="feature-header">
+        <div className="feature-icon">🎨</div>
+        <h3 className="feature-title">SEKAI Colors</h3>
+      </div>
+      <p className="feature-desc">
+        26+6 のプロセカキャラクター・ユニットカラーを TypeScript と CSS カスタムプロパティで提供。RGB / RGBA 変換ユーティリティも搭載。
       </p>
-      <a href="?path=/docs/special-color--docs">
-        Explore Colors<RightArrow />
+      <a href="./?path=/docs/special-sekaicolor--docs" target="_top" className="feature-link">
+        カラーを探る <RightArrow />
       </a>
     </div>
-    <div className="sb-section-item">
-      <h4 className="sb-section-item-heading">🎭 UI Components</h4>
-      <p className="sb-section-item-paragraph">
-        Button、Dialog、Card、Effectなど、40+のReactコンポーネント。
-        すべてのコンポーネントがSEKAIテーマとライト/ダークモードに対応しています。
+
+    <div className="feature-card">
+      <div className="feature-header">
+        <div className="feature-icon">🎭</div>
+        <h3 className="feature-title">UI Components</h3>
+      </div>
+      <p className="feature-desc">
+        Button、Dialog、Card、Effect など 39+ の React コンポーネント。すべてが SEKAI テーマとライト / ダークモードに対応。
       </p>
-      <a href="?path=/docs/button-basicbutton--docs">
-        Browse Components<RightArrow />
+      <a href="./?path=/docs/ui-basicbutton--docs" target="_top" className="feature-link">
+        コンポーネントへ <RightArrow />
       </a>
     </div>
-    <div className="sb-section-item">
-      <h4 className="sb-section-item-heading">🎪 Theme Provider</h4>
-      <p className="sb-section-item-paragraph">
-        YourSekaiProviderでアプリ全体のテーマを管理。
-        セカイの持ち主の変更やライト/ダークモード切り替えが簡単に実装できます。
+
+    <div className="feature-card">
+      <div className="feature-header">
+        <div className="feature-icon">🎪</div>
+        <h3 className="feature-title">Theme Provider</h3>
+      </div>
+      <p className="feature-desc">
+        YourSekaiProvider でアプリ全体のテーマを一元管理。セカイの持ち主の変更やモード切り替えが数行で実装できます。
       </p>
-      <a href="https://github.com/Narumikr/Untitled#readme" target="_blank">
-        Learn More<RightArrow />
+      <a href="https://github.com/Narumikr/Untitled#yoursekaiprovider" target="_blank" className="feature-link">
+        詳しく知る <RightArrow />
+      </a>
+    </div>
+
+    <div className="feature-card">
+      <div className="feature-header">
+        <div className="feature-icon">♿</div>
+        <h3 className="feature-title">Accessibility First</h3>
+      </div>
+      <p className="feature-desc">
+        セマンティック HTML・ARIA 属性・キーボードナビゲーション・WCAG AA カラーコントラストを全コンポーネントで標準サポート。
+      </p>
+      <a href="https://github.com/Narumikr/Untitled#yoursekaiprovider" target="_blank" className="feature-link">
+        詳しく知る <RightArrow />
       </a>
     </div>
   </div>
-</div>
+</section>
 
-<div className="sb-container">
-  <div className='sb-section-title'>
-    ## ✨ Featured Components (Special)
+{/* ── COMPONENT CATEGORIES ────────────────────────────────────── */}
+<section className="section">
+  <h2 className="section-heading">Component Categories</h2>
+  <p className="section-sub">目的別に整理されたコンポーネント群</p>
 
-    力を入れて作成したコンポーネントたちです。ぜひ使ってみてください！
-
+  <div className="category-grid">
+    <div className="category-card">
+      <span className="category-icon">🔘</span>
+      <h4 className="category-name">Button</h4>
+      <p className="category-items">BasicButton · StrongButton · StylishButton · HamburgerButton · ScrollTopButton</p>
+    </div>
+    <div className="category-card">
+      <span className="category-icon">🃏</span>
+      <h4 className="category-name">Card</h4>
+      <p className="category-items">Card · MusicBannerCard · PrskLinkCard</p>
+    </div>
+    <div className="category-card">
+      <span className="category-icon">💬</span>
+      <h4 className="category-name">Dialog</h4>
+      <p className="category-items">Dialog · WindowDialog · XoMikuDialog · XxMikuDialog</p>
+    </div>
+    <div className="category-card">
+      <span className="category-icon">✨</span>
+      <h4 className="category-name">Effect</h4>
+      <p className="category-items">IntoTheSekai · SekaiBackground · DoReMeetEffect</p>
+    </div>
+    <div className="category-card">
+      <span className="category-icon">📝</span>
+      <h4 className="category-name">Text</h4>
+      <p className="category-items">TypewriterText · MarqueeText · OutlineText · NamePlate</p>
+    </div>
+    <div className="category-card">
+      <span className="category-icon">📋</span>
+      <h4 className="category-name">Form</h4>
+      <p className="category-items">TextField · Checkbox · Chip · Dropdown · Select</p>
+    </div>
+    <div className="category-card">
+      <span className="category-icon">🗂️</span>
+      <h4 className="category-name">Layout</h4>
+      <p className="category-items">Accordion · Drawer · Divider · Breadcrumb · Pagination</p>
+    </div>
+    <div className="category-card">
+      <span className="category-icon">💡</span>
+      <h4 className="category-name">Feedback</h4>
+      <p className="category-items">Toast · Tooltip · Loading · Backdrop · List</p>
+    </div>
   </div>
+</section>
 
-  <div className="sb-section">
-    <div className="sb-features-grid">
-      <div className="sb-grid-item">
-        <h4 className="sb-section-item-heading">🎬 IntoTheSekai</h4>
-        <p className="sb-section-item-paragraph">
-          SEKAIへ飛び込むような演出エフェクト。ページ遷移やアプリ起動時に最適なアニメーションコンポーネントです。
-        </p>
-        <a href="?path=/docs/special-intothesekai--docs">
-          View Story<RightArrow />
-        </a>
+{/* ── FEATURED SPECIAL ────────────────────────────────────────── */}
+<section className="section">
+  <h2 className="section-heading">Featured Components</h2>
+  <p className="section-sub">力を入れて作ったスペシャルなコンポーネントたち</p>
+
+  <div className="special-grid">
+    <a href="./?path=/docs/special-intothesekai--docs" target="_top" className="special-card">
+      <div className="special-badge">Effect</div>
+      <h3 className="special-name">🎬 IntoTheSekai</h3>
+      <p className="special-desc">SEKAIへ飛び込むような演出エフェクト。ページ遷移やアプリ起動時に最適なアニメーション。</p>
+    </a>
+
+    <a href="./?path=/docs/special-sekaibackground--docs" target="_top" className="special-card">
+      <div className="special-badge">Effect</div>
+      <h3 className="special-name">🌟 SekaiBackground</h3>
+      <p className="special-desc">SEKAIの世界観を表現する没入感のある背景エフェクト。アプリの雰囲気を一変させます。</p>
+    </a>
+
+    <a href="./?path=/docs/special-doremeeteffect--docs" target="_top" className="special-card">
+      <div className="special-badge">Effect</div>
+      <h3 className="special-name">🎵 DoReMeetEffect</h3>
+      <p className="special-desc">音楽的な演出を加えるエフェクト。インタラクティブな体験をワンコンポーネントで実現。</p>
+    </a>
+
+    <a href="./?path=/docs/special-xomikudialog--docs" target="_top" className="special-card">
+      <div className="special-badge">Dialog</div>
+      <h3 className="special-name">💬 XoMikuDialog</h3>
+      <p className="special-desc">「開かれた窓のセカイ」のミクをイメージしたコンセプトダイアログ。個性的なデザイン。</p>
+    </a>
+
+    <a href="./?path=/docs/special-xxmikudialog--docs" target="_top" className="special-card">
+      <div className="special-badge">Dialog</div>
+      <h3 className="special-name">✖️ XxMikuDialog</h3>
+      <p className="special-desc">もうひとつのミクダイアログバリエーション。異なる雰囲気のビジュアルが楽しめます。</p>
+    </a>
+
+    <a href="./?path=/docs/special-musicbannercard--docs" target="_top" className="special-card">
+      <div className="special-badge">Card</div>
+      <h3 className="special-name">🎴 MusicBannerCard</h3>
+      <p className="special-desc">楽曲バナーをイメージしたカードコンポーネント。プロセカらしいデザインを手軽に実装。</p>
+    </a>
+
+    <a href="./?path=/docs/special-prsklinkcard--docs" target="_top" className="special-card">
+      <div className="special-badge">Card</div>
+      <h3 className="special-name">🔗 PrskLinkCard</h3>
+      <p className="special-desc">プロセカスタイルのリンクカード。外部リンクやナビゲーションに最適な表現。</p>
+    </a>
+
+    <a href="./?path=/docs/special-sekaicharacter--docs" target="_top" className="special-card">
+      <div className="special-badge">Special</div>
+      <h3 className="special-name">👥 Character</h3>
+      <p className="special-desc">キャラクター情報を表示するコンポーネント。SEKAIカラーテーマと連動した豊かな表現。</p>
+    </a>
+  </div>
+</section>
+
+{/* ── INSTALLATION ────────────────────────────────────────────── */}
+<section className="section">
+  <h2 className="section-heading">Get Started</h2>
+  <p className="section-sub">すぐに始められます</p>
+
+  <div className="getstarted-grid">
+    <div className="getstarted-block">
+      <h3 className="getstarted-title">Installation</h3>
+      <div className="code-block">
+        <div className="code-label">npm</div>
+        <pre><code>{`npm install github:Narumikr/Untitled#release/untitled`}</code></pre>
       </div>
-      <div className="sb-grid-item">
-        <h4 className="sb-section-item-heading">🌟 SekaiBackground</h4>
-        <p className="sb-section-item-paragraph">
-          SEKAIの世界観を表現する背景エフェクト。アプリの背景として設置することで、没入感のあるUIを実現できます。
-        </p>
-        <a href="?path=/docs/special-sekaibackground--docs">
-          View Story<RightArrow />
-        </a>
+      <div className="code-block" style={{ marginTop: '12px' }}>
+        <div className="code-label">yarn</div>
+        <pre><code>{`yarn add github:Narumikr/Untitled#release/untitled`}</code></pre>
       </div>
-      <div className="sb-grid-item">
-        <h4 className="sb-section-item-heading">🎵 DoReMeetEffect</h4>
-        <p className="sb-section-item-paragraph">
-          音楽的な演出を加えるエフェクトコンポーネント。インタラクティブな体験を提供します。
-        </p>
-        <a href="?path=/docs/special-doremeeteffect--docs">
-          View Story<RightArrow />
-        </a>
-      </div>
-      <div className="sb-grid-item">
-        <h4 className="sb-section-item-heading">💬 XoMikuDialog</h4>
-        <p className="sb-section-item-paragraph">
-          開かれた窓のセカイのミクをイメージしたコンセプトダイアログ。独特なデザインが特徴です。
-        </p>
-        <a href="?path=/docs/special-xomikudialog--docs">
-          View Story<RightArrow />
-        </a>
-      </div>
-      <div className="sb-grid-item">
-        <h4 className="sb-section-item-heading">✖️ XxMikuDialog</h4>
-        <p className="sb-section-item-paragraph">
-          もう一つのミクダイアログバリエーション。異なる雰囲気のUIが楽しめます。
-        </p>
-        <a href="?path=/docs/special-xxmikudialog--docs">
-          View Story<RightArrow />
-        </a>
-      </div>
-      <div className="sb-grid-item">
-        <h4 className="sb-section-item-heading">🎴 MusicBannerCard</h4>
-        <p className="sb-section-item-paragraph">
-          楽曲バナーをイメージしたカードコンポーネント。プロセカらしいデザインを簡単に実装できます。
-        </p>
-        <a href="?path=/docs/special-musicbannercard--docs">
-          View Story<RightArrow />
-        </a>
-      </div>
-      <div className="sb-grid-item">
-        <h4 className="sb-section-item-heading">🔗 PrskLinkCard</h4>
-        <p className="sb-section-item-paragraph">
-          プロセカスタイルのリンクカード。外部リンクやナビゲーションに最適です。
-        </p>
-        <a href="?path=/docs/special-prsklinkcard--docs">
-          View Story<RightArrow />
-        </a>
-      </div>
-      <div className="sb-grid-item">
-        <h4 className="sb-section-item-heading">👥 Character</h4>
-        <p className="sb-section-item-paragraph">
-          キャラクター情報を表示するコンポーネント。カラーテーマと連動した表現が可能です。
-        </p>
-        <a href="?path=/docs/special-character--docs">
-          View Story<RightArrow />
-        </a>
+      <p className="getstarted-note">
+        ※ React 18 で作成されているため、最新の React 環境では <code>--legacy-peer-deps</code> オプションが必要な場合があります。
+      </p>
+    </div>
+
+    <div className="getstarted-block">
+      <h3 className="getstarted-title">Quick Start</h3>
+      <div className="code-block">
+        <div className="code-label">tsx</div>
+        <pre><code>{`import {
+  YourSekaiProvider,
+  createSekai,
+  BasicButton,
+  COLORS_SEKAI_KEYS,
+  LIGHT_MODE,
+} from '@naru/untitled-ui-library'
+
+const theme = createSekai({
+  palette: {
+    sekai: COLORS_SEKAI_KEYS.Miku,
+    mode: LIGHT_MODE,
+  },
+})
+
+export const App = ({ children }) => (
+  <YourSekaiProvider sekaiTheme={theme}>
+    <BasicButton sekai={COLORS_SEKAI_KEYS.Miku}>
+      Hello SEKAI! 🎶
+    </BasicButton>
+  </YourSekaiProvider>
+)`}</code></pre>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div className="sb-container">
-  <div className='sb-section-title'>
-    ## 📦 Installation
-
+{/* ── FOOTER ──────────────────────────────────────────────────── */}
+<footer className="site-footer">
+  <div className="footer-gradient-bar" />
+  <div className="footer-inner">
+    <p className="footer-main">
+      私の大好きなプロセカという作品——イラストは描けない、書き物も難しい。
+      <br />
+      でも何かしら創作をしたいという想いから作り始めました 💫
+    </p>
+    <p className="footer-note">
+      ※ ファンメイド作品です。本リポジトリはプロセカ公式とは一切関係ありません。
+    </p>
+    <a href="https://github.com/Narumikr/Untitled" target="_blank" className="footer-github-btn">
+      <GitHubIcon /> View on GitHub
+    </a>
   </div>
-  <div className="sb-code-block">
-    ```bash
-    npm install github:Narumikr/Untitled#release/untitled
-    ```
-
-    または yarn の場合：
-
-    ```bash
-    yarn add github:Narumikr/Untitled#release/untitled
-    ```
-
-    **Notice:** React 18で作成されているため、最新のReact環境では `--legacy-peer-deps` オプションが必要な場合があります。
-
-  </div>
-</div>
-
-<div className="sb-container">
-  <div className='sb-section-title'>
-    ## 🚀 Quick Start
-
-  </div>
-  <div className="sb-code-block">
-    ### 基本的な使い方
-
-    ```tsx
-    import { BasicButton, COLORS_SEKAI_KEYS } from '@naru/untitled-ui-library'
-
-    export const App = () => {
-      return (
-        <BasicButton sekai={COLORS_SEKAI_KEYS.Miku}>
-          Hello SEKAI!
-        </BasicButton>
-      )
-    }
-    ```
-
-    ### Theme Providerの使用
-
-    ```tsx
-    import {
-      YourSekaiProvider,
-      createSekai,
-      COLORS_SEKAI_KEYS,
-      LIGHT_MODE
-    } from '@naru/untitled-ui-library'
-
-    const theme = createSekai({
-      palette: {
-        sekai: COLORS_SEKAI_KEYS.Miku,
-        mode: LIGHT_MODE
-      }
-    })
-
-    export const App = ({ children }) => {
-      return (
-        <YourSekaiProvider sekaiTheme={theme}>
-          {children}
-        </YourSekaiProvider>
-      )
-    }
-    ```
-
-  </div>
-</div>
-
-<div className="sb-container">
-  <div className='sb-section-title'>
-    ## 🎯 Component Categories
-
-  </div>
-  <div className="sb-section">
-    <div className="sb-category-grid">
-      <div className="sb-category-item">
-        <h4>Button</h4>
-        <p>BasicButton, StrongButton, StylishButton, HamburgerButton, ScrollTopButton</p>
-      </div>
-      <div className="sb-category-item">
-        <h4>Card</h4>
-        <p>Card, MusicBannerCard, PrskLinkCard</p>
-      </div>
-      <div className="sb-category-item">
-        <h4>Dialog</h4>
-        <p>Dialog, WindowDialog, XoMikuDialog, XxMikuDialog</p>
-      </div>
-      <div className="sb-category-item">
-        <h4>Effect</h4>
-        <p>IntoTheSekai, SekaiBackground, DoReMeetEffect</p>
-      </div>
-      <div className="sb-category-item">
-        <h4>Text</h4>
-        <p>TypewriterText, MarqueeText, OutlineText, NamePlate</p>
-      </div>
-      <div className="sb-category-item">
-        <h4>Others</h4>
-        <p>Accordion, Backdrop, Breadcrumb, Divider, Drawer, Dropdown, TextField, Toast, Tooltip, and more...</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div className='sb-footer'>
-  <p>
-    ※ファンメイド作品です。本リポジトリはプロセカ公式とは一切関係ありません。
-  </p>
-  <p>
-    私の大好きなプロセカという作品、でもイラストは描けない、書き物や工作なども難しい。
-    でも何かしら創作をしたいという想いから作り始めました💫
-  </p>
-  <a
-    href="https://github.com/Narumikr/Untitled"
-    target="_blank"
-    className="sb-github-link"
-  >
-    View on GitHub<RightArrow />
-  </a>
-</div>
+</footer>
 
 <style>
   {`
-  .sb-container {
-    margin-bottom: 48px;
+  /* ── VARIABLES ─────────────────────────────────────────────── */
+  :root {
+    --c-teal:   #33ccba;
+    --c-blue:   #3367cc;
+    --c-purple: #884499;
+    --c-bg:     #fafafa;
+    --c-surface: #fff;
+    --c-border: rgba(51, 204, 186, 0.18);
+    --c-text:   #222;
+    --c-muted:  #666;
+    --grad-brand: linear-gradient(135deg, #33ccba 0%, #3367cc 50%, #884499 100%);
   }
 
-  .sb-section {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  /* ── RESET / BASE ───────────────────────────────────────────── */
+  * { box-sizing: border-box; }
+
+  /* ── HERO ───────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px 64px;
+    margin-bottom: 0;
+    text-align: center;
+    background: linear-gradient(
+      160deg,
+      rgba(51, 204, 186, 0.06) 0%,
+      rgba(51, 103, 204, 0.06) 50%,
+      rgba(136, 68, 153, 0.06) 100%
+    );
+    border-radius: 16px;
+    border: 1px solid var(--c-border);
   }
 
-  .sb-section-title {
-    margin-bottom: 32px;
-    line-height: 1.6;
+  .hero-decoration {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    pointer-events: none;
   }
 
-  .sb-section-title h1 {
-    font-size: 2.5rem;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, #33ccba 0%, #3367cc 50%, #884499 100%);
+  .hero-decoration--left {
+    top: -80px;
+    left: -80px;
+    background: var(--c-teal);
+  }
+
+  .hero-decoration--right {
+    bottom: -80px;
+    right: -80px;
+    background: var(--c-purple);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    margin-bottom: 24px;
+    padding: 4px 16px;
+    border-radius: 999px;
+    background: var(--grad-brand);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    margin: 0 0 24px;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: var(--grad-brand);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .sb-section-title h2 {
-    font-size: 2rem;
-    margin-bottom: 16px;
-    color: #33ccba;
+  .hero-tagline {
+    margin: 0 0 28px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--c-muted);
   }
 
-  .sb-section a:not(h1 a, h2 a, h3 a) {
-    font-size: 14px;
-    color: #33ccba;
-    text-decoration: none;
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .badge {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
     font-weight: 600;
+    border: 1.5px solid transparent;
   }
 
-  .sb-section a:hover {
-    text-decoration: underline;
+  .badge--teal   { color: #33ccba; border-color: rgba(51,204,186,0.5); background: rgba(51,204,186,0.08); }
+  .badge--blue   { color: #3367cc; border-color: rgba(51,103,204,0.5); background: rgba(51,103,204,0.08); }
+  .badge--purple { color: #884499; border-color: rgba(136,68,153,0.5); background: rgba(136,68,153,0.08); }
+  .badge--green  { color: #339966; border-color: rgba(51,153,102,0.5); background: rgba(51,153,102,0.08); }
+
+  .hero-install {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 32px;
+    padding: 12px 24px;
+    background: #1a1a2e;
+    border-radius: 8px;
+    border: 1px solid rgba(51, 204, 186, 0.3);
   }
 
-  .sb-section-item, .sb-grid-item {
+  .hero-install-code {
+    font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+    font-size: 0.88rem;
+    color: #33ccba;
+    background: none;
+    padding: 0;
+    border: none;
+    white-space: nowrap;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    border-radius: 8px;
+    background: var(--grad-brand);
+    color: #fff !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: opacity 0.2s, transform 0.2s;
+    box-shadow: 0 4px 20px rgba(51, 103, 204, 0.3);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--c-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    border: 1.5px solid rgba(51, 103, 204, 0.35);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--c-blue);
+    transform: translateY(-2px);
+  }
+
+  /* ── STATS BAR ──────────────────────────────────────────────── */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin: 24px 0 48px;
+    padding: 28px 40px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(51, 103, 204, 0.06);
+  }
+
+  .stat {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    border-radius: 8px;
-    background: rgba(51, 204, 186, 0.05);
-    transition: all 0.3s ease;
+    align-items: center;
+    gap: 4px;
   }
 
-  .sb-section-item:hover, .sb-grid-item:hover {
-    background: rgba(51, 204, 186, 0.1);
+  .stat-num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .stat-lbl {
+    font-size: 0.8rem;
+    color: var(--c-muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .stat-num--modes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    -webkit-text-fill-color: initial;
+    background: none;
+    line-height: 1;
+  }
+
+
+  .mode-sep {
+    font-size: 1.6rem;
+    color: #3367cc;
+    font-weight: 300;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--c-border);
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION ────────────────────────────────────────────────── */
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-heading {
+    margin: 0 0 8px;
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #3367cc;
+  }
+
+  .section-sub {
+    margin: 0 0 32px;
+    font-size: 0.95rem;
+    color: var(--c-muted);
+  }
+
+  /* ── FEATURE GRID ───────────────────────────────────────────── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border-radius: 12px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(51, 204, 186, 0.2);
+    box-shadow: 0 8px 24px rgba(51, 204, 186, 0.15);
   }
 
-  .sb-section-item-heading {
-    padding-top: 0 !important;
-    padding-bottom: 10px !important;
-    margin: 0 !important;
-    font-size: 1.25rem;
-    color: #33aaee;
+  .feature-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
   }
 
-  .sb-section-item-paragraph {
+  .feature-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .feature-title {
     margin: 0;
-    padding-bottom: 15px;
-    line-height: 1.6;
-    color: #666;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #33ccba;
   }
 
-  .sb-features-grid {
+  .feature-desc {
+    flex: 1;
+    margin: 0 0 16px;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--c-muted);
+  }
+
+  .feature-link {
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: #33ccba !important;
+    text-decoration: none !important;
+  }
+
+  .feature-link:hover {
+    text-decoration: underline !important;
+  }
+
+  /* ── CATEGORY GRID ──────────────────────────────────────────── */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .category-card {
+    padding: 20px;
+    border-radius: 10px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(51, 103, 204, 0.1);
+  }
+
+  .category-icon {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .category-name {
+    margin: 0 0 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #33ccba;
+  }
+
+  .category-items {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--c-muted);
+    line-height: 1.6;
+  }
+
+  /* ── SPECIAL GRID ───────────────────────────────────────────── */
+  .special-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 24px;
-    width: 100%;
+    gap: 20px;
   }
 
-  .sb-category-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-    width: 100%;
-  }
-
-  .sb-category-item {
-    padding: 20px;
-    border-radius: 8px;
-    background: rgba(136, 221, 68, 0.05);
-    border: 1px solid rgba(136, 221, 68, 0.2);
-  }
-
-  .sb-category-item h4 {
-    margin: 0 0 10px 0;
-    color: #88dd44;
-    font-size: 1.1rem;
-  }
-
-  .sb-category-item p {
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #666;
-  }
-
-  .sb-code-block {
-    background: #f5f5f7;
+  .special-card {
+    display: block;
     padding: 24px;
-    border-radius: 8px;
-    border-left: 4px solid #33ccba;
-    font-family: 'Monaco', 'Consolas', monospace;
-    font-size: 0.9rem;
-  }
-
-  .sb-footer {
-    margin-top: 64px;
-    padding: 32px;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(51, 204, 186, 0.1) 0%, rgba(51, 103, 204, 0.1) 50%, rgba(136, 68, 153, 0.1) 100%);
     border-radius: 12px;
-    line-height: 1.8;
-  }
-
-  .sb-footer p {
-    margin: 12px 0;
-    color: #666;
-  }
-
-  .sb-github-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 24px;
-    background: #33ccba;
-    color: white !important;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
     text-decoration: none !important;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    color: var(--c-text) !important;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .sb-github-link:hover {
-    background: #2ab3a3;
+  .special-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grad-brand);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .special-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(51, 103, 204, 0.12);
+  }
+
+  .special-card:hover::before {
+    opacity: 1;
+  }
+
+  .special-badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #3367cc;
+    background: rgba(51, 103, 204, 0.1);
+    border: 1px solid rgba(51, 103, 204, 0.25);
+  }
+
+  .special-name {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--c-text);
+  }
+
+  .special-desc {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--c-muted);
+  }
+
+  /* ── GET STARTED ────────────────────────────────────────────── */
+  .getstarted-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .getstarted-block {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .getstarted-title {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #33ccba;
+  }
+
+  .code-block {
+    position: relative;
+    background: #1a1a2e;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(51, 204, 186, 0.2);
+  }
+
+  .code-label {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(51, 204, 186, 0.15);
+    color: #33ccba;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom-right-radius: 6px;
+  }
+
+  .code-block pre {
+    margin: 0;
+    padding: 16px 20px;
+    overflow-x: auto;
+  }
+
+  .code-block code {
+    font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+    font-size: 0.84rem;
+    color: #e0e0e0;
+    background: none;
+    padding: 0;
+    border: none;
+    white-space: pre;
+  }
+
+  .getstarted-note {
+    margin: 16px 0 0;
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--c-muted);
+  }
+
+  .getstarted-note code {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.78rem;
+    background: rgba(51, 204, 186, 0.1);
+    color: #33ccba;
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────────────── */
+  .site-footer {
+    margin-top: 64px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      rgba(51, 204, 186, 0.07) 0%,
+      rgba(51, 103, 204, 0.07) 50%,
+      rgba(136, 68, 153, 0.07) 100%
+    );
+    border: 1px solid var(--c-border);
+  }
+
+  .footer-gradient-bar {
+    height: 4px;
+    background: var(--grad-brand);
+  }
+
+  .footer-inner {
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-main {
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--c-text);
+  }
+
+  .footer-note {
+    margin: 0 0 28px;
+    font-size: 0.8rem;
+    color: var(--c-muted);
+  }
+
+  .footer-github-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    border-radius: 8px;
+    background: var(--grad-brand);
+    color: #fff !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: opacity 0.2s, transform 0.2s;
+    box-shadow: 0 4px 16px rgba(51, 103, 204, 0.25);
+  }
+
+  .footer-github-btn:hover {
+    opacity: 0.88;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(51, 204, 186, 0.3);
   }
 
-  @media screen and (max-width: 1024px) {
-    .sb-category-grid {
+  /* ── RESPONSIVE ─────────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .feature-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .category-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media screen and (max-width: 600px) {
-    .sb-section {
-      flex-direction: column;
+  @media (max-width: 768px) {
+    .hero {
+      padding: 56px 24px 48px;
     }
-
-    .sb-features-grid,
-    .sb-category-grid {
-      grid-template-columns: repeat(1, 1fr);
+    .stats-bar {
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 24px;
     }
-
-    .sb-section-title h1 {
-      font-size: 1.8rem;
+    .stat-divider {
+      display: none;
     }
+    .stat {
+      flex: 0 0 calc(50% - 10px);
+    }
+    .feature-grid,
+    .category-grid,
+    .special-grid {
+      grid-template-columns: 1fr;
+    }
+    .getstarted-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-install {
+      padding: 10px 16px;
+    }
+    .hero-install-code {
+      font-size: 0.75rem;
+      white-space: normal;
+      word-break: break-all;
+    }
+  }
 
-    .sb-section-title h2 {
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    .section-heading {
       font-size: 1.5rem;
-    }
-
-    .sb-code-block {
-      padding: 16px;
-      font-size: 0.8rem;
     }
   }
   `}
