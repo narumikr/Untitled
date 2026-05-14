@@ -29,6 +29,39 @@ export const MoonIcon = () => (
   </svg>
 )
 
+export const quickStartCode = `import type { AppProps } from 'next/app'
+import '@/styles/globals.scss'
+import '@naru/untitled-ui-library/sekai-style.css'
+import '@naru/untitled-ui-library/color/sekai-colors.css'
+
+import {
+  YourSekaiProvider,
+  createSekai,
+  COLORS_SEKAI_KEYS,
+  LIGHT_MODE,
+} from '@naru/untitled-ui-library'
+
+const App = ({ Component, pageProps }: AppProps) => {
+
+  const theme = createSekai({
+    palette: {
+      sekai: COLORS_SEKAI_KEYS.Miku,
+      mode: LIGHT_MODE
+    }
+  })
+
+  return (
+    <YourSekaiProvider
+      sekaiTheme={theme}
+      options={{
+        disableStoreSekai: false /** default false */,
+        disableStoreTheme: false /** default false */
+      }}>
+      <Component {...pageProps} />
+    </YourSekaiProvider>
+  )
+}`
+
 export const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" width="18px" height="18px" style={{ display: 'inline-block', verticalAlign: 'middle', fill: 'currentColor', marginRight: '6px' }}>
     <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
@@ -275,37 +308,13 @@ export const GitHubIcon = () => (
         <div className="code-label">yarn</div>
         <pre><code>{`yarn add github:Narumikr/Untitled#release/untitled`}</code></pre>
       </div>
-      <p className="getstarted-note">
-        ※ React 18 で作成されているため、最新の React 環境では <code>--legacy-peer-deps</code> オプションが必要な場合があります。
-      </p>
     </div>
 
     <div className="getstarted-block">
       <h3 className="getstarted-title">Quick Start</h3>
-      <div className="code-block">
-        <div className="code-label">tsx</div>
-        <pre><code>{`import {
-  YourSekaiProvider,
-  createSekai,
-  BasicButton,
-  COLORS_SEKAI_KEYS,
-  LIGHT_MODE,
-} from '@naru/untitled-ui-library'
-
-const theme = createSekai({
-  palette: {
-    sekai: COLORS_SEKAI_KEYS.Miku,
-    mode: LIGHT_MODE,
-  },
-})
-
-export const App = ({ children }) => (
-  <YourSekaiProvider sekaiTheme={theme}>
-    <BasicButton sekai={COLORS_SEKAI_KEYS.Miku}>
-      Hello SEKAI! 🎶
-    </BasicButton>
-  </YourSekaiProvider>
-)`}</code></pre>
+      <div className="code-block" style={{ marginTop: '12px' }}>
+        <div className="code-label">_app.tsx</div>
+        <pre><code>{quickStartCode}</code></pre>
       </div>
     </div>
   </div>
@@ -315,17 +324,13 @@ export const App = ({ children }) => (
 <footer className="site-footer">
   <div className="footer-gradient-bar" />
   <div className="footer-inner">
-    <p className="footer-main">
-      私の大好きなプロセカという作品——イラストは描けない、書き物も難しい。
-      <br />
-      でも何かしら創作をしたいという想いから作り始めました 💫
-    </p>
+    <div className="footer-main">
+      <div>私の大好きなプロセカという作品——イラストは描けない、書き物も難しい。</div>
+      <div>でも何かしら創作をしたいという想いから作り始めました 💫</div>
+    </div>
     <p className="footer-note">
       ※ ファンメイド作品です。本リポジトリはプロセカ公式とは一切関係ありません。
     </p>
-    <a href="https://github.com/Narumikr/Untitled" target="_blank" className="footer-github-btn">
-      <GitHubIcon /> View on GitHub
-    </a>
   </div>
 </footer>
 
@@ -793,11 +798,13 @@ export const App = ({ children }) => (
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(51, 204, 186, 0.2);
+    padding: 16px;
   }
 
   .code-label {
     display: inline-block;
     padding: 4px 12px;
+    margin-bottom: 8px;
     background: rgba(51, 204, 186, 0.15);
     color: #33ccba;
     font-size: 0.72rem;
@@ -865,6 +872,10 @@ export const App = ({ children }) => (
   }
 
   .footer-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
     margin: 0 0 12px;
     font-size: 0.95rem;
     line-height: 1.8;
