@@ -57,7 +57,7 @@ var deserializeData = function deserializeData(data) {
  */
 var isValidDateString = function isValidDateString(dateStr) {
   var isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/;
-  return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr));
+  return isoRegex.test(dateStr.trim());
 };
 // For serializeData start
 // Helper function to serialize array
