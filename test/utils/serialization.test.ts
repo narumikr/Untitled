@@ -84,12 +84,35 @@ describe('deserializeData', () => {
     expect(deserializeData('not-a-date')).toBe('not-a-date')
   })
 
+  it('yyyy-mm-dd 形式の文字列は Date に変換されず文字列のまま返す', () => {
+    expect(deserializeData('2024-01-01')).toBe('2024-01-01')
+    expect(deserializeData('2024-12-31')).toBe('2024-12-31')
+  })
+
   it('循環参照オブジェクトでエラーをスローする', () => {
     const obj: Record<string, unknown> = { a: 1 }
     obj.self = obj
     expect(() => deserializeData(obj)).toThrow(
       'Circular reference detected during deserialization',
     )
+  })
+})
+
+describe('isValidDateString', () => {
+  it('Tと時刻を含むISO文字列をtrueと判定する', () => {
+    expect(isValidDateString('2024-01-15T10:30:00.000Z')).toBe(true)
+    expect(isValidDateString('2024-01-15T10:30:00Z')).toBe(true)
+    expect(isValidDateString('2024-01-15T10:30:00')).toBe(true)
+  })
+
+  it('yyyy-mm-dd 形式はfalseと判定する', () => {
+    expect(isValidDateString('2024-01-01')).toBe(false)
+    expect(isValidDateString('2024-12-31')).toBe(false)
+  })
+
+  it('日付でない文字列はfalseと判定する', () => {
+    expect(isValidDateString('hello')).toBe(false)
+    expect(isValidDateString('')).toBe(false)
   })
 })
 
