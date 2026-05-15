@@ -59,7 +59,7 @@ export const deserializeData = (data: unknown, visited = new WeakSet()): unknown
  */
 export const isValidDateString = (dateStr: string): boolean => {
   const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?$/
-  return isoRegex.test(dateStr.trim()) || !isNaN(Date.parse(dateStr))
+  return isoRegex.test(dateStr.trim())
 }
 
 // For serializeData start
