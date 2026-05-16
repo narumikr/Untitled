@@ -35,4 +35,9 @@ export interface BackdropProps {
    * @default true
    */
   centered?: boolean
+  /**
+   * 背景ぼかしを有効化するか - Whether to enable blurred overlay
+   * @default false
+   */
+  blur?: boolean
 }

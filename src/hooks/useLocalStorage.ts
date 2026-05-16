@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { ConsoleError } from '@/internal/logging'
-import { deserializeDataWithTemplate, serializeData } from '@/utils/serialization'
+import { deserializeData, serializeData } from '@/utils/serialization'
 
 export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(initialValue)
@@ -14,8 +14,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
     try {
       const items = localStorage.getItem(localStorageKey)
       if (items) {
-        const parsed = deserializeDataWithTemplate(JSON.parse(items), initialValue)
-        setStoredValue(parsed)
+        setStoredValue(deserializeData(JSON.parse(items)) as T)
       }
     } catch (err) {
       ConsoleError('Failed to get local storage value : ', err)
@@ -26,8 +25,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
     if (!isInitialized.current) return
 
     try {
-      const serialized = JSON.stringify(serializeData(storedValue))
-      localStorage.setItem(localStorageKey, serialized)
+      localStorage.setItem(localStorageKey, JSON.stringify(serializeData(storedValue)))
     } catch (err) {
       ConsoleError('Failed to set local storage : ', err)
     }
@@ -41,8 +39,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T) => 
         if (e.newValue === null) {
           setStoredValue(initialValue)
         } else {
-          const parsed = JSON.parse(e.newValue)
-          setStoredValue(deserializeDataWithTemplate(parsed, initialValue))
+          setStoredValue(deserializeData(JSON.parse(e.newValue)) as T)
         }
       } catch (err) {
         ConsoleError('Failed to set local storage : ', err)
