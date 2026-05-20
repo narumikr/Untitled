@@ -70,6 +70,8 @@ export const GitHubIcon = () => (
 
 <Meta title="Untitled/Welcome!!" />
 
+<div className="untitled-welcome">
+
 {/* ── HERO ───────────────────────────────────────────────────── */}
 <div className="hero">
   <div className="hero-decoration hero-decoration--left" />
@@ -334,10 +336,12 @@ export const GitHubIcon = () => (
   </div>
 </footer>
 
+</div>
+
 <style>
   {`
   /* ── VARIABLES ─────────────────────────────────────────────── */
-  :root {
+  .untitled-welcome {
     --c-teal:   #33ccba;
     --c-blue:   #3367cc;
     --c-purple: #884499;
@@ -350,7 +354,7 @@ export const GitHubIcon = () => (
   }
 
   /* ── RESET / BASE ───────────────────────────────────────────── */
-  * { box-sizing: border-box; }
+  .untitled-welcome * { box-sizing: border-box; }
 
   /* ── HERO ───────────────────────────────────────────────────── */
   .hero {
