@@ -10,6 +10,8 @@ import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 import type { ListItemButtonProps } from '@/types/components/list/ListItemButton.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+const youtubeSvg = new URL('../assets/youtube.svg', import.meta.url).href
+
 const meta = {
   title: 'UI/ListItemButton',
   component: ListItemButton,
@@ -142,7 +144,7 @@ export const IconLight: Story = {
     sekai: 'Miku',
     themeMode: 'light',
     children: <></>,
-    icon: '../../../stories/assets/youtube.svg',
+    icon: youtubeSvg,
     disabled: false,
   },
   parameters: {
@@ -158,7 +160,7 @@ export const IconDark: Story = {
     sekai: 'Miku',
     themeMode: 'dark',
     children: <></>,
-    icon: '../../../stories/assets/youtube.svg',
+    icon: youtubeSvg,
     disabled: false,
   },
   parameters: {
@@ -174,7 +176,7 @@ export const DisabledLight: Story = {
     sekai: 'Miku',
     themeMode: 'light',
     children: <></>,
-    icon: '../../../stories/assets/youtube.svg',
+    icon: youtubeSvg,
     disabled: true,
   },
   parameters: {
@@ -190,7 +192,7 @@ export const DisabledDark: Story = {
     sekai: 'Miku',
     themeMode: 'dark',
     children: <></>,
-    icon: '../../../stories/assets/youtube.svg',
+    icon: youtubeSvg,
     disabled: true,
   },
   parameters: {
