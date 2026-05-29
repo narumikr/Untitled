@@ -1,8 +1,8 @@
 # 🩺 依存関係ヘルスレポート
 
-> 🦄 **神代 類**: 依存関係の状態を分析してみたよ。ふふ、結果を見てみようか？🦄
+> 🐟 **巡音ルカ**: 依存関係のチェック完了よ。気になる点があったら早めに対処してね🐟
 
-**実行日時**: 2026/05/23 01:54:24 JST
+**実行日時**: 2026/05/30 02:20:26 JST
 
 ---
 
@@ -10,25 +10,26 @@
 
 ```
 Package                            Current   Wanted   Latest  Location                                       Depended by
-@babel/plugin-transform-runtime     7.28.5   7.29.0   7.29.0  node_modules/@babel/plugin-transform-runtime   Untitled
-@babel/runtime                      7.28.3   7.29.2   7.29.2  node_modules/@babel/runtime                    Untitled
+@babel/plugin-transform-runtime     7.28.5   7.29.7   7.29.7  node_modules/@babel/plugin-transform-runtime   Untitled
+@babel/runtime                      7.28.3   7.29.7   7.29.7  node_modules/@babel/runtime                    Untitled
 @chromatic-com/storybook             5.0.1    5.2.1    5.2.1  node_modules/@chromatic-com/storybook          Untitled
 @eslint/compat                       1.3.2    1.4.1    2.1.0  node_modules/@eslint/compat                    Untitled
 @eslint/js                          9.39.4   9.39.4   10.0.1  node_modules/@eslint/js                        Untitled
-@rollup/plugin-babel                 6.1.0    6.1.0    7.0.0  node_modules/@rollup/plugin-babel              Untitled
-@rollup/plugin-commonjs             29.0.0   29.0.2   29.0.2  node_modules/@rollup/plugin-commonjs           Untitled
+@rollup/plugin-babel                 6.1.0    6.1.0    7.1.0  node_modules/@rollup/plugin-babel              Untitled
+@rollup/plugin-commonjs             29.0.0   29.0.3   29.0.3  node_modules/@rollup/plugin-commonjs           Untitled
 @rollup/plugin-typescript           11.1.6   11.1.6   12.3.0  node_modules/@rollup/plugin-typescript         Untitled
 @storybook/addon-docs              10.1.10   10.4.1   10.4.1  node_modules/@storybook/addon-docs             Untitled
 @storybook/addon-onboarding         10.2.8   10.2.8   10.4.1  node_modules/@storybook/addon-onboarding       Untitled
 @storybook/react-vite               10.2.8   10.4.1   10.4.1  node_modules/@storybook/react-vite             Untitled
 @types/node                         25.3.3   25.9.1   25.9.1  node_modules/@types/node                       Untitled
 @types/react                        19.2.7  19.2.15  19.2.15  node_modules/@types/react                      Untitled
-@typescript-eslint/eslint-plugin    8.49.0   8.59.4   8.59.4  node_modules/@typescript-eslint/eslint-plugin  Untitled
-@typescript-eslint/parser           8.56.1   8.59.4   8.59.4  node_modules/@typescript-eslint/parser         Untitled
+@typescript-eslint/eslint-plugin    8.49.0   8.60.0   8.60.0  node_modules/@typescript-eslint/eslint-plugin  Untitled
+@typescript-eslint/parser           8.56.1   8.60.0   8.60.0  node_modules/@typescript-eslint/parser         Untitled
 @vitest/coverage-v8                  3.2.4    3.2.4    4.1.7  node_modules/@vitest/coverage-v8               Untitled
 autoprefixer                       10.4.21   10.5.0   10.5.0  node_modules/autoprefixer                      Untitled
 baseline-browser-mapping            2.10.0  2.10.32  2.10.32  node_modules/baseline-browser-mapping          Untitled
 eslint                              9.39.4   9.39.4   10.4.0  node_modules/eslint                            Untitled
+eslint-plugin-prettier               5.5.5    5.5.6    5.5.6  node_modules/eslint-plugin-prettier            Untitled
 eslint-plugin-storybook            10.1.10   10.4.1   10.4.1  node_modules/eslint-plugin-storybook           Untitled
 fast-check                          3.23.2   3.23.2    4.8.0  node_modules/fast-check                        Untitled
 framer-motion                     12.23.26  12.40.0  12.40.0  node_modules/framer-motion                     Untitled
@@ -40,7 +41,7 @@ rollup                              4.60.1   4.60.4   4.60.4  node_modules/rollu
 rollup-plugin-dts                    6.3.0    6.4.1    6.4.1  node_modules/rollup-plugin-dts                 Untitled
 sass                                1.99.0  1.100.0  1.100.0  node_modules/sass                              Untitled
 storybook                           10.3.5   10.4.1   10.4.1  node_modules/storybook                         Untitled
-swiper                              12.1.3   12.1.4   12.1.4  node_modules/swiper                            Untitled
+swiper                              12.1.3   12.2.0   12.2.0  node_modules/swiper                            Untitled
 typescript                           5.9.3    5.9.3    6.0.3  node_modules/typescript                        Untitled
 vite                                 6.4.2    6.4.2   8.0.14  node_modules/vite                              Untitled
 vitest                               3.2.4    3.2.4    4.1.7  node_modules/vitest                            Untitled
