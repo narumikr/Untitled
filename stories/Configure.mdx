@@ -1,367 +1,882 @@
 import { Meta } from '@storybook/addon-docs/blocks'
 
-import Github from './assets/github.svg'
-import Discord from './assets/discord.svg'
-import Youtube from './assets/youtube.svg'
-import Tutorials from './assets/tutorials.svg'
-import Styling from './assets/styling.png'
-import Context from './assets/context.png'
-import Assets from './assets/assets.png'
-import Docs from './assets/docs.png'
-import Share from './assets/share.png'
-import FigmaPlugin from './assets/figma-plugin.png'
-import Testing from './assets/testing.png'
-import Accessibility from './assets/accessibility.png'
-import Theming from './assets/theming.png'
-import AddonLibrary from './assets/addon-library.png'
-
 export const RightArrow = () => (
   <svg
     viewBox="0 0 14 14"
     width="8px"
     height="14px"
     style={{
-      'marginLeft': '4px',
-      'display': 'inline-block',
-      'shapeRendering': 'inherit',
-      'verticalAlign': 'middle',
-      'fill': 'currentColor',
-      'path fill': 'currentColor',
+      marginLeft: '4px',
+      display: 'inline-block',
+      shapeRendering: 'inherit',
+      verticalAlign: 'middle',
+      fill: 'currentColor',
     }}>
     <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
   </svg>
 )
 
-<Meta title="Untitled/Configure your project" />
+export const SunIcon = () => (
+  <svg viewBox="0 0 24 24" width="24px" height="36px" fill="#ffc800" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+    <circle cx="12" cy="12" r="4.5" />
+    <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#ffc800" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+)
 
-<div className="sb-container">
-  <div className='sb-section-title'>
-    # Configure your project
+export const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" width="24px" height="30px" fill="#ffc800" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+)
 
-    Because Storybook works separately from your app, you'll need to configure it for your specific stack and setup. Below, explore guides for configuring Storybook with popular frameworks and tools. If you get stuck, learn how you can ask for help from our community.
+export const quickStartCode = `import type { AppProps } from 'next/app'
+import '@/styles/globals.scss'
+import '@naru/untitled-ui-library/sekai-style.css'
+import '@naru/untitled-ui-library/color/sekai-colors.css'
 
-  </div>
-  <div className="sb-section">
-    <div className="sb-section-item">
-      <img
-        src={Styling}
-        alt="A wall of logos representing different styling technologies"
-      />
-      <h4 className="sb-section-item-heading">Add styling and CSS</h4>
-      <p className="sb-section-item-paragraph">Like with web applications, there are many ways to include CSS within Storybook. Learn more about setting up styling within Storybook.</p>
-      <a
-        href="https://storybook.js.org/docs/configure/styling-and-css/?renderer=react"
-        target="_blank"
-      >Learn more<RightArrow /></a>
+import {
+  YourSekaiProvider,
+  createSekai,
+  COLORS_SEKAI_KEYS,
+  LIGHT_MODE,
+} from '@naru/untitled-ui-library'
+
+const App = ({ Component, pageProps }: AppProps) => {
+
+  const theme = createSekai({
+    palette: {
+      sekai: COLORS_SEKAI_KEYS.Miku,
+      mode: LIGHT_MODE
+    }
+  })
+
+  return (
+    <YourSekaiProvider
+      sekaiTheme={theme}
+      options={{
+        disableStoreSekai: false /** default false */,
+        disableStoreTheme: false /** default false */
+      }}>
+      <Component {...pageProps} />
+    </YourSekaiProvider>
+  )
+}`
+
+export const GitHubIcon = () => (
+  <svg viewBox="0 0 24 24" width="18px" height="18px" style={{ display: 'inline-block', verticalAlign: 'middle', fill: 'currentColor', marginRight: '6px' }}>
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+  </svg>
+)
+
+<Meta title="Untitled/Welcome!!" />
+
+<div className="untitled-welcome">
+
+{/* ── HERO ───────────────────────────────────────────────────── */}
+<div className="hero">
+  <div className="hero-decoration hero-decoration--left" />
+  <div className="hero-decoration hero-decoration--right" />
+
+  <div className="hero-inner">
+    <div className="hero-eyebrow">PJ SEKAI × React</div>
+
+    <h1 className="hero-title">Untitled<br />UI Library</h1>
+
+    <p className="hero-tagline">
+      きっと...<br />
+      プロセカをコンセプトにした React コンポーネントライブラリ
+    </p>
+
+    <div className="hero-badges">
+      <span className="badge badge--green">TypeScript</span>
+      <span className="badge badge--blue">React 18</span>
     </div>
-    <div className="sb-section-item">
-      <img
-        src={Context}
-        alt="An abstraction representing the composition of data for a component"
-      />
-      <h4 className="sb-section-item-heading">Provide context and mocking</h4>
-      <p className="sb-section-item-paragraph">Often when a story doesn't render, it's because your component is expecting a specific environment or context (like a theme provider) to be available.</p>
-      <a
-        href="https://storybook.js.org/docs/writing-stories/decorators/?renderer=react#context-for-mocking"
-        target="_blank"
-      >Learn more<RightArrow /></a>
-    </div>
-    <div className="sb-section-item">
-      <img src={Assets} alt="A representation of typography and image assets" />
-      <div>
-        <h4 className="sb-section-item-heading">Load assets and resources</h4>
-        <p className="sb-section-item-paragraph">To link static files (like fonts) to your projects and stories, use the
-        `staticDirs` configuration option to specify folders to load when
-        starting Storybook.</p>
-        <a
-          href="https://storybook.js.org/docs/configure/images-and-assets/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
-      </div>
-    </div>
-  </div>
-</div>
-<div className="sb-container">
-  <div className='sb-section-title'>
-    # Do more with Storybook
 
-    Now that you know the basics, let's explore other parts of Storybook that will improve your experience. This list is just to get you started. You can customise Storybook in many ways to fit your needs.
-
-  </div>
-
-  <div className="sb-section">
-    <div className="sb-features-grid">
-      <div className="sb-grid-item">
-        <img src={Docs} alt="A screenshot showing the autodocs tag being set, pointing a docs page being generated" />
-        <h4 className="sb-section-item-heading">Autodocs</h4>
-        <p className="sb-section-item-paragraph">Auto-generate living,
-          interactive reference documentation from your components and stories.</p>
-        <a
-          href="https://storybook.js.org/docs/writing-docs/autodocs/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
-      </div>
-      <div className="sb-grid-item">
-        <img src={Share} alt="A browser window showing a Storybook being published to a chromatic.com URL" />
-        <h4 className="sb-section-item-heading">Publish to Chromatic</h4>
-        <p className="sb-section-item-paragraph">Publish your Storybook to review and collaborate with your entire team.</p>
-        <a
-          href="https://storybook.js.org/docs/sharing/publish-storybook/?renderer=react#publish-storybook-with-chromatic"
-          target="_blank"
-        >Learn more<RightArrow /></a>
-      </div>
-      <div className="sb-grid-item">
-        <img src={FigmaPlugin} alt="Windows showing the Storybook plugin in Figma" />
-        <h4 className="sb-section-item-heading">Figma Plugin</h4>
-        <p className="sb-section-item-paragraph">Embed your stories into Figma to cross-reference the design and live
-          implementation in one place.</p>
-        <a
-          href="https://storybook.js.org/docs/sharing/design-integrations/?renderer=react#embed-storybook-in-figma-with-the-plugin"
-          target="_blank"
-        >Learn more<RightArrow /></a>
-      </div>
-      <div className="sb-grid-item">
-        <img src={Testing} alt="Screenshot of tests passing and failing" />
-        <h4 className="sb-section-item-heading">Testing</h4>
-        <p className="sb-section-item-paragraph">Use stories to test a component in all its variations, no matter how
-          complex.</p>
-        <a
-          href="https://storybook.js.org/docs/writing-tests/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
-      </div>
-      <div className="sb-grid-item">
-        <img src={Accessibility} alt="Screenshot of accessibility tests passing and failing" />
-        <h4 className="sb-section-item-heading">Accessibility</h4>
-        <p className="sb-section-item-paragraph">Automatically test your components for a11y issues as you develop.</p>
-        <a
-          href="https://storybook.js.org/docs/writing-tests/accessibility-testing/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
-      </div>
-      <div className="sb-grid-item">
-        <img src={Theming} alt="Screenshot of Storybook in light and dark mode" />
-        <h4 className="sb-section-item-heading">Theming</h4>
-        <p className="sb-section-item-paragraph">Theme Storybook's UI to personalize it to your project.</p>
-        <a
-          href="https://storybook.js.org/docs/configure/theming/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
-      </div>
+    <div className="hero-install">
+      <code className="hero-install-code">npm install github:Narumikr/Untitled#release/untitled</code>
     </div>
   </div>
 </div>
-<div className='sb-addon'>
-  <div className='sb-addon-text'>
-    <h4>Addons</h4>
-    <p className="sb-section-item-paragraph">Integrate your tools with Storybook to connect workflows.</p>
-    <a
-        href="https://storybook.js.org/addons/"
-        target="_blank"
-      >Discover all addons<RightArrow /></a>
+
+{/* ── STATS ──────────────────────────────────────────────────── */}
+<div className="stats-bar">
+  <div className="stat">
+    <span className="stat-num">39+</span>
+    <span className="stat-lbl">Components</span>
   </div>
-  <div className='sb-addon-img'>
-    <img src={AddonLibrary} alt="Integrate your tools with Storybook to connect workflows." />
+  <div className="stat-divider" />
+  <div className="stat">
+    <span className="stat-num">26+6</span>
+    <span className="stat-lbl">SEKAI Colors</span>
+  </div>
+  <div className="stat-divider" />
+  <div className="stat">
+    <span className="stat-num stat-num--modes">
+      <SunIcon />
+      <span className="mode-sep">/</span>
+      <MoonIcon />
+    </span>
+    <span className="stat-lbl">Light &amp; Dark</span>
+  </div>
+  <div className="stat-divider" />
+  <div className="stat">
+    <span className="stat-num">100%</span>
+    <span className="stat-lbl">TypeScript</span>
   </div>
 </div>
 
-<div className="sb-section sb-socials">
-    <div className="sb-section-item">
-      <img src={Github} alt="Github logo" className="sb-explore-image"/>
-      Join our contributors building the future of UI development.
+{/* ── FEATURES ───────────────────────────────────────────────── */}
+<section className="section">
+  <h2 className="section-heading">What we provide</h2>
+  <p className="section-sub">セカイカラーでデザインされたコンポーネントを、あなたのアプリへ。</p>
 
-      <a
-        href="https://github.com/storybookjs/storybook"
-        target="_blank"
-      >Star on GitHub<RightArrow /></a>
+  <div className="feature-grid">
+    <div className="feature-card">
+      <div className="feature-header">
+        <div className="feature-icon">🎨</div>
+        <h3 className="feature-title">SEKAI Colors</h3>
+      </div>
+      <p className="feature-desc">
+        26+6 のプロセカキャラクター・ユニットカラーを TypeScript と CSS カスタムプロパティで提供。RGB / RGBA 変換ユーティリティも搭載。
+      </p>
+      <a href="./?path=/docs/special-sekaicolor--docs" target="_top" className="feature-link">
+        カラーを探る <RightArrow />
+      </a>
     </div>
-    <div className="sb-section-item">
-      <img src={Discord} alt="Discord logo" className="sb-explore-image"/>
-      <div>
-        Get support and chat with frontend developers.
 
-        <a
-          href="https://discord.gg/storybook"
-          target="_blank"
-        >Join Discord server<RightArrow /></a>
+    <div className="feature-card">
+      <div className="feature-header">
+        <div className="feature-icon">📱</div>
+        <h3 className="feature-title">UI Components</h3>
+      </div>
+      <p className="feature-desc">
+        Button、Dialog、Card、Effect など 39+ の React コンポーネント。すべてが SEKAI テーマとLight / Darkモードに対応。
+      </p>
+      <a href="./?path=/docs/ui-basicbutton--docs" target="_top" className="feature-link">
+        コンポーネントへ <RightArrow />
+      </a>
+    </div>
+
+    <div className="feature-card">
+      <div className="feature-header">
+        <div className="feature-icon">🌏</div>
+        <h3 className="feature-title">Theme Provider</h3>
+      </div>
+      <p className="feature-desc">
+        YourSekaiProvider でアプリ全体のテーマを一元管理。セカイカラーの変更やライト/ダークモード切り替えが簡単に実装できます。
+      </p>
+      <a href="https://github.com/Narumikr/Untitled#yoursekaiprovider" target="_blank" rel="noopener noreferrer" className="feature-link">
+        詳しく知る <RightArrow />
+      </a>
+    </div>
+
+    <div className="feature-card">
+      <div className="feature-header">
+        <div className="feature-icon">🌟</div>
+        <h3 className="feature-title">Showpieces</h3>
+      </div>
+      <p className="feature-desc">
+        特にこだわった特別なコンポーネント。セカイへ飛ぶ時のカケラエフェクト、劇場版ミクをモチーフにしたダイアログなど、ここにしかない個性的な表現を揃えています。
+      </p>
+      <a href="?path=/docs/special-intothesekai--docs" className="feature-link">
+        見てみる <RightArrow />
+      </a>
+    </div>
+  </div>
+</section>
+
+{/* ── COMPONENT CATEGORIES ────────────────────────────────────── */}
+<section className="section">
+  <h2 className="section-heading">Component Categories</h2>
+  <p className="section-sub">目的別に整理されたコンポーネント群</p>
+
+  <div className="category-grid">
+    <div className="category-card">
+      <div className="category-header">
+        <span className="category-icon">🔘</span>
+        <h4 className="category-name">Button</h4>
+      </div>
+      <p className="category-items">BasicButton · StrongButton · StylishButton · HamburgerButton · ScrollTopButton</p>
+    </div>
+    <div className="category-card">
+      <div className="category-header">
+        <span className="category-icon">🃏</span>
+        <h4 className="category-name">Card</h4>
+      </div>
+      <p className="category-items">Card · MusicBannerCard · PrskLinkCard</p>
+    </div>
+    <div className="category-card">
+      <div className="category-header">
+        <span className="category-icon">💬</span>
+        <h4 className="category-name">Dialog</h4>
+      </div>
+      <p className="category-items">Dialog · WindowDialog · XoMikuDialog · XxMikuDialog</p>
+    </div>
+    <div className="category-card">
+      <div className="category-header">
+        <span className="category-icon">✨</span>
+        <h4 className="category-name">Effect</h4>
+      </div>
+      <p className="category-items">IntoTheSekai · SekaiBackground · DoReMeetEffect</p>
+    </div>
+    <div className="category-card">
+      <div className="category-header">
+        <span className="category-icon">📝</span>
+        <h4 className="category-name">Text</h4>
+      </div>
+      <p className="category-items">TypewriterText · MarqueeText · OutlineText · NamePlate</p>
+    </div>
+    <div className="category-card">
+      <div className="category-header">
+        <span className="category-icon">📋</span>
+        <h4 className="category-name">Form</h4>
+      </div>
+      <p className="category-items">TextField · Checkbox · Chip · Dropdown · Select</p>
+    </div>
+    <div className="category-card">
+      <div className="category-header">
+        <span className="category-icon">🗂️</span>
+        <h4 className="category-name">Layout</h4>
+      </div>
+      <p className="category-items">Accordion · Drawer · Divider · Breadcrumb · Pagination</p>
+    </div>
+    <div className="category-card">
+      <div className="category-header">
+        <span className="category-icon">💡</span>
+        <h4 className="category-name">Feedback</h4>
+      </div>
+      <p className="category-items">Toast · Tooltip · Loading · Backdrop · List</p>
+    </div>
+  </div>
+</section>
+
+{/* ── FEATURED SPECIAL ────────────────────────────────────────── */}
+<section className="section">
+  <h2 className="section-heading">Special Components</h2>
+  <p className="section-sub">よりプロセカの世界観にこだわって作成したコンポーネントたち</p>
+
+  <div className="special-grid">
+    <a href="./?path=/docs/special-intothesekai--docs" target="_top" className="special-card">
+      <div className="special-badge">Effect</div>
+      <h3 className="special-name">🎬 IntoTheSekai</h3>
+      <p className="special-desc">Untitledを再生した時のカケラ演出のエフェクト。ページ遷移やアプリ起動時に最適なアニメーション。</p>
+    </a>
+
+    <a href="./?path=/docs/special-sekaibackground--docs" target="_top" className="special-card">
+      <div className="special-badge">Effect</div>
+      <h3 className="special-name">🌱 SekaiBackground</h3>
+      <p className="special-desc">まるでセカイの中にいるかのような没入感のある背景エフェクト。アプリの雰囲気を一変させます。</p>
+    </a>
+
+    <a href="./?path=/docs/special-doremeeteffect--docs" target="_top" className="special-card">
+      <div className="special-badge">Effect</div>
+      <h3 className="special-name">🎵 DoReMeetEffect</h3>
+      <p className="special-desc">劇場版プロセカのエンドロールにてWorldersの歌詞演出を表現。指定したセカイカラーでテキストがネオンライトの演出を。</p>
+    </a>
+
+    <a href="./?path=/docs/special-xxmikudialog--docs" target="_top" className="special-card">
+      <div className="special-badge">Dialog</div>
+      <h3 className="special-name">✖️ XxMikuDialog</h3>
+      <p className="special-desc">劇場版プロセカ「閉ざされた窓のセカイ」のミクをイメージしたコンセプトダイアログ。</p>
+    </a>
+
+    <a href="./?path=/docs/special-xomikudialog--docs" target="_top" className="special-card">
+      <div className="special-badge">Dialog</div>
+      <h3 className="special-name">🪟 XoMikuDialog</h3>
+      <p className="special-desc">劇場版プロセカ「開かれた窓のセカイ」のミクをイメージしたコンセプトダイアログ。</p>
+    </a>
+
+    <a href="./?path=/docs/special-prsklinkcard--docs" target="_top" className="special-card">
+      <div className="special-badge">Card</div>
+      <h3 className="special-name">🎹 PrskLinkCard</h3>
+      <p className="special-desc">プロセカゲーム内のリンクカードコンポーネント。外部リンクやナビゲーションに最適なパーツ。</p>
+    </a>
+  </div>
+</section>
+
+{/* ── INSTALLATION ────────────────────────────────────────────── */}
+<section className="section">
+  <h2 className="section-heading">Get Started</h2>
+  <p className="section-sub">すぐに始められます。</p>
+
+  <div className="getstarted-grid">
+    <div className="getstarted-block">
+      <h3 className="getstarted-title">Installation</h3>
+      <div className="code-block">
+        <div className="code-label">npm</div>
+        <pre><code>{`npm install github:Narumikr/Untitled#release/untitled`}</code></pre>
+      </div>
+      <div className="code-block" style={{ marginTop: '12px' }}>
+        <div className="code-label">yarn</div>
+        <pre><code>{`yarn add github:Narumikr/Untitled#release/untitled`}</code></pre>
       </div>
     </div>
-    <div className="sb-section-item">
-      <img src={Youtube} alt="Youtube logo" className="sb-explore-image"/>
-      <div>
-        Watch tutorials, feature previews and interviews.
 
-        <a
-          href="https://www.youtube.com/@chromaticui"
-          target="_blank"
-        >Watch on YouTube<RightArrow /></a>
+    <div className="getstarted-block">
+      <h3 className="getstarted-title">Quick Start</h3>
+      <div className="code-block" style={{ marginTop: '12px' }}>
+        <div className="code-label">_app.tsx</div>
+        <pre><code>{quickStartCode}</code></pre>
       </div>
     </div>
-    <div className="sb-section-item">
-      <img src={Tutorials} alt="A book" className="sb-explore-image"/>
-      <p>Follow guided walkthroughs on for key workflows.</p>
+  </div>
+</section>
 
-      <a
-          href="https://storybook.js.org/tutorials/"
-          target="_blank"
-        >Discover tutorials<RightArrow /></a>
+{/* ── FOOTER ──────────────────────────────────────────────────── */}
+<footer className="site-footer">
+  <div className="footer-gradient-bar" />
+  <div className="footer-inner">
+    <div className="footer-main">
+      <div>私の大好きなプロセカという作品——イラストは描けない、書き物も難しい。</div>
+      <div>でも何かしら創作をしたいという想いから作り始めました 💫</div>
     </div>
+    <p className="footer-note">
+      ※ ファンメイド作品です。本リポジトリはプロセカ公式とは一切関係ありません。
+    </p>
+  </div>
+</footer>
 
 </div>
 
 <style>
   {`
-  .sb-container {
-    margin-bottom: 48px;
+  /* ── VARIABLES ─────────────────────────────────────────────── */
+  .untitled-welcome {
+    --c-teal:   #33ccba;
+    --c-blue:   #3367cc;
+    --c-purple: #884499;
+    --c-bg:     #fafafa;
+    --c-surface: #fff;
+    --c-border: rgba(51, 204, 186, 0.18);
+    --c-text:   #222;
+    --c-muted:  #666;
+    --grad-brand: linear-gradient(135deg, #33ccba 0%, #3367cc 50%, #884499 100%);
   }
 
-  .sb-section {
-    width: 100%;
+  /* ── RESET / BASE ───────────────────────────────────────────── */
+  .untitled-welcome * { box-sizing: border-box; }
+
+  /* ── HERO ───────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px 64px;
+    margin-bottom: 0;
+    text-align: center;
+    background: linear-gradient(
+      160deg,
+      rgba(51, 204, 186, 0.06) 0%,
+      rgba(51, 103, 204, 0.06) 50%,
+      rgba(136, 68, 153, 0.06) 100%
+    );
+    border-radius: 16px;
+    border: 1px solid var(--c-border);
+  }
+
+  .hero-decoration {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .hero-decoration--left {
+    top: -80px;
+    left: -80px;
+    background: var(--c-teal);
+  }
+
+  .hero-decoration--right {
+    bottom: -80px;
+    right: -80px;
+    background: var(--c-purple);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    margin-bottom: 24px;
+    padding: 4px 16px;
+    border-radius: 999px;
+    background: var(--grad-brand);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    margin: 0 0 24px;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    margin: 0 0 28px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--c-muted);
+  }
+
+  .hero-badges {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 28px;
   }
 
-  img {
-    object-fit: cover;
+  .badge {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1.5px solid transparent;
   }
 
-  .sb-section-title {
+  .badge--blue   { color: #3367cc; border-color: rgba(51,103,204,0.5); background: rgba(51,103,204,0.08); }
+  .badge--green  { color: #339966; border-color: rgba(51,153,102,0.5); background: rgba(51,153,102,0.08); }
+
+  .hero-install {
+    display: inline-flex;
+    align-items: center;
     margin-bottom: 32px;
+    padding: 12px 24px;
+    background: #1a1a2e;
+    border-radius: 8px;
+    border: 1px solid rgba(51, 204, 186, 0.3);
   }
 
-  .sb-section a:not(h1 a, h2 a, h3 a) {
-    font-size: 14px;
+  .hero-install-code {
+    font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+    font-size: 0.88rem;
+    color: #33ccba;
+    background: none;
+    padding: 0;
+    border: none;
+    white-space: nowrap;
   }
 
-  .sb-section-item, .sb-grid-item {
+  /* ── STATS BAR ──────────────────────────────────────────────── */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin: 24px 0 48px;
+    padding: 28px 40px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(51, 103, 204, 0.06);
+  }
+
+  .stat {
     flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 4px;
   }
 
-  .sb-section-item-heading {
-    padding-top: 20px !important;
-    padding-bottom: 5px !important;
-    margin: 0 !important;
-  }
-  .sb-section-item-paragraph {
-    margin: 0;
-    padding-bottom: 10px;
-  }
-
-  .sb-chevron {
-    margin-left: 5px;
+  .stat-num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
   }
 
-  .sb-features-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 32px 20px;
+  .stat-lbl {
+    font-size: 0.8rem;
+    color: var(--c-muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
   }
 
-  .sb-socials {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .sb-socials p {
-    margin-bottom: 10px;
-  }
-
-  .sb-explore-image {
-    max-height: 32px;
-    align-self: flex-start;
-  }
-
-  .sb-addon {
-    width: 100%;
+  .stat-num--modes {
     display: flex;
     align-items: center;
+    gap: 8px;
+    -webkit-text-fill-color: initial;
+    background: none;
+    line-height: 1;
+  }
+
+
+  .mode-sep {
+    font-size: 1.6rem;
+    color: #3367cc;
+    font-weight: 300;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--c-border);
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION ────────────────────────────────────────────────── */
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-heading {
+    margin: 0 0 8px;
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #3367cc;
+  }
+
+  .section-sub {
+    margin: 0 0 32px;
+    font-size: 0.95rem;
+    color: var(--c-muted);
+  }
+
+  /* ── FEATURE GRID ───────────────────────────────────────────── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border-radius: 12px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(51, 204, 186, 0.15);
+  }
+
+  .feature-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .feature-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .feature-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #33ccba;
+  }
+
+  .feature-desc {
+    flex: 1;
+    margin: 0 0 16px;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--c-muted);
+  }
+
+  .feature-link {
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: #33ccba !important;
+    text-decoration: none !important;
+  }
+
+  .feature-link:hover {
+    text-decoration: underline !important;
+  }
+
+  /* ── CATEGORY GRID ──────────────────────────────────────────── */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .category-card {
+    padding: 20px;
+    border-radius: 10px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(51, 103, 204, 0.1);
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .category-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .category-name {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #33ccba;
+  }
+
+  .category-items {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--c-muted);
+    line-height: 1.6;
+  }
+
+  /* ── SPECIAL GRID ───────────────────────────────────────────── */
+  .special-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .special-card {
+    display: block;
+    padding: 24px;
+    border-radius: 12px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    text-decoration: none !important;
+    color: var(--c-text) !important;
     position: relative;
-    background-color: #EEF3F8;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    background: #EEF3F8;
-    height: 180px;
-    margin-bottom: 48px;
     overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .sb-addon-text {
-    padding-left: 48px;
-    max-width: 240px;
-  }
-
-  .sb-addon-text h4 {
-    padding-top: 0px;
-  }
-
-  .sb-addon-img {
+  .special-card::before {
+    content: '';
     position: absolute;
-    left: 345px;
     top: 0;
-    height: 100%;
-    width: 200%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grad-brand);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .special-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(51, 103, 204, 0.12);
+  }
+
+  .special-card:hover::before {
+    opacity: 1;
+  }
+
+  .special-badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #3367cc;
+    background: rgba(51, 103, 204, 0.1);
+    border: 1px solid rgba(51, 103, 204, 0.25);
+  }
+
+  .special-name {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--c-text);
+  }
+
+  .special-desc {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--c-muted);
+  }
+
+  /* ── GET STARTED ────────────────────────────────────────────── */
+  .getstarted-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .getstarted-block {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .getstarted-title {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #33ccba;
+  }
+
+  .code-block {
+    position: relative;
+    background: #1a1a2e;
+    border-radius: 8px;
     overflow: hidden;
+    border: 1px solid rgba(51, 204, 186, 0.2);
+    padding: 16px;
   }
 
-  .sb-addon-img img {
-    width: 650px;
-    transform: rotate(-15deg);
-    margin-left: 40px;
-    margin-top: -72px;
-    box-shadow: 0 0 1px rgba(255, 255, 255, 0);
-    backface-visibility: hidden;
+  .code-label {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 8px;
+    background: rgba(51, 204, 186, 0.15);
+    color: #33ccba;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom-right-radius: 6px;
   }
 
-  @media screen and (max-width: 800px) {
-    .sb-addon-img {
-      left: 300px;
-    }
+  .code-block pre {
+    margin: 0;
+    padding: 16px 20px;
+    overflow-x: auto;
   }
 
-  @media screen and (max-width: 600px) {
-    .sb-section {
-      flex-direction: column;
-    }
+  .code-block code {
+    font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+    font-size: 0.84rem;
+    color: #e0e0e0;
+    background: none;
+    padding: 0;
+    border: none;
+    white-space: pre;
+  }
 
-    .sb-features-grid {
-      grid-template-columns: repeat(1, 1fr);
-    }
+  /* ── FOOTER ─────────────────────────────────────────────────── */
+  .site-footer {
+    margin-top: 64px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      rgba(51, 204, 186, 0.07) 0%,
+      rgba(51, 103, 204, 0.07) 50%,
+      rgba(136, 68, 153, 0.07) 100%
+    );
+    border: 1px solid var(--c-border);
+  }
 
-    .sb-socials {
+  .footer-gradient-bar {
+    height: 4px;
+    background: var(--grad-brand);
+  }
+
+  .footer-inner {
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--c-text);
+  }
+
+  .footer-note {
+    margin: 0 0 28px;
+    font-size: 0.8rem;
+    color: var(--c-muted);
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .feature-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-
-    .sb-addon {
-      height: 280px;
-      align-items: flex-start;
-      padding-top: 32px;
-      overflow: hidden;
+    .category-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .sb-addon-text {
-      padding-left: 24px;
+  @media (max-width: 768px) {
+    .hero {
+      padding: 56px 24px 48px;
     }
-
-    .sb-addon-img {
-      right: 0;
-      left: 0;
-      top: 130px;
-      bottom: 0;
-      overflow: hidden;
-      height: auto;
-      width: 124%;
+    .stats-bar {
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 24px;
     }
+    .stat-divider {
+      display: none;
+    }
+    .stat {
+      flex: 0 0 calc(50% - 10px);
+    }
+    .feature-grid,
+    .category-grid,
+    .special-grid {
+      grid-template-columns: 1fr;
+    }
+    .getstarted-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-install {
+      padding: 10px 16px;
+    }
+    .hero-install-code {
+      font-size: 0.75rem;
+      white-space: normal;
+      word-break: break-all;
+    }
+  }
 
-    .sb-addon-img img {
-      width: 1200px;
-      transform: rotate(-12deg);
-      margin-left: 0;
-      margin-top: 48px;
-      margin-bottom: -40px;
-      margin-left: -24px;
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    .section-heading {
+      font-size: 1.5rem;
     }
   }
   `}

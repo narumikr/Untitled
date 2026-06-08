@@ -1,8 +1,14 @@
 # 🩺 依存関係ヘルスレポート
 
+<<<<<<< HEAD
 > 🥞 **東雲 彰人**: パッケージのチェックしといたぞ！ほら、これレポートだから、脆弱性は放置すんなよ！🥞
 
 **実行日時**: 2026/05/09 01:40:38 JST
+=======
+> 💧 **日野森 雫**: パッケージの状態確認してきたわよ～。必要あれば更新していきましょう💧
+
+**実行日時**: 2026/06/06 01:56:45 JST
+>>>>>>> 2ab0e067176ad3ed977cd49341617f1f4ad9622c
 
 ---
 
@@ -51,5 +57,45 @@ vitest                               3.2.4    3.2.4    4.1.5  node_modules/vites
 ## 🔒 npm audit
 
 ```
+<<<<<<< HEAD
 （脆弱性は検出されませんでした）
+=======
+合計 5 件の脆弱性が検出されました
+
+critical : 2
+high     : 1
+moderate : 2
+low      : 0
+info     : 0
+
+----------------------------------------
+
+■ @babel/plugin-transform-modules-systemjs [HIGH]
+  影響バージョン: 7.12.0 - 7.29.0
+  @babel/plugin-transform-modules-systemjs generates arbitrary code when compiling malicious input
+  https://github.com/advisories/GHSA-fv7c-fp4j-7gwp
+  修正: npm audit fix で対応可能
+
+■ @vitest/coverage-v8 [CRITICAL]
+  影響バージョン: <=4.1.0-beta.6
+  修正: @vitest/coverage-v8@4.1.8 へのアップデートが必要
+
+■ brace-expansion [MODERATE]
+  影響バージョン: 5.0.2 - 5.0.5
+  brace-expansion: Large numeric range defeats documented `max` DoS protection
+  https://github.com/advisories/GHSA-jxxr-4gwj-5jf2
+  修正: npm audit fix で対応可能
+
+■ vitest [CRITICAL]
+  影響バージョン: <4.1.0
+  When Vitest UI server is listening, arbitrary file can be read and executed
+  https://github.com/advisories/GHSA-5xrq-8626-4rwp
+  修正: vitest@4.1.8 へのアップデートが必要
+
+■ ws [MODERATE]
+  影響バージョン: 8.0.0 - 8.20.0
+  ws: Uninitialized memory disclosure
+  https://github.com/advisories/GHSA-58qx-3vcg-4xpx
+  修正: npm audit fix で対応可能
+>>>>>>> 2ab0e067176ad3ed977cd49341617f1f4ad9622c
 ```
