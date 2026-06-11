@@ -6,6 +6,7 @@ export { HamburgerButton } from './components/button/HamburgerButton.js';
 export { ScrollTopButton } from './components/button/ScrollTopButton.js';
 export { StrongButton } from './components/button/StrongButton.js';
 export { StylishButton } from './components/button/StylishButton.js';
+export { ToggleButton } from './components/button/ToggleButton.js';
 export { Card, CardContent, CardTitle } from './components/card/Card.js';
 export { MusicBannerCard } from './components/card/MusicBannerCard.js';
 export { PrskLinkCard } from './components/card/PrskLinkCard.js';

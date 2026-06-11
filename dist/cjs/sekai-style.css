@@ -1163,6 +1163,234 @@
   width: 16px;
   height: 16px;
 }
+/* Styles for common color */
+/* Styles for z-index */
+/* Styles for common classes */
+.ToggleButton-module_sekai-text-light__utNd0 {
+  color: #212121;
+}
+
+.ToggleButton-module_sekai-text-dark__viqQg {
+  color: #e0e0e0;
+}
+
+.ToggleButton-module_sekai-color-light__wsX8u {
+  color: #212121;
+  background-color: #ffffff;
+}
+
+.ToggleButton-module_sekai-color-dark__aDMJ9 {
+  color: #e0e0e0;
+  background-color: #121212;
+}
+
+.ToggleButton-module_sekai-overlay__YLJXU, .ToggleButton-module_sekai-overlay-blur-dark__ARpAZ, .ToggleButton-module_sekai-overlay-blur-light__9K1jT, .ToggleButton-module_sekai-overlay-dark__KgiFg, .ToggleButton-module_sekai-overlay-light__PCf5Z {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.ToggleButton-module_sekai-overlay-light__PCf5Z {
+  background-color: rgba(0, 0, 0, 0.3882352941);
+}
+
+.ToggleButton-module_sekai-overlay-dark__KgiFg {
+  background-color: rgba(255, 255, 255, 0.3019607843);
+}
+
+.ToggleButton-module_sekai-overlay-blur-light__9K1jT {
+  background-color: rgba(255, 255, 255, 0.6274509804);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.ToggleButton-module_sekai-overlay-blur-dark__ARpAZ {
+  background-color: rgba(0, 0, 0, 0.0784313725);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Styles for positioning */
+.ToggleButton-module_sekai-flex-center__BC20I {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ToggleButton-module_sekai-absolute-center__o7-y2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Styles for scroll */
+.ToggleButton-module_sekai-invisible-scroll__LYkXU {
+  overflow-y: scroll;
+}
+.ToggleButton-module_sekai-invisible-scroll__LYkXU::-webkit-scrollbar {
+  display: none;
+}
+.ToggleButton-module_sekai-invisible-scroll__LYkXU {
+  scrollbar-width: none;
+}
+
+/* Styles for margin space */
+.ToggleButton-module_sekai-mb-8__hwT5H {
+  margin-bottom: 8px;
+}
+
+.ToggleButton-module_sekai-mb-16__Ug94p {
+  margin-bottom: 16px;
+}
+
+.ToggleButton-module_sekai-mb-24__EwVXL {
+  margin-bottom: 24px;
+}
+
+.ToggleButton-module_text-responsible-body__LotsV {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .ToggleButton-module_text-responsible-body__LotsV {
+    font-size: 14px;
+  }
+}
+.ToggleButton-module_text-xs__RYLR6 {
+  font-size: 12px;
+}
+
+.ToggleButton-module_text-sm__iQiBt {
+  font-size: 14px;
+}
+
+.ToggleButton-module_text-base__l1Z4B {
+  font-size: 16px;
+}
+
+.ToggleButton-module_text-lg__DYRN8 {
+  font-size: 18px;
+}
+
+.ToggleButton-module_text-xl__0C9gB {
+  font-size: 20px;
+}
+
+.ToggleButton-module_text-2xl__p1WOA {
+  font-size: 24px;
+}
+
+.ToggleButton-module_text-base-bold__qml8P {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ToggleButton-module_text-lg-bold__7r6mA {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ToggleButton-module_text-xl-bold__dEoMk {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ToggleButton-module_text-2xl-bold__GBtOG {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.ToggleButton-module_font-bold__ExdTj {
+  font-weight: bold;
+}
+
+.ToggleButton-module_sekai-toggle-button__R0AJt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.ToggleButton-module_sekai-toggle-button__R0AJt:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.ToggleButton-module_sekai-toggle-button__R0AJt:focus-visible {
+  outline: 1px solid var(--sekai-color);
+  outline-offset: 2px;
+}
+
+.ToggleButton-module_sekai-toggle-button--light__itTGv {
+  color: #212121;
+}
+
+.ToggleButton-module_sekai-toggle-button--dark__ZjxP- {
+  color: #e0e0e0;
+}
+
+/* track */
+.ToggleButton-module_sekai-toggle-track__cX9X9 {
+  width: 52px;
+  height: 28px;
+  border-radius: 14px;
+  border: 2px solid #ccc;
+  background: transparent;
+  position: relative;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ToggleButton-module_sekai-toggle-track--on__N2Ehy {
+  border-color: var(--sekai-color);
+  background: var(--sekai-color-bg);
+}
+
+/* thumb */
+.ToggleButton-module_sekai-toggle-thumb__hhq8Z {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ccc;
+  transition: left 0.2s ease, top 0.2s ease, background 0.2s ease;
+}
+
+.ToggleButton-module_sekai-toggle-thumb--on__xXPgf {
+  left: 26px;
+  background: var(--sekai-color);
+}
+
+/* vertical: placed AFTER .sekai-toggle-thumb--on so it wins the cascade */
+.ToggleButton-module_sekai-toggle-button--vertical__bX9x1 {
+  flex-direction: column;
+}
+.ToggleButton-module_sekai-toggle-button--vertical__bX9x1 .ToggleButton-module_sekai-toggle-track__cX9X9 {
+  width: 28px;
+  height: 52px;
+}
+.ToggleButton-module_sekai-toggle-button--vertical__bX9x1 .ToggleButton-module_sekai-toggle-thumb--on__xXPgf {
+  top: 26px;
+  left: 2px;
+}
+
+/* label */
+.ToggleButton-module_sekai-toggle-label__HlT7b {
+  font-size: 13px;
+  line-height: 1;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
 .Card-module_sekai-card__yjfwU {
   box-shadow: 0px 2px 1px -1px var(--sekai-color-shadow), 0px 1px 1px 0px var(--sekai-color-shadow), 0px 1px 3px 0px var(--sekai-color-shadow), 0px -0.5px 1px 0px var(--sekai-color-shadow);
   border-radius: 5px;
