@@ -32,11 +32,10 @@ const getResolvedLabelPosition = (
 const renderLabel = (
   labelText: string | undefined,
   shouldRender: boolean,
-  testId: string,
 ): React.ReactNode => {
   if (!labelText || !shouldRender) return null
   return (
-    <span className={styles['sekai-toggle-label']} data-testid={testId}>
+    <span className={styles['sekai-toggle-label']} data-testid="toggle-label">
       {labelText}
     </span>
   )
@@ -68,6 +67,7 @@ export const ToggleButton = ({
   return (
     <button
       {...rest}
+      ref={rest.ref}
       role="switch"
       type="button"
       aria-checked={checked}
@@ -81,7 +81,7 @@ export const ToggleButton = ({
       )}
       style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
     >
-      {renderLabel(labelText, isLabelBefore, 'toggle-label')}
+      {renderLabel(labelText, isLabelBefore)}
       <span
         className={clsx(
           styles['sekai-toggle-track'],
@@ -95,7 +95,7 @@ export const ToggleButton = ({
           )}
         />
       </span>
-      {renderLabel(labelText, !isLabelBefore, 'toggle-label')}
+      {renderLabel(labelText, !isLabelBefore)}
     </button>
   )
 }
