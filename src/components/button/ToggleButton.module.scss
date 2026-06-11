@@ -12,12 +12,11 @@
 
   &:disabled {
     opacity: 0.4;
-    cursor: not-allowed;
     pointer-events: none;
   }
 
   &:focus-visible {
-    outline: 2px solid var(--sekai-color);
+    outline: 1px solid var(--sekai-color);
     outline-offset: 2px;
   }
 }
@@ -28,20 +27,6 @@
 
 .sekai-toggle-button--dark {
   color: global.$color-text-dark;
-}
-
-.sekai-toggle-button--vertical {
-  flex-direction: column;
-
-  .sekai-toggle-track {
-    width: 28px;
-    height: 52px;
-  }
-
-  .sekai-toggle-thumb--on {
-    top: 26px;
-    left: 2px;
-  }
 }
 
 /* track */
@@ -77,6 +62,21 @@
 .sekai-toggle-thumb--on {
   left: 26px;
   background: var(--sekai-color);
+}
+
+/* vertical: placed AFTER .sekai-toggle-thumb--on so it wins the cascade */
+.sekai-toggle-button--vertical {
+  flex-direction: column;
+
+  .sekai-toggle-track {
+    width: 28px;
+    height: 52px;
+  }
+
+  .sekai-toggle-thumb--on {
+    top: 26px;
+    left: 2px;
+  }
 }
 
 /* label */
