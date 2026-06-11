@@ -432,7 +432,7 @@ interface StylishButtonProps {
 
 declare const StylishButton: ({ sekai, themeMode, children, disabled, arrowIcon, ...rest }: StylishButtonProps) => React__default.JSX.Element;
 
-interface ToggleButtonProps {
+interface ToggleButtonProps extends Omit<React__default.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'onClick'> {
     /** ON/OFF 状態（controlled 必須） */
     checked: boolean;
     /** 状態変更ハンドラ */
@@ -450,16 +450,6 @@ interface ToggleButtonProps {
      * - vertical 時: 'top' | 'bottom' (default: 'bottom') — left/right は 'bottom' にフォールバック
      */
     labelPosition?: 'left' | 'right' | 'top' | 'bottom';
-    /** 無効状態 */
-    disabled?: boolean;
-    /** ユニークID */
-    id?: string;
-    /** クラス名 */
-    className?: string;
-    /** インラインスタイル */
-    style?: React__default.CSSProperties;
-    /** ボタン要素への参照 - Ref for the button element */
-    ref?: React__default.Ref<HTMLButtonElement>;
     /**
      * セカイカラー
      * @see {@link ColorsSekaiKey}
