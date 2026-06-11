@@ -2,7 +2,8 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import type React from 'react'
 
-export interface ToggleButtonProps {
+export interface ToggleButtonProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'onClick'> {
   /** ON/OFF 状態（controlled 必須） */
   checked: boolean
   /** 状態変更ハンドラ */
@@ -20,16 +21,6 @@ export interface ToggleButtonProps {
    * - vertical 時: 'top' | 'bottom' (default: 'bottom') — left/right は 'bottom' にフォールバック
    */
   labelPosition?: 'left' | 'right' | 'top' | 'bottom'
-  /** 無効状態 */
-  disabled?: boolean
-  /** ユニークID */
-  id?: string
-  /** クラス名 */
-  className?: string
-  /** インラインスタイル */
-  style?: React.CSSProperties
-  /** ボタン要素への参照 - Ref for the button element */
-  ref?: React.Ref<HTMLButtonElement>
   /**
    * セカイカラー
    * @see {@link ColorsSekaiKey}

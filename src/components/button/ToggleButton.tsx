@@ -67,7 +67,6 @@ export const ToggleButton = ({
   return (
     <button
       {...rest}
-      ref={rest.ref}
       role="switch"
       type="button"
       aria-checked={checked}

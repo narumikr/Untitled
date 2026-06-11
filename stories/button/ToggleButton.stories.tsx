@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 
 import { ToggleButton } from '@/components/button/ToggleButton'
@@ -24,7 +25,10 @@ const meta = {
     },
     direction: {
       description: 'toggle の向き',
-      table: { type: { summary: "'horizontal' | 'vertical'" }, defaultValue: { summary: 'horizontal' } },
+      table: {
+        type: { summary: "'horizontal' | 'vertical'" },
+        defaultValue: { summary: 'horizontal' },
+      },
       control: { type: 'select' },
       options: ['horizontal', 'vertical'],
     },
@@ -63,11 +67,6 @@ const meta = {
     style: {
       description: 'Style object',
       table: { type: { summary: 'React.CSSProperties' } },
-      control: false,
-    },
-    ref: {
-      description: 'Ref to the root element',
-      table: { type: { summary: 'React.Ref<HTMLButtonElement>' } },
       control: false,
     },
   },
