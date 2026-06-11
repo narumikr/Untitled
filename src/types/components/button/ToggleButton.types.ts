@@ -28,6 +28,8 @@ export interface ToggleButtonProps {
   className?: string
   /** インラインスタイル */
   style?: React.CSSProperties
+  /** ボタン要素への参照 - Ref for the button element */
+  ref?: React.Ref<HTMLButtonElement>
   /**
    * セカイカラー
    * @see {@link ColorsSekaiKey}
