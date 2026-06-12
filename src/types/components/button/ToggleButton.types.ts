@@ -4,33 +4,46 @@ import type React from 'react'
 
 export interface ToggleButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'onClick'> {
-  /** ON/OFF 状態（controlled 必須） */
-  checked: boolean
-  /** 状態変更ハンドラ */
-  onChange: (checked: boolean) => void
-  /** サイドラベルテキスト */
-  labelText?: string
+  /** ユニークID - Unique identifier */
+  id?: string
+  /** クラス名 - Class name */
+  className?: string
+  /** スタイル - Inline styles */
+  style?: React.CSSProperties
   /**
-   * toggle の向き
-   * @default 'horizontal'
-   */
-  direction?: 'horizontal' | 'vertical'
-  /**
-   * ラベルの位置
-   * - horizontal 時: 'left' | 'right' (default: 'right') — top/bottom は 'right' にフォールバック
-   * - vertical 時: 'top' | 'bottom' (default: 'bottom') — left/right は 'bottom' にフォールバック
-   */
-  labelPosition?: 'left' | 'right' | 'top' | 'bottom'
-  /**
-   * セカイカラー
+   * セカイカラー - Sekai Color
    * @see {@link ColorsSekaiKey}
    * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.sekaiを参照し、contextもない場合はデフォルトのMikuカラーが適用されます。
    */
   sekai?: ColorsSekaiKey
   /**
-   * テーマモード
+   * テーマモード - Theme Mode
    * @see {@link PaletteMode}
    * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.modeを参照し、contextもない場合はデフォルトのlightモードが適用されます。
    */
   themeMode?: PaletteMode
+  /** チェック状態 - Checked state */
+  checked?: boolean
+  /** チェック状態の変更ハンドラー - Handler for changing the checked state */
+  onChange: (checked: boolean) => void
+  /** サイドラベルテキスト - Label text */
+  labelText?: string
+  /**
+   * toggle の向き - Toggle direction
+   * @default 'horizontal'
+   */
+  direction?: 'horizontal' | 'vertical'
+  /**
+   * ラベルの位置 - Label position
+   * @default 'right' for horizontal, 'bottom' for vertical
+   * @remark
+   * - horizontal 時: 'left' | 'right' (default: 'right') — top/bottom は 'right' にフォールバック
+   * - vertical 時: 'top' | 'bottom' (default: 'bottom') — left/right は 'bottom' にフォールバック
+   */
+  labelPosition?: 'left' | 'right' | 'top' | 'bottom'
+  /**
+   * ToggleButtonを無効化するかどうか - Whether to disable the ToggleButton
+   * @default false
+   */
+  disabled?: boolean
 }

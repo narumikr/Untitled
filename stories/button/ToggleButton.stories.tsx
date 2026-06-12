@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import { fn } from 'storybook/test'
 
 import { ToggleButton } from '@/components/button/ToggleButton'
 
@@ -14,17 +13,60 @@ const meta = {
   parameters: {},
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Unique Id',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    className: {
+      description: 'Custom styles',
+      table: {
+        type: { summary: 'string' },
+      },
+      control: false,
+    },
+    style: {
+      description: 'Style object',
+      table: {
+        type: { summary: 'React.CSSProperties' },
+      },
+      control: false,
+    },
+    sekai: {
+      description: 'What SEKAI color to use',
+      table: {
+        type: { summary: 'ColorsSekaiKey' },
+        defaultValue: { summary: 'Miku' },
+      },
+      control: { type: 'select' },
+      options: [...Object.keys(COLORS_SEKAI_KEYS)],
+    },
+    themeMode: {
+      description: 'Light or Dark mode',
+      table: {
+        type: { summary: 'PaletteMode' },
+        defaultValue: { summary: 'light' },
+      },
+      control: { type: 'select' },
+      options: ['light', 'dark'],
+    },
     checked: {
-      description: 'ON/OFF 状態',
+      description: 'Controls whether the toggle button is checked',
       table: { type: { summary: 'boolean' } },
       control: { type: 'boolean' },
     },
+    onChange: {
+      description: 'Callback fired when the toggle button state changes',
+      table: { type: { summary: '(checked: boolean) => void' } },
+      control: false,
+    },
     labelText: {
-      description: 'サイドラベルテキスト',
+      description: 'Label text to display',
       table: { type: { summary: 'string' } },
     },
     direction: {
-      description: 'toggle の向き',
+      description: 'Toggle direction',
       table: {
         type: { summary: "'horizontal' | 'vertical'" },
         defaultValue: { summary: 'horizontal' },
@@ -33,132 +75,128 @@ const meta = {
       options: ['horizontal', 'vertical'],
     },
     labelPosition: {
-      description: 'ラベルの位置',
+      description: 'Label position',
       table: { type: { summary: "'left' | 'right' | 'top' | 'bottom'" } },
       control: { type: 'select' },
       options: ['left', 'right', 'top', 'bottom'],
     },
     disabled: {
-      description: '無効状態',
-      table: { type: { summary: 'boolean' } },
+      description: 'Controls whether the toggle button is disabled',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
       control: { type: 'boolean' },
-    },
-    sekai: {
-      description: 'What SEKAI color to use',
-      table: { type: { summary: 'ColorsSekaiKey' }, defaultValue: { summary: 'Miku' } },
-      control: { type: 'select' },
-      options: [...Object.keys(COLORS_SEKAI_KEYS)],
-    },
-    themeMode: {
-      description: 'Light or Dark mode',
-      table: { type: { summary: 'PaletteMode' }, defaultValue: { summary: 'light' } },
-      control: { type: 'select' },
-      options: ['light', 'dark'],
-    },
-    id: {
-      description: 'Unique Id',
-      table: { type: { summary: 'string' } },
-    },
-    className: {
-      description: 'Custom styles',
-      table: { type: { summary: 'string' } },
-      control: false,
-    },
-    style: {
-      description: 'Style object',
-      table: { type: { summary: 'React.CSSProperties' } },
-      control: false,
     },
   },
   args: {
-    checked: false,
-    onChange: () => {},
+    onChange: fn(),
   },
 } satisfies Meta<typeof ToggleButton>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-const ControlledTemplate = (args: React.ComponentProps<typeof ToggleButton>) => {
-  const [checked, setChecked] = useState(args.checked)
-  return <ToggleButton {...args} checked={checked} onChange={setChecked} />
-}
-
 export const DefaultLight: Story = {
-  render: ControlledTemplate,
   args: {
+    id: 'toggle-button-default-light',
     sekai: 'Miku',
     themeMode: 'light',
+    checked: true,
+    labelText: '',
+    direction: 'horizontal',
+    labelPosition: 'right',
+    disabled: false,
   },
   parameters: { sekai: 'Miku', background: 'light' },
 }
 
 export const DefaultDark: Story = {
-  render: ControlledTemplate,
   args: {
+    id: 'toggle-button-default-dark',
     sekai: 'Miku',
     themeMode: 'dark',
+    checked: true,
+    labelText: '',
+    direction: 'horizontal',
+    labelPosition: 'right',
+    disabled: false,
   },
   parameters: { sekai: 'Miku', background: 'dark' },
 }
 
 export const WithLabel: Story = {
-  render: ControlledTemplate,
   args: {
+    id: 'toggle-button-with-label',
     sekai: 'Miku',
     themeMode: 'light',
-    labelText: '通知を受け取る',
+    checked: true,
+    labelText: 'AUTO',
+    direction: 'horizontal',
+    labelPosition: 'right',
+    disabled: false,
   },
 }
 
 export const LabelLeft: Story = {
-  render: ControlledTemplate,
   args: {
-    sekai: 'Ichika',
+    id: 'toggle-button-label-left',
+    sekai: 'Miku',
     themeMode: 'light',
-    labelText: '設定項目',
+    checked: true,
+    labelText: 'AUTO',
+    direction: 'horizontal',
     labelPosition: 'left',
+    disabled: false,
   },
 }
 
 export const Vertical: Story = {
-  render: ControlledTemplate,
   args: {
-    sekai: 'Kohane',
+    id: 'toggle-button-vertical',
+    sekai: 'Miku',
     themeMode: 'light',
+    checked: true,
     direction: 'vertical',
-    labelText: '縦向き',
+    labelPosition: 'bottom',
+    labelText: 'AUTO',
+    disabled: false,
   },
 }
 
 export const VerticalLabelTop: Story = {
-  render: ControlledTemplate,
   args: {
-    sekai: 'Rui',
+    id: 'toggle-button-vertical-label-top',
+    sekai: 'Miku',
     themeMode: 'light',
+    checked: true,
+    labelText: 'AUTO',
     direction: 'vertical',
-    labelText: 'ラベル上',
     labelPosition: 'top',
+    disabled: false,
   },
 }
 
 export const Disabled: Story = {
-  render: ControlledTemplate,
   args: {
     sekai: 'Miku',
     themeMode: 'light',
+    checked: false,
     labelText: '無効状態',
+    direction: 'horizontal',
+    labelPosition: 'right',
     disabled: true,
   },
 }
 
 export const DisabledChecked: Story = {
-  render: ControlledTemplate,
   args: {
     sekai: 'Miku',
     themeMode: 'light',
-    labelText: '無効（ON）',
     checked: true,
+    labelText: '無効状態',
+    direction: 'horizontal',
+    labelPosition: 'right',
     disabled: true,
   },
 }
