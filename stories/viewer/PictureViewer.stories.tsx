@@ -18,12 +18,15 @@ const meta = {
           height: 150,
           display: 'flex',
           alignItems: 'center',
+          justifyContent: 'center',
         }}>
         <Story />
       </div>
     ),
   ],
-  parameters: {},
+  parameters: {
+    layout: 'centered',
+  },
   tags: ['autodocs'],
   argTypes: {
     id: {
