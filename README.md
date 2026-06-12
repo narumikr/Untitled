@@ -33,20 +33,6 @@ yarnを使う場合：
 yarn add github:Narumikr/Untitled#release/untitled
 ```
 
-#### **_Notice_**
-
-React18で作成されているため、最新のReact環境にインストールすると失敗するかと思います。
-
-その場合、下記オプションをつけてのインストールをお試しください
-
-```bash
-npm install github:Narumikr/Untitled#release/untitled --legacy-peer-deps
-
-or
-
-yarn add github:Narumikr/Untitled#release/untitled --legacy-peer-deps
-```
-
 ### 💻 **_How to use_** 💻![Nightcord-at25-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:884499,100:f5f5f7)
 
 ### colorsSekai
