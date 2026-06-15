@@ -54,11 +54,15 @@ const meta = {
     checked: {
       description: 'Controls whether the toggle button is checked',
       table: { type: { summary: 'boolean' } },
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
       control: { type: 'boolean' },
     },
     onChange: {
       description: 'Callback fired when the toggle button state changes',
       table: { type: { summary: '(checked: boolean) => void' } },
+      // @ts-expect-error Storybook's typing issue
+      type: { required: true },
       control: false,
     },
     labelText: {

@@ -22,14 +22,16 @@ export interface ToggleButtonProps
    * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.modeを参照し、contextもない場合はデフォルトのlightモードが適用されます。
    */
   themeMode?: PaletteMode
+  /** トグルボタン要素への参照 - Ref for the toggle button element */
+  ref?: React.Ref<HTMLButtonElement>
   /** チェック状態 - Checked state */
-  checked?: boolean
+  checked: boolean
   /** チェック状態の変更ハンドラー - Handler for changing the checked state */
   onChange: (checked: boolean) => void
   /** サイドラベルテキスト - Label text */
   labelText?: string
   /**
-   * toggle の向き - Toggle direction
+   * トグルボタンの向き - Toggle button direction
    * @default 'horizontal'
    */
   direction?: 'horizontal' | 'vertical'
@@ -42,7 +44,7 @@ export interface ToggleButtonProps
    */
   labelPosition?: 'left' | 'right' | 'top' | 'bottom'
   /**
-   * ToggleButtonを無効化するかどうか - Whether to disable the ToggleButton
+   * トグルボタンを無効化するかどうか - Whether to disable the ToggleButton
    * @default false
    */
   disabled?: boolean

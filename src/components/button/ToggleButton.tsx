@@ -29,10 +29,7 @@ const getResolvedLabelPosition = (
   return isLeftOrRight ? labelPosition : 'right'
 }
 
-const renderLabel = (
-  labelText: string | undefined,
-  shouldRender: boolean,
-): React.ReactNode => {
+const renderLabel = (labelText: string | undefined, shouldRender: boolean): React.ReactNode => {
   if (!labelText || !shouldRender) return null
   return (
     <span className={styles['sekai-toggle-label']} data-testid="toggle-label">
@@ -67,8 +64,10 @@ export const ToggleButton = ({
   return (
     <button
       {...rest}
+      ref={rest.ref}
       role="switch"
       type="button"
+      aria-label={labelText || 'Toggle Button'}
       aria-checked={checked}
       disabled={disabled}
       onClick={() => onChange(!checked)}
@@ -78,15 +77,13 @@ export const ToggleButton = ({
         direction === 'vertical' && styles['sekai-toggle-button--vertical'],
         rest.className,
       )}
-      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}
-    >
+      style={{ ...(optionStyle as React.CSSProperties), ...rest.style }}>
       {renderLabel(labelText, isLabelBefore)}
       <span
         className={clsx(
           styles['sekai-toggle-track'],
           checked && styles['sekai-toggle-track--on'],
-        )}
-      >
+        )}>
         <span
           className={clsx(
             styles['sekai-toggle-thumb'],

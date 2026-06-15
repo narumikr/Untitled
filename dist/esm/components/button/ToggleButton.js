@@ -58,8 +58,10 @@ var ToggleButton = function ToggleButton(_ref) {
   var resolvedLabelPosition = getResolvedLabelPosition(direction, labelPosition);
   var isLabelBefore = resolvedLabelPosition === 'left' || resolvedLabelPosition === 'top';
   return /*#__PURE__*/React.createElement("button", _extends({}, rest, {
+    ref: rest.ref,
     role: "switch",
     type: "button",
+    "aria-label": labelText || 'Toggle Button',
     "aria-checked": checked,
     disabled: disabled,
     onClick: function onClick() {
