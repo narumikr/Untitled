@@ -73,7 +73,7 @@ const meta = {
     onChange: {
       description: 'Callback fired when the checkbox state changes',
       table: {
-        type: { summary: '(value: boolean) => void' },
+        type: { summary: '(checked: boolean) => void' },
       },
     },
     filling: {

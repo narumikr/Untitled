@@ -17,11 +17,13 @@ describe('MusicBannerCard', () => {
   const originalResizeObserver = globalThis.ResizeObserver
 
   beforeAll(() => {
-    globalThis.ResizeObserver = vi.fn().mockImplementation(() => ({
-      observe: mockObserve,
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }))
+    globalThis.ResizeObserver = vi.fn().mockImplementation(function () {
+      return {
+        observe: mockObserve,
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
+      }
+    })
   })
 
   afterAll(() => {

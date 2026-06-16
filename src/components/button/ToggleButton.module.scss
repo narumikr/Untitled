@@ -1,0 +1,87 @@
+@use '../../styles/global.module.scss' as global;
+
+.sekai-toggle-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color);
+    outline-offset: 2px;
+  }
+}
+
+.sekai-toggle-button--light {
+  color: global.$color-text-light;
+}
+
+.sekai-toggle-button--dark {
+  color: global.$color-text-dark;
+}
+
+/* track */
+.sekai-toggle-track {
+  width: 52px;
+  height: 28px;
+  border-radius: 14px;
+  border: 2px solid #ccc;
+  background: transparent;
+  position: relative;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sekai-toggle-track--on {
+  border-color: var(--sekai-color);
+  background: var(--sekai-color-bg);
+}
+
+/* thumb */
+.sekai-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ccc;
+  transition: left 0.2s ease, top 0.2s ease, background 0.2s ease;
+}
+
+.sekai-toggle-thumb--on {
+  left: 26px;
+  background: var(--sekai-color);
+}
+
+/* vertical: placed AFTER .sekai-toggle-thumb--on so it wins the cascade */
+.sekai-toggle-button--vertical {
+  flex-direction: column;
+
+  .sekai-toggle-track {
+    width: 28px;
+    height: 52px;
+  }
+
+  .sekai-toggle-thumb--on {
+    top: 26px;
+    left: 2px;
+  }
+}
+
+/* label */
+.sekai-toggle-label {
+  font-size: 13px;
+  line-height: 1;
+  user-select: none;
+}
