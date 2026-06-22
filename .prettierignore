@@ -1,7 +1,9 @@
 dist/
 node_modules/
 storybook-static/
+
 .github/
+plop-templates/
 
 *.min.js
 *.min.css
