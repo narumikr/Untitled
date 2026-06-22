@@ -1,6 +1,7 @@
 dist/
 node_modules/
 storybook-static/
+.github/
 
 *.min.js
 *.min.css
@@ -10,3 +11,7 @@ coverage/
 .nuxt/
 public/
 *.log
+*.mdx
+
+package.json
+pnpm-lock.yaml
