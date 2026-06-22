@@ -37,10 +37,10 @@ jobs:
           node-version: "24"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: npm run build:ci
+        run: pnpm build:ci
 
       - name: Check for dist changes
         id: diff
