@@ -29,13 +29,13 @@
   "scripts": {
     "clean": "rm -rf dist",
     "generate-index": "python -X utf8 scripts/generator.py",
-    "build:gen": "npm run generate-index",
+    "build:gen": "pnpm generate-index",
     "build:bundle": "rollup -c",
     "build:typecheck": "tsc --noEmit -p tsconfig.build.json",
     "build:package-json": "python -X utf8 scripts/build-package-json.py",
     "build:local": "sh scripts/build_local.sh",
-    "build": "npm run clean && npm run build:gen && npm run build:bundle && npm run build:typecheck && npm run build:package-json && npm run build:local",
-    "build:ci": "npm run clean && npm run build:gen && npm run build:bundle && npm run build:typecheck && npm run build:package-json",
+    "build": "pnpm clean && pnpm build:gen && pnpm build:bundle && pnpm build:typecheck && pnpm build:package-json && pnpm build:local",
+    "build:ci": "pnpm clean && pnpm build:gen && pnpm build:bundle && pnpm build:typecheck && pnpm build:package-json",
     "lint": "npx eslint .  --no-cache --max-warnings=0",
     "lint:fix": "npx eslint .  --no-cache --fix --max-warnings=0",
     "prettier": "npx prettier --write . --ignore-path .prettierignore",
@@ -44,7 +44,7 @@
     "build-storybook": "storybook build",
     "test": "vitest --run",
     "test:unit": "vitest --run .test.ts",
-    "prepare": "husky"
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "",
