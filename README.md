@@ -42,7 +42,7 @@ pnpm add github:Narumikr/Untitled#release/untitled
 > [!tip]
 >
 > 以下のような警告が出た場合は次の [pnpm addで警告が出たとき](#pnpm-addで警告が出たとき)を実施してください。
-> 
+>
 > ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED  Failed to prepare git-hosted package fetched...
 > build scripts but is not in the "onlyBuiltDependencies" allowlist.
 
@@ -55,9 +55,7 @@ pnpm がセキュリティポリシーの影響でビルドスクリプトの実
 ```json
 {
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "@naru/untitled-ui-library"
-    ]
+    "onlyBuiltDependencies": ["@naru/untitled-ui-library"]
   }
 }
 ```
