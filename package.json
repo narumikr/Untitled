@@ -45,7 +45,7 @@
     "build-storybook": "storybook build",
     "test": "vitest --run",
     "test:unit": "vitest --run .test.ts",
-    "prepare": "npx --yes pnpm build:ci"
+    "prepare": "rm -rf dist && python -X utf8 scripts/generator.py && rollup -c && tsc --noEmit -p tsconfig.build.json && python -X utf8 scripts/build-package-json.py"
   },
   "keywords": [],
   "author": "",
