@@ -13,15 +13,27 @@ tags: composition, polymorphic, as-prop, design-system, reusability
 
 ```tsx
 function Button({ children, ...props }: ButtonProps) {
-  return <button className="btn" {...props}>{children}</button>
+  return (
+    <button className="btn" {...props}>
+      {children}
+    </button>
+  )
 }
 
 function ButtonLink({ children, href, ...props }: ButtonLinkProps) {
-  return <a className="btn" href={href} {...props}>{children}</a>
+  return (
+    <a className="btn" href={href} {...props}>
+      {children}
+    </a>
+  )
 }
 
 function ButtonDiv({ children, ...props }: ButtonDivProps) {
-  return <div className="btn" role="button" tabIndex={0} {...props}>{children}</div>
+  return (
+    <div className="btn" role="button" tabIndex={0} {...props}>
+      {children}
+    </div>
+  )
 }
 ```
 

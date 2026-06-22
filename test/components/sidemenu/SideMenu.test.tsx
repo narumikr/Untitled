@@ -18,8 +18,8 @@ vi.mock('@/internal/usePortalContainer', () => ({
 
 describe('SideMenu', () => {
   const defaultProps = {
-    open: true,
-    children: <div>Menu Content</div>,
+    'open': true,
+    'children': <div>Menu Content</div>,
     'data-testid': 'side-menu',
   }
 

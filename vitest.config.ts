@@ -15,7 +15,9 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./test/setupTests.ts'],
-    alias: [{ find: /\.svg$/, replacement: path.resolve(__dirname, 'test/__mocks__/svgMock.tsx') }],
+    alias: [
+      { find: /\.svg$/, replacement: path.resolve(__dirname, 'test/__mocks__/svgMock.tsx') },
+    ],
     include: ['test/**/*.test.{ts,tsx}'],
     passWithNoTests: true,
     exclude: ['node_modules', 'dist', 'test/templates'],

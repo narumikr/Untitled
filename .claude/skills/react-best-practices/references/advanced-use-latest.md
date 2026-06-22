@@ -25,7 +25,7 @@ function SearchInput({ onSearch }: { onSearch: (q: string) => void }) {
 **正しい（ReactのuseEffectEventを使用）：**
 
 ```tsx
-import { useEffectEvent } from 'react';
+import { useEffectEvent } from 'react'
 
 function SearchInput({ onSearch }: { onSearch: (q: string) => void }) {
   const [query, setQuery] = useState('')

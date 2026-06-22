@@ -1,6 +1,6 @@
 ---
 paths:
-  - "**/*.tsx"
+  - '**/*.tsx'
 ---
 
 # コンポーネント実装時ルール
@@ -40,4 +40,3 @@ const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: theme
 ### src/types/
 
 型定義はコンポーネントファイルから分離しています。`src/types/`フォルダに`src/components/`フォルダと同じ構成で定義し、コンポーネントファイルはそれをimportする形で実装しています。
-

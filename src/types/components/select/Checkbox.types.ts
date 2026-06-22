@@ -2,11 +2,10 @@ import type { PaletteMode } from '@/hooks/useThemeMode'
 import type { ColorsSekaiKey } from '@/styles/sekai-colors'
 import type React from 'react'
 
-export interface CheckboxProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'onChange' | 'checked' | 'disabled'
-  > {
+export interface CheckboxProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'onChange' | 'checked' | 'disabled'
+> {
   /** ユニークID - Unique identifier */
   id?: string
   /** クラス名 - Class name */

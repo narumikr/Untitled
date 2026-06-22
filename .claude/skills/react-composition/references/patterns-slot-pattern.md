@@ -22,7 +22,7 @@ function Tooltip({ children, content }: TooltipProps) {
 }
 
 // Consumer — unwanted wrapper div in the DOM
-<Tooltip content="Settings">
+;<Tooltip content="Settings">
   <button>⚙️</button>
 </Tooltip>
 // Renders: <div class="tooltip-trigger"><button>⚙️</button></div>

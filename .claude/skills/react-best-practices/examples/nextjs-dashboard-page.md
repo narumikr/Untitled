@@ -6,13 +6,13 @@
 
 ```tsx
 // app/dashboard/page.tsx
-import { Chart } from '@/components/charts'           // barrel import (bundle-barrel-imports)
+import { Chart } from '@/components/charts' // barrel import (bundle-barrel-imports)
 import { formatDate, formatCurrency } from '@/lib/utils' // barrel import
 
 export default async function DashboardPage() {
-  const user = await getCurrentUser()                   // waterfall: sequential fetches
-  const stats = await fetchStats(user.id)               // (async-parallel)
-  const activities = await fetchActivities(user.id)     //
+  const user = await getCurrentUser() // waterfall: sequential fetches
+  const stats = await fetchStats(user.id) // (async-parallel)
+  const activities = await fetchActivities(user.id) //
 
   return (
     <div>
@@ -25,8 +25,14 @@ export default async function DashboardPage() {
 }
 
 // Passes full objects as props causing duplicate serialization (server-dedup-props)
-function StatsPanel({ stats, user, activities }: {
-  stats: Stats; user: User; activities: Activity[]
+function StatsPanel({
+  stats,
+  user,
+  activities,
+}: {
+  stats: Stats
+  user: User
+  activities: Activity[]
 }) {
   return (
     <div>
@@ -42,7 +48,7 @@ function StatsPanel({ stats, user, activities }: {
 
 ```tsx
 // app/dashboard/page.tsx
-import { formatDate } from '@/lib/utils/format-date'     // direct imports (bundle-barrel-imports)
+import { formatDate } from '@/lib/utils/format-date' // direct imports (bundle-barrel-imports)
 import { formatCurrency } from '@/lib/utils/format-currency'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
@@ -63,20 +69,13 @@ export default async function DashboardPage() {
   if (!user) redirect('/login')
 
   // Parallel fetching (async-parallel)
-  const [stats, activities] = await Promise.all([
-    fetchStats(user.id),
-    fetchActivities(user.id),
-  ])
+  const [stats, activities] = await Promise.all([fetchStats(user.id), fetchActivities(user.id)])
 
   return (
     <div>
       <h1>Welcome, {user.name}</h1>
       {/* Pass only needed primitives (server-dedup-props, server-serialization) */}
-      <StatsPanel
-        userName={user.name}
-        total={stats.total}
-        activityCount={activities.length}
-      />
+      <StatsPanel userName={user.name} total={stats.total} activityCount={activities.length} />
       <Suspense fallback={<ChartSkeleton />}>
         <Chart data={stats.chartData} />
       </Suspense>
@@ -88,8 +87,14 @@ export default async function DashboardPage() {
 }
 
 // Receives only primitives - no duplicate serialization
-function StatsPanel({ userName, total, activityCount }: {
-  userName: string; total: number; activityCount: number
+function StatsPanel({
+  userName,
+  total,
+  activityCount,
+}: {
+  userName: string
+  total: number
+  activityCount: number
 }) {
   return (
     <div>
@@ -103,11 +108,11 @@ function StatsPanel({ userName, total, activityCount }: {
 
 ## 適用されたルール
 
-| ルール | 影響 | 変更内容 |
-|------|--------|-------------|
-| `async-parallel` | CRITICAL | 逐次的なawait → Promise.all() |
-| `bundle-barrel-imports` | CRITICAL | バレルインポート → 直接ファイルインポート |
-| `bundle-dynamic-imports` | CRITICAL | 静的なChartインポート → next/dynamic |
-| `server-serialization` | HIGH | クライアントへ渡すデータを最小化 |
-| `server-cache-react` | MEDIUM | getCurrentUserをReact.cache()でラップ |
-| `server-dedup-props` | LOW | フルオブジェクト → プリミティブpropsのみ |
+| ルール                   | 影響     | 変更内容                                  |
+| ------------------------ | -------- | ----------------------------------------- |
+| `async-parallel`         | CRITICAL | 逐次的なawait → Promise.all()             |
+| `bundle-barrel-imports`  | CRITICAL | バレルインポート → 直接ファイルインポート |
+| `bundle-dynamic-imports` | CRITICAL | 静的なChartインポート → next/dynamic      |
+| `server-serialization`   | HIGH     | クライアントへ渡すデータを最小化          |
+| `server-cache-react`     | MEDIUM   | getCurrentUserをReact.cache()でラップ     |
+| `server-dedup-props`     | LOW      | フルオブジェクト → プリミティブpropsのみ  |

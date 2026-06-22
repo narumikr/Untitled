@@ -32,14 +32,8 @@ function Text<E extends React.ElementType = 'p'>({
   const Component = as || 'p'
   return (
     <Component
-      className={cn(
-        styles.text,
-        styles[`size-${size}`],
-        styles[`weight-${weight}`],
-        className,
-      )}
-      {...props}
-    >
+      className={cn(styles.text, styles[`size-${size}`], styles[`weight-${weight}`], className)}
+      {...props}>
       {children}
     </Component>
   )
@@ -66,8 +60,7 @@ TypeScriptは`as="label"`の場合に`htmlFor`が使用可能で、`as="h1"`の�
 ```tsx
 import { Slot } from '@radix-ui/react-slot'
 
-interface DialogTriggerProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface DialogTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
 }
 
@@ -137,11 +130,7 @@ function Tabs({ value, onValueChange, defaultValue, children }: TabsProps) {
 function TabsTrigger({ value, children }: { value: string; children: React.ReactNode }) {
   const { activeTab, setActiveTab } = use(TabsContext)
   return (
-    <button
-      role="tab"
-      aria-selected={activeTab === value}
-      onClick={() => setActiveTab(value)}
-    >
+    <button role="tab" aria-selected={activeTab === value} onClick={() => setActiveTab(value)}>
       {children}
     </button>
   )
@@ -184,10 +173,7 @@ function SettingsPage() {
   const activeTab = searchParams.get('tab') ?? 'general'
 
   return (
-    <TabsCompound.Root
-      value={activeTab}
-      onValueChange={(tab) => setSearchParams({ tab })}
-    >
+    <TabsCompound.Root value={activeTab} onValueChange={(tab) => setSearchParams({ tab })}>
       <TabsCompound.Trigger value="general">General</TabsCompound.Trigger>
       <TabsCompound.Trigger value="security">Security</TabsCompound.Trigger>
 
@@ -238,11 +224,7 @@ function SelectTrigger({ asChild, children, ...props }: TriggerProps) {
   const Component = asChild ? Slot : 'button'
 
   return (
-    <Component
-      aria-expanded={isOpen}
-      onClick={() => setIsOpen(!isOpen)}
-      {...props}
-    >
+    <Component aria-expanded={isOpen} onClick={() => setIsOpen(!isOpen)} {...props}>
       {children ?? selected}
     </Component>
   )
@@ -258,8 +240,7 @@ function SelectOption({ value, children }: OptionProps) {
       onClick={() => {
         setSelected(value)
         setIsOpen(false)
-      }}
-    >
+      }}>
       {children}
     </div>
   )

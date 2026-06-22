@@ -20,9 +20,5 @@ const comments = await fetchComments()
 **正しい（並列実行、1回のラウンドトリップ）：**
 
 ```typescript
-const [user, posts, comments] = await Promise.all([
-  fetchUser(),
-  fetchPosts(),
-  fetchComments()
-])
+const [user, posts, comments] = await Promise.all([fetchUser(), fetchPosts(), fetchComments()])
 ```

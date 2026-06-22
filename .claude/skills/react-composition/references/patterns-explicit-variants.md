@@ -13,13 +13,7 @@ tags: composition, variants, architecture
 
 ```tsx
 // What does this component actually render?
-<Composer
-  isThread
-  isEditing={false}
-  channelId='abc'
-  showAttachments
-  showFormatting={false}
-/>
+<Composer isThread isEditing={false} channelId="abc" showAttachments showFormatting={false} />
 ```
 
 **正しい（明示的なバリアント）：**

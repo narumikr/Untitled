@@ -32,9 +32,12 @@ function ProductForm({ categories }: { categories: Category[] }) {
   }, [])
 
   // Non-functional setState creates unstable callback (rerender-functional-setstate)
-  const handleChange = useCallback((field: string, value: string) => {
-    setFormData({ ...formData, [field]: value })
-  }, [formData]) // dependency on formData causes re-creation every render
+  const handleChange = useCallback(
+    (field: string, value: string) => {
+      setFormData({ ...formData, [field]: value })
+    },
+    [formData],
+  ) // dependency on formData causes re-creation every render
 
   // Effect for interaction logic (rerender-move-effect-to-event)
   useEffect(() => {
@@ -45,15 +48,12 @@ function ProductForm({ categories }: { categories: Category[] }) {
 
   const sortedCategories = useMemo(
     () => categories.sort((a, b) => a.name.localeCompare(b.name)), // mutates original array
-    [categories]
+    [categories],
   )
 
   return (
     <form>
-      <input
-        value={formData.name}
-        onChange={(e) => handleChange('name', e.target.value)}
-      />
+      <input value={formData.name} onChange={(e) => handleChange('name', e.target.value)} />
       {/* ... */}
     </form>
   )
@@ -81,7 +81,7 @@ function ProductForm({ categories }: { categories: Category[] }) {
 
   // Functional setState - no dependency on formData (rerender-functional-setstate)
   const handleChange = useCallback((field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
+    setFormData((prev) => ({ ...prev, [field]: value }))
   }, []) // stable: no dependencies needed
 
   // Validation in event handler, not effect (rerender-move-effect-to-event)
@@ -91,20 +91,15 @@ function ProductForm({ categories }: { categories: Category[] }) {
       alert('Name too long!')
       return
     }
-    setFormData(prev => ({ ...prev, name: value }))
+    setFormData((prev) => ({ ...prev, name: value }))
   }, [])
 
   // Immutable sort (js-tosorted-immutable) + derive during render (rerender-derived-state-no-effect)
-  const sortedCategories = categories.toSorted((a, b) =>
-    a.name.localeCompare(b.name)
-  )
+  const sortedCategories = categories.toSorted((a, b) => a.name.localeCompare(b.name))
 
   return (
     <form>
-      <input
-        value={formData.name}
-        onChange={handleNameChange}
-      />
+      <input value={formData.name} onChange={handleNameChange} />
       {/* ... */}
     </form>
   )
@@ -113,11 +108,11 @@ function ProductForm({ categories }: { categories: Category[] }) {
 
 ## 適用されたルール
 
-| ルール | 影響 | 変更内容 |
-|------|--------|-------------|
-| `rerender-derived-state` | MEDIUM | windowWidthの購読 → useMediaQuery ブーリアン |
-| `rerender-derived-state-no-effect` | MEDIUM | エフェクトによる派生状態 → レンダリング中に計算 |
-| `rerender-functional-setstate` | MEDIUM | スプレッドsetState → 関数型アップデーター（安定したコールバック） |
-| `rerender-lazy-state-init` | MEDIUM | 直接の値 → useStateにファクトリー関数を渡す |
-| `rerender-move-effect-to-event` | MEDIUM | バリデーションエフェクト → イベントハンドラのロジック |
-| `js-tosorted-immutable` | MEDIUM-HIGH | ミューテーションするsort() → イミュータブルなtoSorted() |
+| ルール                             | 影響        | 変更内容                                                          |
+| ---------------------------------- | ----------- | ----------------------------------------------------------------- |
+| `rerender-derived-state`           | MEDIUM      | windowWidthの購読 → useMediaQuery ブーリアン                      |
+| `rerender-derived-state-no-effect` | MEDIUM      | エフェクトによる派生状態 → レンダリング中に計算                   |
+| `rerender-functional-setstate`     | MEDIUM      | スプレッドsetState → 関数型アップデーター（安定したコールバック） |
+| `rerender-lazy-state-init`         | MEDIUM      | 直接の値 → useStateにファクトリー関数を渡す                       |
+| `rerender-move-effect-to-event`    | MEDIUM      | バリデーションエフェクト → イベントハンドラのロジック             |
+| `js-tosorted-immutable`            | MEDIUM-HIGH | ミューテーションするsort() → イミュータブルなtoSorted()           |

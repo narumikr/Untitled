@@ -4,9 +4,5 @@
     "noEmit": false
   },
   "include": ["src"],
-  "exclude": [
-    "test",
-    "stories",
-    ".storybook"
-  ]
+  "exclude": ["test", "stories", ".storybook"]
 }

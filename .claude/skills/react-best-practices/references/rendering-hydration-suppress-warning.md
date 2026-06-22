@@ -21,10 +21,6 @@ function Timestamp() {
 
 ```tsx
 function Timestamp() {
-  return (
-    <span suppressHydrationWarning>
-      {new Date().toLocaleString()}
-    </span>
-  )
+  return <span suppressHydrationWarning>{new Date().toLocaleString()}</span>
 }
 ```
