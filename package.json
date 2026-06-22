@@ -45,7 +45,7 @@
     "build-storybook": "storybook build",
     "test": "vitest --run",
     "test:unit": "vitest --run .test.ts",
-    "prepare": "npm run build"
+    "prepare": "npx --yes pnpm build:ci"
   },
   "keywords": [],
   "author": "",
