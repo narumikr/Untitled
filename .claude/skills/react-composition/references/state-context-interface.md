@@ -85,8 +85,7 @@ function ForwardMessageProvider({ children }: { children: React.ReactNode }) {
         state,
         actions: { update: setState, submit },
         meta: { inputRef },
-      }}
-    >
+      }}>
       {children}
     </ComposerContext>
   )
@@ -103,8 +102,7 @@ function ChannelProvider({ channelId, children }: Props) {
         state,
         actions: { update, submit },
         meta: { inputRef },
-      }}
-    >
+      }}>
       {children}
     </ComposerContext>
   )

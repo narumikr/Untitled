@@ -117,10 +117,7 @@ describe('useThemeMode', () => {
 
       unmount()
 
-      expect(matchMediaMock.removeEventListener).toHaveBeenCalledWith(
-        'change',
-        changeHandler,
-      )
+      expect(matchMediaMock.removeEventListener).toHaveBeenCalledWith('change', changeHandler)
     })
   })
 

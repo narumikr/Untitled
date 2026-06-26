@@ -63,10 +63,13 @@ describe('IntoTheSekai', () => {
       rafCallbacks = []
 
       // rAF はコールバックを溜めるだけにして、手動でフラッシュできるようにする
-      vi.stubGlobal('requestAnimationFrame', vi.fn((cb: FrameRequestCallback) => {
-        rafCallbacks.push(cb)
-        return rafCallbacks.length
-      }))
+      vi.stubGlobal(
+        'requestAnimationFrame',
+        vi.fn((cb: FrameRequestCallback) => {
+          rafCallbacks.push(cb)
+          return rafCallbacks.length
+        }),
+      )
       vi.stubGlobal('cancelAnimationFrame', vi.fn())
 
       // setTimeout / clearTimeout のみフェイク化（React スケジューラに影響しないよう限定）

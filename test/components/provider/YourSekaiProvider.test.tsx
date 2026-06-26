@@ -24,7 +24,9 @@ const ContextConsumer = () => {
 describe('YourSekaiProvider', () => {
   it('children をレンダリングする', () => {
     render(
-      <YourSekaiProvider sekaiTheme={sekaiTheme} options={{ disableStoreSekai: true, disableStoreTheme: true }}>
+      <YourSekaiProvider
+        sekaiTheme={sekaiTheme}
+        options={{ disableStoreSekai: true, disableStoreTheme: true }}>
         <span>子要素</span>
       </YourSekaiProvider>,
     )
@@ -33,7 +35,9 @@ describe('YourSekaiProvider', () => {
 
   it('sekaiTheme のコンテキスト値が子コンポーネントに提供される', () => {
     render(
-      <YourSekaiProvider sekaiTheme={sekaiTheme} options={{ disableStoreSekai: true, disableStoreTheme: true }}>
+      <YourSekaiProvider
+        sekaiTheme={sekaiTheme}
+        options={{ disableStoreSekai: true, disableStoreTheme: true }}>
         <ContextConsumer />
       </YourSekaiProvider>,
     )

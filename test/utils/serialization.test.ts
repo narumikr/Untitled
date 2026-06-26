@@ -124,10 +124,7 @@ function deepEqualArrays(a: unknown[], b: unknown[]): boolean {
   return a.every((val, i) => deepEqualWithDates(val, b[i]))
 }
 
-function deepEqualObjects(
-  a: Record<string, unknown>,
-  b: Record<string, unknown>,
-): boolean {
+function deepEqualObjects(a: Record<string, unknown>, b: Record<string, unknown>): boolean {
   const keysA = Object.keys(a)
   const keysB = Object.keys(b)
   if (keysA.length !== keysB.length) return false

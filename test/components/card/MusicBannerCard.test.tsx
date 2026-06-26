@@ -89,11 +89,11 @@ describe('MusicBannerCard', () => {
     })
 
     it('variants="view-all" でアーティストの選択スタイルが適用される', () => {
-      render(
-        <MusicBannerCard {...defaultProps} variants="view-all" data-testid="music-card" />,
-      )
+      render(<MusicBannerCard {...defaultProps} variants="view-all" data-testid="music-card" />)
       // view-all バリアントでは selected=false でもアーティスト行に選択スタイルが適用される
-      const artistEl = screen.getByText('テストアーティスト').closest('[class*="sekai-music-card-detail-artist"]')
+      const artistEl = screen
+        .getByText('テストアーティスト')
+        .closest('[class*="sekai-music-card-detail-artist"]')
       expect(artistEl).toHaveClass('sekai-music-card-detail-artist-selected')
     })
   })

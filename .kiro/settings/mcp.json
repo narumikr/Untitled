@@ -44,10 +44,7 @@
     },
     "drawio": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@drawio/mcp"
-      ],
+      "args": ["-y", "@drawio/mcp"],
       "disabled": true
     }
   }

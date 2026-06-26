@@ -56,9 +56,8 @@ function useControllableState<T>({
 
   const setValue = useCallback(
     (next: T | ((prev: T) => T)) => {
-      const nextValue = typeof next === 'function'
-        ? (next as (prev: T) => T)(currentValue)
-        : next
+      const nextValue =
+        typeof next === 'function' ? (next as (prev: T) => T)(currentValue) : next
 
       if (!isControlled) {
         setInternalValue(nextValue)
@@ -84,23 +83,14 @@ interface AccordionProps {
   children: React.ReactNode
 }
 
-function Accordion({
-  value,
-  onValueChange,
-  defaultValue = [],
-  children,
-}: AccordionProps) {
+function Accordion({ value, onValueChange, defaultValue = [], children }: AccordionProps) {
   const [openItems, setOpenItems] = useControllableState({
     value,
     defaultValue,
     onChange: onValueChange,
   })
 
-  return (
-    <AccordionContext value={{ openItems, setOpenItems }}>
-      {children}
-    </AccordionContext>
-  )
+  return <AccordionContext value={{ openItems, setOpenItems }}>{children}</AccordionContext>
 }
 ```
 
@@ -108,7 +98,7 @@ function Accordion({
 
 ```tsx
 // Uncontrolled — works out of the box, no state management needed
-<Accordion defaultValue={['q1']}>
+;<Accordion defaultValue={['q1']}>
   <Accordion.Item id="q1">...</Accordion.Item>
   <Accordion.Item id="q2">...</Accordion.Item>
 </Accordion>
@@ -131,10 +121,10 @@ function FilterableAccordion() {
 
 **API規約：**
 
-| モード       | Props                          |
-| ------------ | ------------------------------ |
-| Uncontrolled | `defaultValue`、コールバック   |
-| Controlled   | `value` + `onValueChange`      |
+| モード       | Props                        |
+| ------------ | ---------------------------- |
+| Uncontrolled | `defaultValue`、コールバック |
+| Controlled   | `value` + `onValueChange`    |
 
 `value`が提供された場合、コンポーネントはcontrolledになる。`defaultValue`のみが提供された場合（またはどちらも提供されない場合）、コンポーネントは自分でstateを管理する。
 

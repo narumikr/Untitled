@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-Build package.dist.json from package.json
-This script automatically extracts necessary fields for distribution
+Build package.json for distribution directly into the dist/ directory.
+This script automatically extracts and transforms necessary fields.
 """
 
 import json
 import sys
-import shutil
 from pathlib import Path
 
 
@@ -14,30 +13,10 @@ def strip_dist_prefix(path_str):
     """Remove 'dist/' prefix from a path string for dist/package.json"""
     if isinstance(path_str, str):
         if path_str.startswith("./dist/"):
-            return "./" + path_str[len("./dist/"):]
+            return "./" + path_str[len("./dist/") :]
         if path_str.startswith("dist/"):
-            return path_str[len("dist/"):]
+            return path_str[len("dist/") :]
     return path_str
-
-
-def transform_dist_paths(package_data):
-    """Transform paths in package data to be relative to dist/ directory"""
-    # Transform simple path fields
-    for field in ["main", "module", "types", "style"]:
-        if field in package_data:
-            package_data[field] = strip_dist_prefix(package_data[field])
-
-    # Transform exports field recursively
-    if "exports" in package_data:
-        package_data["exports"] = transform_exports(package_data["exports"])
-
-    # Transform sideEffects array
-    if "sideEffects" in package_data and isinstance(package_data["sideEffects"], list):
-        package_data["sideEffects"] = [
-            strip_dist_prefix(item) for item in package_data["sideEffects"]
-        ]
-
-    return package_data
 
 
 def transform_exports(obj):
@@ -49,34 +28,49 @@ def transform_exports(obj):
     return obj
 
 
-def build_package_dist_json():
-    """Extract distribution fields from package.json and create package.dist.json"""
+def transform_dist_paths(package_data):
+    """Transform paths in package data to be relative to dist/ directory"""
+    for field in ["main", "module", "types", "style"]:
+        if field in package_data:
+            package_data[field] = strip_dist_prefix(package_data[field])
 
-    # Get paths
-    script_dir = Path(__file__).parent
-    root_dir = script_dir.parent
+    if "exports" in package_data:
+        package_data["exports"] = transform_exports(package_data["exports"])
+
+    if "sideEffects" in package_data and isinstance(package_data["sideEffects"], list):
+        package_data["sideEffects"] = [
+            strip_dist_prefix(item) for item in package_data["sideEffects"]
+        ]
+
+    return package_data
+
+
+def build_dist_package_json(root_dir: Path):
+    """Extract distribution fields and create dist/package.json directly"""
     package_json_path = root_dir / "package.json"
-    package_dist_json_path = root_dir / "package.dist.json"
+    dist_dir = root_dir / "dist"
+    dist_package_json_path = dist_dir / "package.json"
 
-    print("Building package.dist.json from package.json...")
+    print("Building dist/package.json from package.json...")
 
-    # Check if package.json exists
     if not package_json_path.exists():
         print(f"Error: package.json not found at {package_json_path}", file=sys.stderr)
         sys.exit(1)
 
-    # Read package.json
+    if not dist_dir.exists():
+        print(f"Error: dist directory not found at {dist_dir}", file=sys.stderr)
+        print("  Please run the build process first to create dist/", file=sys.stderr)
+        sys.exit(1)
+
+    # Read
     try:
         with open(package_json_path, "r", encoding="utf-8") as f:
             package_data = json.load(f)
-    except json.JSONDecodeError as e:
-        print(f"Error: Failed to parse package.json: {e}", file=sys.stderr)
-        sys.exit(1)
     except Exception as e:
-        print(f"Error: Failed to read package.json: {e}", file=sys.stderr)
+        print(f"Error: Failed to read/parse package.json: {e}", file=sys.stderr)
         sys.exit(1)
 
-    # Extract necessary fields for distribution
+    # Filter fields
     dist_fields = [
         "name",
         "version",
@@ -94,115 +88,57 @@ def build_package_dist_json():
         "dependencies",
         "sideEffects",
     ]
+    package_dist_data = {f: package_data[f] for f in dist_fields if f in package_data}
 
-    package_dist_data = {}
-    for field in dist_fields:
-        if field in package_data:
-            package_dist_data[field] = package_data[field]
-
-    # Transform paths for dist/package.json
-    # Root package.json uses paths like "dist/cjs/index.js" (relative to project root)
-    # dist/package.json needs paths like "cjs/index.js" (relative to dist directory)
+    # Transform paths
     package_dist_data = transform_dist_paths(package_dist_data)
 
-    # Write package.dist.json
+    # Write (newline="\n" で改行コードをLFに固定)
     try:
-        with open(package_dist_json_path, "w", encoding="utf-8") as f:
+        with open(dist_package_json_path, "w", encoding="utf-8", newline="\n") as f:
             json.dump(package_dist_data, f, indent=2, ensure_ascii=False)
-            f.write("\n")  # Add trailing newline
+            f.write("\n")
+        print(f"✓ Successfully created {dist_package_json_path}")
     except Exception as e:
-        print(f"Error: Failed to write package.dist.json: {e}", file=sys.stderr)
+        print(f"Error: Failed to write dist/package.json: {e}", file=sys.stderr)
         sys.exit(1)
 
-    print("✓ Successfully created package.dist.json")
-
-    # Display synchronized dependencies
-    if "dependencies" in package_dist_data:
-        print("  Dependencies version synchronized:")
-        for dep, version in package_dist_data["dependencies"].items():
-            print(f"    {dep}: {version}")
-
-    if "peerDependencies" in package_dist_data:
-        print("  Peer dependencies version synchronized:")
-        for dep, version in package_dist_data["peerDependencies"].items():
-            print(f"    {dep}: {version}")
-
-    return package_dist_json_path
+    # Log dependencies
+    for dep_type in ["dependencies", "peerDependencies"]:
+        if dep_type in package_dist_data:
+            print(f"  {dep_type.capitalize()} version synchronized:")
+            for dep, ver in package_dist_data[dep_type].items():
+                print(f"    {dep}: {ver}")
 
 
-def create_cjs_package_json():
+def create_cjs_package_json(root_dir: Path):
     """Create package.json in dist/cjs to specify CommonJS module type"""
-
-    # Get paths
-    script_dir = Path(__file__).parent
-    root_dir = script_dir.parent
     dist_cjs_dir = root_dir / "dist" / "cjs"
     cjs_package_json_path = dist_cjs_dir / "package.json"
 
     print("\nCreating package.json in dist/cjs...")
 
-    # Check if dist/cjs exists
     if not dist_cjs_dir.exists():
         print(f"Error: dist/cjs directory not found at {dist_cjs_dir}", file=sys.stderr)
-        print("  Please run the build process first to create dist/cjs/", file=sys.stderr)
         sys.exit(1)
 
-    # Create package.json with type: commonjs
-    cjs_package_data = {
-        "type": "commonjs"
-    }
+    cjs_package_data = {"type": "commonjs"}
 
     try:
-        with open(cjs_package_json_path, "w", encoding="utf-8") as f:
+        # newline="\n" で改行コードをLFに固定
+        with open(cjs_package_json_path, "w", encoding="utf-8", newline="\n") as f:
             json.dump(cjs_package_data, f, indent=2, ensure_ascii=False)
-            f.write("\n")  # Add trailing newline
+            f.write("\n")
         print(f"✓ Successfully created {cjs_package_json_path}")
     except Exception as e:
         print(f"Error: Failed to create dist/cjs/package.json: {e}", file=sys.stderr)
         sys.exit(1)
 
 
-def copy_package_to_dist():
-    """Copy package.dist.json to dist/package.json"""
-
-    # Get paths
-    script_dir = Path(__file__).parent
-    root_dir = script_dir.parent
-    package_dist_json_path = root_dir / "package.dist.json"
-    dist_dir = root_dir / "dist"
-    dist_package_json_path = dist_dir / "package.json"
-
-    print("\nCopying package.dist.json to dist/package.json...")
-
-    # Check if package.dist.json exists
-    if not package_dist_json_path.exists():
-        print(f"Error: package.dist.json not found at {package_dist_json_path}", file=sys.stderr)
-        print("  Please run build_package_dist_json() first", file=sys.stderr)
-        sys.exit(1)
-
-    # Create dist directory if it doesn't exist
-    if not dist_dir.exists():
-        print(f"Error: dist directory not found at {dist_dir}", file=sys.stderr)
-        print("  Please run the build process first to create dist/", file=sys.stderr)
-        sys.exit(1)
-
-    # Copy package.dist.json to dist/package.json
-    try:
-        shutil.copy2(package_dist_json_path, dist_package_json_path)
-        print(f"✓ Successfully copied to {dist_package_json_path}")
-    except Exception as e:
-        print(f"Error: Failed to copy package.dist.json: {e}", file=sys.stderr)
-        sys.exit(1)
-
-    # Delete package.dist.json after successful copy
-    try:
-        package_dist_json_path.unlink()
-        print(f"✓ Deleted temporary file {package_dist_json_path}")
-    except Exception as e:
-        print(f"Warning: Failed to delete package.dist.json: {e}", file=sys.stderr)
-
-
 if __name__ == "__main__":
-    build_package_dist_json()
-    copy_package_to_dist()
-    create_cjs_package_json()
+    # ベースとなるディレクトリの定義を共通化
+    script_dir = Path(__file__).parent
+    project_root = script_dir.parent
+
+    build_dist_package_json(project_root)
+    create_cjs_package_json(project_root)

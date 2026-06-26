@@ -15,14 +15,7 @@ tags: anti-patterns, composition, architecture
 
 ```tsx
 // Each new feature adds another boolean
-<Modal
-  isFullScreen
-  isClosable
-  isDraggable
-  hasOverlay
-  isAnimated
-  isNested
-/>
+<Modal isFullScreen isClosable isDraggable hasOverlay isAnimated isNested />
 ```
 
 **解決策**：Compound componentsまたは明示的なバリアントを使う。
@@ -43,13 +36,15 @@ tags: anti-patterns, composition, architecture
 
 ```tsx
 function App() {
-  return <Layout user={user} theme={theme} locale={locale}>
-    <Sidebar user={user} theme={theme}>
-      <Navigation user={user} theme={theme} locale={locale}>
-        <NavItem user={user} />
-      </Navigation>
-    </Sidebar>
-  </Layout>
+  return (
+    <Layout user={user} theme={theme} locale={locale}>
+      <Sidebar user={user} theme={theme}>
+        <Navigation user={user} theme={theme} locale={locale}>
+          <NavItem user={user} />
+        </Navigation>
+      </Sidebar>
+    </Layout>
+  )
 }
 ```
 
@@ -102,11 +97,7 @@ function ChildInput({ onValueChange }) {
 ```tsx
 function InputProvider({ children }) {
   const [value, setValue] = useState('')
-  return (
-    <InputContext value={{ value, setValue }}>
-      {children}
-    </InputContext>
-  )
+  return <InputContext value={{ value, setValue }}>{children}</InputContext>
 }
 
 function Parent() {
@@ -137,7 +128,7 @@ function Dashboard({ user, settings, data, filters, ... }) {
 
 ```tsx
 function TodoList() {
-  const todos = useTodoStore((state) => state.todos)  // Coupled to Zustand
+  const todos = useTodoStore((state) => state.todos) // Coupled to Zustand
   const addTodo = useTodoStore((state) => state.addTodo)
   // ...
 }
@@ -150,13 +141,17 @@ function TodoList() {
 **問題**：複数のRender propsがJSXで「コールバック地獄」を生み出す。
 
 ```tsx
-<DataProvider render={(data) => (
-  <ThemeConsumer render={(theme) => (
-    <LocaleConsumer render={(locale) => (
-      <Component data={data} theme={theme} locale={locale} />
-    )} />
-  )} />
-)} />
+<DataProvider
+  render={(data) => (
+    <ThemeConsumer
+      render={(theme) => (
+        <LocaleConsumer
+          render={(locale) => <Component data={data} theme={theme} locale={locale} />}
+        />
+      )}
+    />
+  )}
+/>
 ```
 
 **解決策**：コンテキストを使ったCompound components、またはchildrenでコンポーズする。

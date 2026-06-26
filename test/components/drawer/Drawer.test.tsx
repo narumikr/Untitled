@@ -18,9 +18,9 @@ vi.mock('@/internal/usePortalContainer', () => ({
 
 describe('Drawer', () => {
   const defaultProps = {
-    open: true,
-    onClose: vi.fn(),
-    children: <div>Drawer Content</div>,
+    'open': true,
+    'onClose': vi.fn(),
+    'children': <div>Drawer Content</div>,
     'data-testid': 'drawer-contents',
   }
 

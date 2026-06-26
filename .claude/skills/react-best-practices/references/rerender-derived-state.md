@@ -13,7 +13,7 @@ tags: rerender, derived-state, media-query, optimization
 
 ```tsx
 function Sidebar() {
-  const width = useWindowWidth()  // updates continuously
+  const width = useWindowWidth() // updates continuously
   const isMobile = width < 768
   return <nav className={isMobile ? 'mobile' : 'desktop'} />
 }

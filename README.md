@@ -33,6 +33,35 @@ yarnを使う場合：
 yarn add github:Narumikr/Untitled#release/untitled
 ```
 
+pnpmを使う場合：
+
+```bash
+pnpm add github:Narumikr/Untitled#release/untitled
+```
+
+> [!tip]
+>
+> 以下のような警告が出た場合は次の [pnpm addで警告が出たとき](#pnpm-addで警告が出たとき)を実施してください。
+>
+> ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED  Failed to prepare git-hosted package fetched...
+> build scripts but is not in the "onlyBuiltDependencies" allowlist.
+
+#### **_pnpm addで警告が出たとき_**
+
+pnpm がセキュリティポリシーの影響でビルドスクリプトの実行をブロックしている状態です。
+
+この場合は、コンソールの案内に従うか、プロジェクトの`package.json`に以下の設定を追加してください。
+
+```json
+{
+  "pnpm": {
+    "onlyBuiltDependencies": ["@naru/untitled-ui-library"]
+  }
+}
+```
+
+この設定により、パッケージのビルドスクリプトの実行が許可され、インストールが成功します。
+
 ### 💻 **_How to use_** 💻![Nightcord-at25-divider](https://capsule-render.vercel.app/api?type=rect&height=2&color=0:884499,100:f5f5f7)
 
 ### colorsSekai

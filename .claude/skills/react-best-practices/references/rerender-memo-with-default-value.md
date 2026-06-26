@@ -1,10 +1,8 @@
 ---
-
 title: メモ化コンポーネントのデフォルトの非プリミティブパラメータ値を定数に抽出する
 impact: MEDIUM
 impactDescription: restores memoization by using a constant for default value
 tags: rerender, memo, optimization
-
 ---
 
 ## メモ化コンポーネントのデフォルトの非プリミティブパラメータ値を定数に抽出する

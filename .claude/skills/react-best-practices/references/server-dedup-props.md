@@ -22,10 +22,10 @@ RSC→クライアントのシリアライズは値ではなくオブジェク�
 
 ```tsx
 // RSC: send once
-<ClientList usernames={usernames} />
+;<ClientList usernames={usernames} />
 
 // Client: transform there
-'use client'
+;('use client')
 const sorted = useMemo(() => [...usernames].sort(), [usernames])
 ```
 

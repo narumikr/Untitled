@@ -1,12 +1,19 @@
+build/
+coverage/
 dist/
 node_modules/
 storybook-static/
 
-*.min.js
-*.min.css
-build/
-coverage/
+.github/
 .next/
 .nuxt/
+plop-templates/
 public/
+
 *.log
+*.mdx
+*.min.css
+*.min.js
+
+package.json
+pnpm-lock.yaml

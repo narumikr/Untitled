@@ -6,10 +6,10 @@
 
 ```tsx
 // app/page.tsx
-import { Hero, Features, Pricing, FAQ, Footer } from '@/components'  // barrel import
-import { Analytics } from '@segment/analytics-next'                    // loaded immediately
-import { motion } from 'framer-motion'                                 // full library loaded
-import Confetti from 'react-confetti'                                  // loaded even if not used
+import { Hero, Features, Pricing, FAQ, Footer } from '@/components' // barrel import
+import { Analytics } from '@segment/analytics-next' // loaded immediately
+import { motion } from 'framer-motion' // full library loaded
+import Confetti from 'react-confetti' // loaded even if not used
 
 export default function LandingPage() {
   const [showConfetti, setShowConfetti] = useState(false)
@@ -32,7 +32,7 @@ export default function LandingPage() {
 
 ```tsx
 // app/page.tsx
-import Hero from '@/components/hero/Hero'               // direct imports (bundle-barrel-imports)
+import Hero from '@/components/hero/Hero' // direct imports (bundle-barrel-imports)
 import Features from '@/components/features/Features'
 import Pricing from '@/components/pricing/Pricing'
 import dynamic from 'next/dynamic'
@@ -56,9 +56,10 @@ export default function LandingPage() {
       <Hero />
       <Features />
       {/* Preload below-fold sections on interaction (bundle-preload) */}
-      <div onMouseEnter={() => {
-        import('@/components/pricing/Pricing')
-      }}>
+      <div
+        onMouseEnter={() => {
+          import('@/components/pricing/Pricing')
+        }}>
         <Pricing onPurchase={() => setShowConfetti(true)} />
       </div>
       <Suspense fallback={null}>
@@ -85,10 +86,10 @@ function DeferredAnalytics() {
 
 ## 適用されたルール
 
-| ルール | 影響 | 変更内容 |
-|------|--------|-------------|
-| `bundle-barrel-imports` | CRITICAL | バレル再エクスポート → 直接ファイルインポート |
-| `bundle-dynamic-imports` | CRITICAL | 静的インポート → FAQ・Footerをnext/dynamicに変更 |
-| `bundle-conditional` | HIGH | Confettiが常にバンドルされる → トリガー時のみ読み込む |
-| `bundle-defer-third-party` | MEDIUM | Analyticsを即時読み込み → ハイドレーション後に遅延読み込み |
-| `bundle-preload` | MEDIUM | プリロードなし → ホバー操作時にプリロード |
+| ルール                     | 影響     | 変更内容                                                   |
+| -------------------------- | -------- | ---------------------------------------------------------- |
+| `bundle-barrel-imports`    | CRITICAL | バレル再エクスポート → 直接ファイルインポート              |
+| `bundle-dynamic-imports`   | CRITICAL | 静的インポート → FAQ・Footerをnext/dynamicに変更           |
+| `bundle-conditional`       | HIGH     | Confettiが常にバンドルされる → トリガー時のみ読み込む      |
+| `bundle-defer-third-party` | MEDIUM   | Analyticsを即時読み込み → ハイドレーション後に遅延読み込み |
+| `bundle-preload`           | MEDIUM   | プリロードなし → ホバー操作時にプリロード                  |

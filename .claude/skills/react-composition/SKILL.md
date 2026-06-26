@@ -1,7 +1,6 @@
 ---
 name: react-composition
-description:
-  スケールするReactコンポジションパターン。多数のブールpropを持つコンポーネントのリファクタリング、柔軟なコンポーネントライブラリの構築、再利用可能なAPIの設計に使用する。Compound components、render props、コンテキストプロバイダー、またはコンポーネントアーキテクチャに関するタスクで起動する。React 19 APIの変更を含む。
+description: スケールするReactコンポジションパターン。多数のブールpropを持つコンポーネントのリファクタリング、柔軟なコンポーネントライブラリの構築、再利用可能なAPIの設計に使用する。Compound components、render props、コンテキストプロバイダー、またはコンポーネントアーキテクチャに関するタスクで起動する。React 19 APIの変更を含む。
 ---
 
 # React Composition Patterns
@@ -21,12 +20,12 @@ componentsの使用、stateのリフトアップ、内部のコンポジショ�
 
 ## ルールカテゴリ（優先度順）
 
-| 優先度 | カテゴリ                  | 影響度 | プレフィックス  |
-| ------ | ------------------------- | ------ | --------------- |
-| 1      | Component Architecture    | HIGH   | `architecture-` |
-| 2      | State Management          | MEDIUM | `state-`        |
-| 3      | Implementation Patterns   | MEDIUM | `patterns-`     |
-| 4      | React 19 APIs             | MEDIUM | `react19-`      |
+| 優先度 | カテゴリ                | 影響度 | プレフィックス  |
+| ------ | ----------------------- | ------ | --------------- |
+| 1      | Component Architecture  | HIGH   | `architecture-` |
+| 2      | State Management        | MEDIUM | `state-`        |
+| 3      | Implementation Patterns | MEDIUM | `patterns-`     |
+| 4      | React 19 APIs           | MEDIUM | `react19-`      |
 
 ## クイックリファレンス
 

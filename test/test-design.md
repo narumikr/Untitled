@@ -7,14 +7,14 @@
 
 ### テストフレームワーク構成
 
-| ツール | バージョン | 用途 |
-|--------|-----------|------|
-| `vitest` | ^3.2.4 | テストランナー・アサーション |
-| `@testing-library/react` | ^16.3.2 | コンポーネントレンダリング・クエリ |
-| `@testing-library/user-event` | ^14.6.1 | ユーザー操作シミュレーション |
-| `@testing-library/jest-dom` | ^6.9.1 | DOM マッチャー拡張（vitest 統合） |
-| `@vitest/coverage-v8` | ^3.2.4 | カバレッジ収集 |
-| `fast-check` | ^3.23.2 | プロパティベーステスト |
+| ツール                        | バージョン | 用途                               |
+| ----------------------------- | ---------- | ---------------------------------- |
+| `vitest`                      | ^3.2.4     | テストランナー・アサーション       |
+| `@testing-library/react`      | ^16.3.2    | コンポーネントレンダリング・クエリ |
+| `@testing-library/user-event` | ^14.6.1    | ユーザー操作シミュレーション       |
+| `@testing-library/jest-dom`   | ^6.9.1     | DOM マッチャー拡張（vitest 統合）  |
+| `@vitest/coverage-v8`         | ^3.2.4     | カバレッジ収集                     |
+| `fast-check`                  | ^3.23.2    | プロパティベーステスト             |
 
 ### テスト環境
 
@@ -50,22 +50,22 @@ test/
 
 #### テスト種別とファイル拡張子
 
-| 種別 | 拡張子 | 実行コマンド | 用途 |
-|------|--------|------------|------|
+| 種別           | 拡張子                     | 実行コマンド        | 用途                                       |
+| -------------- | -------------------------- | ------------------- | ------------------------------------------ |
 | ユニットテスト | `*.test.ts` / `*.test.tsx` | `npm run test:unit` | 純粋関数・フック・コンポーネントの単体検証 |
-| 結合テスト | `*.spec.ts` / `*.spec.tsx` | （今後追加予定） | 複数モジュールをまたぐ統合的な検証 |
+| 結合テスト     | `*.spec.ts` / `*.spec.tsx` | （今後追加予定）    | 複数モジュールをまたぐ統合的な検証         |
 
 `npm run test:unit` は `.test.ts` を部分文字列フィルターとして使用するため、`*.test.ts` / `*.test.tsx` のみが対象となり、`*.spec.ts` は除外される。
 
 #### 配置パスとファイル名
 
-| 対象 | ファイルパス | 拡張子 |
-|------|-------------|--------|
-| ユニットテスト（ユーティリティ） | `test/utils/{utilName}.test.ts` | `.test.ts` |
-| ユニットテスト（カスタムフック） | `test/hooks/{hookName}.test.ts` | `.test.ts` |
+| 対象                             | ファイルパス                               | 拡張子      |
+| -------------------------------- | ------------------------------------------ | ----------- |
+| ユニットテスト（ユーティリティ） | `test/utils/{utilName}.test.ts`            | `.test.ts`  |
+| ユニットテスト（カスタムフック） | `test/hooks/{hookName}.test.ts`            | `.test.ts`  |
 | ユニットテスト（コンポーネント） | `test/components/{folder}/{Name}.test.tsx` | `.test.tsx` |
-| プロパティベーステスト | 上記に `.property` を追加 | 同上 |
-| 結合テスト | `test/integration/{name}.spec.ts` | `.spec.ts` |
+| プロパティベーステスト           | 上記に `.property` を追加                  | 同上        |
+| 結合テスト                       | `test/integration/{name}.spec.ts`          | `.spec.ts`  |
 
 ---
 
@@ -233,7 +233,7 @@ act(() => {
     new StorageEvent('storage', {
       key: 'testKey',
       newValue: JSON.stringify('newValue'),
-    })
+    }),
   )
 })
 ```
@@ -393,9 +393,9 @@ describe('{テスト対象}', () => {
           const result = convertHexToRgb(hex)
           // 結果が rgb(...) 形式であること
           expect(result).toMatch(/^rgb\(\d{1,3}, \d{1,3}, \d{1,3}\)$/)
-        }
+        },
       ),
-      { numRuns: 100 }  // 最低100回実行
+      { numRuns: 100 }, // 最低100回実行
     )
   })
 })
@@ -411,27 +411,27 @@ PBT のテストケースには以下のコメントを付与する：
 
 ### 5.4 よく使う Arbitrary（入力生成器）
 
-| 用途 | Arbitrary | 例 |
-|------|-----------|-----|
-| HEX カラー文字列 | `fc.hexaString({ minLength: 6, maxLength: 6 }).map(s => '#' + s)` | `#a3f2b1` |
-| アルファ値 [0,1] | `fc.double({ min: 0, max: 1, noNaN: true })` | `0.75` |
-| 任意の配列 | `fc.array(fc.integer())` | `[3, -1, 42]` |
-| キー名文字列 | `fc.string({ minLength: 1 })` | `"abc"` |
-| 正の整数（ウィンドウ幅） | `fc.integer({ min: 1, max: 4096 })` | `768` |
-| Date オブジェクト | `fc.date()` | `new Date(...)` |
-| プリミティブ値 | `fc.oneof(fc.string(), fc.integer(), fc.boolean(), fc.constant(null))` | 混合 |
-| ネストオブジェクト | `fc.dictionary(fc.string(), fc.jsonValue())` | `{ a: 1, b: "x" }` |
+| 用途                     | Arbitrary                                                              | 例                 |
+| ------------------------ | ---------------------------------------------------------------------- | ------------------ |
+| HEX カラー文字列         | `fc.hexaString({ minLength: 6, maxLength: 6 }).map(s => '#' + s)`      | `#a3f2b1`          |
+| アルファ値 [0,1]         | `fc.double({ min: 0, max: 1, noNaN: true })`                           | `0.75`             |
+| 任意の配列               | `fc.array(fc.integer())`                                               | `[3, -1, 42]`      |
+| キー名文字列             | `fc.string({ minLength: 1 })`                                          | `"abc"`            |
+| 正の整数（ウィンドウ幅） | `fc.integer({ min: 1, max: 4096 })`                                    | `768`              |
+| Date オブジェクト        | `fc.date()`                                                            | `new Date(...)`    |
+| プリミティブ値           | `fc.oneof(fc.string(), fc.integer(), fc.boolean(), fc.constant(null))` | 混合               |
+| ネストオブジェクト       | `fc.dictionary(fc.string(), fc.jsonValue())`                           | `{ a: 1, b: "x" }` |
 
 ### 5.5 プロパティ設計ガイドライン
 
-| プロパティ種別 | 説明 | 例 |
-|---------------|------|-----|
-| ラウンドトリップ | `decode(encode(x)) === x` | serialize → deserialize |
-| 不変量 | 操作後も保存される性質 | shuffle 後の要素保存 |
-| 冪等性 | `f(f(x)) === f(x)` | フォーマット関数 |
-| 選択性 | 特定条件でのみ発火 | Enter キーのみハンドラー呼び出し |
-| 形式検証 | 出力が特定の形式に従う | `rgb(R, G, B)` 形式 |
-| 範囲検証 | 出力値が有効範囲内 | RGB 各成分が 0-255 |
+| プロパティ種別   | 説明                      | 例                               |
+| ---------------- | ------------------------- | -------------------------------- |
+| ラウンドトリップ | `decode(encode(x)) === x` | serialize → deserialize          |
+| 不変量           | 操作後も保存される性質    | shuffle 後の要素保存             |
+| 冪等性           | `f(f(x)) === f(x)`        | フォーマット関数                 |
+| 選択性           | 特定条件でのみ発火        | Enter キーのみハンドラー呼び出し |
+| 形式検証         | 出力が特定の形式に従う    | `rgb(R, G, B)` 形式              |
+| 範囲検証         | 出力値が有効範囲内        | RGB 各成分が 0-255               |
 
 ---
 
@@ -439,23 +439,23 @@ PBT のテストケースには以下のコメントを付与する：
 
 以下は本プロジェクトで定義された正当性プロパティの一覧。新規テスト追加時は、対象機能に対応するプロパティを参照する。
 
-| # | プロパティ名 | 対象 | 検証内容 |
-|---|-------------|------|---------|
-| 1 | HEX→RGB 変換の正当性 | `convertHexToRgb` | 出力が `rgb(R,G,B)` 形式で値が正しい |
-| 2 | HEX→RGBA 変換と混合色計算の正当性 | `convertHexToRgba`, `convertHexToRgbaMixWithBlackOrWhite` | 出力が `rgba(R,G,B,A)` 形式で数学的に正しい |
-| 3 | 無効入力に対するエラー発生 | converter 全般 | 不正入力でエラーがスローされる |
-| 4 | シリアライゼーション ラウンドトリップ | `serializeData`, `deserializeData` | `deserialize(parse(stringify(serialize(x)))) ≡ x` |
-| 5 | 時刻フォーマットの正当性 | `getFormattedTime`, `getCustomCurrentTime` | フォーマット結果が正しい形式 |
-| 6 | キーボードイベントハンドラーの選択性 | `fireOnEnterKey`, `fireOnEscapeKey` | 指定キーのみコールバック発火 |
-| 7 | shuffleArray の不変量 | `shuffleArray` | 要素と長さが保存される |
-| 8 | useLocalStorage の値保存ラウンドトリップ | `useLocalStorage` | set → get で値が一致 |
-| 9 | useLocalStorage の削除によるリセット | `useLocalStorage` | delete 後に初期値に戻る |
-| 10 | useLocalStorage のクロスタブ同期 | `useLocalStorage` | storage イベントで値が更新される |
-| 11 | useInnerSize のウィンドウ幅追従 | `useInnerSize` | resize 後に正しい値を返す |
-| 12 | useOrientation のブレークポイント判定 | `useOrientation` | 768px 以下で PORTRAIT |
-| 13 | createSekai のデフォルト値フォールバック | `createSekai` | 省略フィールドにデフォルト値適用 |
-| 14 | コンポーネントのプロパティ転送 | 全コンポーネント | className, data-*, children が転送される |
-| 15 | sekai プロパティによる CSS 変数設定 | 全コンポーネント | `--sekai-color` が設定される |
+| #   | プロパティ名                             | 対象                                                      | 検証内容                                          |
+| --- | ---------------------------------------- | --------------------------------------------------------- | ------------------------------------------------- |
+| 1   | HEX→RGB 変換の正当性                     | `convertHexToRgb`                                         | 出力が `rgb(R,G,B)` 形式で値が正しい              |
+| 2   | HEX→RGBA 変換と混合色計算の正当性        | `convertHexToRgba`, `convertHexToRgbaMixWithBlackOrWhite` | 出力が `rgba(R,G,B,A)` 形式で数学的に正しい       |
+| 3   | 無効入力に対するエラー発生               | converter 全般                                            | 不正入力でエラーがスローされる                    |
+| 4   | シリアライゼーション ラウンドトリップ    | `serializeData`, `deserializeData`                        | `deserialize(parse(stringify(serialize(x)))) ≡ x` |
+| 5   | 時刻フォーマットの正当性                 | `getFormattedTime`, `getCustomCurrentTime`                | フォーマット結果が正しい形式                      |
+| 6   | キーボードイベントハンドラーの選択性     | `fireOnEnterKey`, `fireOnEscapeKey`                       | 指定キーのみコールバック発火                      |
+| 7   | shuffleArray の不変量                    | `shuffleArray`                                            | 要素と長さが保存される                            |
+| 8   | useLocalStorage の値保存ラウンドトリップ | `useLocalStorage`                                         | set → get で値が一致                              |
+| 9   | useLocalStorage の削除によるリセット     | `useLocalStorage`                                         | delete 後に初期値に戻る                           |
+| 10  | useLocalStorage のクロスタブ同期         | `useLocalStorage`                                         | storage イベントで値が更新される                  |
+| 11  | useInnerSize のウィンドウ幅追従          | `useInnerSize`                                            | resize 後に正しい値を返す                         |
+| 12  | useOrientation のブレークポイント判定    | `useOrientation`                                          | 768px 以下で PORTRAIT                             |
+| 13  | createSekai のデフォルト値フォールバック | `createSekai`                                             | 省略フィールドにデフォルト値適用                  |
+| 14  | コンポーネントのプロパティ転送           | 全コンポーネント                                          | className, data-\*, children が転送される         |
+| 15  | sekai プロパティによる CSS 変数設定      | 全コンポーネント                                          | `--sekai-color` が設定される                      |
 
 ---
 
@@ -465,12 +465,12 @@ PBT のテストケースには以下のコメントを付与する：
 
 以下のモックは全テストで自動的に利用可能：
 
-| モック対象 | 設定場所 | 備考 |
-|-----------|---------|------|
-| `@testing-library/jest-dom/vitest` | setupTests.ts | `toBeInTheDocument()` 等のマッチャー |
-| `requestAnimationFrame` / `cancelAnimationFrame` | setupTests.ts | `setTimeout` ベースのモック |
-| `window.matchMedia` | setupTests.ts | `matches: false` がデフォルト |
-| `window.scrollTo` | setupTests.ts | `vi.fn()` |
+| モック対象                                       | 設定場所      | 備考                                 |
+| ------------------------------------------------ | ------------- | ------------------------------------ |
+| `@testing-library/jest-dom/vitest`               | setupTests.ts | `toBeInTheDocument()` 等のマッチャー |
+| `requestAnimationFrame` / `cancelAnimationFrame` | setupTests.ts | `setTimeout` ベースのモック          |
+| `window.matchMedia`                              | setupTests.ts | `matches: false` がデフォルト        |
+| `window.scrollTo`                                | setupTests.ts | `vi.fn()`                            |
 
 ### 7.2 SVG モック
 
@@ -507,11 +507,11 @@ vi.mock('@/internal/usePortalContainer', () => ({
 
 ## 8. カバレッジ基準
 
-| 対象ディレクトリ | ステートメント | ブランチ |
-|-----------------|--------------|---------|
-| `src/utils/` | 80% 以上 | - |
-| `src/hooks/` | - | 70% 以上 |
-| `src/components/` | 60% 以上 | - |
+| 対象ディレクトリ  | ステートメント | ブランチ |
+| ----------------- | -------------- | -------- |
+| `src/utils/`      | 80% 以上       | -        |
+| `src/hooks/`      | -              | 70% 以上 |
+| `src/components/` | 60% 以上       | -        |
 
 ### 除外対象
 
@@ -551,8 +551,8 @@ npx vitest --run --coverage
 
 ### CI との対応
 
-| ワークフロー | スクリプト | 対象 |
-|------------|-----------|------|
+| ワークフロー                         | スクリプト          | 対象                            |
+| ------------------------------------ | ------------------- | ------------------------------- |
 | `.github/workflows/ci-unit-test.yml` | `npm run test:unit` | `*.test.ts` / `*.test.tsx` のみ |
 
 ---

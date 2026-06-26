@@ -52,10 +52,11 @@ function NotificationProvider({ notification, children }: ProviderProps) {
   const { markRead, dismiss } = useNotificationActions(notification.id)
 
   return (
-    <NotificationContext value={{
-      state: { notification, isRead: notification.isRead },
-      actions: { markRead, dismiss },
-    }}>
+    <NotificationContext
+      value={{
+        state: { notification, isRead: notification.isRead },
+        actions: { markRead, dismiss },
+      }}>
       {children}
     </NotificationContext>
   )
@@ -178,18 +179,17 @@ const SearchContext = createContext<{
 
 function SearchProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(searchReducer, initialState)
-  const actions = useMemo(() => ({
-    search: (query: string) => dispatch({ type: 'SEARCH', query }),
-    filter: (filters: Filter[]) => dispatch({ type: 'FILTER', filters }),
-    sort: (field: string, direction: 'asc' | 'desc') =>
-      dispatch({ type: 'SORT', field, direction }),
-  }), [])
-
-  return (
-    <SearchContext value={{ state, actions }}>
-      {children}
-    </SearchContext>
+  const actions = useMemo(
+    () => ({
+      search: (query: string) => dispatch({ type: 'SEARCH', query }),
+      filter: (filters: Filter[]) => dispatch({ type: 'FILTER', filters }),
+      sort: (field: string, direction: 'asc' | 'desc') =>
+        dispatch({ type: 'SORT', field, direction }),
+    }),
+    [],
   )
+
+  return <SearchContext value={{ state, actions }}>{children}</SearchContext>
 }
 
 // 各コンポーネントはコンテキストから必要なものだけを読み取る
@@ -200,7 +200,11 @@ function SearchBar() {
 
 function ResultsCount() {
   const { state } = use(SearchContext)
-  return <span>{state.results.length} results for "{state.query}"</span>
+  return (
+    <span>
+      {state.results.length} results for "{state.query}"
+    </span>
+  )
 }
 
 // 使用例

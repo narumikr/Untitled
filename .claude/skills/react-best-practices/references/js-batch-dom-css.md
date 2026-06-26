@@ -10,6 +10,7 @@ tags: javascript, dom, css, performance, reflow, layout-thrashing
 スタイルの書き込みとレイアウトの読み取りを交互に行わないようにしてください。スタイル変更の間にレイアウトプロパティ（`offsetWidth`、`getBoundingClientRect()`、`getComputedStyle()`など）を読み取ると、ブラウザは強制的に同期リフローを行います。
 
 **問題なし（ブラウザがスタイル変更をバッチ処理）：**
+
 ```typescript
 function updateElementStyles(element: HTMLElement) {
   // Each line invalidates style, but browser batches the recalculation
@@ -21,16 +22,18 @@ function updateElementStyles(element: HTMLElement) {
 ```
 
 **誤り（読み書きの交互実行によりリフローが強制される）：**
+
 ```typescript
 function layoutThrashing(element: HTMLElement) {
   element.style.width = '100px'
-  const width = element.offsetWidth  // Forces reflow
+  const width = element.offsetWidth // Forces reflow
   element.style.height = '200px'
-  const height = element.offsetHeight  // Forces another reflow
+  const height = element.offsetHeight // Forces another reflow
 }
 ```
 
 **正しい（書き込みをバッチ処理してから1回だけ読み取る）：**
+
 ```typescript
 function updateElementStyles(element: HTMLElement) {
   // Batch all writes together
@@ -45,6 +48,7 @@ function updateElementStyles(element: HTMLElement) {
 ```
 
 **正しい（読み取りをバッチ処理してから書き込む）：**
+
 ```typescript
 function avoidThrashing(element: HTMLElement) {
   // Read phase - all layout queries first
@@ -59,6 +63,7 @@ function avoidThrashing(element: HTMLElement) {
 ```
 
 **より良い方法：CSSクラスを使用する**
+
 ```css
 .highlighted-box {
   width: 100px;
@@ -67,6 +72,7 @@ function avoidThrashing(element: HTMLElement) {
   border: 1px solid black;
 }
 ```
+
 ```typescript
 function updateElementStyles(element: HTMLElement) {
   element.classList.add('highlighted-box')
@@ -76,6 +82,7 @@ function updateElementStyles(element: HTMLElement) {
 ```
 
 **Reactの例：**
+
 ```tsx
 // Incorrect: interleaving style changes with layout queries
 function Box({ isHighlighted }: { isHighlighted: boolean }) {
@@ -94,11 +101,7 @@ function Box({ isHighlighted }: { isHighlighted: boolean }) {
 
 // Correct: toggle class
 function Box({ isHighlighted }: { isHighlighted: boolean }) {
-  return (
-    <div className={isHighlighted ? 'highlighted-box' : ''}>
-      Content
-    </div>
-  )
+  return <div className={isHighlighted ? 'highlighted-box' : ''}>Content</div>
 }
 ```
 

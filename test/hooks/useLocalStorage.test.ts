@@ -83,9 +83,7 @@ describe('useLocalStorage - setStoredValue による保存', () => {
   })
 
   it('オブジェクトを保存できる', () => {
-    const { result } = renderHook(() =>
-      useLocalStorage('objKey', { name: '', active: false }),
-    )
+    const { result } = renderHook(() => useLocalStorage('objKey', { name: '', active: false }))
 
     act(() => {
       result.current.setStoredValue({ name: 'test', active: true })
