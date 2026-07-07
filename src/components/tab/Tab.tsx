@@ -15,21 +15,7 @@ import type {
   TabVariant,
 } from '@/types/components/tab/Tab.types'
 
-/**
- * TODO(user): variantごとにセカイカラーをどこに効かせるかを決めるロジック
- *
- * ここで返した CSSProperties は `<div class="sekai-tab">` にマージされ、
- * 配下のタブアイテムから `var(--sekai-color)` などで参照されます。
- *
- * ヒント:
- * - underline は選択タブの下線色に sekai を使うのが直感的
- * - sticky-note は選択タブの背景に sekai を使うと存在感が出るが、
- *   controls の主張が強くなりすぎる場合は `convertHexToRgba(sekaiColor, 0.12)` などで
- *   `--sekai-color-bg` を作り、そちらを背景に使うと控えめにできる
- * - isLight を見て light/dark で透過度を切り替えるのもあり(Paginationがそのパターン)
- */
 const buildVariantStyle = (
-  variant: TabVariant,
   sekaiColor: string,
   isLight: boolean,
 ): React.CSSProperties => {
@@ -53,7 +39,7 @@ export const Tab = ({
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
   const tabButtonRefs = React.useRef<Array<HTMLButtonElement | null>>([])
 
-  const optionStyle = buildVariantStyle(variant, sekaiColor, isLight)
+  const optionStyle = buildVariantStyle(sekaiColor, isLight)
 
   const focusTab = (index: number) => {
     const target = tabButtonRefs.current[index]
@@ -108,8 +94,6 @@ export const Tab = ({
           modeTheme={modeTheme}
           tab={tab}
           selected={index === value}
-          isFirst={index === 0}
-          isLast={index === tabList.length - 1}
           buttonRef={node => {
             tabButtonRefs.current[index] = node
           }}
@@ -128,8 +112,6 @@ interface TabItemButtonProps {
   modeTheme: PaletteMode
   tab: TabItem
   selected: boolean
-  isFirst: boolean
-  isLast: boolean
   buttonRef: React.RefCallback<HTMLButtonElement>
   onKeyDown: React.KeyboardEventHandler<HTMLButtonElement>
   onClick: () => void
@@ -142,8 +124,6 @@ const TabItemButton = ({
   modeTheme,
   tab,
   selected,
-  isFirst,
-  isLast,
   buttonRef,
   onKeyDown,
   onClick,
@@ -166,8 +146,6 @@ const TabItemButton = ({
         styles[`sekai-tab-item--${variant}`],
         styles[`sekai-tab-item--${modeTheme}`],
         selected && styles['sekai-tab-item--selected'],
-        variant === 'sticky-note' && isFirst && styles['sekai-tab-item--first'],
-        variant === 'sticky-note' && isLast && styles['sekai-tab-item--last'],
       )}>
       {tab.icon}
       <span className={styles['sekai-tab-item-label']}>{tab.label}</span>

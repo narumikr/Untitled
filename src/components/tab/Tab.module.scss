@@ -58,23 +58,17 @@
 
 /* -------- variant: sticky-note -------- */
 .sekai-tab-item--sticky-note {
-  border-radius: 4px 4px 0 0;
-  margin-right: 2px;
-  background: transparent;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid transparent;
+  border-bottom-color: var(--sekai-color);
+  
 
   &.sekai-tab-item--selected {
+    background: transparent;
+    border-color: var(--sekai-color);
+    border-bottom-color: transparent;
     background: var(--sekai-color-bg);
-    outline: 1px solid var(--sekai-color);
     font-weight: bold;
-  }
-
-  &.sekai-tab-item--first {
-    border-top-left-radius: 8px;
-  }
-
-  &.sekai-tab-item--last {
-    border-top-right-radius: 8px;
-    margin-right: 0;
   }
 }
 
