@@ -31,7 +31,7 @@ export const Tab = ({
   sekai,
   themeMode,
   tabList,
-  value,
+  currentTab,
   onChange,
   variant = 'underline',
   ...rest
@@ -93,7 +93,7 @@ export const Tab = ({
           variant={variant}
           modeTheme={modeTheme}
           tab={tab}
-          selected={index === value}
+          selected={index === currentTab}
           buttonRef={node => {
             tabButtonRefs.current[index] = node
           }}
@@ -153,8 +153,8 @@ const TabItemButton = ({
   )
 }
 
-export const TabPanel = ({ children, tabIndex, value, ...rest }: TabPanelProps) => {
-  const isVisible = value === tabIndex
+export const TabPanel = ({ children, tabIndex, currentTab, ...rest }: TabPanelProps) => {
+  const isVisible = currentTab === tabIndex
 
   return (
     <div

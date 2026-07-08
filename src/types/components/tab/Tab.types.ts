@@ -7,7 +7,7 @@ export type TabVariant = 'underline' | 'sticky-note'
 export interface TabItem {
   /** タブのラベル - Tab label */
   label: string
-  /** タブの左に表示するアイコン - Optional icon rendered before the label */
+  /** タブに表示するアイコン - Tab Icon */
   icon?: React.ReactNode
 }
 
@@ -33,8 +33,8 @@ export interface TabProps {
   /** タブのリスト - List of tabs to render */
   tabList: TabItem[]
   /** 現在選択されているタブのindex - Index of the currently selected tab */
-  value: number
-  /** タブが切り替わった際のハンドラー - Handler invoked when the active tab changes */
+  currentTab: number
+  /** タブ切り替え時のハンドラー - Handler invoked when the active tab changes */
   onChange: (value: number) => void
   /**
    * タブの表示バリエーション - Visual variant of the tab
@@ -53,5 +53,5 @@ export interface TabPanelProps {
   /** このパネルに対応するタブのindex - Index of the tab this panel belongs to */
   tabIndex: number
   /** 現在選択されているタブのindex - Index of the currently selected tab */
-  value: number
+  currentTab: number
 }
