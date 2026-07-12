@@ -81,11 +81,7 @@ export const Tab = ({
       {...rest}
       id={id}
       role="tablist"
-      className={clsx(
-        styles['sekai-tab'],
-        styles[`sekai-tab--${modeTheme}`],
-        rest.className,
-      )}
+      className={clsx(styles['sekai-tab'], styles[`sekai-tab--${modeTheme}`], rest.className)}
       style={{ ...optionStyle, ...rest.style }}>
       {tabList.map((tab, index) => (
         <TabItemButton
