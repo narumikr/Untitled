@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
+import { useArgs } from 'storybook/preview-api'
 import { fn } from 'storybook/test'
 
 import { Tab, TabPanel } from '@/components/tab/Tab'
@@ -16,19 +17,19 @@ const githubSvg = new URL('../assets/github.svg', import.meta.url).href
 const sampleTabList = [{ label: 'HOME' }, { label: 'MUSIC' }, { label: 'PROFILE' }]
 
 const sampleIconTabList = [
-  { label: 'Nightcode', icon: <img src={discordSvg} /> },
-  { label: 'PLAY TUBING', icon: <img src={youtubeSvg} /> },
-  { label: 'GitHub', icon: <img src={githubSvg} /> },
+  { label: 'Nightcode', icon: <img src={discordSvg} alt="Nightcode" /> },
+  { label: 'PLAY TUBING', icon: <img src={youtubeSvg} alt="PLAY TUBING" /> },
+  { label: 'GitHub', icon: <img src={githubSvg} alt="GitHub" /> },
 ]
 
 const ControlledTab = (args: TabProps) => {
-  const [currentTab, setCurrentTab] = useState(args.currentTab ?? 0)
+  const [{ currentTab }, updateArgs] = useArgs<TabProps>()
   return (
     <Tab
       {...args}
-      currentTab={currentTab}
+      currentTab={currentTab ?? 0}
       onChange={(next) => {
-        setCurrentTab(next)
+        updateArgs({ currentTab: next })
         args.onChange?.(next)
       }}
     />
@@ -36,19 +37,20 @@ const ControlledTab = (args: TabProps) => {
 }
 
 const ControlledTabWithPanel = (args: TabProps) => {
-  const [currentTab, setCurrentTab] = useState(args.currentTab ?? 0)
+  const [{ currentTab }, updateArgs] = useArgs<TabProps>()
+  const activeTab = currentTab ?? 0
   return (
     <div style={{ width: 480 }}>
       <Tab
         {...args}
-        currentTab={currentTab}
+        currentTab={activeTab}
         onChange={(next) => {
-          setCurrentTab(next)
+          updateArgs({ currentTab: next })
           args.onChange?.(next)
         }}
       />
       {args.tabList.map((tab, index) => (
-        <TabPanel key={tab.label} tabIndex={index} currentTab={currentTab}>
+        <TabPanel key={`${tab.label}-${index}`} tabIndex={index} currentTab={activeTab}>
           <div style={{ padding: 16 }}>
             <p style={{ margin: 0 }}>{`${tab.label} panel contents`}</p>
           </div>
@@ -146,7 +148,7 @@ export const DefaultLight: Story = {
     variant: 'underline',
   },
   parameters: { sekai: 'Miku', background: 'light' },
-  render: (args) => <ControlledTab {...args} />,
+  render: ControlledTab,
 }
 
 export const DefaultDark: Story = {
@@ -159,7 +161,7 @@ export const DefaultDark: Story = {
     variant: 'underline',
   },
   parameters: { sekai: 'Miku', background: 'dark' },
-  render: (args) => <ControlledTab {...args} />,
+  render: ControlledTab,
 }
 
 export const StickyNoteLight: Story = {
@@ -172,7 +174,7 @@ export const StickyNoteLight: Story = {
     variant: 'sticky-note',
   },
   parameters: { sekai: 'Miku', background: 'light' },
-  render: (args) => <ControlledTab {...args} />,
+  render: ControlledTab,
 }
 
 export const StickyNoteDark: Story = {
@@ -185,7 +187,7 @@ export const StickyNoteDark: Story = {
     variant: 'sticky-note',
   },
   parameters: { sekai: 'Miku', background: 'dark' },
-  render: (args) => <ControlledTab {...args} />,
+  render: ControlledTab,
 }
 
 export const WithIcons: Story = {
@@ -198,7 +200,7 @@ export const WithIcons: Story = {
     variant: 'underline',
   },
   parameters: { sekai: 'Miku', background: 'light' },
-  render: (args) => <ControlledTab {...args} />,
+  render: ControlledTab,
 }
 
 export const WithTabPanel: Story = {
@@ -211,5 +213,5 @@ export const WithTabPanel: Story = {
     variant: 'underline',
   },
   parameters: { sekai: 'Miku', background: 'light' },
-  render: (args) => <ControlledTabWithPanel {...args} />,
+  render: ControlledTabWithPanel,
 }

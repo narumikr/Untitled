@@ -79,14 +79,13 @@ export const Tab = ({
       role="tablist"
       className={clsx(
         styles['sekai-tab'],
-        styles[`sekai-tab--${variant}`],
         styles[`sekai-tab--${modeTheme}`],
         rest.className,
       )}
       style={{ ...optionStyle, ...rest.style }}>
       {tabList.map((tab, index) => (
         <TabItemButton
-          key={tab.label}
+          key={`${tab.label}-${index}`}
           variant={variant}
           modeTheme={modeTheme}
           tab={tab}
@@ -141,7 +140,6 @@ const TabItemButton = ({
       className={clsx(
         styles['sekai-tab-item'],
         styles[`sekai-tab-item--${variant}`],
-        styles[`sekai-tab-item--${modeTheme}`],
         selected && styles['sekai-tab-item--selected'],
       )}>
       {tab.icon}
