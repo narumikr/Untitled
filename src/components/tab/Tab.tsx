@@ -15,10 +15,7 @@ import type {
   TabVariant,
 } from '@/types/components/tab/Tab.types'
 
-const buildVariantStyle = (
-  sekaiColor: string,
-  isLight: boolean,
-): React.CSSProperties => {
+const buildVariantStyle = (sekaiColor: string, isLight: boolean): React.CSSProperties => {
   const sekaiColorHover = convertHexToRgba(sekaiColor, isLight ? 0.2 : 0.4)
 
   return {
@@ -94,10 +91,10 @@ export const Tab = ({
           modeTheme={modeTheme}
           tab={tab}
           selected={index === currentTab}
-          buttonRef={node => {
+          buttonRef={(node) => {
             tabButtonRefs.current[index] = node
           }}
-          onKeyDown={event => handleTabKeyDown(event, index)}
+          onKeyDown={(event) => handleTabKeyDown(event, index)}
           onClick={() => onChange(index)}
           id={`sekai-tab-${index}`}
           ariaControls={`sekai-tabpanel-${index}`}

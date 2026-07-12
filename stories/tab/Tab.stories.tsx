@@ -13,11 +13,7 @@ const youtubeSvg = new URL('../assets/youtube.svg', import.meta.url).href
 const discordSvg = new URL('../assets/discord.svg', import.meta.url).href
 const githubSvg = new URL('../assets/github.svg', import.meta.url).href
 
-const sampleTabList = [
-  { label: 'HOME' },
-  { label: 'MUSIC' },
-  { label: 'PROFILE' },
-]
+const sampleTabList = [{ label: 'HOME' }, { label: 'MUSIC' }, { label: 'PROFILE' }]
 
 const sampleIconTabList = [
   { label: 'Nightcode', icon: <img src={discordSvg} /> },
