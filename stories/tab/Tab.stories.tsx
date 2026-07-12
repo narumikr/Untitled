@@ -50,7 +50,11 @@ const ControlledTabWithPanel = (args: TabProps) => {
         }}
       />
       {args.tabList.map((tab, index) => (
-        <TabPanel key={`${tab.label}-${index}`} tabIndex={index} currentTab={activeTab}>
+        <TabPanel
+          key={`${tab.label}-${index}`}
+          id={args.id}
+          tabIndex={index}
+          currentTab={activeTab}>
           <div style={{ padding: 16 }}>
             <p style={{ margin: 0 }}>{`${tab.label} panel contents`}</p>
           </div>

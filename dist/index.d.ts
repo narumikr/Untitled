@@ -1611,6 +1611,11 @@ interface TabProps {
     variant?: TabVariant;
 }
 interface TabPanelProps {
+    /**
+     * ユニークID - Unique identifier
+     * @remark 対になるTabコンポーネントと同じ値を指定してください。未指定の場合はReact.useIdでフォールバックしますが、Tab側と一致しないためARIA関連付けが機能しません。
+     */
+    id?: string;
     /** クラス名 - Class name */
     className?: string;
     /** スタイル - Inline styles */
@@ -1623,8 +1628,8 @@ interface TabPanelProps {
     currentTab: number;
 }
 
-declare const Tab: ({ sekai, themeMode, tabList, currentTab, onChange, variant, ...rest }: TabProps) => React__default.JSX.Element;
-declare const TabPanel: ({ children, tabIndex, currentTab, ...rest }: TabPanelProps) => React__default.JSX.Element;
+declare const Tab: ({ id, sekai, themeMode, tabList, currentTab, onChange, variant, ...rest }: TabProps) => React__default.JSX.Element;
+declare const TabPanel: ({ id, children, tabIndex, currentTab, ...rest }: TabPanelProps) => React__default.JSX.Element;
 
 interface MarqueeTextProps {
     /** ユニークID - Unique identifier */

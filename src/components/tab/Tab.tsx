@@ -25,6 +25,7 @@ const buildVariantStyle = (sekaiColor: string, isLight: boolean): React.CSSPrope
 }
 
 export const Tab = ({
+  id,
   sekai,
   themeMode,
   tabList,
@@ -35,6 +36,8 @@ export const Tab = ({
 }: TabProps) => {
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
   const tabButtonRefs = React.useRef<Array<HTMLButtonElement | null>>([])
+  const reactId = React.useId()
+  const prefix = id ?? reactId
 
   const optionStyle = buildVariantStyle(sekaiColor, isLight)
 
@@ -76,6 +79,7 @@ export const Tab = ({
   return (
     <div
       {...rest}
+      id={id}
       role="tablist"
       className={clsx(
         styles['sekai-tab'],
@@ -95,8 +99,8 @@ export const Tab = ({
           }}
           onKeyDown={(event) => handleTabKeyDown(event, index)}
           onClick={() => onChange(index)}
-          id={`sekai-tab-${index}`}
-          ariaControls={`sekai-tabpanel-${index}`}
+          id={`${prefix}-tab-${index}`}
+          ariaControls={`${prefix}-tabpanel-${index}`}
         />
       ))}
     </div>
@@ -148,16 +152,18 @@ const TabItemButton = ({
   )
 }
 
-export const TabPanel = ({ children, tabIndex, currentTab, ...rest }: TabPanelProps) => {
+export const TabPanel = ({ id, children, tabIndex, currentTab, ...rest }: TabPanelProps) => {
   const isVisible = currentTab === tabIndex
+  const reactId = React.useId()
+  const prefix = id ?? reactId
 
   return (
     <div
       {...rest}
       role="tabpanel"
       hidden={!isVisible}
-      id={`sekai-tabpanel-${tabIndex}`}
-      aria-labelledby={`sekai-tab-${tabIndex}`}
+      id={`${prefix}-tabpanel-${tabIndex}`}
+      aria-labelledby={`${prefix}-tab-${tabIndex}`}
       className={clsx(
         styles['sekai-tabpanel'],
         isVisible ? styles['sekai-tabpanel--visible'] : styles['sekai-tabpanel--hidden'],

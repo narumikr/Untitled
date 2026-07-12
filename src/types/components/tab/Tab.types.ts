@@ -44,6 +44,11 @@ export interface TabProps {
 }
 
 export interface TabPanelProps {
+  /**
+   * ユニークID - Unique identifier
+   * @remark 対になるTabコンポーネントと同じ値を指定してください。未指定の場合はReact.useIdでフォールバックしますが、Tab側と一致しないためARIA関連付けが機能しません。
+   */
+  id?: string
   /** クラス名 - Class name */
   className?: string
   /** スタイル - Inline styles */
