@@ -62,7 +62,7 @@
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^11.1.0",
     "@storybook/addon-docs": "^10.1.10",
-    "@storybook/addon-onboarding": "10.2.8",
+    "@storybook/addon-onboarding": "10.3.5",
     "@storybook/react-vite": "^10.2.8",
     "@svgr/rollup": "^8.1.0",
     "@testing-library/jest-dom": "^6.9.1",
