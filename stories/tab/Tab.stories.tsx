@@ -4,13 +4,14 @@ import { fn } from 'storybook/test'
 
 import { Tab, TabPanel } from '@/components/tab/Tab'
 
-import { CompactDiscIcon } from '@/img/compactDisc'
-import { LightBulbSvg } from '@/img/lightBulb'
-import { ProfileSvg } from '@/img/profile'
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
 import type { TabProps } from '@/types/components/tab/Tab.types'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+
+const youtubeSvg = new URL('../assets/youtube.svg', import.meta.url).href
+const discordSvg = new URL('../assets/discord.svg', import.meta.url).href
+const githubSvg = new URL('../assets/github.svg', import.meta.url).href
 
 const sampleTabList = [
   { label: 'HOME' },
@@ -18,10 +19,10 @@ const sampleTabList = [
   { label: 'PROFILE' },
 ]
 
-const iconTabList = [
-  { label: 'HOME', icon: <LightBulbSvg /> },
-  { label: 'MUSIC', icon: <CompactDiscIcon /> },
-  { label: 'PROFILE', icon: <ProfileSvg /> },
+const sampleIconTabList = [
+  { label: 'Nightcode', icon: <img src={discordSvg} /> },
+  { label: 'PLAY TUBING', icon: <img src={youtubeSvg} /> },
+  { label: 'GitHub', icon: <img src={githubSvg} /> },
 ]
 
 const ControlledTab = (args: TabProps) => {
@@ -196,7 +197,7 @@ export const WithIcons: Story = {
     id: 'tab-with-icons',
     sekai: 'Miku',
     themeMode: 'light',
-    tabList: iconTabList,
+    tabList: sampleIconTabList,
     currentTab: 0,
     variant: 'underline',
   },
