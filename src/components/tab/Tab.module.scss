@@ -44,6 +44,13 @@
   user-select: none;
 }
 
+.sekai-tab-item > :not(.sekai-tab-item-label) {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
 /* -------- variant: underline -------- */
 .sekai-tab-item--underline {
   border-bottom: 2px solid transparent;
