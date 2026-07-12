@@ -1572,6 +1572,60 @@ interface SideMenuProps {
 
 declare const SideMenu: ({ sekai, themeMode, open, onClick, children, pos, containerComponent, ...rest }: SideMenuProps) => React__default.ReactPortal | null;
 
+type TabVariant = 'underline' | 'sticky-note';
+interface TabItem {
+    /** タブのラベル - Tab label */
+    label: string;
+    /** タブに表示するアイコン - Tab Icon */
+    icon?: React__default.ReactNode;
+}
+interface TabProps {
+    /** ユニークID - Unique identifier */
+    id?: string;
+    /** クラス名 - Class name */
+    className?: string;
+    /** スタイル - Inline styles */
+    style?: React__default.CSSProperties;
+    /**
+     * セカイカラー - Sekai Color
+     * @see {@link ColorsSekaiKey}
+     * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.sekaiを参照し、contextもない場合はデフォルトのMikuカラーが適用されます。
+     */
+    sekai?: ColorsSekaiKey;
+    /**
+     * テーマモード - Theme Mode
+     * @see {@link PaletteMode}
+     * @remark props指定が無い場合、YourSekaiContextからsekaiTheme.palette.modeを参照し、contextもない場合はデフォルトのlightモードが適用されます。
+     */
+    themeMode?: PaletteMode;
+    /** タブのリスト - List of tabs to render */
+    tabList: TabItem[];
+    /** 現在選択されているタブのindex - Index of the currently selected tab */
+    currentTab: number;
+    /** タブ切り替え時のハンドラー - Handler invoked when the active tab changes */
+    onChange: (value: number) => void;
+    /**
+     * タブの表示バリエーション - Visual variant of the tab
+     * @default 'underline'
+     */
+    variant?: TabVariant;
+}
+interface TabPanelProps {
+    /** クラス名 - Class name */
+    className?: string;
+    /** スタイル - Inline styles */
+    style?: React__default.CSSProperties;
+    /** パネルの内容 - Panel contents */
+    children: React__default.ReactNode;
+    /** このパネルに対応するタブのindex - Index of the tab this panel belongs to */
+    tabIndex: number;
+    /** 現在選択されているタブのindex - Index of the currently selected tab */
+    currentTab: number;
+}
+
+declare const Tab: ({ sekai, themeMode, tabList, currentTab, onChange, variant, ...rest }: TabProps) => React__default.JSX.Element;
+declare const TabPanel: ({ children, tabIndex, currentTab, ...rest }: TabPanelProps) => React__default.JSX.Element;
+
 interface MarqueeTextProps {
     /** ユニークID - Unique identifier */
     id?: string;
@@ -2088,5 +2142,5 @@ declare const getFormattedTime: (now: Date, format?: string, locale?: string) =>
  */
 declare const getCustomCurrentTime: (now: Date, pattern?: string) => string;
 
-export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, Breadcrumb, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, Carousel, Checkbox, Chip, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, Divider, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, MarqueeText, MusicBannerCard, NamePlate, ORIENTATION, OutlineText, Pagination, PictureViewer, PrskLinkCard, PrskTips, ScrollTopButton, SekaiAnnotationText, SekaiBackground, SekaiBodyText, SekaiDetailText, SideMenu, StickyNote, StrongButton, StylishButton, TextArea, TextField, TextLink, Toast, ToggleButton, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YOUR_COLOR_THEME, YOUR_SEKAI_COLOR, YourSekaiContext, YourSekaiProvider, colorSekaiKeyList, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, createSharedValueProvider, deserializeData, fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useLocalStorage, useOrientation, useSessionStorage, useTabletSize, useThemeMode };
-export type { AccordionProps, AnnotationTextProps, ArrayElement, BackdropProps, BasicButtonProps, BodyTextProps, BreadcrumbProps, CardContentProps, CardProps, CardTitleProps, CarouselProps, CarouselSize, CheckboxProps, ChipProps, ColorsSekai, ColorsSekaiCode, ColorsSekaiKey, DeepPartial, DeepRequired, DetailTextProps, DialogButton, DialogButtonsProps, DialogProps, DialogTitleHeaderProps, DividerProps, DoReMeetEffectProps, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, MarqueeTextProps, MusicBannerCardProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaletteMode, PartialBy, PictureViewerProps, PrskLinkCardProps, PrskTipsProps, RequiredBy, ScrollTopButtonProps, SekaiAnnotationTextProps, SekaiBackgroundProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, SharedValueContextProps, SharedValueProviderProps, SideMenuProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TextAreaProps, TextFieldProps, TextLinkProps, ToastProps, ToggleButtonProps, TooltipProps, TypewriterTextOptions, TypewriterTextProps, ValueOf, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiOptions, YourSekaiProviderProps };
+export { Accordion, AnnotationText, Backdrop, BasicButton, BodyText, Breadcrumb, COLORS_SEKAI_KEYS, Card, CardContent, CardTitle, Carousel, Checkbox, Chip, DARK_MODE, DetailText, Dialog, DialogButtons, DialogTitleHeader, Divider, DoReMeetEffect, Drawer, Dropdown, DropdownContent, HamburgerButton, IntoTheSekai, LIGHT_MODE, List, ListContext, ListItemButton, ListItemText, Loading, MarqueeText, MusicBannerCard, NamePlate, ORIENTATION, OutlineText, Pagination, PictureViewer, PrskLinkCard, PrskTips, ScrollTopButton, SekaiAnnotationText, SekaiBackground, SekaiBodyText, SekaiDetailText, SideMenu, StickyNote, StrongButton, StylishButton, Tab, TabPanel, TextArea, TextField, TextLink, Toast, ToggleButton, Tooltip, TypewriterText, WindowDialog, XoMikuDialog, XxMikuDialog, YOUR_COLOR_THEME, YOUR_SEKAI_COLOR, YourSekaiContext, YourSekaiProvider, colorSekaiKeyList, colorsSekai, convertHexToRgb, convertHexToRgba, convertHexToRgbaMixWithBlackOrWhite, createSekai, createSharedValueProvider, deserializeData, fireOnEnterKey, fireOnEscapeKey, fireOnSpaceKey, getCurrentTime, getCustomCurrentTime, getFormattedTime, getSekaiCharacterName, isValidDateString, serializeData, shuffleArray, useCreateSekai, useCurrentTime, useInnerSize, useLocalStorage, useOrientation, useSessionStorage, useTabletSize, useThemeMode };
+export type { AccordionProps, AnnotationTextProps, ArrayElement, BackdropProps, BasicButtonProps, BodyTextProps, BreadcrumbProps, CardContentProps, CardProps, CardTitleProps, CarouselProps, CarouselSize, CheckboxProps, ChipProps, ColorsSekai, ColorsSekaiCode, ColorsSekaiKey, DeepPartial, DeepRequired, DetailTextProps, DialogButton, DialogButtonsProps, DialogProps, DialogTitleHeaderProps, DividerProps, DoReMeetEffectProps, DrawerProps, DropdownOption, DropdownProps, HamburgerButtonProps, IntoTheSekaiProps, ListItemButtonProps, ListItemTextProps, ListProps, LoadingProps, MarqueeTextProps, MusicBannerCardProps, NamePlateProps, Orientation, OutlineTextProps, PaginationProps, PaletteMode, PartialBy, PictureViewerProps, PrskLinkCardProps, PrskTipsProps, RequiredBy, ScrollTopButtonProps, SekaiAnnotationTextProps, SekaiBackgroundProps, SekaiBodyTextProps, SekaiDetailTextProps, SekaiTheme, SekaiThemeProps, SharedValueContextProps, SharedValueProviderProps, SideMenuProps, StickyNoteProps, StrongButtonProps, StylishButtonProps, TabItem, TabPanelProps, TabProps, TabVariant, TextAreaProps, TextFieldProps, TextLinkProps, ToastProps, ToggleButtonProps, TooltipProps, TypewriterTextOptions, TypewriterTextProps, ValueOf, WindowDialogProps, XoMikuDialogProps, XxMikuDialogProps, YourSekaiContextProps, YourSekaiOptions, YourSekaiProviderProps };
