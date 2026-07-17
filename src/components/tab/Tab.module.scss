@@ -1,0 +1,95 @@
+@use '../../styles/global.module.scss' as global;
+
+/* container */
+.sekai-tab {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.sekai-tab--light {
+  color: global.$color-text-light;
+}
+
+.sekai-tab--dark {
+  color: global.$color-text-dark;
+}
+
+/* -------- item (shared) -------- */
+.sekai-tab-item {
+  flex: 0 0 auto;
+  min-width: 120px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+
+  &:focus-visible {
+    outline: 1px solid var(--sekai-color);
+    outline-offset: -2px;
+  }
+}
+
+.sekai-tab-item-label {
+  flex: 1;
+  line-height: 1;
+  text-align: center;
+  user-select: none;
+}
+
+.sekai-tab-item > :not(.sekai-tab-item-label) {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* -------- variant: underline -------- */
+.sekai-tab-item--underline {
+  border-bottom: 2px solid transparent;
+  opacity: 0.6;
+
+  &.sekai-tab-item--selected {
+    border-bottom-color: var(--sekai-color);
+    opacity: 1;
+    font-weight: bold;
+  }
+}
+
+/* -------- variant: sticky-note -------- */
+.sekai-tab-item--sticky-note {
+  border-radius: 8px 8px 0 0;
+  border: 1px solid transparent;
+  border-bottom-color: var(--sekai-color);
+
+  &.sekai-tab-item--selected {
+    background: transparent;
+    border-color: var(--sekai-color);
+    border-bottom-color: transparent;
+    background: var(--sekai-color-bg);
+    font-weight: bold;
+  }
+}
+
+/* -------- panel -------- */
+.sekai-tabpanel {
+  width: 100%;
+}
+
+.sekai-tabpanel--hidden {
+  display: none;
+}
+
+.sekai-tabpanel--visible {
+  display: block;
+}

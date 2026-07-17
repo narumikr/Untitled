@@ -6,7 +6,7 @@ import { SideMenu } from '@/components/sidemenu/SideMenu'
 
 import { COLORS_SEKAI_KEYS } from '@/styles/sekai-colors'
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
   title: 'UI/SideMenu',
