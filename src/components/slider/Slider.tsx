@@ -62,7 +62,9 @@ export const Slider = ({
 }: SliderProps) => {
   const { sekaiColor, modeTheme, isLight } = useOptionalSekai({ sekai, mode: themeMode })
 
-  const [internalValue, setInternalValue] = useState<number>(getInitialValue(value, defaultValue))
+  const [internalValue, setInternalValue] = useState<number>(
+    getInitialValue(value, defaultValue),
+  )
 
   const percent = getPercent(internalValue, min, max)
 

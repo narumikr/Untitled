@@ -25,12 +25,12 @@ export interface SliderProps {
   value: number
   /** スライダー初期値 - Slider default value */
   defaultValue?: number
-  /** 
+  /**
    * スライダーの最小値 - Slider minimum value
    * @default 0
    */
   min?: number
-  /** 
+  /**
    * スライダーの最大値 - Slider maximum value
    * @default 100
    */
