@@ -58,11 +58,6 @@ export const CustomDocsDecorators = ({ story: Story, context }: CustomDocsDecora
 }
 
 const getContainerPortalRoot = (context: StoryContext, isDocs: boolean) => {
-  const isPrimary = context.canvasElement.id.indexOf('primary') !== -1
-  const nodeList = document.querySelectorAll(`#anchor--${context.id}`) || []
-  return isDocs
-    ? nodeList.length > 1
-      ? nodeList[isPrimary ? 0 : 1]?.querySelector('.docs-story')
-      : document.getElementById(`anchor--${context.id}`)?.querySelector('.docs-story')
-    : document.body
+  if (!isDocs) return document.body
+  return context.canvasElement?.closest?.('.docs-story') ?? undefined
 }
