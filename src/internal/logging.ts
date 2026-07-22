@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 
+declare const process: { env: { NODE_ENV?: string } }
+
 export const ConsoleLog = <T extends unknown[]>(...arg: T) => {
   if (process.env.NODE_ENV === 'development') {
     console.log(...arg)
