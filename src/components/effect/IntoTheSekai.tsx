@@ -16,8 +16,7 @@ type PieceOfSekai = {
 }
 
 type AnimationTrigger =
-  | React.MouseEvent<HTMLCanvasElement>
-  | React.TouchEvent<HTMLCanvasElement>
+  React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>
 
 const PINK = 'rgb(255, 186, 241, {0})'
 const YELLOW = 'rgb(255, 247, 148, {0})'

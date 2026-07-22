@@ -34,7 +34,7 @@ const SEKAI_CHARACTER_NAMES: Record<ColorsSekaiKey, { [key: string]: string }> =
   Vividbadsquad:       { 'en': 'Vivid BAD SQUAD',      'ja': 'Vivid BAD SQUAD',            'zh-hant': 'Vivid BAD SQUAD' },
   Wonderlandsshowtime: { 'en': 'Wonderlands×Showtime', 'ja': 'ワンダーランズ×ショウタイム',  'zh-hant': 'Wonderlands×Showtime' },
   Nightcode:           { 'en': 'Nightcord at 25:00',   'ja': '25時、ナイトコードで。',       'zh-hant': '25點, Nightcord見。' }
-};
+}
 
 const UNTITLED_VALID_LOCAL = {
   'ja': 'ja',
