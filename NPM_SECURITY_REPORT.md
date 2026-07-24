@@ -1,8 +1,8 @@
 # 🩺 依存関係ヘルスレポート
 
-> 🍊 **鏡音リン**: 全部チェックしてきたっ！気になるとこあったらちゃんと見てね！🍊
+> 🍨 **KAITO**: 依存関係のヘルスチェック完了だよ！僕と一緒に確認してみよう！🍨
 
-**実行日時**: 2026/07/18 01:33:24 JST
+**実行日時**: 2026/07/25 01:38:58 JST
 
 ---
 
@@ -16,11 +16,12 @@ Package                          Current  Wanted  Latest  Location              
 @eslint/js                        9.39.5  9.39.5  10.0.1  node_modules/@eslint/js                       Untitled
 @rollup/plugin-babel               6.1.0   6.1.0   7.1.0  node_modules/@rollup/plugin-babel             Untitled
 @rollup/plugin-typescript         11.1.6  11.1.6  12.3.0  node_modules/@rollup/plugin-typescript        Untitled
-@storybook/addon-onboarding       10.2.8  10.2.8  10.5.2  node_modules/@storybook/addon-onboarding      Untitled
+@storybook/addon-onboarding       10.2.8  10.2.8  10.5.4  node_modules/@storybook/addon-onboarding      Untitled
+@testing-library/jest-dom          6.9.1   6.9.1   7.0.0  node_modules/@testing-library/jest-dom        Untitled
 @types/node                       25.9.5  25.9.5  26.1.1  node_modules/@types/node                      Untitled
 eslint                            9.39.5  9.39.5  10.7.0  node_modules/eslint                           Untitled
 fast-check                        3.23.2  3.23.2   4.9.0  node_modules/fast-check                       Untitled
-swiper                            12.2.0  12.2.0  14.0.5  node_modules/swiper                           Untitled
+swiper                            12.2.0  12.2.0  14.0.6  node_modules/swiper                           Untitled
 typescript                         5.9.3   5.9.3   7.0.2  node_modules/typescript                       Untitled
 vite                               6.4.3   6.4.3   8.1.5  node_modules/vite                             Untitled
 ```
