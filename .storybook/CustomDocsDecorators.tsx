@@ -47,7 +47,7 @@ export const CustomDocsDecorators = ({ story: Story, context }: CustomDocsDecora
           args: {
             ...context.args,
             ...(isPortalDocsPreview && {
-              containerComponent: getContainerPortalRoot(context, isDocs) ?? undefined,
+              containerComponent: getContainerPortalRoot(context) ?? undefined,
             }),
           },
         },
@@ -57,7 +57,5 @@ export const CustomDocsDecorators = ({ story: Story, context }: CustomDocsDecora
   )
 }
 
-const getContainerPortalRoot = (context: StoryContext, isDocs: boolean) => {
-  if (!isDocs) return document.body
-  return context.canvasElement?.closest?.('.docs-story') ?? undefined
-}
+const getContainerPortalRoot = (context: StoryContext) =>
+  context.canvasElement?.closest?.('.docs-story') ?? undefined
