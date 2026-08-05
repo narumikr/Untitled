@@ -174,7 +174,11 @@ const deserializeObject = (obj: unknown, visited: WeakSet<object>): unknown => {
 
       for (let j = i + 1; j < entries.length; j++) {
         const [remainingKey, remainingValue] = entries[j]
-        defineOwnProperty(deserializedObj, remainingKey, deserializeData(remainingValue, visited))
+        defineOwnProperty(
+          deserializedObj,
+          remainingKey,
+          deserializeData(remainingValue, visited),
+        )
       }
 
       visited.delete(obj as object)
@@ -192,7 +196,11 @@ const isObject = (value: unknown): boolean => {
 
 // Bypass the Object.prototype accessor for keys like "__proto__" so that
 // they are stored as own data properties instead of triggering the prototype setter
-const defineOwnProperty = (target: Record<string, unknown>, key: string, value: unknown): void => {
+const defineOwnProperty = (
+  target: Record<string, unknown>,
+  key: string,
+  value: unknown,
+): void => {
   Object.defineProperty(target, key, {
     value,
     writable: true,
