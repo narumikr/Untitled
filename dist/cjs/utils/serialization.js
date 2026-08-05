@@ -90,7 +90,7 @@ var serializeObject = function serializeObject(obj, visited) {
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
         key = _Object$entries$_i[0],
         value = _Object$entries$_i[1];
-      serializedObj[key] = serializeData(value, visited);
+      defineOwnProperty(serializedObj, key, serializeData(value, visited));
     }
     visited["delete"](obj);
     return serializedObj;
@@ -157,14 +157,14 @@ var deserializeObject = function deserializeObject(obj, visited) {
         var _entries$j = _slicedToArray(entries[j], 2),
           prevKey = _entries$j[0],
           prevValue = _entries$j[1];
-        deserializedObj[prevKey] = prevValue;
+        defineOwnProperty(deserializedObj, prevKey, prevValue);
       }
-      deserializedObj[key] = deserializedValue;
+      defineOwnProperty(deserializedObj, key, deserializedValue);
       for (var _j = i + 1; _j < entries.length; _j++) {
         var _entries$_j = _slicedToArray(entries[_j], 2),
           remainingKey = _entries$_j[0],
           remainingValue = _entries$_j[1];
-        deserializedObj[remainingKey] = deserializeData(remainingValue, visited);
+        defineOwnProperty(deserializedObj, remainingKey, deserializeData(remainingValue, visited));
       }
       visited["delete"](obj);
       return deserializedObj;
@@ -176,6 +176,16 @@ var deserializeObject = function deserializeObject(obj, visited) {
 // For deserualizeData end
 var isObject = function isObject(value) {
   return value !== null && _typeof(value) === 'object' && !Array.isArray(value);
+};
+// Bypass the Object.prototype accessor for keys like "__proto__" so that
+// they are stored as own data properties instead of triggering the prototype setter
+var defineOwnProperty = function defineOwnProperty(target, key, value) {
+  Object.defineProperty(target, key, {
+    value: value,
+    writable: true,
+    enumerable: true,
+    configurable: true
+  });
 };
 
 exports.deserializeData = deserializeData;

@@ -45,6 +45,13 @@ describe('serializeData', () => {
     arr.push(arr)
     expect(() => serializeData(arr)).toThrow('Circular reference detected')
   })
+
+  it('__proto__ を own property として持つオブジェクトのキーを保持する', () => {
+    const src = Object.fromEntries([['__proto__', new Date('2024-01-01T00:00:00.000Z')]])
+    const result = serializeData(src) as Record<string, unknown>
+    expect(Object.keys(result)).toEqual(['__proto__'])
+    expect(result['__proto__']).toBe('2024-01-01T00:00:00.000Z')
+  })
 })
 
 describe('deserializeData', () => {
@@ -95,6 +102,14 @@ describe('deserializeData', () => {
     expect(() => deserializeData(obj)).toThrow(
       'Circular reference detected during deserialization',
     )
+  })
+
+  it('__proto__ を own property として持つオブジェクトのキーを保持する', () => {
+    const src = Object.fromEntries([['__proto__', '2024-01-01T00:00:00.000Z']])
+    const result = deserializeData(src) as Record<string, unknown>
+    expect(Object.keys(result)).toEqual(['__proto__'])
+    expect(result['__proto__']).toBeInstanceOf(Date)
+    expect((result['__proto__'] as Date).toISOString()).toBe('2024-01-01T00:00:00.000Z')
   })
 })
 
