@@ -93,7 +93,7 @@ const serializeObject = <T>(obj: T, visited: WeakSet<object>): unknown => {
     visited.add(obj as object)
     const serializedObj: Record<string, unknown> = {}
     for (const [key, value] of Object.entries(obj as object)) {
-      serializedObj[key] = serializeData(value, visited)
+      defineOwnProperty(serializedObj, key, serializeData(value, visited))
     }
     visited.delete(obj as object)
     return serializedObj
@@ -167,14 +167,18 @@ const deserializeObject = (obj: unknown, visited: WeakSet<object>): unknown => {
 
       for (let j = 0; j < i; j++) {
         const [prevKey, prevValue] = entries[j]
-        deserializedObj[prevKey] = prevValue
+        defineOwnProperty(deserializedObj, prevKey, prevValue)
       }
 
-      deserializedObj[key] = deserializedValue
+      defineOwnProperty(deserializedObj, key, deserializedValue)
 
       for (let j = i + 1; j < entries.length; j++) {
         const [remainingKey, remainingValue] = entries[j]
-        deserializedObj[remainingKey] = deserializeData(remainingValue, visited)
+        defineOwnProperty(
+          deserializedObj,
+          remainingKey,
+          deserializeData(remainingValue, visited),
+        )
       }
 
       visited.delete(obj as object)
@@ -188,4 +192,19 @@ const deserializeObject = (obj: unknown, visited: WeakSet<object>): unknown => {
 
 const isObject = (value: unknown): boolean => {
   return value !== null && typeof value === 'object' && !Array.isArray(value)
+}
+
+// Bypass the Object.prototype accessor for keys like "__proto__" so that
+// they are stored as own data properties instead of triggering the prototype setter
+const defineOwnProperty = (
+  target: Record<string, unknown>,
+  key: string,
+  value: unknown,
+): void => {
+  Object.defineProperty(target, key, {
+    value,
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  })
 }

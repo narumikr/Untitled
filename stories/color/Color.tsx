@@ -15,8 +15,24 @@ export const Color = ({ sekai }: ColorProps) => {
     <>
       <div style={{ backgroundColor: colorCode, width: 240, height: 120, marginBottom: 16 }} />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-        <span style={{ fontWeight: 'bold' }}>{sekai}</span>
-        <span style={{ fontWeight: 'bold' }}>{colorCode}</span>
+        <span
+          style={{
+            fontWeight: 'bold',
+            color: colorCode,
+            padding: '4px 8px',
+            borderRadius: 4,
+          }}>
+          {sekai}
+        </span>
+        <span
+          style={{
+            fontWeight: 'bold',
+            color: colorCode,
+            padding: '4px 8px',
+            borderRadius: 4,
+          }}>
+          {colorCode}
+        </span>
       </div>
     </>
   )

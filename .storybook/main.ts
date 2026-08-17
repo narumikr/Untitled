@@ -13,11 +13,13 @@ const config: StorybookConfig = {
   },
   viteFinal: async (config) => {
     const __dirname = path.dirname(fileURLToPath(import.meta.url))
-    if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@': path.resolve(__dirname, '../src'),
-      }
+    const srcPath = path.resolve(__dirname, '../src')
+    config.resolve ??= {}
+    const existing = config.resolve.alias
+    if (Array.isArray(existing)) {
+      config.resolve.alias = [...existing, { find: '@', replacement: srcPath }]
+    } else {
+      config.resolve.alias = { ...existing, '@': srcPath }
     }
     return config
   },
