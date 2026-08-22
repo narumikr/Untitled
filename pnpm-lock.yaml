@@ -67,8 +67,8 @@ importers:
         specifier: ^10.1.10
         version: 10.5.3(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(esbuild@0.28.1)(rollup@4.62.2)(storybook@10.5.3(@types/react@19.2.17)(prettier@3.9.6)(react@19.2.8))(vite@6.4.3(@types/node@25.9.5)(less@4.7.0)(sass@1.101.3)(stylus@0.62.0))
       '@storybook/addon-onboarding':
-        specifier: 10.2.8
-        version: 10.2.8(storybook@10.5.3(@types/react@19.2.17)(prettier@3.9.6)(react@19.2.8))
+        specifier: 10.5.3
+        version: 10.5.3(storybook@10.5.3(@types/react@19.2.17)(prettier@3.9.6)(react@19.2.8))
       '@storybook/react-vite':
         specifier: ^10.2.8
         version: 10.5.3(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(esbuild@0.28.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rollup@4.62.2)(storybook@10.5.3(@types/react@19.2.17)(prettier@3.9.6)(react@19.2.8))(typescript@6.0.3)(vite@6.4.3(@types/node@25.9.5)(less@4.7.0)(sass@1.101.3)(stylus@0.62.0))
@@ -1835,10 +1835,10 @@ packages:
       '@types/react':
         optional: true
 
-  '@storybook/addon-onboarding@10.2.8':
-    resolution: {integrity: sha512-/+TD055ZDmM325RYrDKqle51P1iT3GiFyDrcCYNOGTUEp3lAu/qplgOC0xMZudiv2y4ExlNYD26lJoGSTNHfHg==}
+  '@storybook/addon-onboarding@10.5.3':
+    resolution: {integrity: sha512-PWNUji1a8JUym5iRJyr9KVdmAgU+qgjVgXubVoesa053ZKMrga1J3j9hfyqqFPNACfRBqy6HAXyEAe6mAuOjGw==}
     peerDependencies:
-      storybook: ^10.2.8
+      storybook: ^10.5.3
 
   '@storybook/builder-vite@10.5.3':
     resolution: {integrity: sha512-qX1jb1nbG1mWJrCn3YrDkpbii+KA1uxdVgENeNusD80RrWCwVG8ce+awjZxKuT8qjYyALSAPBvTHUqZ4C1b7Pg==}
@@ -3104,6 +3104,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -6675,7 +6676,7 @@ snapshots:
       - vite
       - webpack
 
-  '@storybook/addon-onboarding@10.2.8(storybook@10.5.3(@types/react@19.2.17)(prettier@3.9.6)(react@19.2.8))':
+  '@storybook/addon-onboarding@10.5.3(storybook@10.5.3(@types/react@19.2.17)(prettier@3.9.6)(react@19.2.8))':
     dependencies:
       storybook: 10.5.3(@types/react@19.2.17)(prettier@3.9.6)(react@19.2.8)
 
