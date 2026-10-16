@@ -565,10 +565,10 @@
   background-color: var(--sekai-color-bg);
 }
 .HamburgerButton-module_sekai-hamburger-button__10Par .HamburgerButton-module_sekai-hamburger-line-light__1oRfq, .HamburgerButton-module_sekai-hamburger-button-dark__6slJ0 .HamburgerButton-module_sekai-hamburger-line-light__1oRfq, .HamburgerButton-module_sekai-hamburger-button-light__u2tFo .HamburgerButton-module_sekai-hamburger-line-light__1oRfq {
-  background-color: rgb(77.25, 77.25, 77.25);
+  background-color: rgb(30.2941176471%, 30.2941176471%, 30.2941176471%);
 }
 .HamburgerButton-module_sekai-hamburger-button__10Par .HamburgerButton-module_sekai-hamburger-line-dark__wGnsu, .HamburgerButton-module_sekai-hamburger-button-dark__6slJ0 .HamburgerButton-module_sekai-hamburger-line-dark__wGnsu, .HamburgerButton-module_sekai-hamburger-button-light__u2tFo .HamburgerButton-module_sekai-hamburger-line-dark__wGnsu {
-  background-color: rgb(229.5, 229.5, 229.5);
+  background-color: rgb(90%, 90%, 90%);
 }
 .HamburgerButton-module_sekai-hamburger-button__10Par span, .HamburgerButton-module_sekai-hamburger-button-dark__6slJ0 span, .HamburgerButton-module_sekai-hamburger-button-light__u2tFo span {
   position: absolute;
@@ -603,17 +603,17 @@
 }
 
 .HamburgerButton-module_sekai-hamburger-button-light__u2tFo:focus-visible {
-  outline: 1px solid rgb(77.25, 77.25, 77.25);
+  outline: 1px solid rgb(30.2941176471%, 30.2941176471%, 30.2941176471%);
 }
 .HamburgerButton-module_sekai-hamburger-button-light__u2tFo .HamburgerButton-module_sekai-hamburger-line__h-Hvg {
-  background-color: rgb(77.25, 77.25, 77.25);
+  background-color: rgb(30.2941176471%, 30.2941176471%, 30.2941176471%);
 }
 
 .HamburgerButton-module_sekai-hamburger-button-dark__6slJ0:focus-visible {
-  outline: 1px solid rgb(229.5, 229.5, 229.5);
+  outline: 1px solid rgb(90%, 90%, 90%);
 }
 .HamburgerButton-module_sekai-hamburger-button-dark__6slJ0 .HamburgerButton-module_sekai-hamburger-line__h-Hvg {
-  background-color: rgb(229.5, 229.5, 229.5);
+  background-color: rgb(90%, 90%, 90%);
 }
 /* Styles for common color */
 /* Styles for z-index */
@@ -962,14 +962,14 @@
   color: #212121;
 }
 .StrongButton-module_sekai-strong-button-light__2NC9s:disabled {
-  color: rgb(119.58, 119.58, 119.58);
+  color: rgb(46.8941176471%, 46.8941176471%, 46.8941176471%);
 }
 
 .StrongButton-module_sekai-strong-button-dark__t7x5O {
   color: #e0e0e0;
 }
 .StrongButton-module_sekai-strong-button-dark__t7x5O:disabled {
-  color: rgb(236.09, 236.09, 236.09);
+  color: rgb(92.5843137255%, 92.5843137255%, 92.5843137255%);
 }
 /* Styles for common color */
 /* Styles for z-index */
@@ -2607,10 +2607,10 @@
   background-color: var(--sekai-color-hover);
 }
 .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7:disabled.Dialog-module_sekai-light__TlNmy, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-1__FBzF9:disabled.Dialog-module_sekai-light__TlNmy, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-0__iZkb-:disabled.Dialog-module_sekai-light__TlNmy, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg:disabled.Dialog-module_sekai-light__TlNmy {
-  color: rgb(155.1, 155.1, 155.1);
+  color: rgb(60.8235294118%, 60.8235294118%, 60.8235294118%);
 }
 .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7:disabled.Dialog-module_sekai-dark__M58Kq, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-1__FBzF9:disabled.Dialog-module_sekai-dark__M58Kq, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-0__iZkb-:disabled.Dialog-module_sekai-dark__M58Kq, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg:disabled.Dialog-module_sekai-dark__M58Kq {
-  color: rgb(100.8, 100.8, 100.8);
+  color: rgb(39.5294117647%, 39.5294117647%, 39.5294117647%);
 }
 .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-normal-button-color__mq3H7:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-1__FBzF9:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-2-0__iZkb-:disabled:hover, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-normal-button-1-0__Ui4jg:disabled:hover {
   background-color: transparent;
@@ -2659,11 +2659,11 @@
   background-color: var(--sekai-color-strong-hover);
 }
 .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-strong-button-color__gzYAg:disabled.Dialog-module_sekai-light__TlNmy, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-1__WxTyF:disabled.Dialog-module_sekai-light__TlNmy, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-0__z7H34:disabled.Dialog-module_sekai-light__TlNmy, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-1-0__gM-wb:disabled.Dialog-module_sekai-light__TlNmy {
-  color: rgb(155.1, 155.1, 155.1);
+  color: rgb(60.8235294118%, 60.8235294118%, 60.8235294118%);
   background-color: var(--sekai-color-disabled);
 }
 .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-strong-button-color__gzYAg:disabled.Dialog-module_sekai-dark__M58Kq, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-1__WxTyF:disabled.Dialog-module_sekai-dark__M58Kq, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-2-0__z7H34:disabled.Dialog-module_sekai-dark__M58Kq, .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-1-0__gM-wb:disabled.Dialog-module_sekai-dark__M58Kq {
-  color: rgb(100.8, 100.8, 100.8);
+  color: rgb(39.5294117647%, 39.5294117647%, 39.5294117647%);
   background-color: var(--sekai-color-disabled);
 }
 .Dialog-module_sekai-buttons-area__9vRBF .Dialog-module_sekai-dialog-strong-button-1-0__gM-wb {
@@ -3307,10 +3307,10 @@
 }
 
 .XoMikuDialog-module_sekai-xomiku-normal-button__jJpY1:hover {
-  background-color: rgb(191.8, 221, 232.2) !important;
+  background-color: rgb(75.2156862745%, 86.6666666667%, 91.0588235294%) !important;
 }
 .XoMikuDialog-module_sekai-xomiku-normal-button__jJpY1:disabled {
-  color: rgb(155.1, 155.1, 155.1) !important;
+  color: rgb(60.8235294118%, 60.8235294118%, 60.8235294118%) !important;
 }
 .XoMikuDialog-module_sekai-xomiku-normal-button__jJpY1:disabled:hover {
   background-color: transparent !important;
@@ -3321,11 +3321,11 @@
   background-color: #9ccdca !important;
 }
 .XoMikuDialog-module_sekai-xomiku-strong-button__42023:hover {
-  background-color: rgb(167.2, 211, 227.8) !important;
+  background-color: rgb(65.568627451%, 82.7450980392%, 89.3333333333%) !important;
 }
 .XoMikuDialog-module_sekai-xomiku-strong-button__42023:disabled {
-  color: rgb(155.1, 155.1, 155.1) !important;
-  background-color: rgb(164.5, 208.6, 205.9) !important;
+  color: rgb(60.8235294118%, 60.8235294118%, 60.8235294118%) !important;
+  background-color: rgb(64.5098039216%, 81.8039215686%, 80.7450980392%) !important;
 }
 
 /** xomikuSvg type1 styles */
@@ -3644,13 +3644,13 @@
 }
 
 .XxMikuDialog-module_sekai-xxmiku-normal-button__ArRPe:hover {
-  background-color: rgb(128, 137.8, 139) !important;
+  background-color: rgb(50.1960784314%, 54.0392156863%, 54.5098039216%) !important;
 }
 .XxMikuDialog-module_sekai-xxmiku-normal-button__ArRPe:disabled.XxMikuDialog-module_sekai-light__fPaiT {
-  color: rgb(103.4, 103.4, 103.4) !important;
+  color: rgb(40.5490196078%, 40.5490196078%, 40.5490196078%) !important;
 }
 .XxMikuDialog-module_sekai-xxmiku-normal-button__ArRPe:disabled.XxMikuDialog-module_sekai-dark__-qzNa {
-  color: rgb(141.6, 141.6, 141.6) !important;
+  color: rgb(55.5294117647%, 55.5294117647%, 55.5294117647%) !important;
 }
 .XxMikuDialog-module_sekai-xxmiku-normal-button__ArRPe:disabled:hover {
   background-color: transparent !important;
@@ -3661,15 +3661,15 @@
   background-color: #9ccdd3 !important;
 }
 .XxMikuDialog-module_sekai-xxmiku-strong-button__uHTqB:hover {
-  background-color: rgb(147.25, 184, 188.5) !important;
+  background-color: rgb(57.7450980392%, 72.1568627451%, 73.9215686275%) !important;
 }
 .XxMikuDialog-module_sekai-xxmiku-strong-button__uHTqB:disabled.XxMikuDialog-module_sekai-light__fPaiT {
-  color: rgb(119.58, 119.58, 119.58) !important;
-  background-color: rgb(145.5, 179.8, 184) !important;
+  color: rgb(46.8941176471%, 46.8941176471%, 46.8941176471%) !important;
+  background-color: rgb(57.0588235294%, 70.5098039216%, 72.1568627451%) !important;
 }
 .XxMikuDialog-module_sekai-xxmiku-strong-button__uHTqB:disabled.XxMikuDialog-module_sekai-dark__-qzNa {
-  color: rgb(198.25, 198.25, 198.25) !important;
-  background-color: rgb(145.5, 179.8, 184) !important;
+  color: rgb(77.7450980392%, 77.7450980392%, 77.7450980392%) !important;
+  background-color: rgb(57.0588235294%, 70.5098039216%, 72.1568627451%) !important;
 }
 
 /** XxMikuSvg type1 styles */
@@ -3971,10 +3971,10 @@
   background: linear-gradient(45deg, var(--sekai-color), var(--sekai-pair-color));
 }
 .Divider-module_sekai-divider-line__t5gpU.Divider-module_sekai-divider-shadow-light__AraMc {
-  box-shadow: 0 1px 3px 0 rgb(183.9, 183.9, 183.9), 0 1px 1px 0 rgb(160.2, 160.2, 160.2), 0 2px 1px -1px rgb(136.5, 136.5, 136.5);
+  box-shadow: 0 1px 3px 0 rgb(72.1176470588%, 72.1176470588%, 72.1176470588%), 0 1px 1px 0 rgb(62.8235294118%, 62.8235294118%, 62.8235294118%), 0 2px 1px -1px rgb(53.5294117647%, 53.5294117647%, 53.5294117647%);
 }
 .Divider-module_sekai-divider-line__t5gpU.Divider-module_sekai-divider-shadow-dark__oP-AJ {
-  box-shadow: 0 1px 3px 0 rgb(76.5, 76.5, 76.5), 0 1px 1px 0 #666666, 0 2px 1px -1px rgb(127.5, 127.5, 127.5);
+  box-shadow: 0 1px 3px 0 rgb(30%, 30%, 30%), 0 1px 1px 0 #666666, 0 2px 1px -1px rgb(50%, 50%, 50%);
 }
 
 .Divider-module_sekai-divider-with-item__o9ObD, .Divider-module_sekai-divider-with-item-right__ZjNOp, .Divider-module_sekai-divider-with-item-left__Vdz9q, .Divider-module_sekai-divider-with-item-center__da8-R {
@@ -3995,10 +3995,10 @@
   margin-left: 16px;
 }
 .Divider-module_sekai-divider-with-item__o9ObD.Divider-module_sekai-divider-shadow-light__AraMc::before, .Divider-module_sekai-divider-shadow-light__AraMc.Divider-module_sekai-divider-with-item-right__ZjNOp::before, .Divider-module_sekai-divider-shadow-light__AraMc.Divider-module_sekai-divider-with-item-left__Vdz9q::before, .Divider-module_sekai-divider-shadow-light__AraMc.Divider-module_sekai-divider-with-item-center__da8-R::before, .Divider-module_sekai-divider-with-item__o9ObD.Divider-module_sekai-divider-shadow-light__AraMc::after, .Divider-module_sekai-divider-shadow-light__AraMc.Divider-module_sekai-divider-with-item-right__ZjNOp::after, .Divider-module_sekai-divider-shadow-light__AraMc.Divider-module_sekai-divider-with-item-left__Vdz9q::after, .Divider-module_sekai-divider-shadow-light__AraMc.Divider-module_sekai-divider-with-item-center__da8-R::after {
-  box-shadow: 0 1px 3px 0 rgb(183.9, 183.9, 183.9), 0 1px 1px 0 rgb(160.2, 160.2, 160.2), 0 2px 1px -1px rgb(136.5, 136.5, 136.5);
+  box-shadow: 0 1px 3px 0 rgb(72.1176470588%, 72.1176470588%, 72.1176470588%), 0 1px 1px 0 rgb(62.8235294118%, 62.8235294118%, 62.8235294118%), 0 2px 1px -1px rgb(53.5294117647%, 53.5294117647%, 53.5294117647%);
 }
 .Divider-module_sekai-divider-with-item__o9ObD.Divider-module_sekai-divider-shadow-dark__oP-AJ::before, .Divider-module_sekai-divider-shadow-dark__oP-AJ.Divider-module_sekai-divider-with-item-right__ZjNOp::before, .Divider-module_sekai-divider-shadow-dark__oP-AJ.Divider-module_sekai-divider-with-item-left__Vdz9q::before, .Divider-module_sekai-divider-shadow-dark__oP-AJ.Divider-module_sekai-divider-with-item-center__da8-R::before, .Divider-module_sekai-divider-with-item__o9ObD.Divider-module_sekai-divider-shadow-dark__oP-AJ::after, .Divider-module_sekai-divider-shadow-dark__oP-AJ.Divider-module_sekai-divider-with-item-right__ZjNOp::after, .Divider-module_sekai-divider-shadow-dark__oP-AJ.Divider-module_sekai-divider-with-item-left__Vdz9q::after, .Divider-module_sekai-divider-shadow-dark__oP-AJ.Divider-module_sekai-divider-with-item-center__da8-R::after {
-  box-shadow: 0 1px 3px 0 rgb(76.5, 76.5, 76.5), 0 1px 1px 0 #666666, 0 2px 1px -1px rgb(127.5, 127.5, 127.5);
+  box-shadow: 0 1px 3px 0 rgb(30%, 30%, 30%), 0 1px 1px 0 #666666, 0 2px 1px -1px rgb(50%, 50%, 50%);
 }
 
 .Divider-module_sekai-divider-with-item-center__da8-R::before, .Divider-module_sekai-divider-with-item-center__da8-R::after {
@@ -5238,7 +5238,7 @@
 }
 
 .Loading-module_sekai-circle-animation-0__ZIW47 {
-  transform: rotate(0deg) translate(25px) rotate(0deg);
+  transform: rotate(0deg) translate(25px) rotate(-0deg);
   animation-delay: 0s;
 }
 
